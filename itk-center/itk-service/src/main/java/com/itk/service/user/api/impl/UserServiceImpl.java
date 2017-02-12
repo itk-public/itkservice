@@ -21,7 +21,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User selectUser(int id){
+        logger.debug("This is a debug message");
         logger.info("This is an info message");
+        logger.warn("This is a warn message");
         logger.error("This is an error message");
         User user = userMapper.selectByPrimaryKey(id);
         return user;
