@@ -9,8 +9,8 @@
         <groupId>com.itk</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>itk-center-api</artifactId>
-    <name>itk-center-api</name>
+    <artifactId>itk-service-api</artifactId>
+    <name>itk-service-api</name>
     <packaging>jar</packaging>
 
     <dependencies>

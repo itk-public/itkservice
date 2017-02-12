@@ -14,8 +14,10 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public int add() {
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public int registerUser(@RequestParam("username")String username, @RequestParam("password")String password,
+                            @RequestParam("phone")String phone
+                            ) {
         User user = new User();
         user.setName("中文");
         return  userService.insert(user);

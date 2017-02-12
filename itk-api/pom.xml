@@ -26,7 +26,7 @@
     <dependencies>
         <dependency>
             <groupId>com.itk</groupId>
-            <artifactId>itk-center-api</artifactId>
+            <artifactId>itk-service-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

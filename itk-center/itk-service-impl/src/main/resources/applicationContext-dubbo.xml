@@ -24,7 +24,7 @@
 
 
 
-    <dubbo:service interface="com.itk.service.user.api.UserService" ref="tUserService"
+    <dubbo:service interface="com.itk.service.user.api.UserService" ref="userService"
                    version="1.0" registry="zookeeper" owner="zhouhui"/>
-    <bean id="tUserService" class="com.itk.service.user.api.impl.UserServiceImpl"/>
+    <bean id="userService" class="com.itk.service.user.api.impl.UserServiceImpl"/>
 </beans>
