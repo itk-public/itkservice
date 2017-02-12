@@ -10,8 +10,8 @@
 	<modules>
 		<module>itk-model</module>
 		<module>itk-dao</module>
-		<module>itk-api</module>
-		<module>itk-api-server</module>
+		<module>itk-center-api</module>
+		<module>itk-service</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
