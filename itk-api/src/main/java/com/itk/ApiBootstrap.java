@@ -6,10 +6,10 @@ import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
 @ImportResource({"classpath:applicationContext-dubbo.xml"})
-public class Bootstrap {
+public class ApiBootstrap {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Bootstrap.class, args);
+		SpringApplication.run(ApiBootstrap.class, args);
 	}
 
 }

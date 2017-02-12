@@ -19,7 +19,7 @@ import java.util.concurrent.CountDownLatch;
 @ImportResource({"classpath:applicationContext-dubbo.xml"})
 @ComponentScan
 @MapperScan("com.itk.*.mapper")
-public class Bootstrap {
+public class CenterBootstrap {
     @Bean
     public CountDownLatch closeLatch() {
         return new CountDownLatch(1);
@@ -48,7 +48,7 @@ public class Bootstrap {
     public static void main(String[] args) throws InterruptedException {
 
         ApplicationContext ctx = new SpringApplicationBuilder()
-                .sources(Bootstrap.class)
+                .sources(CenterBootstrap.class)
                 .web(false)
                 .run(args);
 
