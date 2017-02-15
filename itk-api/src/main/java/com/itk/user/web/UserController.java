@@ -29,29 +29,49 @@ public class UserController {
         record.setPhone(phone);
         record.setCreateDate(new Date());
         record.setLastloginDate(new Date());
-        return  WebResult.ok(userInfoService.registerUser(record,securityCode));
+        try{
+            return  WebResult.ok(userInfoService.registerUser(record,securityCode));
+        }catch (Exception e){
+            return WebResult.ok(e.getMessage());
+        }
     }
 
     @RequestMapping(value = "/forgetPwd", method = RequestMethod.GET)
     public WebResult forgetPwd(@RequestParam("phone")String phone, @RequestParam("password")String password,
                                                @RequestParam("securitycode")String securitycode) throws Exception {
-        return  WebResult.ok(userInfoService.forgetPwd(phone,securitycode,password));
+        try{
+            return  WebResult.ok(userInfoService.forgetPwd(phone,securitycode,password));
+        }catch (Exception e){
+            return WebResult.ok(e.getMessage());
+        }
     }
 
 
     @RequestMapping(value = "/accountLogin", method = RequestMethod.GET)
     public WebResult accountLogin(@RequestParam("phone")String phone,@RequestParam("password")String password) throws Exception {
-        return  WebResult.ok(userInfoService.accountLogin(phone,password));
+        try{
+            return  WebResult.ok(userInfoService.accountLogin(phone,password));
+        }catch (Exception e){
+            return WebResult.ok(e.getMessage());
+        }
     }
 
     @RequestMapping(value = "/getSecurityCode", method = RequestMethod.GET)
     public WebResult getSecurityCode(@RequestParam("phone")String phone) throws Exception {
-        return  WebResult.ok(userInfoService.getSecurityCode(phone));
+        try{
+            return  WebResult.ok(userInfoService.getSecurityCode(phone));
+        }catch (Exception e){
+            return WebResult.ok(e.getMessage());
+        }
     }
 
     @RequestMapping(value = "/phoneLogin", method = RequestMethod.GET)
     public WebResult phoneLogin(@RequestParam("phone")String phone,@RequestParam("securitycode")String securitycode) throws Exception {
-        return  WebResult.ok(userInfoService.phoneLogin(phone,securitycode));
+        try{
+            return  WebResult.ok(userInfoService.phoneLogin(phone,securitycode));
+        }catch (Exception e){
+            return WebResult.ok(e.getMessage());
+        }
     }
 
     @RequestMapping(value = "/updateUserInfo", method = RequestMethod.GET)
@@ -62,7 +82,14 @@ public class UserController {
         record.setNickName(nickName);
         record.setEmail(email);
         record.setBirthday(DateUtils.parseDateFormat(birthday));
-        return  WebResult.ok(userInfoService.updateUserInfo(record, accessToken));
+        try{
+            if(userInfoService.updateUserInfo(record, accessToken)>0) {
+                return WebResult.ok("修改密码成功！");
+            }
+        }catch (Exception e){
+            return WebResult.ok(e.getMessage());
+        }
+        return WebResult.ok("修改密码失败！");
     }
 
 
@@ -71,7 +98,11 @@ public class UserController {
     public WebResult updatePassowrd(@RequestParam("password")String password,@RequestParam("access_token")String accessToken) throws Exception {
         UserInfo record = new UserInfo();
         record.setPassword(MD5Util.stringToMD5(password));
-        return  WebResult.ok(userInfoService.updateUserInfo(record, accessToken));
+        try{
+            return  WebResult.ok(userInfoService.updateUserInfo(record, accessToken));
+        }catch (Exception e){
+            return WebResult.ok(e.getMessage());
+        }
     }
 
 
