@@ -47,6 +47,7 @@ public class Constant {
     /**
      * redis
      */
-    public static final long REDIS_EXPIRE_TIME_BY_SECONDS = 300L;
+    public static final long REDIS_CODE_EXPIRE_TIME_BY_SECONDS = 300L;
+    public static final long REDIS_TOCKEN_EXPIRE_TIME_BY_SECONDS = 259200L;
 
 }

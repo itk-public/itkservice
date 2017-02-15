@@ -34,7 +34,7 @@ public class UserInfoServiceImpl {
             }
             UserInfo userInfo = userInfoService.register(record);
             String accessToken =MD5Util.stringToMD5(UUID.randomUUID().toString());
-            redisTemplate.getConnectionFactory().getConnection().setEx(accessToken.getBytes(), Constant.REDIS_EXPIRE_TIME_BY_SECONDS, SerializationUtils.serialize(userInfo));
+            redisTemplate.getConnectionFactory().getConnection().setEx(accessToken.getBytes(), Constant.REDIS_TOCKEN_EXPIRE_TIME_BY_SECONDS, SerializationUtils.serialize(userInfo));
             return  UserInfoConvert.convert(userInfo,accessToken);
         } catch (Exception e) {
             throw e;
@@ -49,17 +49,17 @@ public class UserInfoServiceImpl {
                 throw  new Exception("验证码输入有误,请重新输入！");
             }
         }
-        UserInfo userInfo = userInfoService.forgetPwd(phone,  password);
+        UserInfo userInfo = userInfoService.forgetPwd(phone,  MD5Util.stringToMD5(password));
         String accessToken =MD5Util.stringToMD5(UUID.randomUUID().toString());
-        redisTemplate.getConnectionFactory().getConnection().setEx(accessToken.getBytes(),Constant.REDIS_EXPIRE_TIME_BY_SECONDS, SerializationUtils.serialize(userInfo));
+        redisTemplate.getConnectionFactory().getConnection().setEx(accessToken.getBytes(),Constant.REDIS_TOCKEN_EXPIRE_TIME_BY_SECONDS, SerializationUtils.serialize(userInfo));
         return  UserInfoConvert.convert(userInfo,accessToken);
     }
 
 
     public UserInfoVO accountLogin(String phone, String password){
-        UserInfo userInfo = userInfoService.accountLogin(phone,password);
+        UserInfo userInfo = userInfoService.accountLogin(phone,MD5Util.stringToMD5(password));
         String accessToken =MD5Util.stringToMD5(UUID.randomUUID().toString());
-        redisTemplate.getConnectionFactory().getConnection().setEx(accessToken.getBytes(), Constant.REDIS_EXPIRE_TIME_BY_SECONDS, SerializationUtils.serialize(userInfo));
+        redisTemplate.getConnectionFactory().getConnection().setEx(accessToken.getBytes(), Constant.REDIS_TOCKEN_EXPIRE_TIME_BY_SECONDS, SerializationUtils.serialize(userInfo));
         return  UserInfoConvert.convert(userInfo,accessToken);
     }
 
@@ -67,7 +67,7 @@ public class UserInfoServiceImpl {
 
     public String getSecurityCode(String phone) throws Exception {
         String code = userInfoService.getSecurityCode(phone);
-        redisTemplate.getConnectionFactory().getConnection().setEx(phone.getBytes(),Constant.REDIS_EXPIRE_TIME_BY_SECONDS, SerializationUtils.serialize(code));
+        redisTemplate.getConnectionFactory().getConnection().setEx(phone.getBytes(),Constant.REDIS_CODE_EXPIRE_TIME_BY_SECONDS, SerializationUtils.serialize(code));
         return code;
     }
 
@@ -85,7 +85,13 @@ public class UserInfoServiceImpl {
         return  UserInfoConvert.convert(userInfo,accessToken);
     }
 
-    public int updateUserInfo(UserInfo userInfo){
-        return userInfoService.updateUserInfo(userInfo);
+    public int updateUserInfo(UserInfo record, String accessToken) throws Exception {
+        byte[] userInfo = redisTemplate.getConnectionFactory().getConnection().get(accessToken.getBytes());
+        if(userInfo.length==0){
+                throw  new Exception("修改密码失败，请登陆！");
+        }
+        UserInfo tempUser = (UserInfo) SerializationUtils.deserialize(userInfo);
+        record.setPhone(tempUser.getPhone());
+        return userInfoService.updateUserInfo(record);
     }
 }

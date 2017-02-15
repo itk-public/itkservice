@@ -3,6 +3,7 @@ package com.itk.user.web;
 import com.itk.user.model.UserInfo;
 import com.itk.user.service.UserInfoServiceImpl;
 import com.itk.utils.DateUtils;
+import com.itk.utils.MD5Util;
 import com.itk.utils.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,14 +55,23 @@ public class UserController {
     }
 
     @RequestMapping(value = "/updateUserInfo", method = RequestMethod.GET)
-    public WebResult updateUserInfo(@RequestParam("gender")int gender,@RequestParam("nickname")String nickName, @RequestParam("birthday")String birthday,
+    public WebResult updateUserInfo(@RequestParam("gender")int gender,@RequestParam("nickname")String nickName,@RequestParam("access_token")String accessToken, @RequestParam("birthday")String birthday,
                                     @RequestParam(value = "email", required = false)String email) throws Exception {
         UserInfo record = new UserInfo();
         record.setGender(gender);
         record.setNickName(nickName);
         record.setEmail(email);
         record.setBirthday(DateUtils.parseDateFormat(birthday));
-        return  WebResult.ok(userInfoService.updateUserInfo(record));
+        return  WebResult.ok(userInfoService.updateUserInfo(record, accessToken));
+    }
+
+
+
+    @RequestMapping(value = "/updatePassowrd", method = RequestMethod.GET)
+    public WebResult updatePassowrd(@RequestParam("password")String password,@RequestParam("access_token")String accessToken) throws Exception {
+        UserInfo record = new UserInfo();
+        record.setPassword(MD5Util.stringToMD5(password));
+        return  WebResult.ok(userInfoService.updateUserInfo(record, accessToken));
     }
 
 
