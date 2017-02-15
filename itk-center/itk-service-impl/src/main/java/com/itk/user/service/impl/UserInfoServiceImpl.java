@@ -28,6 +28,7 @@ public class UserInfoServiceImpl implements UserInfoService {
             int result = userInfoMapper.insertSelective(userInfo);
             if(result>0){
                 rspUserinfo = userInfoMapper.selectCurrentUser(userInfo);
+                securityCodeMapper.deleteByPhone(rspUserinfo.getPhone());
             }
         }catch (Exception e){
             throw new Exception("用户已存在！");
@@ -43,6 +44,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         userInfo.setPassword(password);
         userInfo.setLastloginDate(new Date());
         userInfoMapper.updateByPhoneSelective(userInfo);
+        securityCodeMapper.deleteByPhone(phone);
         return userInfoMapper.selectCurrentUser(userInfo);
 
     }

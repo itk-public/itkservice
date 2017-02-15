@@ -98,7 +98,7 @@
     from t_security_code
     where phone = #{phone,jdbcType=VARCHAR} AND status = 1 AND  security_code = #{securityCode,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPhone" parameterType="java.lang.Integer" >
+  <delete id="deleteByPhone" parameterType="java.lang.String" >
     delete from t_security_code
     where phone = #{phone,jdbcType=VARCHAR}
   </delete>
