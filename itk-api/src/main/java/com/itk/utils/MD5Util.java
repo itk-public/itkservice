@@ -49,14 +49,14 @@ public class MD5Util {
         return s;
 
     }
-
-    // 测试主函数
-    public static void main(String args[]) {
-        String s = new String("tangfuqiang");
-        System.out.println("原始：" + s);
-        System.out.println("MD5后：" + stringToMD5(s));
-        System.out.println("加密的：" + convertMD5(s));
-        System.out.println("解密的：" + convertMD5(convertMD5(s)));
-
-    }
+//
+//    // 测试主函数
+//    public static void main(String args[]) {
+//        String s = new String("tangfuqiang");
+//        System.out.println("原始：" + s);
+//        System.out.println("MD5后：" + stringToMD5(s));
+//        System.out.println("加密的：" + convertMD5(s));
+//        System.out.println("解密的：" + convertMD5(convertMD5(s)));
+//
+//    }
 }
