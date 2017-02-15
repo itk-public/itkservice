@@ -3,6 +3,7 @@ package com.itk.user.service;
 import com.itk.user.model.UserInfo;
 import com.itk.user.model.UserInfoConvert;
 import com.itk.user.model.UserInfoVo;
+import com.itk.utils.Constant;
 import com.itk.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -33,7 +34,7 @@ public class UserInfoServiceImpl {
             }
             UserInfo userInfo = userInfoService.register(record);
             String accessToken =MD5Util.stringToMD5(UUID.randomUUID().toString());
-            redisTemplate.getConnectionFactory().getConnection().set(accessToken.getBytes(), SerializationUtils.serialize(userInfo));
+            redisTemplate.getConnectionFactory().getConnection().setEx(accessToken.getBytes(), Constant.REDIS_EXPIRE_TIME_BY_SECONDS, SerializationUtils.serialize(userInfo));
             return  UserInfoConvert.convert(userInfo,accessToken);
         } catch (Exception e) {
             throw e;
@@ -50,7 +51,7 @@ public class UserInfoServiceImpl {
         }
         UserInfo userInfo = userInfoService.forgetPwd(phone,  password);
         String accessToken =MD5Util.stringToMD5(UUID.randomUUID().toString());
-        redisTemplate.getConnectionFactory().getConnection().set(accessToken.getBytes(), SerializationUtils.serialize(userInfo));
+        redisTemplate.getConnectionFactory().getConnection().setEx(accessToken.getBytes(),Constant.REDIS_EXPIRE_TIME_BY_SECONDS, SerializationUtils.serialize(userInfo));
         return  UserInfoConvert.convert(userInfo,accessToken);
     }
 
@@ -58,7 +59,7 @@ public class UserInfoServiceImpl {
     public UserInfoVo  accountLogin(String phone,String password){
         UserInfo userInfo = userInfoService.accountLogin(phone,password);
         String accessToken =MD5Util.stringToMD5(UUID.randomUUID().toString());
-        redisTemplate.getConnectionFactory().getConnection().set(accessToken.getBytes(), SerializationUtils.serialize(userInfo));
+        redisTemplate.getConnectionFactory().getConnection().setEx(accessToken.getBytes(), Constant.REDIS_EXPIRE_TIME_BY_SECONDS, SerializationUtils.serialize(userInfo));
         return  UserInfoConvert.convert(userInfo,accessToken);
     }
 

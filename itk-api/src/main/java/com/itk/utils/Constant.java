@@ -3,6 +3,8 @@ package com.itk.utils;
 import java.math.BigDecimal;
 
 /**
+ *
+ * 常量
  * Created by zhouhui on 2017/2/14.
  */
 public class Constant {
@@ -41,5 +43,10 @@ public class Constant {
     public static final int ERRORCODE_SERVER_BUSY = 501;
     public static final String ERRORMESSAGE_SERVER_BUSY = "服务器繁忙，请稍后重试。";
 
-   
+
+    /**
+     * redis
+     */
+    public static final long REDIS_EXPIRE_TIME_BY_SECONDS = 300L;
+
 }
