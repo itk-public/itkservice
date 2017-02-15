@@ -67,7 +67,7 @@ public class UserInfoServiceImpl {
 
     public String getSecurityCode(String phone) throws Exception {
         String code = userInfoService.getSecurityCode(phone);
-        redisTemplate.getConnectionFactory().getConnection().set(phone.getBytes(), SerializationUtils.serialize(code));
+        redisTemplate.getConnectionFactory().getConnection().setEx(phone.getBytes(),Constant.REDIS_EXPIRE_TIME_BY_SECONDS, SerializationUtils.serialize(code));
         return code;
     }
 
