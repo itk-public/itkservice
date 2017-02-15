@@ -3,7 +3,7 @@ package com.itk.user.model;
 /**
  * Created by zhouhui on 2017/2/14.
  */
-public class UserInfoVo {
+public class UserInfoVO {
 
     private String access_token;
     private String uid;

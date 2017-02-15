@@ -2,7 +2,7 @@ package com.itk.user.service;
 
 import com.itk.user.model.UserInfo;
 import com.itk.user.model.UserInfoConvert;
-import com.itk.user.model.UserInfoVo;
+import com.itk.user.model.UserInfoVO;
 import com.itk.utils.Constant;
 import com.itk.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class UserInfoServiceImpl {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    public UserInfoVo registerUser(UserInfo record, String securityCode) throws Exception {
+    public UserInfoVO registerUser(UserInfo record, String securityCode) throws Exception {
         try {
             byte[] code = redisTemplate.getConnectionFactory().getConnection().get(record.getPhone().getBytes());
             if(code.length>0){
@@ -41,7 +41,7 @@ public class UserInfoServiceImpl {
         }
     }
 
-    public UserInfoVo forgetPwd(String phone,  String securityCode,  String password) throws Exception {
+    public UserInfoVO forgetPwd(String phone, String securityCode, String password) throws Exception {
         byte[] code = redisTemplate.getConnectionFactory().getConnection().get(phone.getBytes());
         if(code.length>0){
             String tempCode = (String) SerializationUtils.deserialize(code);
@@ -56,7 +56,7 @@ public class UserInfoServiceImpl {
     }
 
 
-    public UserInfoVo  accountLogin(String phone,String password){
+    public UserInfoVO accountLogin(String phone, String password){
         UserInfo userInfo = userInfoService.accountLogin(phone,password);
         String accessToken =MD5Util.stringToMD5(UUID.randomUUID().toString());
         redisTemplate.getConnectionFactory().getConnection().setEx(accessToken.getBytes(), Constant.REDIS_EXPIRE_TIME_BY_SECONDS, SerializationUtils.serialize(userInfo));
@@ -71,7 +71,7 @@ public class UserInfoServiceImpl {
         return code;
     }
 
-    public UserInfoVo phoneLogin(String phone,String securityCode) throws Exception {
+    public UserInfoVO phoneLogin(String phone, String securityCode) throws Exception {
         byte[] code = redisTemplate.getConnectionFactory().getConnection().get(phone.getBytes());
         if(code.length>0){
             String tempCode = (String) SerializationUtils.deserialize(code);

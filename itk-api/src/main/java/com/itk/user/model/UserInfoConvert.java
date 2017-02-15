@@ -5,10 +5,10 @@ package com.itk.user.model;
  */
 public class UserInfoConvert {
 
-    public static UserInfoVo convert(UserInfo userInfo, String accessToken){
-        UserInfoVo vo = null;
+    public static UserInfoVO convert(UserInfo userInfo, String accessToken){
+        UserInfoVO vo = null;
         if(userInfo != null){
-            vo = new UserInfoVo();
+            vo = new UserInfoVO();
             vo.setUid(userInfo.getUserId());
             vo.setAccess_token(accessToken);
         }
