@@ -17,13 +17,7 @@
 package com.itk.utils;
 
 /**
- * Java 5 enumeration of HTTP status codes.
- * <p/>
- * <p>The HTTP status code series can be retrieved via {@link #series()}.
- *
- * @author Arjen Poutsma
- * @see Series
- * @see <a href="http://www.iana.org/assignments/http-status-codes">HTTP Status Code Registry</a>
+ * Created by zhouhui on 2017/2/14.
  */
 public enum HttpStatus {
 

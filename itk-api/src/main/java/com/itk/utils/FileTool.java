@@ -9,9 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * 文件操作工具类
- * @author lucky.liu
- * @version v2.0.0 2014年9月26日 上午10:49:51
+ * Created by zhouhui on 2017/2/14.
  */
 public class FileTool {
     

@@ -5,7 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.regex.Pattern;
 
 /**
- * Created by Coldmoon on 2015/10/13.
+ * Created by zhouhui on 2017/2/14.
  */
 public class FormatUtils {
 

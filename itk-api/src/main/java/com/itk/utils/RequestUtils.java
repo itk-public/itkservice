@@ -6,12 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
 
 
+
 /**
  * Http请求工具类
- * 
- * @author
- * @date 2015-06-11
- * 
+ * Created by zhouhui on 2017/2/14.
  */
 public class RequestUtils {
 
