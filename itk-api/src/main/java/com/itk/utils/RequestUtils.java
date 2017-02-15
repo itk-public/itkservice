@@ -106,13 +106,6 @@ public class RequestUtils {
             String     value = request.getHeader(name);
             requestStr.append(name + "=" + value + ";");
         }
-
-        // the request may already be read. so return empty for now. Fix it later. TODO : Kai
-
-//        try {
-//            requestStr.append(CharStreams.toString(request.getReader()));
-//        }catch (IOException ioEx){} //ignore the io exception
-
         return requestStr.toString();
     }
 }
