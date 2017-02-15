@@ -3,7 +3,7 @@ package com.itk.utils;
 import java.math.BigDecimal;
 
 /**
- * Created by kainlin on 2015/10/14.
+ * Created by zhouhui on 2017/2/14.
  */
 public class Constant {
 

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by kainlin on 2015/10/16.
+ * Created by zhouhui on 2017/2/14.
  */
 public class WebResult implements Serializable {
 

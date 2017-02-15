@@ -2,6 +2,9 @@ package com.itk.utils;
 
 import java.security.MessageDigest;
 
+/**
+ * Created by zhouhui on 2017/2/14.
+ */
 public class MD5Util {
 
     /***
