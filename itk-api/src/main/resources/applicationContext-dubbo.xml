@@ -38,5 +38,4 @@
 
     <dubbo:reference id="galleryService" interface="com.itk.cms.service.GalleryService"
                      check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
-
 </beans>

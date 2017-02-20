@@ -1,7 +1,7 @@
 package com.itk.cms.web;
 
 import com.itk.cms.model.HomePage;
-import com.itk.cms.service.HomePageFrontServiceImpl;
+import com.itk.cms.service.HomePageServiceImpl;
 import com.itk.utils.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
