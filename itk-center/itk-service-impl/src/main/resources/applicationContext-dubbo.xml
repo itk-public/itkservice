@@ -27,4 +27,8 @@
     <dubbo:service interface="com.itk.user.service.UserInfoService" ref="userInfoService"
                    version="1.0" registry="zookeeper" owner="zhouhui"/>
     <bean id="userInfoService" class="com.itk.user.service.impl.UserInfoServiceImpl"/>
+
+    <dubbo:service interface="com.itk.cms.service.HomePageService" ref="homePageService"
+                   version="1.0" registry="zookeeper" owner="enchen"/>
+    <bean id="homePageService" class="com.itk.cms.service.impl.HomePageServiceImpl"/>
 </beans>

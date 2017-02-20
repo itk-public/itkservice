@@ -26,4 +26,7 @@
 
     <dubbo:reference id="userInfoService" interface="com.itk.user.service.UserInfoService"
     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+
+    <dubbo:reference id="homePageService" interface="com.itk.cms.service.HomePageService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
 </beans>
