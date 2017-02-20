@@ -38,4 +38,8 @@
     <dubbo:service interface="com.itk.cms.service.GalleryService" ref="galleryService"
                    version="1.0" registry="zookeeper" owner="zhouhui"/>
     <bean id="galleryService" class="com.itk.cms.service.impl.GalleryServiceImpl"/>
+
+    <dubbo:service interface="com.itk.cms.service.HomePageService" ref="homePageService"
+                   version="1.0" registry="zookeeper" owner="enchen"/>
+    <bean id="homePageService" class="com.itk.cms.service.impl.HomePageServiceImpl"/>
 </beans>
