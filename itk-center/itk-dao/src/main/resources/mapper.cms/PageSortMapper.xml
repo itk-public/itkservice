@@ -92,6 +92,17 @@
       </if>
     </if>
   </select>
+
+  <select id="selectPageSortsByHomePageId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from t_page_sort
+    where home_page_id = #{homePageId,jdbcType=BIGINT}
+    <if test="orderByClause != null" >
+      order by sort_id
+    </if>
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
