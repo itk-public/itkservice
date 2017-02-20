@@ -16,7 +16,7 @@ import java.util.UUID;
  * Created by zhouhui on 2017/2/14.
  */
 @Service
-public class UserInfoServiceImpl {
+public class UserInfoFrontServiceImpl {
 
     @Autowired
     private UserInfoService userInfoService;

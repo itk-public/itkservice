@@ -24,9 +24,20 @@
 
 
 
+    <!--app 登陆-->
     <dubbo:service interface="com.itk.user.service.UserInfoService" ref="userInfoService"
                    version="1.0" registry="zookeeper" owner="zhouhui"/>
     <bean id="userInfoService" class="com.itk.user.service.impl.UserInfoServiceImpl"/>
+
+
+    <!--首页cms-->
+    <dubbo:service interface="com.itk.cms.service.PageSortService" ref="pageSortService"
+                   version="1.0" registry="zookeeper" owner="zhouhui"/>
+    <bean id="pageSortService" class="com.itk.cms.service.impl.PageSortServiceImpl"/>
+
+    <dubbo:service interface="com.itk.cms.service.GalleryService" ref="galleryService"
+                   version="1.0" registry="zookeeper" owner="zhouhui"/>
+    <bean id="galleryService" class="com.itk.cms.service.impl.GalleryServiceImpl"/>
 
     <dubbo:service interface="com.itk.cms.service.HomePageService" ref="homePageService"
                    version="1.0" registry="zookeeper" owner="enchen"/>

@@ -1,7 +1,7 @@
 package com.itk.user.web;
 
 import com.itk.user.model.UserInfo;
-import com.itk.user.service.UserInfoServiceImpl;
+import com.itk.user.service.UserInfoFrontServiceImpl;
 import com.itk.utils.DateUtils;
 import com.itk.utils.MD5Util;
 import com.itk.utils.WebResult;
@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Date;
 import java.util.UUID;
 
-@RestController
+@RestController("/user")
 public class UserController {
 
     @Autowired
-    private UserInfoServiceImpl userInfoService;
+    private UserInfoFrontServiceImpl userInfoService;
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public WebResult registerUser(@RequestParam("phone")String phone, @RequestParam("password")String password,
