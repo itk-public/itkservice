@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class HomePageController {
 
     @Autowired
-    HomePageServiceImpl homePageService;
+    private HomePageServiceImpl homePageService;
 
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public WebResult addHomePage(@RequestBody HomePage homePage) throws Exception{
