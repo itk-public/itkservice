@@ -5,8 +5,6 @@ import com.itk.cms.model.HomePage;
 import com.itk.cms.service.HomePageService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Date;
-
 /**
  * Created by enchen on 2/20/17.
  */
@@ -17,7 +15,6 @@ public class HomePageServiceImpl implements HomePageService {
 
     @Override
     public int addHomePage(HomePage homePage) throws Exception {
-
         return homePageMapper.insertSelective(homePage);
     }
 

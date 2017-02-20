@@ -30,9 +30,13 @@
 
 
     <!--首页cms-->
+    <dubbo:reference id="homePageService" interface="com.itk.cms.service.HomePageService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+
     <dubbo:reference id="pageSortService" interface="com.itk.cms.service.PageSortService"
                      check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
 
-    <dubbo:reference id="homePageService" interface="com.itk.cms.service.HomePageService"
+    <dubbo:reference id="galleryService" interface="com.itk.cms.service.GalleryService"
                      check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+
 </beans>

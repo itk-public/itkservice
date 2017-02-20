@@ -1,7 +1,7 @@
 package com.itk.cms.web;
 
 import com.itk.cms.model.Gallery;
-import com.itk.cms.service.GalleryServiceFrontServiceImpl;
+import com.itk.cms.service.GalleryFrontServiceImpl;
 import com.itk.utils.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ import java.util.Date;
 public class GalleryController {
 
     @Autowired
-    private GalleryServiceFrontServiceImpl galleryServiceFrontService;
+    private GalleryFrontServiceImpl galleryServiceFrontService;
 
 
     @RequestMapping(value = "/addPageSort", method = RequestMethod.GET)

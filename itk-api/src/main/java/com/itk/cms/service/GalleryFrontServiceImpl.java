@@ -10,7 +10,7 @@ import java.util.List;
  * Created by zhouhui on 2017/2/20.
  */
 @Service
-public class GalleryServiceFrontServiceImpl {
+public class GalleryFrontServiceImpl {
 
     @Autowired
     private GalleryService galleryService;

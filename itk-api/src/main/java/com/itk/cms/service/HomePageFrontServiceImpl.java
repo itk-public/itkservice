@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Created by enchen on 2/20/17.
  */
-public class HomePageServiceImpl {
+public class HomePageFrontServiceImpl {
 
     @Autowired
     HomePageService homePageService;
