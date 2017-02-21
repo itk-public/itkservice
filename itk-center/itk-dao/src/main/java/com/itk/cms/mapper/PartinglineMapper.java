@@ -2,8 +2,9 @@ package com.itk.cms.mapper;
 
 import com.itk.cms.model.Partingline;
 import com.itk.cms.model.PartinglineExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PartinglineMapper {
     int countByExample(PartinglineExample example);
@@ -27,4 +28,6 @@ public interface PartinglineMapper {
     int updateByPrimaryKeySelective(Partingline record);
 
     int updateByPrimaryKey(Partingline record);
+
+    List<Partingline> selectPartinglinesByPageSortId(Long pageSortId);
 }

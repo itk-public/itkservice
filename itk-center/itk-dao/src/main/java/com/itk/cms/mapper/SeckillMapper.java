@@ -2,8 +2,9 @@ package com.itk.cms.mapper;
 
 import com.itk.cms.model.Seckill;
 import com.itk.cms.model.SeckillExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface SeckillMapper {
     int countByExample(SeckillExample example);
@@ -27,4 +28,6 @@ public interface SeckillMapper {
     int updateByPrimaryKeySelective(Seckill record);
 
     int updateByPrimaryKey(Seckill record);
+
+    List<Seckill> selectSeckillsByPageSortId(Long pageSortId);
 }

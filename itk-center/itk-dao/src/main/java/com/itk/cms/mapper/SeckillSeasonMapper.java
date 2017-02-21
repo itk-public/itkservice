@@ -2,8 +2,9 @@ package com.itk.cms.mapper;
 
 import com.itk.cms.model.SeckillSeason;
 import com.itk.cms.model.SeckillSeasonExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface SeckillSeasonMapper {
     int countByExample(SeckillSeasonExample example);
@@ -27,4 +28,6 @@ public interface SeckillSeasonMapper {
     int updateByPrimaryKeySelective(SeckillSeason record);
 
     int updateByPrimaryKey(SeckillSeason record);
+
+    List<SeckillSeason> selectSeckillSeasonsByPageSortId();
 }

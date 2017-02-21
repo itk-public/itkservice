@@ -44,6 +44,23 @@
     <bean id="homePageService" class="com.itk.cms.service.impl.HomePageServiceImpl"/>
 
     <dubbo:service interface="com.itk.cms.service.JewelService" ref="jewelService"
-                   version="1.0" registry="zookeeper" owner="enchen"/>
+                   version="1.0" registry="zookeeper" owner="zhouhui"/>
     <bean id="jewelService" class="com.itk.cms.service.impl.JewelServiceImpl"/>
+
+    <dubbo:service interface="com.itk.cms.service.SkuposService" ref="skuposService"
+                   version="1.0" registry="zookeeper" owner="zhouhui"/>
+    <bean id="skuposService" class="com.itk.cms.service.impl.SkuposServiceImpl"/>
+
+    <dubbo:service interface="com.itk.cms.service.SeckillService" ref="seckillService"
+                   version="1.0" registry="zookeeper" owner="zhouhui"/>
+    <bean id="seckillService" class="com.itk.cms.service.impl.SeckillServiceImpl"/>
+
+    <dubbo:service interface="com.itk.cms.service.SeckillSeasonService" ref="seckillSeasonService"
+                   version="1.0" registry="zookeeper" owner="zhouhui"/>
+    <bean id="seckillSeasonService" class="com.itk.cms.service.impl.SeckillSeasonServiceImpl"/>
+
+    <dubbo:service interface="com.itk.cms.service.PartinglineService" ref="partinglineService"
+                   version="1.0" registry="zookeeper" owner="zhouhui"/>
+    <bean id="partinglineService" class="com.itk.cms.service.impl.PartinglineServiceImpl"/>
+
 </beans>

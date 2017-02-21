@@ -98,6 +98,15 @@
       </if>
     </if>
   </select>
+
+  <select id="selectSkupossByPageSortId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from t_skupos
+    where page_sort_id = #{pageSortId,jdbcType=INTEGER} AND  is_del = 0 ORDER BY  position DESC
+  </select>
+
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />

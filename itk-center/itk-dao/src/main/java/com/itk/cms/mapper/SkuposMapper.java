@@ -2,8 +2,9 @@ package com.itk.cms.mapper;
 
 import com.itk.cms.model.Skupos;
 import com.itk.cms.model.SkuposExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface SkuposMapper {
     int countByExample(SkuposExample example);
@@ -27,4 +28,6 @@ public interface SkuposMapper {
     int updateByPrimaryKeySelective(Skupos record);
 
     int updateByPrimaryKey(Skupos record);
+
+    List<Skupos> selectSkupossByPageSortId(Long pageSortId);
 }

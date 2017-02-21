@@ -41,4 +41,16 @@
 
     <dubbo:reference id="jewelService" interface="com.itk.cms.service.JewelService"
                      check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+
+    <dubbo:reference id="skuposService" interface="com.itk.cms.service.SkuposService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+
+    <dubbo:reference id="seckillService" interface="com.itk.cms.service.SeckillService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+
+    <dubbo:reference id="seckillSeasonService" interface="com.itk.cms.service.SeckillSeasonService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+
+    <dubbo:reference id="partinglineService" interface="com.itk.cms.service.PartinglineService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
 </beans>
