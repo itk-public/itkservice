@@ -5,6 +5,8 @@ import com.itk.cms.model.HomePage;
 import com.itk.cms.service.HomePageService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 /**
  * Created by enchen on 2/20/17.
  */
@@ -28,5 +30,10 @@ public class HomePageServiceImpl implements HomePageService {
         HomePage homePage = homePageMapper.selectByPrimaryKey(homePageID);
         homePage.setIsDel(1);// isDel 0: 可用  1: 已删除
         return homePageMapper.updateByPrimaryKeySelective(homePage);
+    }
+
+    @Override
+    public List<HomePage> selectHomePages() {
+        return homePageMapper.selectHomePages();
     }
 }

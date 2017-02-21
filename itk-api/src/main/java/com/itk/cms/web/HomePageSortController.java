@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Created by zhouhui on 2017/2/20.
  */
-@RestController("/cms/homepagesort")
+@RestController
+@RequestMapping("/cms/homepagesort")
 public class HomePageSortController {
 
     @Autowired

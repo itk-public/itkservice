@@ -13,7 +13,7 @@ public interface GalleryService {
 
     int updateGallery(Gallery gallery);
 
-    int deleGallery(Gallery gallery);
+    int delGallery(Gallery gallery);
 
     Gallery selectByPrimaryKey(Long id);
 

@@ -98,6 +98,14 @@
       </if>
     </if>
   </select>
+
+  <select id="selectJewelsByPageSortId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from t_jewel
+    where page_sort_id = #{pageSortId,jdbcType=INTEGER} AND  is_del = 0 ORDER BY  position
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />

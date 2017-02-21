@@ -2,8 +2,9 @@ package com.itk.cms.mapper;
 
 import com.itk.cms.model.HomePage;
 import com.itk.cms.model.HomePageExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface HomePageMapper {
     int countByExample(HomePageExample example);
@@ -27,4 +28,6 @@ public interface HomePageMapper {
     int updateByPrimaryKeySelective(HomePage record);
 
     int updateByPrimaryKey(HomePage record);
+
+    List<HomePage> selectHomePages();
 }

@@ -109,7 +109,7 @@
     select
     <include refid="Base_Column_List" />
     from t_gallery
-    where page_sort_id = #{pageSortId,jdbcType=INTEGER} AND  is_del = 0
+    where page_sort_id = #{pageSortId,jdbcType=INTEGER} AND  is_del = 0 ORDER BY  id DESC
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >

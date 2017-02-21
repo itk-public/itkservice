@@ -23,8 +23,8 @@ public class GalleryFrontServiceImpl {
         return galleryService.updateGallery(gallery);
     }
 
-    public int deleGallery(Gallery gallery){
-       return galleryService.deleGallery(gallery);
+    public int delGallery(Gallery gallery){
+       return galleryService.delGallery(gallery);
     }
 
     public Gallery selectByPrimaryKey(Long id){

@@ -2,8 +2,9 @@ package com.itk.cms.mapper;
 
 import com.itk.cms.model.Jewel;
 import com.itk.cms.model.JewelExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface JewelMapper {
     int countByExample(JewelExample example);
@@ -27,4 +28,6 @@ public interface JewelMapper {
     int updateByPrimaryKeySelective(Jewel record);
 
     int updateByPrimaryKey(Jewel record);
+
+    List<Jewel> selectJewelsByPageSortId(Long pageSortId);
 }

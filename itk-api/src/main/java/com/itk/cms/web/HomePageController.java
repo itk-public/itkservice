@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by enchen on 2/20/17.
  */
-
 @RestController
 @RequestMapping(value = "/cms/homePage")
 public class HomePageController {
@@ -52,5 +51,10 @@ public class HomePageController {
         }catch (Exception e){
             return WebResult.ok(e.getMessage());
         }
+    }
+
+    @RequestMapping(value = "/selectHomePages", method = RequestMethod.GET)
+    public WebResult selectHomePages(){
+            return WebResult.ok(homePageService.selectHomePages());
     }
 }

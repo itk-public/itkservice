@@ -11,14 +11,15 @@ import java.util.Date;
 /**
  * Created by zhouhui on 2017/2/20.
  */
-@RestController("/cms/gallery")
+@RestController
+@RequestMapping("/cms/gallery")
 public class GalleryController {
 
     @Autowired
-    private GalleryFrontServiceImpl galleryServiceFrontService;
+    private GalleryFrontServiceImpl galleryFrontService;
 
 
-    @RequestMapping(value = "/addPageSort", method = RequestMethod.GET)
+    @RequestMapping(value = "/addGallery", method = RequestMethod.GET)
     public WebResult addGallery(@RequestParam("homePageId")Integer pageSortId, @RequestParam("name")String name,
                                 @RequestParam("src")String src, @RequestParam("action")String action,
                                 @RequestParam("priority")Long priority, @RequestParam("onlineTime")Date onlineTime,
@@ -33,7 +34,7 @@ public class GalleryController {
         gallery.setOfflineTime(offlineTime);
         gallery.setCreateTime(new Date());
         gallery.setIsDel(0);
-        if(galleryServiceFrontService.addGallery(gallery) > 0){
+        if(galleryFrontService.addGallery(gallery) > 0){
             return WebResult.ok("添加成功！");
         }
         return WebResult.ok("添加失败！");
@@ -53,18 +54,18 @@ public class GalleryController {
         gallery.setPriority(priority);
         gallery.setOnlineTime(onlineTime);
         gallery.setOfflineTime(offlineTime);
-        if(galleryServiceFrontService.updateGallery(gallery) > 0){
+        if(galleryFrontService.updateGallery(gallery) > 0){
             return WebResult.ok("添加成功！");
         }
         return WebResult.ok("添加失败！");
     }
 
-    @RequestMapping(value = "/deleGallery/{id}", method = RequestMethod.GET)
-    public WebResult deleGallery(@PathVariable(value = "id") Long id) throws Exception {
+    @RequestMapping(value = "/delGallery/{id}", method = RequestMethod.GET)
+    public WebResult delGallery(@PathVariable(value = "id") Long id) throws Exception {
         Gallery gallery = new Gallery();
         gallery.setId(id);
         gallery.setIsDel(1);
-        if(galleryServiceFrontService.deleGallery(gallery) > 0){
+        if(galleryFrontService.delGallery(gallery) > 0){
             return WebResult.ok("添加成功！");
         }
         return WebResult.ok("添加失败！");
@@ -72,12 +73,12 @@ public class GalleryController {
 
     @RequestMapping(value = "/selectByPrimaryKey/{id}", method = RequestMethod.GET)
     public WebResult selectByPrimaryKey(@PathVariable(value = "id") Long id) throws Exception {
-        return WebResult.ok(galleryServiceFrontService.selectByPrimaryKey(id));
+        return WebResult.ok(galleryFrontService.selectByPrimaryKey(id));
     }
 
     @RequestMapping(value = "/selectGallerysByPageSortId", method = RequestMethod.GET)
     public WebResult selectGallerysByPageSortId(@RequestParam("pageSortId")Long pageSortId) throws Exception {
-        return WebResult.ok(galleryServiceFrontService.selectGallerysByPageSortId(pageSortId));
+        return WebResult.ok(galleryFrontService.selectGallerysByPageSortId(pageSortId));
     }
 
 

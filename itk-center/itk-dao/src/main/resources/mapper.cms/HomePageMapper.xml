@@ -94,6 +94,14 @@
       </if>
     </if>
   </select>
+
+  <select id="selectHomePages" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from t_home_page
+    where is_del = 0 ORDER BY id DESC
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />

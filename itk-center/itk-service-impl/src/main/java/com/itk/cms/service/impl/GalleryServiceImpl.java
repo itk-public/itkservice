@@ -29,7 +29,7 @@ public class GalleryServiceImpl implements GalleryService {
 
 
     @Override
-    public int deleGallery(Gallery gallery) {
+    public int delGallery(Gallery gallery) {
         gallery.setIsDel(1);
         return galleryMapper.updateByPrimaryKeySelective(gallery);
     }
