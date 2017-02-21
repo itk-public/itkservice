@@ -53,9 +53,9 @@ public class JewelController {
         jewel.setOnlineTime(onlineTime);
         jewel.setOfflineTime(offlineTime);
         if(jewelFrontService.updateJewel(jewel) > 0){
-            return WebResult.ok("添加成功！");
+            return WebResult.ok("修改成功！");
         }
-        return WebResult.ok("添加失败！");
+        return WebResult.ok("修改失败！");
     }
 
     @RequestMapping(value = "/delJewel/{id}", method = RequestMethod.GET)
@@ -64,9 +64,9 @@ public class JewelController {
         jewel.setId(id);
         jewel.setIsDel(1);
         if(jewelFrontService.delJewel(jewel) > 0){
-            return WebResult.ok("添加成功！");
+            return WebResult.ok("删除成功！");
         }
-        return WebResult.ok("添加失败！");
+        return WebResult.ok("删除失败！");
     }
 
     @RequestMapping(value = "/selectByPrimaryKey/{id}", method = RequestMethod.GET)

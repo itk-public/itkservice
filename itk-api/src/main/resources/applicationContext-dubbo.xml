@@ -53,4 +53,7 @@
 
     <dubbo:reference id="partinglineService" interface="com.itk.cms.service.PartinglineService"
                      check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+
+    <dubbo:reference id="hbannerService" interface="com.itk.cms.service.HbannerService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
 </beans>

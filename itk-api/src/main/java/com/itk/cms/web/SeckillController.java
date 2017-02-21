@@ -45,9 +45,9 @@ public class SeckillController {
         seckill.setSeasonId(seasonId);
         seckill.setProductId(productId);
         if(seckillFrontService.updateSeckill(seckill) > 0){
-            return WebResult.ok("添加成功！");
+            return WebResult.ok("修改成功！");
         }
-        return WebResult.ok("添加失败！");
+        return WebResult.ok("修改失败！");
     }
 
     @RequestMapping(value = "/delSeckill/{id}", method = RequestMethod.GET)
@@ -56,9 +56,9 @@ public class SeckillController {
         seckill.setId(id);
         seckill.setIsDel(1);
         if(seckillFrontService.delSeckill(seckill) > 0){
-            return WebResult.ok("添加成功！");
+            return WebResult.ok("删除成功！");
         }
-        return WebResult.ok("添加失败！");
+        return WebResult.ok("删除失败！");
     }
 
     @RequestMapping(value = "/selectByPrimaryKey/{id}", method = RequestMethod.GET)

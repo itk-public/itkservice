@@ -39,9 +39,9 @@ public class SeckillSeasonController {
         seckillSeason.setName(name);
         seckillSeason.setSeasonTime(seasonTime);
         if(seckillSeasonFrontService.updateSeckillSeason(seckillSeason) > 0){
-            return WebResult.ok("添加成功！");
+            return WebResult.ok("修改成功！");
         }
-        return WebResult.ok("添加失败！");
+        return WebResult.ok("修改失败！");
     }
 
     @RequestMapping(value = "/delSeckillSeason/{id}", method = RequestMethod.GET)
@@ -50,9 +50,9 @@ public class SeckillSeasonController {
         seckillSeason.setId(id);
         seckillSeason.setIsDel(1);
         if(seckillSeasonFrontService.delSeckillSeason(seckillSeason) > 0){
-            return WebResult.ok("添加成功！");
+            return WebResult.ok("删除成功！");
         }
-        return WebResult.ok("添加失败！");
+        return WebResult.ok("删除失败！");
     }
 
     @RequestMapping(value = "/selectByPrimaryKey/{id}", method = RequestMethod.GET)

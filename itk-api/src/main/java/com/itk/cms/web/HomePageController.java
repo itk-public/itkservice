@@ -42,7 +42,7 @@ public class HomePageController {
     }
 
     @RequestMapping(value = "/{homePageID}", method = RequestMethod.DELETE)
-    public WebResult deleteHomePage(@PathVariable Long homePageID){
+    public WebResult deleteHomePage(@PathVariable(value = "homePageID") Long homePageID){
         try{
             if(homePageService.deleteHomePage(homePageID)>0){
                 return  WebResult.ok("删除成功！");

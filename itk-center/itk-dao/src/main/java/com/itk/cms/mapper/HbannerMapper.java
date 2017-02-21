@@ -21,6 +21,8 @@ public interface HbannerMapper {
 
     Hbanner selectByPrimaryKey(Long id);
 
+    List<Hbanner> selectHbannersByPageSortId(Long pageSortId);
+
     int updateByExampleSelective(@Param("record") Hbanner record, @Param("example") HbannerExample example);
 
     int updateByExample(@Param("record") Hbanner record, @Param("example") HbannerExample example);

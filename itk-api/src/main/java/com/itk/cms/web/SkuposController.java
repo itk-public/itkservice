@@ -52,9 +52,9 @@ public class SkuposController {
         skupos.setPosition(position);
         skupos.setProductId(productId);
         if(skuposFrontService.updateSkupos(skupos) > 0){
-            return WebResult.ok("添加成功！");
+            return WebResult.ok("修改成功！");
         }
-        return WebResult.ok("添加失败！");
+        return WebResult.ok("修改失败！");
     }
 
     @RequestMapping(value = "/delSkupos/{id}", method = RequestMethod.GET)
@@ -63,9 +63,9 @@ public class SkuposController {
         skupos.setId(id);
         skupos.setIsDel(1);
         if(skuposFrontService.delSkupos(skupos) > 0){
-            return WebResult.ok("添加成功！");
+            return WebResult.ok("删除成功！");
         }
-        return WebResult.ok("添加失败！");
+        return WebResult.ok("删除失败！");
     }
 
     @RequestMapping(value = "/selectByPrimaryKey/{id}", method = RequestMethod.GET)

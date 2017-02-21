@@ -42,9 +42,9 @@ public class PartinglineController {
         partingline.setName(name);
         partingline.setSrc(src);
         if(partinglineFrontService.updatePartingline(partingline) > 0){
-            return WebResult.ok("添加成功！");
+            return WebResult.ok("修改成功！");
         }
-        return WebResult.ok("添加失败！");
+        return WebResult.ok("修改失败！");
     }
 
     @RequestMapping(value = "/delPartingline/{id}", method = RequestMethod.GET)
@@ -53,9 +53,9 @@ public class PartinglineController {
         Partingline.setId(id);
         Partingline.setIsDel(1);
         if(partinglineFrontService.delPartingline(Partingline) > 0){
-            return WebResult.ok("添加成功！");
+            return WebResult.ok("删除成功！");
         }
-        return WebResult.ok("添加失败！");
+        return WebResult.ok("删除失败！");
     }
 
     @RequestMapping(value = "/selectByPrimaryKey/{id}", method = RequestMethod.GET)

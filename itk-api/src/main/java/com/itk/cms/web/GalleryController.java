@@ -55,9 +55,9 @@ public class GalleryController {
         gallery.setOnlineTime(onlineTime);
         gallery.setOfflineTime(offlineTime);
         if(galleryFrontService.updateGallery(gallery) > 0){
-            return WebResult.ok("添加成功！");
+            return WebResult.ok("修改成功！");
         }
-        return WebResult.ok("添加失败！");
+        return WebResult.ok("修改失败！");
     }
 
     @RequestMapping(value = "/delGallery/{id}", method = RequestMethod.GET)
@@ -66,9 +66,9 @@ public class GalleryController {
         gallery.setId(id);
         gallery.setIsDel(1);
         if(galleryFrontService.delGallery(gallery) > 0){
-            return WebResult.ok("添加成功！");
+            return WebResult.ok("删除成功！");
         }
-        return WebResult.ok("添加失败！");
+        return WebResult.ok("删除失败！");
     }
 
     @RequestMapping(value = "/selectByPrimaryKey/{id}", method = RequestMethod.GET)
