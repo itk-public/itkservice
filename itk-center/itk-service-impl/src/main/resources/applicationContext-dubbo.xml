@@ -42,4 +42,8 @@
     <dubbo:service interface="com.itk.cms.service.HomePageService" ref="homePageService"
                    version="1.0" registry="zookeeper" owner="enchen"/>
     <bean id="homePageService" class="com.itk.cms.service.impl.HomePageServiceImpl"/>
+
+    <dubbo:service interface="com.itk.cms.service.JewelService" ref="jewelService"
+                   version="1.0" registry="zookeeper" owner="enchen"/>
+    <bean id="jewelService" class="com.itk.cms.service.impl.JewelServiceImpl"/>
 </beans>
