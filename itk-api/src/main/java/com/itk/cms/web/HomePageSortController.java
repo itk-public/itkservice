@@ -22,7 +22,7 @@ public class HomePageSortController {
 
     @RequestMapping(value = "/addPageSort", method = RequestMethod.GET)
     public WebResult addPageSort(@RequestParam("homePageId")Long homePageId, @RequestParam("assemblyName")String assemblyName,
-                                  @RequestParam("sortId")Integer sortId) throws Exception {
+                                 @RequestParam("sortId")Integer sortId) throws Exception {
         PageSort pageSort =  new PageSort();
         pageSort.setHomePageId(homePageId);
         pageSort.setAssemblyName(assemblyName);

@@ -20,9 +20,9 @@ public class JewelController {
 
     @RequestMapping(value = "/addJewel", method = RequestMethod.GET)
     public WebResult addJewel(@RequestParam("homePageId")Integer pageSortId, @RequestParam("name")String name,
-                                @RequestParam("src")String src, @RequestParam("action")String action,
-                                @RequestParam("position")Long position, @RequestParam("onlineTime")Date onlineTime,
-                                @RequestParam("offlineTime")Date offlineTime) throws Exception {
+                              @RequestParam("src")String src, @RequestParam("action")String action,
+                              @RequestParam("position")Long position, @RequestParam("onlineTime")Date onlineTime,
+                              @RequestParam("offlineTime")Date offlineTime) throws Exception {
         Jewel jewel = new Jewel();
         jewel.setPageSortId(pageSortId);
         jewel.setName(name);
@@ -41,9 +41,9 @@ public class JewelController {
 
     @RequestMapping(value = "/updateJewel/{id}", method = RequestMethod.GET)
     public WebResult updatJewel(@PathVariable(value = "id") Long id, @RequestParam("name")String name,
-                                   @RequestParam("src")String src, @RequestParam("action")String action,
-                                   @RequestParam("position")Long position, @RequestParam("onlineTime")Date onlineTime,
-                                   @RequestParam("offlineTime")Date offlineTime) throws Exception {
+                                @RequestParam("src")String src, @RequestParam("action")String action,
+                                @RequestParam("position")Long position, @RequestParam("onlineTime")Date onlineTime,
+                                @RequestParam("offlineTime")Date offlineTime) throws Exception {
         Jewel jewel = new Jewel();
         jewel.setId(id);
         jewel.setName(name);
