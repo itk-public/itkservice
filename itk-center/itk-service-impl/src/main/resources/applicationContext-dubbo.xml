@@ -67,4 +67,24 @@
                    version="1.0" registry="zookeeper" owner="enchen"/>
     <bean id="hbannerService" class="com.itk.cms.service.impl.HbannerServiceImpl"/>
 
+    <!--base position-->
+    <dubbo:service interface="com.itk.base.service.PositionProvinceService" ref="provinceService"
+                   version="1.0" registry="zookeeper" owner="enchen"/>
+    <bean id="provinceService" class="com.itk.base.service.impl.PositionProvinceServiceImpl"/>
+
+    <dubbo:service interface="com.itk.base.service.PositionCityService" ref="cityService"
+                   version="1.0" registry="zookeeper" owner="enchen"/>
+    <bean id="cityService" class="com.itk.base.service.impl.PositionCityServiceImpl"/>
+
+    <dubbo:service interface="com.itk.base.service.PositionCountyService" ref="countyService"
+                   version="1.0" registry="zookeeper" owner="enchen"/>
+    <bean id="countyService" class="com.itk.base.service.impl.PositionCountyServiceImpl"/>
+
+    <dubbo:service interface="com.itk.base.service.PositionTownService" ref="townService"
+                   version="1.0" registry="zookeeper" owner="enchen"/>
+    <bean id="townService" class="com.itk.base.service.impl.PositionTownServiceImpl"/>
+
+    <dubbo:service interface="com.itk.base.service.PositionVillageService" ref="villageService"
+                   version="1.0" registry="zookeeper" owner="enchen"/>
+    <bean id="villageService" class="com.itk.base.service.impl.PositionVillageServiceImpl"/>
 </beans>

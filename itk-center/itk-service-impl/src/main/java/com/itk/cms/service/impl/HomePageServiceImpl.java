@@ -13,7 +13,7 @@ import java.util.List;
 public class HomePageServiceImpl implements HomePageService {
 
     @Autowired
-    HomePageMapper homePageMapper;
+    private HomePageMapper homePageMapper;
 
     @Override
     public int addHomePage(HomePage homePage) throws Exception {

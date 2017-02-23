@@ -27,4 +27,8 @@ public interface PositionVillageMapper {
     int updateByPrimaryKeySelective(PositionVillage record);
 
     int updateByPrimaryKey(PositionVillage record);
+
+    List<PositionVillage> selectByTownId(Long townId);
+
+    PositionVillage selectByVillageId(Long villageId);
 }

@@ -74,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, province, city_id, city, area_id, area, county_id, county, township_id, township, 
+    id, province, city_id, city, area_id, area, county_id, county, township_id, township,
     create_time, modify_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.itk.cms.model.TownshipInfoExample" >
@@ -118,12 +118,12 @@
   <insert id="insert" parameterType="com.itk.cms.model.TownshipInfo" >
     insert into t_township_info (id, province, city_id, 
       city, area_id, area, 
-      county_id, county, township_id, 
+      county_id, county, township_id,
       township, create_time, modify_time
       )
     values (#{id,jdbcType=BIGINT}, #{province,jdbcType=VARCHAR}, #{cityId,jdbcType=BIGINT}, 
       #{city,jdbcType=VARCHAR}, #{areaId,jdbcType=BIGINT}, #{area,jdbcType=VARCHAR}, 
-      #{countyId,jdbcType=BIGINT}, #{county,jdbcType=VARCHAR}, #{townshipId,jdbcType=BIGINT}, 
+      #{countyId,jdbcType=BIGINT}, #{county,jdbcType=VARCHAR}, #{townshipId,jdbcType=BIGINT},
       #{township,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}
       )
   </insert>

@@ -14,7 +14,7 @@ import java.util.List;
 public class HbannerServiceImpl implements HbannerService {
 
     @Autowired
-    HbannerMapper hbannerMapper;
+    private HbannerMapper hbannerMapper;
 
 
     @Override

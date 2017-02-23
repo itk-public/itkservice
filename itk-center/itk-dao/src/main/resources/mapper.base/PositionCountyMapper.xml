@@ -107,9 +107,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.itk.base.model.PositionCounty" >
-    insert into t_position_county (id, city_id, county_id, 
+    insert into t_position_county (id, city_id, county_id,
       county_name)
-    values (#{id,jdbcType=INTEGER}, #{cityId,jdbcType=BIGINT}, #{countyId,jdbcType=BIGINT}, 
+    values (#{id,jdbcType=INTEGER}, #{cityId,jdbcType=BIGINT}, #{countyId,jdbcType=BIGINT},
       #{countyName,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.itk.base.model.PositionCounty" >
@@ -201,4 +201,18 @@
       county_name = #{countyName,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByCityId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from t_position_county
+    where city_id = #{cityId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByCountyId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from t_position_county
+    where county_id = #{countyId,jdbcType=INTEGER}
+  </select>
 </mapper>

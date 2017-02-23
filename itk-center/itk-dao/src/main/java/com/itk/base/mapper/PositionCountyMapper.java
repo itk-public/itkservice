@@ -27,4 +27,8 @@ public interface PositionCountyMapper {
     int updateByPrimaryKeySelective(PositionCounty record);
 
     int updateByPrimaryKey(PositionCounty record);
+
+    List<PositionCounty> selectByCityId(Long cityId);
+
+    PositionCounty selectByCountyId(Long countyId);
 }

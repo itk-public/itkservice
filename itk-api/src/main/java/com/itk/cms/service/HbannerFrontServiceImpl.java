@@ -3,12 +3,13 @@ package com.itk.cms.service;
 import com.itk.cms.model.Hbanner;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
 
 
 /**
  * Created by enchen on 2/21/17.
  */
+@Service
 public class HbannerFrontServiceImpl {
 
     @Autowired

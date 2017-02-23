@@ -201,4 +201,19 @@
       city_name = #{cityName,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByProvinceId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from t_position_city
+    where province_id = #{provinceId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByCityId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from t_position_city
+    where city_id = #{cityId,jdbcType=INTEGER}
+  </select>
+
 </mapper>

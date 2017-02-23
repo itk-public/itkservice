@@ -56,4 +56,20 @@
 
     <dubbo:reference id="hbannerService" interface="com.itk.cms.service.HbannerService"
                      check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+
+    <!--base position-->
+    <dubbo:reference id="provinceService" interface="com.itk.base.service.PositionProvinceService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+
+    <dubbo:reference id="cityService" interface="com.itk.base.service.PositionCityService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+
+    <dubbo:reference id="countyService" interface="com.itk.base.service.PositionCountyService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+
+    <dubbo:reference id="townService" interface="com.itk.base.service.PositionTownService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+
+    <dubbo:reference id="villageService" interface="com.itk.base.service.PositionVillageService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
 </beans>

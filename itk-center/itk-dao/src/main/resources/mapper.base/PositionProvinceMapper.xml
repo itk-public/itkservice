@@ -186,4 +186,17 @@
       province_name = #{provinceName,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAllProvince" resultMap="BaseResultMap" >
+    select
+    *
+    from t_position_province
+  </select>
+
+  <select id="selectByProvinceId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from t_position_province
+    where province_id = #{provinceId,jdbcType=INTEGER}
+  </select>
 </mapper>

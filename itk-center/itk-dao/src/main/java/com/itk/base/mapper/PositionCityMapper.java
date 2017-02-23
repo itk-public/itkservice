@@ -28,4 +28,8 @@ public interface PositionCityMapper {
     int updateByPrimaryKeySelective(PositionCity record);
 
     int updateByPrimaryKey(PositionCity record);
+
+    List<PositionCity> selectByProvinceId(Long provinceId);
+
+    PositionCity selectByCityId(Long cityId);
 }

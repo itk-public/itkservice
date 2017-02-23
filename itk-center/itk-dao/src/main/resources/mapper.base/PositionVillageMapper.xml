@@ -201,4 +201,18 @@
       village_name = #{villageName,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByTownId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from t_position_village
+    where town_id = #{townId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByTownId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from t_position_village
+    where village_id = #{villageId,jdbcType=INTEGER}
+  </select>
 </mapper>

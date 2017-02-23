@@ -27,4 +27,8 @@ public interface PositionProvinceMapper {
     int updateByPrimaryKeySelective(PositionProvince record);
 
     int updateByPrimaryKey(PositionProvince record);
+
+    List<PositionProvince> selectAllProvince();
+
+    PositionProvince selectByProvinceId(Long provinceId);
 }
