@@ -189,7 +189,7 @@
 
   <select id="selectAllProvince" resultMap="BaseResultMap" >
     select
-    *
+    <include refid="Base_Column_List" />
     from t_position_province
   </select>
 
