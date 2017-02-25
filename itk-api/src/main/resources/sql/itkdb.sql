@@ -170,35 +170,6 @@ CREATE TABLE `t_nearby_business_info` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='附近商家';
 
-CREATE TABLE `t_shop_info` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `township_id` bigint(20) DEFAULT NULL COMMENT '乡镇id',
-  `shop_code` varchar(20) NOT NULL COMMENT '门店编码',
-  `shop_name` varchar(200) DEFAULT NULL COMMENT '门店名称',
-  `address` varchar(1024) DEFAULT NULL COMMENT '具体地址',
-  `phone` varchar(30) DEFAULT NULL COMMENT  '联系电话',
-  `is_del` int(1) DEFAULT NULL COMMENT '删除状态 0:正常 1:删除',
-  `online_time` datetime DEFAULT NULL COMMENT '上线时间',
-  `offline_time` datetime DEFAULT NULL COMMENT '下线时间',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-   `modify_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='商家信息';
 
 
-CREATE TABLE `t_township_info` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `province` varchar(20) DEFAULT NULL COMMENT '省',
-  `city_id` bigint(20) DEFAULT NULL,
-  `city` varchar(20) DEFAULT NULL COMMENT '市',
-  `area_id` bigint(20) DEFAULT NULL,
-  `area` varchar(20) DEFAULT NULL COMMENT '区',
-  `county_id` bigint(20) DEFAULT NULL,
-  `county` varchar(20) DEFAULT NULL COMMENT '县',
-  `township_id` bigint(20) DEFAULT NULL,
-  `township` varchar(20) DEFAULT NULL COMMENT '乡镇',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-   `modify_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='乡镇信息';
 
