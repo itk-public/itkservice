@@ -18,7 +18,7 @@ public class HbannerController {
     private HbannerFrontServiceImpl hbannerFrontService;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public WebResult addHBanner(@RequestBody Hbanner hbanner){
+    public WebResult addHBanner(@RequestBody Hbanner hbanner) throws Exception{
         if(hbannerFrontService.addHbanner(hbanner) > 0){
             return WebResult.ok("添加成功！");
         }

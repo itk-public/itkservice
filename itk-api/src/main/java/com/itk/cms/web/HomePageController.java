@@ -42,7 +42,7 @@ public class HomePageController {
     }
 
     @RequestMapping(value = "/{homePageID}", method = RequestMethod.DELETE)
-    public WebResult deleteHomePage(@PathVariable(value = "homePageID") Long homePageID){
+    public WebResult deleteHomePage(@PathVariable(value = "homePageID") Long homePageID) throws Exception{
         try{
             if(homePageService.deleteHomePage(homePageID)>0){
                 return  WebResult.ok("删除成功！");
@@ -54,7 +54,7 @@ public class HomePageController {
     }
 
     @RequestMapping(value = "/selectHomePages", method = RequestMethod.GET)
-    public WebResult selectHomePages(){
+    public WebResult selectHomePages() throws Exception{
             return WebResult.ok(homePageService.selectHomePages());
     }
 }

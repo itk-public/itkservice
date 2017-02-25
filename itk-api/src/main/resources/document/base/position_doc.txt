@@ -1,0 +1,6 @@
+1、地点:
+        1.1 省、市、区(县)、乡(镇)、村 这五个级别的数据,存入redis;
+        1.2 redis 中 根据各种地点entityId 查出来的 地点详情以 hashMap 存储, map 中 entrySet(key: entityId,value: 地点详情);
+            redis 结构: basePositionDetail - hashMap ;
+        1.3 redis 中 根据各级地点entityId 查出来的 子级的地点数据以 list 存储
+            redis 结构: entityId - 子级地点list ;
