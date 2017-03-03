@@ -1,6 +1,6 @@
 package com.itk.base.web;
 
-import com.itk.base.service.PositionProvinceServiceImpl;
+import com.itk.base.service.PositionProvinceFrontServiceImpl;
 import com.itk.utils.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PositionProvinceController {
 
     @Autowired
-    private PositionProvinceServiceImpl provinceService;
+    private PositionProvinceFrontServiceImpl provinceService;
 
     @RequestMapping(value = "/select/all", method = RequestMethod.GET)
     public WebResult selectAllProvince() throws Exception {

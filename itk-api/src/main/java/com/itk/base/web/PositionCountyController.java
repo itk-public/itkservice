@@ -1,6 +1,6 @@
 package com.itk.base.web;
 
-import com.itk.base.service.PositionCountyServiceImpl;
+import com.itk.base.service.PositionCountyFrontServiceImpl;
 import com.itk.utils.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PositionCountyController {
 
     @Autowired
-    private PositionCountyServiceImpl countyService;
+    private PositionCountyFrontServiceImpl countyService;
 
     @RequestMapping(value = "/selectCountyByCityId/{cityId}", method = RequestMethod.GET)
     public WebResult selectCountyByCityId(@PathVariable(value = "cityId") Long cityId) throws Exception {

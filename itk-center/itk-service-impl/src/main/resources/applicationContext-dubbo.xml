@@ -88,6 +88,10 @@
                    version="1.0" registry="zookeeper" owner="enchen"/>
     <bean id="townService" class="com.itk.base.service.impl.PositionTownServiceImpl"/>
 
+    <dubbo:service interface="com.itk.base.service.ShopInfoService" ref="shopInfoService"
+                   version="1.0" registry="zookeeper" owner="enchen"/>
+    <bean id="shopInfoService" class="com.itk.base.service.impl.ShopInfoServiceImpl"/>
+
     <dubbo:service interface="com.itk.base.service.PositionVillageService" ref="villageService"
                    version="1.0" registry="zookeeper" owner="enchen"/>
     <bean id="villageService" class="com.itk.base.service.impl.PositionVillageServiceImpl"/>
