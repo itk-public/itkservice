@@ -101,6 +101,15 @@
     from t_nearby_business_info
     where id = #{id,jdbcType=BIGINT}
   </select>
+
+  <select id="selectNearbyBusinessInfosByNearbyBusinessId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from t_nearby_business_info
+    where nearby_business_id = #{nearByBusinessId,jdbcType=BIGINT} AND is_del = 0
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from t_nearby_business_info
     where id = #{id,jdbcType=BIGINT}

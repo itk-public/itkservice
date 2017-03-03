@@ -199,13 +199,15 @@ CREATE TABLE `t_position_village` (
   KEY `town_id` (`town_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=693338 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='省市县镇村数据';
 
+CREATE TABLE `t_position_provice` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `provice_id` int(11) unsigned NOT NULL COMMENT '省份id、省份编号',
+  `provice_name` char(32) NOT NULL COMMENT '省份名称',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `provice_id` (`provice_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='省份数据库';
 
-
-
-
-
-
-CREATE TABLE `t_nearby_business_info` (  -- 没有做
+CREATE TABLE `t_nearby_business_info` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `nearby_business_id` bigint(20) DEFAULT NULL COMMENT '附近商家表的id',
   `whether_promotion` int(1) DEFAULT NULL COMMENT '是否有促销:1有促销 0无促销 如果有读取促销信息',
@@ -217,7 +219,7 @@ CREATE TABLE `t_nearby_business_info` (  -- 没有做
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='附近商家';
 
-CREATE TABLE `t_shop_info` (  --没有做
+CREATE TABLE `t_shop_info` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `township_id` bigint(20) DEFAULT NULL COMMENT '乡镇id',
   `shop_code` varchar(20) NOT NULL COMMENT '门店编码',
@@ -233,13 +235,18 @@ CREATE TABLE `t_shop_info` (  --没有做
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='商家信息';
 
-CREATE TABLE `t_position_provice` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `provice_id` int(11) unsigned NOT NULL COMMENT '省份id、省份编号',
-  `provice_name` char(32) NOT NULL COMMENT '省份名称',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `provice_id` (`provice_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='省份数据库';
+
+
+
+
+
+
+
+
+
+
+
+
 
 CREATE TABLE `t_display_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

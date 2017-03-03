@@ -67,6 +67,10 @@
                    version="1.0" registry="zookeeper" owner="enchen"/>
     <bean id="hbannerService" class="com.itk.cms.service.impl.HbannerServiceImpl"/>
 
+    <dubbo:service interface="com.itk.cms.service.NearbyBusinessInfoService" ref="nearbyBusinessInfoService"
+                   version="1.0" registry="zookeeper" owner="enchen"/>
+    <bean id="nearbyBusinessInfoService" class="com.itk.cms.service.impl.NearbyBusinessInfoServiceImpl"/>
+
     <!--base position-->
     <dubbo:service interface="com.itk.base.service.PositionProvinceService" ref="provinceService"
                    version="1.0" registry="zookeeper" owner="enchen"/>

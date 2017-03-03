@@ -2,8 +2,9 @@ package com.itk.cms.mapper;
 
 import com.itk.cms.model.NearbyBusinessInfo;
 import com.itk.cms.model.NearbyBusinessInfoExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface NearbyBusinessInfoMapper {
     int countByExample(NearbyBusinessInfoExample example);
@@ -17,6 +18,8 @@ public interface NearbyBusinessInfoMapper {
     int insertSelective(NearbyBusinessInfo record);
 
     List<NearbyBusinessInfo> selectByExample(NearbyBusinessInfoExample example);
+
+    NearbyBusinessInfo selectNearbyBusinessInfosByNearbyBusinessId(Long nearByBusinessId);
 
     NearbyBusinessInfo selectByPrimaryKey(Long id);
 
