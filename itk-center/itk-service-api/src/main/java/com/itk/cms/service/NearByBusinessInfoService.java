@@ -12,8 +12,8 @@ public interface NearByBusinessInfoService {
 
     int updateNearByBusinessInfo(NearbyBusinessInfo nearbyBusinessInfo);
 
-    int delNearByBusinessInfo(Long nearbyBusinessId);
+    int delNearByBusinessInfo(Long nearbyBusinessInfoId);
 
-    NearbyBusinessInfo selectByPrimaryKey(Long nearbyBusinessId);
+    NearbyBusinessInfo selectByPrimaryKey(Long nearbyBusinessInfoId);
 
 }

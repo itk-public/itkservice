@@ -26,14 +26,14 @@ public class NearByBusinessInfoServiceImpl implements NearByBusinessInfoService 
     }
 
     @Override
-    public int delNearByBusinessInfo(Long nearbyBusinessId) {
-        NearbyBusinessInfo nearbyBusinessInfo = nearbyBusinessInfoMapper.selectByPrimaryKey(nearbyBusinessId);
+    public int delNearByBusinessInfo(Long nearbyBusinessInfoId) {
+        NearbyBusinessInfo nearbyBusinessInfo = nearbyBusinessInfoMapper.selectByPrimaryKey(nearbyBusinessInfoId);
         nearbyBusinessInfo.setIsDel(1);// isDel 0: 可用  1: 已删除
-        return nearbyBusinessInfoMapper.deleteByPrimaryKey(nearbyBusinessId);
+        return nearbyBusinessInfoMapper.deleteByPrimaryKey(nearbyBusinessInfoId);
     }
 
     @Override
-    public NearbyBusinessInfo selectByPrimaryKey(Long nearbyBusinessId) {
-        return nearbyBusinessInfoMapper.selectByPrimaryKey(nearbyBusinessId);
+    public NearbyBusinessInfo selectByPrimaryKey(Long nearbyBusinessInfoId) {
+        return nearbyBusinessInfoMapper.selectByPrimaryKey(nearbyBusinessInfoId);
     }
 }
