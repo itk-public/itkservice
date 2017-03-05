@@ -27,4 +27,6 @@ public interface ShopInfoMapper {
     int updateByPrimaryKeySelective(ShopInfo record);
 
     int updateByPrimaryKey(ShopInfo record);
+
+    List<ShopInfo> selectByTownshipId(Long townshipId);
 }

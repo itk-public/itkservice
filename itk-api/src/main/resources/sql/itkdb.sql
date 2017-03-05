@@ -166,7 +166,7 @@ CREATE TABLE `t_nearby_business_info` (
   `month_order_number` bigint(20) DEFAULT NULL COMMENT '月订单数量',
   `is_del` int(1) DEFAULT NULL COMMENT '删除状态 0:正常 1:删除',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-   `modify_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
+  `modify_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='附近商家';
 
@@ -182,7 +182,7 @@ CREATE TABLE `t_shop_info` (
   `online_time` datetime DEFAULT NULL COMMENT '上线时间',
   `offline_time` datetime DEFAULT NULL COMMENT '下线时间',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-   `modify_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
+  `modify_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='商家信息';
 

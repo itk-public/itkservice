@@ -31,8 +31,7 @@ public class HbannerServiceImpl implements HbannerService {
     public int delHbanner(Long hbannerID) {
         Hbanner hbanner = hbannerMapper.selectByPrimaryKey(hbannerID);
         hbanner.setIsDel(1);// isDel 0: 可用  1: 已删除
-        hbannerMapper.updateByPrimaryKeySelective(hbanner);
-        return 0;
+        return hbannerMapper.updateByPrimaryKeySelective(hbanner);
     }
 
     @Override
