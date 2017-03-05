@@ -19,7 +19,7 @@ public class HbannerServiceImpl implements HbannerService {
 
     @Override
     public int addHbanner(Hbanner hbanner) {
-        return hbannerMapper.insert(hbanner);
+        return hbannerMapper.insertSelective(hbanner);
     }
 
     @Override

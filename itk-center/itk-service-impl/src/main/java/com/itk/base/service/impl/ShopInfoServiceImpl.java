@@ -1,8 +1,8 @@
-package com.itk.cms.service.impl;
+package com.itk.base.service.impl;
 
 import com.itk.base.mapper.ShopInfoMapper;
 import com.itk.base.model.ShopInfo;
-import com.itk.cms.service.ShopInfoService;
+import com.itk.base.service.ShopInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public class ShopInfoServiceImpl implements ShopInfoService {
 
     @Override
     public int addShopInfo(ShopInfo shopInfo) {
-        return shopInfoMapper.insert(shopInfo);
+        return shopInfoMapper.insertSelective(shopInfo);
     }
 
     @Override

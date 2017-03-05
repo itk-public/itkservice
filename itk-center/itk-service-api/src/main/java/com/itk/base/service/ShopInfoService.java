@@ -1,4 +1,4 @@
-package com.itk.cms.service;
+package com.itk.base.service;
 
 import com.itk.base.model.ShopInfo;
 

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/base/shop/info")
-public class shopInfoController {
+public class ShopInfoController {
 
     @Autowired
     private ShopInfoServiceImpl shopInfoService;

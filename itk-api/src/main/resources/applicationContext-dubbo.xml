@@ -72,4 +72,7 @@
 
     <dubbo:reference id="villageService" interface="com.itk.base.service.PositionVillageService"
                      check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+
+    <dubbo:reference id="shopInfoService" interface="com.itk.cms.service.NearByBusinessInfoService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
 </beans>

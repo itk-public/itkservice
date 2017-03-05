@@ -1,7 +1,6 @@
 package com.itk.base.service;
 
 import com.itk.base.model.ShopInfo;
-import com.itk.cms.service.ShopInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

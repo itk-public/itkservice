@@ -87,4 +87,12 @@
     <dubbo:service interface="com.itk.base.service.PositionVillageService" ref="villageService"
                    version="1.0" registry="zookeeper" owner="enchen"/>
     <bean id="villageService" class="com.itk.base.service.impl.PositionVillageServiceImpl"/>
+
+    <dubbo:service interface="com.itk.base.service.ShopInfoService" ref="shopInfoService"
+                   version="1.0" registry="zookeeper" owner="enchen"/>
+    <bean id="shopInfoService" class="com.itk.base.service.impl.ShopInfoServiceImpl"/>
+
+    <dubbo:service interface="com.itk.cms.service.NearByBusinessInfoService" ref="shopInfoService"
+                   version="1.0" registry="zookeeper" owner="enchen"/>
+    <bean id="nearByBusinessInfoService" class="com.itk.cms.service.impl.NearByBusinessInfoServiceImpl"/>
 </beans>
