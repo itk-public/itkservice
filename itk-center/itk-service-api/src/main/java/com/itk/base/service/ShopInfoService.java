@@ -19,4 +19,6 @@ public interface ShopInfoService {
     ShopInfo selectByPrimaryKey(Long id);
 
     List<ShopInfo> selectShopInfoByTownshipId(Long townshipId);
+
+    List<ShopInfo> selectShopInfos();
 }

@@ -5,6 +5,8 @@ import com.itk.base.model.ShopInfoExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface ShopInfoMapper {
     int countByExample(ShopInfoExample example);
 
@@ -29,4 +31,6 @@ public interface ShopInfoMapper {
     int updateByPrimaryKey(ShopInfo record);
 
     List<ShopInfo> selectByTownshipId(Long townshipId);
+
+    List<ShopInfo> selectShopInfos();
 }

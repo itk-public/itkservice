@@ -103,8 +103,17 @@
     select 
     <include refid="Base_Column_List" />
     from t_shop_info
+    where is_del = 0
+  </select>
+
+  <select id="selectShopInfos" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from t_shop_info
     where id = #{id,jdbcType=BIGINT}
   </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from t_shop_info
     where id = #{id,jdbcType=BIGINT}

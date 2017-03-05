@@ -1,6 +1,6 @@
 package com.itk.base.service;
 
-import com.itk.base.model.PositionVillage;
+import com.itk.base.model.PositionCounty;
 import com.itk.utils.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -14,37 +14,37 @@ import java.util.List;
  * Created by enchen on 2/23/17.
  */
 @Service
-public class PositionVillageServiceImpl {
+public class PositionCountyFrontServiceImpl {
 
     @Autowired
-    private PositionVillageService villageService;
+    private PositionCountyService countyService;
 
     @Autowired
     private RedisTemplate redisTemplate;
 
-    public List<PositionVillage> selectVillageByTownId(Long townId) throws Exception{
-        byte[] villageList = redisTemplate.getConnectionFactory().getConnection().get(townId.toString().getBytes());
-        if(villageList == null){
-            List<PositionVillage> tempList = villageService.selectVillageByTownId(townId);
-            redisTemplate.getConnectionFactory().getConnection().setEx(townId.toString().getBytes(), Constant.REDIS_TOCKEN_EXPIRE_TIME_BY_SECONDS, SerializationUtils.serialize(tempList));
+    public List<PositionCounty> selectCountyByCityId(Long cityId) throws Exception{
+        byte[] countyList = redisTemplate.getConnectionFactory().getConnection().get(cityId.toString().getBytes());
+        if(countyList == null){
+            List<PositionCounty> tempList = countyService.selectCountyByCityId(cityId);
+            redisTemplate.getConnectionFactory().getConnection().setEx(cityId.toString().getBytes(), Constant.REDIS_TOCKEN_EXPIRE_TIME_BY_SECONDS, SerializationUtils.serialize(tempList));
             return tempList;
         }
-        return (List<PositionVillage>) SerializationUtils.deserialize(villageList);
+        return (List<PositionCounty>) SerializationUtils.deserialize(countyList);
     }
 
-    public PositionVillage selectVillageByVillageId(Long villageId) throws Exception{
+    public PositionCounty selectCountyByCountyId(Long countyId) throws Exception{
         byte[] positionDetail = redisTemplate.getConnectionFactory().getConnection().get("basePositionDetail".getBytes());
         if (positionDetail == null) {
             HashMap<String, Object> positionDetailMap = new HashMap<>();
-            positionDetailMap.put(villageId.toString(), villageService.selectVillageByVillageId(villageId));
+            positionDetailMap.put(countyId.toString(), countyService.selectCountyByCountyId(countyId));
             redisTemplate.getConnectionFactory().getConnection().setEx("basePositionDetail".getBytes(), Constant.REDIS_TOCKEN_EXPIRE_TIME_BY_SECONDS, SerializationUtils.serialize(positionDetailMap));
         }
         HashMap<String, Object> detailMap = (HashMap<String, Object>) SerializationUtils.deserialize(positionDetail);
-        if (detailMap.containsKey(villageId) && detailMap.get(villageId) != null) {
-            return (PositionVillage) detailMap.get(villageId);
+        if (detailMap.containsKey(countyId) && detailMap.get(countyId) != null) {
+            return (PositionCounty) detailMap.get(countyId);
         }
-        detailMap.put(villageId.toString(),villageService.selectVillageByVillageId(villageId));
+        detailMap.put(countyId.toString(),countyService.selectCountyByCountyId(countyId));
         redisTemplate.getConnectionFactory().getConnection().setEx("basePositionDetail".getBytes(), Constant.REDIS_TOCKEN_EXPIRE_TIME_BY_SECONDS, SerializationUtils.serialize(detailMap));
-        return villageService.selectVillageByVillageId(villageId);
+        return countyService.selectCountyByCountyId(countyId);
     }
 }

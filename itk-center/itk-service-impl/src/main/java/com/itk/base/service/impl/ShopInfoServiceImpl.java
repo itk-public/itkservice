@@ -42,4 +42,9 @@ public class ShopInfoServiceImpl implements ShopInfoService {
     public List<ShopInfo> selectShopInfoByTownshipId(Long townshipId) {
         return shopInfoMapper.selectByTownshipId(townshipId);
     }
+
+    @Override
+    public List<ShopInfo> selectShopInfos() {
+        return shopInfoMapper.selectShopInfos();
+    }
 }
