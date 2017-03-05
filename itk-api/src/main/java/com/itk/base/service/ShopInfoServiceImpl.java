@@ -35,4 +35,8 @@ public class ShopInfoServiceImpl {
     public List<ShopInfo> selectShopInfoByTownshipId(Long townShipId){
         return shopInfoService.selectShopInfoByTownshipId(townShipId);
     }
+
+    public List<ShopInfo> selectShopInfos(){
+        return shopInfoService.selectShopInfos();
+    }
 }

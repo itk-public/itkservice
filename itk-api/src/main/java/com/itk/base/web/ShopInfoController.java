@@ -1,7 +1,6 @@
 package com.itk.base.web;
 
 import com.itk.base.model.ShopInfo;
-import com.itk.base.service.PositionProvinceServiceImpl;
 import com.itk.base.service.ShopInfoServiceImpl;
 import com.itk.utils.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ public class ShopInfoController {
 
     @Autowired
     private ShopInfoServiceImpl shopInfoService;
-
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public WebResult addShopInfo(@RequestBody ShopInfo shopInfo) throws Exception{
@@ -50,5 +48,10 @@ public class ShopInfoController {
     @RequestMapping(value = "/selectShopInfoByTownShipId", method = RequestMethod.GET)
     public WebResult selectShopInfoByTownShipId(@RequestParam("townShipId") Long townShipId) throws Exception {
         return WebResult.ok(shopInfoService.selectShopInfoByTownshipId(townShipId));
+    }
+
+    @RequestMapping(value = "/selectShopInfos", method = RequestMethod.GET)
+    public WebResult selectShopInfoByTownShipId() throws Exception {
+        return WebResult.ok(shopInfoService.selectShopInfos());
     }
 }
