@@ -34,4 +34,9 @@ public class BackUserServiceImpl implements BackUserService {
     public List<BackUser> selectAllUsers() {
         return backUserMapper.selectAllUsers();
     }
+
+    @Override
+    public BackUser loginBackUser(BackUser backUser) {
+        return backUserMapper.loginBackUser(backUser);
+    }
 }

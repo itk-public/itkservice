@@ -72,6 +72,15 @@ public class BackUserController {
     }
 
 
+    @RequestMapping(value = "/loginBackUser", method = RequestMethod.GET)
+    public WebResult loginBackUser(@RequestParam(value = "username") String username, @RequestParam("password")String password) throws Exception {
+        BackUser backUser = new BackUser();
+        backUser.setUsername(username);
+        backUser.setPassword(MD5Util.stringToMD5(password));
+        return WebResult.ok(backUserFrontService.loginBackUser(backUser));
+    }
+
+
     @RequestMapping(value = "/selectAllBackUsers", method = RequestMethod.GET)
     public WebResult selectAllBackUsers() throws Exception {
         return WebResult.ok(backUserFrontService.selectAllUsers());

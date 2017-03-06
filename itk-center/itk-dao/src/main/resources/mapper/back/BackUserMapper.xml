@@ -304,4 +304,18 @@
       modify_time = #{modifyTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="loginBackUser" resultMap="BaseResultMap" parameterType="com.itk.back.model.BackUser">
+    select
+    <include refid="Base_Column_List" />
+    from t_back_user
+    where 1=1
+    <if test="username != null" >
+      and username = #{username,jdbcType=VARCHAR}
+    </if>
+    <if test="password != null" >
+      and password = #{password,jdbcType=VARCHAR}
+    </if>
+  </select>
+
 </mapper>

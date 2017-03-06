@@ -246,7 +246,8 @@ CREATE TABLE `t_back_user` (
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `lastlogin_date` datetime DEFAULT NULL COMMENT '最后登陆时间',
   `modify_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `t_back_user_username_uindex` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='用户信息';
 
 

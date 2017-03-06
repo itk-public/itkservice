@@ -30,4 +30,6 @@ public interface BackUserMapper {
     int updateByPrimaryKey(BackUser record);
 
     List<BackUser> selectAllUsers();
+
+    BackUser loginBackUser(BackUser backUser);
 }

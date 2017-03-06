@@ -16,4 +16,6 @@ public interface BackUserService {
     int updateByPrimaryKeySelective(BackUser record);
 
     List<BackUser> selectAllUsers();
+
+    BackUser loginBackUser(BackUser backUser);
 }
