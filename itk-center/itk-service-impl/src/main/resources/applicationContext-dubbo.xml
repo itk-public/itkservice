@@ -75,6 +75,12 @@
                    version="1.0" registry="zookeeper" owner="enchen"/>
     <bean id="nearByBusinessService" class="com.itk.cms.service.impl.NearByBusinessServiceImpl"/>
 
+    <!--back position-->
+    <dubbo:service interface="com.itk.back.service.BackUserService" ref="backUserService"
+                   version="1.0" registry="zookeeper" owner="enchen"/>
+    <bean id="backUserService" class="com.itk.back.service.impl.BackUserServiceImpl"/>
+
+
     <!--base position-->
     <dubbo:service interface="com.itk.base.service.PositionProvinceService" ref="provinceService"
                    version="1.0" registry="zookeeper" owner="enchen"/>

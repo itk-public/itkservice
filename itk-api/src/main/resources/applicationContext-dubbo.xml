@@ -63,6 +63,10 @@
     <dubbo:reference id="nearByBusinessService" interface="com.itk.cms.service.NearByBusinessService"
                      check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
 
+    <!--back position-->
+    <dubbo:reference id="backUserService" interface="com.itk.back.service.BackUserService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+
     <!--base position-->
     <dubbo:reference id="provinceService" interface="com.itk.base.service.PositionProvinceService"
                      check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />

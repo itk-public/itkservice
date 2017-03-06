@@ -235,6 +235,20 @@ CREATE TABLE `t_shop_info` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='商家信息';
 
+CREATE TABLE `t_back_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(100)  NOT NULL COMMENT '账号',
+  `phone` varchar(30)  DEFAULT NULL COMMENT '手机号码',
+  `name` varchar(100)  NOT NULL COMMENT '姓名',
+  `password` varchar(100)  NOT NULL COMMENT '密码',
+  `email` varchar(80)  DEFAULT NULL COMMENT '邮箱',
+  `is_del` int(1) DEFAULT NULL COMMENT '删除状态 0:正常 1:删除',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
+  `lastlogin_date` datetime DEFAULT NULL COMMENT '最后登陆时间',
+  `modify_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='用户信息';
+
 
 
 
