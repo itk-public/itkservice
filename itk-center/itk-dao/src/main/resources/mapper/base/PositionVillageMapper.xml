@@ -91,7 +91,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_position_village
     where id = #{id,jdbcType=INTEGER}
@@ -107,10 +107,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.itk.base.model.PositionVillage" >
-    insert into t_position_village (id, town_id, village_id, 
-      village_name)
-    values (#{id,jdbcType=INTEGER}, #{townId,jdbcType=BIGINT}, #{villageId,jdbcType=BIGINT}, 
-      #{villageName,jdbcType=CHAR})
+    insert into t_position_village (id, town_id, village_id,
+    village_name)
+    values (#{id,jdbcType=INTEGER}, #{townId,jdbcType=BIGINT}, #{villageId,jdbcType=BIGINT},
+    #{villageName,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.itk.base.model.PositionVillage" >
     insert into t_position_village
@@ -172,9 +172,9 @@
   <update id="updateByExample" parameterType="map" >
     update t_position_village
     set id = #{record.id,jdbcType=INTEGER},
-      town_id = #{record.townId,jdbcType=BIGINT},
-      village_id = #{record.villageId,jdbcType=BIGINT},
-      village_name = #{record.villageName,jdbcType=CHAR}
+    town_id = #{record.townId,jdbcType=BIGINT},
+    village_id = #{record.villageId,jdbcType=BIGINT},
+    village_name = #{record.villageName,jdbcType=CHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -197,8 +197,8 @@
   <update id="updateByPrimaryKey" parameterType="com.itk.base.model.PositionVillage" >
     update t_position_village
     set town_id = #{townId,jdbcType=BIGINT},
-      village_id = #{villageId,jdbcType=BIGINT},
-      village_name = #{villageName,jdbcType=CHAR}
+    village_id = #{villageId,jdbcType=BIGINT},
+    village_name = #{villageName,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
@@ -209,7 +209,7 @@
     where town_id = #{townId,jdbcType=BIGINT}
   </select>
 
-  <select id="selectByTownId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByVillageId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select
     <include refid="Base_Column_List" />
     from t_position_village
