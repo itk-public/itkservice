@@ -31,7 +31,7 @@ public class JewelFrontServiceImpl {
         return jewelService.selectByPrimaryKey(id);
     }
 
-    public List<Jewel> selectJewelsByPageSortId(Long pageSortId){
+    public List<Jewel> selectJewelsByPageSortId(Integer pageSortId){
         return jewelService.selectJewelsByPageSortId(pageSortId);
     }
 }

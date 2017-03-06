@@ -16,5 +16,5 @@ public interface SkuposService {
 
     Skupos selectByPrimaryKey(Long id);
 
-    List<Skupos> selectSkupossByPageSortId(Long pageSortId);
+    List<Skupos> selectSkupossByPageSortId(Integer pageSortId);
 }

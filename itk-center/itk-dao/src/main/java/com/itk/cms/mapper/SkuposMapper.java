@@ -29,5 +29,5 @@ public interface SkuposMapper {
 
     int updateByPrimaryKey(Skupos record);
 
-    List<Skupos> selectSkupossByPageSortId(Long pageSortId);
+    List<Skupos> selectSkupossByPageSortId(Integer pageSortId);
 }

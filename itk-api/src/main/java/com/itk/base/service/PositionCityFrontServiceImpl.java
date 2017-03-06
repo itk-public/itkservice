@@ -22,7 +22,7 @@ public class PositionCityFrontServiceImpl {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    public List<PositionCity> selectCityByProvinceId(Long provinceId) throws Exception{
+    public List<PositionCity> selectCityByProvinceId(Integer provinceId) throws Exception{
         byte[] cityList = redisTemplate.getConnectionFactory().getConnection().get(provinceId.toString().getBytes());
         if(cityList == null){
             List<PositionCity> tempList = cityService.selectCityByProvinceId(provinceId);

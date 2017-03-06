@@ -31,7 +31,7 @@ public class SeckillFrontServiceImpl {
         return  seckillService.selectByPrimaryKey(id);
     }
 
-    public List<Seckill> selectSeckillsByPageSortId(Long pageSortId){
+    public List<Seckill> selectSeckillsByPageSortId(Integer pageSortId){
         return  seckillService.selectSeckillsByPageSortId(pageSortId);
     }
 

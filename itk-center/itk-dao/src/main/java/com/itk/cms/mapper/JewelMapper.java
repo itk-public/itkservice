@@ -29,5 +29,5 @@ public interface JewelMapper {
 
     int updateByPrimaryKey(Jewel record);
 
-    List<Jewel> selectJewelsByPageSortId(Long pageSortId);
+    List<Jewel> selectJewelsByPageSortId(Integer pageSortId);
 }

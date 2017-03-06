@@ -64,7 +64,7 @@ public class PartinglineController {
     }
 
     @RequestMapping(value = "/selectPartinglinesByPageSortId", method = RequestMethod.GET)
-    public WebResult selectPartinglinesByPageSortId(@RequestParam("pageSortId")Long pageSortId) throws Exception {
+    public WebResult selectPartinglinesByPageSortId(@RequestParam("pageSortId")Integer pageSortId) throws Exception {
         return WebResult.ok(partinglineFrontService.selectPartinglinesByPageSortId(pageSortId));
     }
 }

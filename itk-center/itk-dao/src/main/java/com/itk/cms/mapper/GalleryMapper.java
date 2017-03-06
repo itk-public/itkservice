@@ -21,7 +21,7 @@ public interface GalleryMapper {
 
     Gallery selectByPrimaryKey(Long id);
 
-    List<Gallery> selectGallerysByPageSortId(Long pageSortId);
+    List<Gallery> selectGallerysByPageSortId(Integer pageSortId);
 
     int updateByExampleSelective(@Param("record") Gallery record, @Param("example") GalleryExample example);
 

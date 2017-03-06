@@ -47,7 +47,7 @@ public class HbannerController {
     }
 
     @RequestMapping(value = "/selectHbannersByPageSortId", method = RequestMethod.GET)
-    public WebResult selectGallerysByPageSortId(@RequestParam("pageSortId") Long pageSortId) throws Exception {
+    public WebResult selectGallerysByPageSortId(@RequestParam("pageSortId")Integer pageSortId) throws Exception {
         return WebResult.ok(hbannerFrontService.selectHbannersByPageSortId(pageSortId));
     }
 }

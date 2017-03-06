@@ -36,7 +36,7 @@ public class SeckillServiceImpl implements SeckillService {
     }
 
     @Override
-    public List<Seckill> selectSeckillsByPageSortId(Long pageSortId) {
+    public List<Seckill> selectSeckillsByPageSortId(Integer pageSortId) {
         return seckillMapper.selectSeckillsByPageSortId(pageSortId);
     }
 }

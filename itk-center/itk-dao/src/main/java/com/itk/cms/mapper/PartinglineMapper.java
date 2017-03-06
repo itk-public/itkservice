@@ -29,5 +29,5 @@ public interface PartinglineMapper {
 
     int updateByPrimaryKey(Partingline record);
 
-    List<Partingline> selectPartinglinesByPageSortId(Long pageSortId);
+    List<Partingline> selectPartinglinesByPageSortId(Integer pageSortId);
 }

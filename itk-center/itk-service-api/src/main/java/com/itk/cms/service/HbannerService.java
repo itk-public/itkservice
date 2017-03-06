@@ -18,5 +18,5 @@ public interface HbannerService {
 
     Hbanner selectByPrimaryKey(Long id);
 
-    List<Hbanner> selectHbannersByPageSortId(Long pageSortId);
+    List<Hbanner> selectHbannersByPageSortId(Integer pageSortId);
 }

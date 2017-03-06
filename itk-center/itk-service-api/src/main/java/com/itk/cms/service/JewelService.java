@@ -13,9 +13,9 @@ public interface JewelService {
 
     int updateJewel(Jewel jewel);
 
-    int deleJewel(Jewel jewel);
+    int delJewel(Jewel jewel);
 
     Jewel selectByPrimaryKey(Long id);
 
-    List<Jewel> selectJewelsByPageSortId(Long pageSortId);
+    List<Jewel> selectJewelsByPageSortId(Integer pageSortId);
 }

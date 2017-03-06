@@ -31,7 +31,7 @@ public class PartinglineFrontServiceImpl {
         return partinglineService.selectByPrimaryKey(id);
     }
 
-    public List<Partingline> selectPartinglinesByPageSortId(Long pageSortId){
+    public List<Partingline> selectPartinglinesByPageSortId(Integer pageSortId){
         return partinglineService.selectPartinglinesByPageSortId(pageSortId);
     }
 

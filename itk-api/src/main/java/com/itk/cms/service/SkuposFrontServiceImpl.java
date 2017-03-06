@@ -31,7 +31,7 @@ public class SkuposFrontServiceImpl {
         return  skuposService.selectByPrimaryKey(id);
     }
 
-    public List<Skupos> selectSkupossByPageSortId(Long pageSortId){
+    public List<Skupos> selectSkupossByPageSortId(Integer pageSortId){
         return  skuposService.selectSkupossByPageSortId(pageSortId);
     }
 }

@@ -67,7 +67,7 @@ public class SeckillController {
     }
 
     @RequestMapping(value = "/selectSeckillsByPageSortId", method = RequestMethod.GET)
-    public WebResult selectSeckillsByPageSortId(@RequestParam("pageSortId")Long pageSortId) throws Exception {
+    public WebResult selectSeckillsByPageSortId(@RequestParam("pageSortId")Integer pageSortId) throws Exception {
         return WebResult.ok(seckillFrontService.selectSeckillsByPageSortId(pageSortId));
     }
 

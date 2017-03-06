@@ -11,6 +11,6 @@ public interface PositionProvinceService {
 
     List<PositionProvince> selectAllProvince();
 
-    PositionProvince selectProvinceByProvinceId(Long provinceId);
+    PositionProvince selectProvinceByProvinceId(Integer provinceId);
 
 }

@@ -193,7 +193,7 @@
     from t_position_province
   </select>
 
-  <select id="selectByProvinceId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByProvinceId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
     from t_position_province

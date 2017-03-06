@@ -24,7 +24,7 @@ public class PositionProvinceController {
     }
 
     @RequestMapping(value = "/selectProvinceByProvinceId/{provinceId}", method = RequestMethod.GET)
-    public WebResult selectProvinceByProvinceId(@PathVariable(value = "provinceId") Long provinceId) throws Exception {
+    public WebResult selectProvinceByProvinceId(@PathVariable(value = "provinceId") Integer provinceId) throws Exception {
         return WebResult.ok(positionProvinceFrontService.selectProvinceByProvinceId(provinceId));
     }
 }

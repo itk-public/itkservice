@@ -36,7 +36,7 @@ public class SkuposServiceImpl implements SkuposService {
     }
 
     @Override
-    public List<Skupos> selectSkupossByPageSortId(Long pageSortId) {
+    public List<Skupos> selectSkupossByPageSortId(Integer pageSortId) {
         return skuposMapper.selectSkupossByPageSortId(pageSortId);
     }
 }

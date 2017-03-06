@@ -1,9 +1,10 @@
 package com.itk.cms.service;
 
 import com.itk.cms.model.Hbanner;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 /**
@@ -31,7 +32,7 @@ public class HbannerFrontServiceImpl {
         return hbannerService.selectByPrimaryKey(hbannerID);
     }
 
-    public List<Hbanner> selectHbannersByPageSortId(Long pageSortId){
+    public List<Hbanner> selectHbannersByPageSortId(Integer pageSortId){
         return hbannerService.selectHbannersByPageSortId(pageSortId);
     }
 }

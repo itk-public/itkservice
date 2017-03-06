@@ -26,7 +26,7 @@ public class JewelServiceImpl implements JewelService {
     }
 
     @Override
-    public int deleJewel(Jewel jewel) {
+    public int delJewel(Jewel jewel) {
         return jewelMapper.updateByPrimaryKey(jewel);
     }
 
@@ -36,7 +36,7 @@ public class JewelServiceImpl implements JewelService {
     }
 
     @Override
-    public List<Jewel> selectJewelsByPageSortId(Long pageSortId) {
+    public List<Jewel> selectJewelsByPageSortId(Integer pageSortId) {
         return jewelMapper.selectJewelsByPageSortId(pageSortId);
     }
 }

@@ -74,7 +74,7 @@ public class SkuposController {
     }
 
     @RequestMapping(value = "/selectSkupossByPageSortId", method = RequestMethod.GET)
-    public WebResult selectSkupossByPageSortId(@RequestParam("pageSortId")Long pageSortId) throws Exception {
+    public WebResult selectSkupossByPageSortId(@RequestParam("pageSortId")Integer pageSortId) throws Exception {
         return WebResult.ok(skuposFrontService.selectSkupossByPageSortId(pageSortId));
     }
 

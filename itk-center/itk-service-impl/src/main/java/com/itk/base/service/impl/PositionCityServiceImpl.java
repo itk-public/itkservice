@@ -16,7 +16,7 @@ public class PositionCityServiceImpl implements PositionCityService{
     private PositionCityMapper cityMapper;
 
     @Override
-    public List<PositionCity> selectCityByProvinceId(Long provinceId) {
+    public List<PositionCity> selectCityByProvinceId(Integer provinceId) {
         return cityMapper.selectByProvinceId(provinceId);
     }
 

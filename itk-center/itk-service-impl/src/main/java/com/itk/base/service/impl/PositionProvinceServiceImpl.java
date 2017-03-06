@@ -21,7 +21,7 @@ public class PositionProvinceServiceImpl implements PositionProvinceService{
     }
 
     @Override
-    public PositionProvince selectProvinceByProvinceId(Long provinceId) {
+    public PositionProvince selectProvinceByProvinceId(Integer provinceId) {
         return provinceMapper.selectByProvinceId(provinceId);
     }
 }

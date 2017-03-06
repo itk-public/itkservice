@@ -17,5 +17,5 @@ public interface PartinglineService {
 
     Partingline selectByPrimaryKey(Long id);
 
-    List<Partingline> selectPartinglinesByPageSortId(Long pageSortId);
+    List<Partingline> selectPartinglinesByPageSortId(Integer pageSortId);
 }

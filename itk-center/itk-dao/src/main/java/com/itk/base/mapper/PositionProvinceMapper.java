@@ -2,8 +2,9 @@ package com.itk.base.mapper;
 
 import com.itk.base.model.PositionProvince;
 import com.itk.base.model.PositionProvinceExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PositionProvinceMapper {
     int countByExample(PositionProvinceExample example);
@@ -30,5 +31,5 @@ public interface PositionProvinceMapper {
 
     List<PositionProvince> selectAllProvince();
 
-    PositionProvince selectByProvinceId(Long provinceId);
+    PositionProvince selectByProvinceId(Integer provinceId);
 }

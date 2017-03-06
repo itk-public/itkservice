@@ -31,7 +31,7 @@ public class GalleryFrontServiceImpl {
         return galleryService.selectByPrimaryKey(id);
     }
 
-    public List<Gallery> selectGallerysByPageSortId(Long pageSortId){
+    public List<Gallery> selectGallerysByPageSortId(Integer pageSortId){
         return galleryService.selectGallerysByPageSortId(pageSortId);
     }
 

@@ -32,7 +32,7 @@ public class PositionProvinceFrontServiceImpl {
         return (List<PositionProvince>) SerializationUtils.deserialize(provinceList);
     }
 
-    public PositionProvince selectProvinceByProvinceId(Long provinceId) throws Exception {
+    public PositionProvince selectProvinceByProvinceId(Integer provinceId) throws Exception {
         byte[] positionDetail = redisTemplate.getConnectionFactory().getConnection().get("basePositionDetail".getBytes());
         if (positionDetail == null) {
             HashMap<String, Object> positionDetailMap = new HashMap<>();

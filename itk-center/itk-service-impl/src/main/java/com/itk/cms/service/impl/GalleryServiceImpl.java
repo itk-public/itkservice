@@ -40,7 +40,7 @@ public class GalleryServiceImpl implements GalleryService {
     }
 
     @Override
-    public List<Gallery> selectGallerysByPageSortId(Long pageSortId) {
+    public List<Gallery> selectGallerysByPageSortId(Integer pageSortId) {
         return galleryMapper.selectGallerysByPageSortId(pageSortId);
     }
 }

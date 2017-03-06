@@ -40,7 +40,7 @@ public class HbannerServiceImpl implements HbannerService {
     }
 
     @Override
-    public List<Hbanner> selectHbannersByPageSortId(Long pageSortId) {
+    public List<Hbanner> selectHbannersByPageSortId(Integer pageSortId) {
         return hbannerMapper.selectHbannersByPageSortId(pageSortId);
     }
 

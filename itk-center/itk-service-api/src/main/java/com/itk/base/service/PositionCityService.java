@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface PositionCityService {
 
-    List<PositionCity> selectCityByProvinceId(Long provinceId);
+    List<PositionCity> selectCityByProvinceId(Integer provinceId);
 
     PositionCity selectCityByCityId(Long cityId);
 

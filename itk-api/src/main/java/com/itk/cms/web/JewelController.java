@@ -75,7 +75,7 @@ public class JewelController {
     }
 
     @RequestMapping(value = "/selectJewelsByPageSortId", method = RequestMethod.GET)
-    public WebResult selectJewelsByPageSortId(@RequestParam("pageSortId")Long pageSortId) throws Exception {
+    public WebResult selectJewelsByPageSortId(@RequestParam("pageSortId")Integer pageSortId) throws Exception {
         return WebResult.ok(jewelFrontService.selectJewelsByPageSortId(pageSortId));
     }
 }

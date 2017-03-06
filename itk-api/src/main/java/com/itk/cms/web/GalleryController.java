@@ -77,7 +77,7 @@ public class GalleryController {
     }
 
     @RequestMapping(value = "/selectGallerysByPageSortId", method = RequestMethod.GET)
-    public WebResult selectGallerysByPageSortId(@RequestParam("pageSortId")Long pageSortId) throws Exception {
+    public WebResult selectGallerysByPageSortId(@RequestParam("pageSortId")Integer pageSortId) throws Exception {
         return WebResult.ok(galleryFrontService.selectGallerysByPageSortId(pageSortId));
     }
 

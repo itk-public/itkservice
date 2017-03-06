@@ -99,7 +99,7 @@
     </if>
   </select>
 
-  <select id="selectSkupossByPageSortId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectSkupossByPageSortId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
     from t_skupos

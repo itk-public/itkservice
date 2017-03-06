@@ -104,7 +104,7 @@
     where id = #{id,jdbcType=BIGINT}
   </select>
 
-  <select id="selectSeckillsByPageSortId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectSeckillsByPageSortId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
     from t_seckill

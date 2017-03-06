@@ -202,7 +202,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectByProvinceId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByProvinceId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
     from t_position_city
@@ -213,7 +213,7 @@
     select
     <include refid="Base_Column_List" />
     from t_position_city
-    where city_id = #{cityId,jdbcType=INTEGER}
+    where city_id = #{cityId,jdbcType=BIGINT}
   </select>
 
 </mapper>

@@ -17,5 +17,5 @@ public interface SeckillService {
 
     Seckill selectByPrimaryKey(Long id);
 
-    List<Seckill> selectSeckillsByPageSortId(Long pageSortId);
+    List<Seckill> selectSeckillsByPageSortId(Integer pageSortId);
 }

@@ -17,5 +17,5 @@ public interface GalleryService {
 
     Gallery selectByPrimaryKey(Long id);
 
-    List<Gallery> selectGallerysByPageSortId(Long pageSortId);
+    List<Gallery> selectGallerysByPageSortId(Integer pageSortId);
 }

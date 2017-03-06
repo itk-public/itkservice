@@ -35,7 +35,7 @@ public class PartinglineServiceImpl implements PartinglineService {
     }
 
     @Override
-    public List<Partingline> selectPartinglinesByPageSortId(Long pageSortId) {
+    public List<Partingline> selectPartinglinesByPageSortId(Integer pageSortId) {
         return partinglineMapper.selectPartinglinesByPageSortId(pageSortId);
     }
 }

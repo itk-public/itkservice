@@ -29,7 +29,7 @@ public interface PositionCityMapper {
 
     int updateByPrimaryKey(PositionCity record);
 
-    List<PositionCity> selectByProvinceId(Long provinceId);
+    List<PositionCity> selectByProvinceId(Integer provinceId);
 
     PositionCity selectByCityId(Long cityId);
 }

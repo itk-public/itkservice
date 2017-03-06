@@ -29,5 +29,5 @@ public interface SeckillMapper {
 
     int updateByPrimaryKey(Seckill record);
 
-    List<Seckill> selectSeckillsByPageSortId(Long pageSortId);
+    List<Seckill> selectSeckillsByPageSortId(Integer pageSortId);
 }
