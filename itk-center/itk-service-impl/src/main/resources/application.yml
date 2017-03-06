@@ -21,12 +21,9 @@ spring:
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
     application:
-        name: cms-center
+        name: itk-center
 server:
     port: 3333
-mybatis:
-  mapperLocations: classpath:mapper/*/*Mapper.xml
-  typeAliasesPackage: com.itk.*.model
-  checkConfigLocation: true
+
 logging:
   config: classpath:logback-spring.xml
