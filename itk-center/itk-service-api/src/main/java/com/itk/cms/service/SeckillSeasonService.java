@@ -17,5 +17,5 @@ public interface SeckillSeasonService {
 
     SeckillSeason selectByPrimaryKey(Long id);
 
-    List<SeckillSeason> selectSeckillSeasonsByPageSortId();
+    List<SeckillSeason> selectSeckillSeasons();
 }

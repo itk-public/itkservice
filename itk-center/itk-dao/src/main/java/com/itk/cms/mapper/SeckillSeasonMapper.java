@@ -29,5 +29,5 @@ public interface SeckillSeasonMapper {
 
     int updateByPrimaryKey(SeckillSeason record);
 
-    List<SeckillSeason> selectSeckillSeasonsByPageSortId();
+    List<SeckillSeason> selectSeckillSeasons();
 }

@@ -103,14 +103,14 @@
     select 
     <include refid="Base_Column_List" />
     from t_shop_info
-    where is_del = 0
+    where id = #{id,jdbcType=BIGINT}
   </select>
 
   <select id="selectShopInfos" resultMap="BaseResultMap"  >
     select
     <include refid="Base_Column_List" />
     from t_shop_info
-    where id = #{id,jdbcType=BIGINT}
+    where is_del = 0
   </select>
 
 

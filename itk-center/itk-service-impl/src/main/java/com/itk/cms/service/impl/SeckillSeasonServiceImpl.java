@@ -36,7 +36,7 @@ public class SeckillSeasonServiceImpl implements SeckillSeasonService {
     }
 
     @Override
-    public List<SeckillSeason> selectSeckillSeasonsByPageSortId() {
-        return seckillSeasonMapper.selectSeckillSeasonsByPageSortId();
+    public List<SeckillSeason> selectSeckillSeasons() {
+        return seckillSeasonMapper.selectSeckillSeasons();
     }
 }

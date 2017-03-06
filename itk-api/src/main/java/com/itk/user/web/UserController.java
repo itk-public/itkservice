@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Date;
 import java.util.UUID;
 
-@RestController("/user")
+@RestController
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired

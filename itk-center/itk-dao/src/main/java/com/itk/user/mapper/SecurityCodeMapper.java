@@ -19,8 +19,6 @@ public interface SecurityCodeMapper {
 
     List<SecurityCode> selectByExample(SecurityCodeExample example);
 
-    SecurityCode selectSecurityCode(SecurityCode record);
-
     int updateByExampleSelective(@Param("record") SecurityCode record, @Param("example") SecurityCodeExample example);
 
     int updateByExample(@Param("record") SecurityCode record, @Param("example") SecurityCodeExample example);

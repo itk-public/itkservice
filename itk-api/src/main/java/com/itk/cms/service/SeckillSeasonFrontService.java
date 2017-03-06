@@ -31,8 +31,8 @@ public class SeckillSeasonFrontService {
         return seckillSeasonService.selectByPrimaryKey(id);
     }
 
-    public List<SeckillSeason> selectSeckillSeasonsByPageSortId(){
-        return seckillSeasonService.selectSeckillSeasonsByPageSortId();
+    public List<SeckillSeason> selectSeckillSeasons(){
+        return seckillSeasonService.selectSeckillSeasons();
     }
 
 }

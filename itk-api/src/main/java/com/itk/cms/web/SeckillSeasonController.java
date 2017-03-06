@@ -60,9 +60,9 @@ public class SeckillSeasonController {
         return WebResult.ok(seckillSeasonFrontService.selectByPrimaryKey(id));
     }
 
-    @RequestMapping(value = "/selectSeckillSeasonsByPageSortId", method = RequestMethod.GET)
-    public WebResult selectSeckillSeasonsByPageSortId() throws Exception {
-        return WebResult.ok(seckillSeasonFrontService.selectSeckillSeasonsByPageSortId());
+    @RequestMapping(value = "/selectSeckillSeasons", method = RequestMethod.GET)
+    public WebResult selectSeckillSeasons() throws Exception {
+        return WebResult.ok(seckillSeasonFrontService.selectSeckillSeasons());
     }
 
 
