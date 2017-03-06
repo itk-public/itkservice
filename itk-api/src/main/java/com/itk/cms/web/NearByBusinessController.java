@@ -1,7 +1,7 @@
 package com.itk.cms.web;
 
 import com.itk.cms.model.NearbyBusiness;
-import com.itk.cms.service.NearByBusinessServiceImpl;
+import com.itk.cms.service.NearByBusinessFrontServiceImpl;
 import com.itk.utils.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.*;
 public class NearByBusinessController {
 
     @Autowired
-    private NearByBusinessServiceImpl nearByBusinessService;
+    private NearByBusinessFrontServiceImpl nearByBusinessFrontService;
 
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public WebResult addNearbyBusiness(@RequestBody NearbyBusiness nearbyBusiness) throws Exception{
-        if(nearByBusinessService.addNearByBusiness(nearbyBusiness) > 0){
+        if(nearByBusinessFrontService.addNearByBusiness(nearbyBusiness) > 0){
             return WebResult.ok("添加成功！");
         }
         return WebResult.ok("添加失败！");
@@ -27,7 +27,7 @@ public class NearByBusinessController {
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public WebResult updateNearbyBusiness(@RequestBody NearbyBusiness nearbyBusiness) throws Exception {
-        if(nearByBusinessService.updateNearByBusiness(nearbyBusiness) > 0){
+        if(nearByBusinessFrontService.updateNearByBusiness(nearbyBusiness) > 0){
             return WebResult.ok("修改成功！");
         }
         return WebResult.ok("修改失败！");
@@ -35,7 +35,7 @@ public class NearByBusinessController {
 
     @RequestMapping(value = "/delete/{nearbyBusinessId}", method = RequestMethod.DELETE)
     public WebResult delNearbyBusiness(@PathVariable(value = "nearbyBusinessId") Long nearbyBusinessId) throws Exception {
-        if(nearByBusinessService.delNearByBusiness(nearbyBusinessId) > 0){
+        if(nearByBusinessFrontService.delNearByBusiness(nearbyBusinessId) > 0){
             return WebResult.ok("删除成功！");
         }
         return WebResult.ok("删除失败！");
@@ -43,6 +43,6 @@ public class NearByBusinessController {
 
     @RequestMapping(value = "/selectByPrimaryKey/{nearbyBusinessId}", method = RequestMethod.GET)
     public WebResult selectByPrimaryKey(@PathVariable(value = "nearbyBusinessId") Long nearbyBusinessId) throws Exception {
-        return WebResult.ok(nearByBusinessService.selectByPrimaryKey(nearbyBusinessId));
+        return WebResult.ok(nearByBusinessFrontService.selectByPrimaryKey(nearbyBusinessId));
     }
 }

@@ -1,7 +1,7 @@
 package com.itk.cms.web;
 
 import com.itk.cms.model.NearbyBusinessInfo;
-import com.itk.cms.service.NearByBusinessInfoServiceImpl;
+import com.itk.cms.service.NearByBusinessInfoFrontServiceImpl;
 import com.itk.utils.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.*;
 public class NearByBusinessInfoController {
 
     @Autowired
-    private NearByBusinessInfoServiceImpl nearByBusinessInfoService;
+    private NearByBusinessInfoFrontServiceImpl nearByBusinessInfoFrontService;
 
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public WebResult addNearbyBusinessInfo(@RequestBody NearbyBusinessInfo nearbyBusinessInfo) throws Exception{
-        if(nearByBusinessInfoService.addNearByBusinessInfo(nearbyBusinessInfo) > 0){
+        if(nearByBusinessInfoFrontService.addNearByBusinessInfo(nearbyBusinessInfo) > 0){
             return WebResult.ok("添加成功！");
         }
         return WebResult.ok("添加失败！");
@@ -27,7 +27,7 @@ public class NearByBusinessInfoController {
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public WebResult updateNearbyBusinessInfo(@RequestBody NearbyBusinessInfo nearbyBusinessInfo) throws Exception {
-        if(nearByBusinessInfoService.updateNearByBusinessInfo(nearbyBusinessInfo) > 0){
+        if(nearByBusinessInfoFrontService.updateNearByBusinessInfo(nearbyBusinessInfo) > 0){
             return WebResult.ok("修改成功！");
         }
         return WebResult.ok("修改失败！");
@@ -35,7 +35,7 @@ public class NearByBusinessInfoController {
 
     @RequestMapping(value = "/delete/{nearbyBusinessInfoId}", method = RequestMethod.DELETE)
     public WebResult delNearbyBusinessInfo(@PathVariable(value = "nearbyBusinessInfoId") Long nearbyBusinessInfoId) throws Exception {
-        if(nearByBusinessInfoService.delNearByBusinessInfo(nearbyBusinessInfoId) > 0){
+        if(nearByBusinessInfoFrontService.delNearByBusinessInfo(nearbyBusinessInfoId) > 0){
             return WebResult.ok("删除成功！");
         }
         return WebResult.ok("删除失败！");
@@ -43,6 +43,6 @@ public class NearByBusinessInfoController {
 
     @RequestMapping(value = "/selectByPrimaryKey/{nearbyBusinessInfoId}", method = RequestMethod.GET)
     public WebResult selectByPrimaryKey(@PathVariable(value = "nearbyBusinessInfoId") Long nearbyBusinessInfoId) throws Exception {
-        return WebResult.ok(nearByBusinessInfoService.selectByPrimaryKey(nearbyBusinessInfoId));
+        return WebResult.ok(nearByBusinessInfoFrontService.selectByPrimaryKey(nearbyBusinessInfoId));
     }
 }

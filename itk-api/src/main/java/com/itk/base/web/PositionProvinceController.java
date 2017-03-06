@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class PositionProvinceController {
 
     @Autowired
-    private PositionProvinceFrontServiceImpl provinceService;
+    private PositionProvinceFrontServiceImpl positionProvinceFrontService;
 
     @RequestMapping(value = "/select/all", method = RequestMethod.GET)
     public WebResult selectAllProvince() throws Exception {
-        return WebResult.ok(provinceService.selectAllProvince());
+        return WebResult.ok(positionProvinceFrontService.selectAllProvince());
     }
 
     @RequestMapping(value = "/selectProvinceByProvinceId/{provinceId}", method = RequestMethod.GET)
     public WebResult selectProvinceByProvinceId(@PathVariable(value = "provinceId") Long provinceId) throws Exception {
-        return WebResult.ok(provinceService.selectProvinceByProvinceId(provinceId));
+        return WebResult.ok(positionProvinceFrontService.selectProvinceByProvinceId(provinceId));
     }
 }

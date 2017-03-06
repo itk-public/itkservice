@@ -2,18 +2,18 @@ package com.itk.cms.service;
 
 import com.itk.cms.model.NearbyBusinessInfo;
 
+
 /**
- * Created by zhouhui on 2017/3/3.
+ * Created by enchen on 2/21/17.
  */
-public interface NearbyBusinessInfoService {
+public interface NearByBusinessInfoService {
 
-    int addNearbyBusinessInfo(NearbyBusinessInfo nearbyBusinessInfo);
+    int addNearByBusinessInfo(NearbyBusinessInfo nearbyBusinessInfo);
 
-    int updateNearbyBusinessInfo(NearbyBusinessInfo nearbyBusinessInfo);
+    int updateNearByBusinessInfo(NearbyBusinessInfo nearbyBusinessInfo);
 
-    int deleNearbyBusinessInfo(NearbyBusinessInfo NearbyBusinessInfo);
+    int delNearByBusinessInfo(Long nearbyBusinessInfoId);
 
-    NearbyBusinessInfo selectByPrimaryKey(Long id);
+    NearbyBusinessInfo selectByPrimaryKey(Long nearbyBusinessInfoId);
 
-    NearbyBusinessInfo selectNearbyBusinessInfosByNearbyBusinessId(Long nearByBusinessId);
 }

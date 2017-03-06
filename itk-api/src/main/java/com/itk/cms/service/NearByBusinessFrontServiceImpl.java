@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
  * Created by enchen on 2/21/17.
  */
 @Service
-public class NearByBusinessServiceImpl {
+public class NearByBusinessFrontServiceImpl {
 
     @Autowired
     private NearByBusinessService nearByBusinessService;

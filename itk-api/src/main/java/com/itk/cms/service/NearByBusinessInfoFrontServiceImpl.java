@@ -13,7 +13,7 @@ import java.util.List;
  * Created by enchen on 2/21/17.
  */
 @Service
-public class NearByBusinessInfoServiceImpl {
+public class NearByBusinessInfoFrontServiceImpl {
 
     @Autowired
     private NearByBusinessInfoService nearByBusinessInfoService;

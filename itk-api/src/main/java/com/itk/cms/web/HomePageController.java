@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.*;
 public class HomePageController {
 
     @Autowired
-    HomePageFrontServiceImpl homePageService;
+    HomePageFrontServiceImpl homePageFrontService;
 
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public WebResult addHomePage(@RequestBody HomePage homePage) throws Exception{
         try{
-            if(homePageService.addHomePage(homePage)>0){
+            if(homePageFrontService.addHomePage(homePage)>0){
                 return  WebResult.ok("添加成功！");
             }
             return  WebResult.ok("添加失败！");
@@ -32,7 +32,7 @@ public class HomePageController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public WebResult updateHomePage(@RequestBody HomePage homePage) throws Exception{
         try{
-            if(homePageService.updateHomePage(homePage)>0){
+            if(homePageFrontService.updateHomePage(homePage)>0){
                 return  WebResult.ok("修改成功！");
             }
             return  WebResult.ok("修改失败！");
@@ -44,7 +44,7 @@ public class HomePageController {
     @RequestMapping(value = "/{homePageID}", method = RequestMethod.DELETE)
     public WebResult deleteHomePage(@PathVariable(value = "homePageID") Long homePageID) throws Exception{
         try{
-            if(homePageService.deleteHomePage(homePageID)>0){
+            if(homePageFrontService.deleteHomePage(homePageID)>0){
                 return  WebResult.ok("删除成功！");
             }
             return  WebResult.ok("删除失败！");
@@ -55,6 +55,6 @@ public class HomePageController {
 
     @RequestMapping(value = "/selectHomePages", method = RequestMethod.GET)
     public WebResult selectHomePages() throws Exception{
-            return WebResult.ok(homePageService.selectHomePages());
+            return WebResult.ok(homePageFrontService.selectHomePages());
     }
 }
