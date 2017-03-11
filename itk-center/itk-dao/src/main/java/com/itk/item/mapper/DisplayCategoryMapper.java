@@ -1,8 +1,10 @@
 package com.itk.item.mapper;
 
-import com.itk.item.model.DisplayCategory;
 import com.itk.item.model.DisplayCategoryExample;
+import com.itk.item.model.DisplayCategory;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface DisplayCategoryMapper {
@@ -27,4 +29,6 @@ public interface DisplayCategoryMapper {
     int updateByPrimaryKeySelective(DisplayCategory record);
 
     int updateByPrimaryKey(DisplayCategory record);
+
+    List<DisplayCategory> selectDisplayCategories();
 }

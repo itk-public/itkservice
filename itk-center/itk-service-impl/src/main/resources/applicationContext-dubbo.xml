@@ -106,4 +106,8 @@
                    version="1.0" registry="zookeeper" owner="enchen"/>
     <bean id="shopInfoService" class="com.itk.base.service.impl.ShopInfoServiceImpl"/>
 
+    <!--item-->
+    <dubbo:service interface="com.itk.item.service.DisplayCategoryService" ref="displayCategoryService"
+                   version="1.0" registry="zookeeper" owner="enchen"/>
+    <bean id="displayCategoryService" class="com.itk.item.service.impl.DisplayCategoryServiceImpl"/>
 </beans>

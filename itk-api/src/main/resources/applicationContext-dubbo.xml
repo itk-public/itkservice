@@ -86,4 +86,8 @@
     <dubbo:reference id="shopInfoService" interface="com.itk.base.service.ShopInfoService"
                      check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
 
+    <!--item-->
+    <dubbo:reference id="displayCategoryService" interface="com.itk.item.service.DisplayCategoryService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+
 </beans>
