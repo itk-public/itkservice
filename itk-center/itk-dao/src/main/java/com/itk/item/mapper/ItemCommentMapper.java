@@ -28,4 +28,6 @@ public interface ItemCommentMapper {
     int updateByPrimaryKeySelective(ItemComment record);
 
     int updateByPrimaryKey(ItemComment record);
+
+    List<ItemComment> selectByItemId(String ItemId);
 }

@@ -92,4 +92,7 @@
 
     <dubbo:reference id="shopCategoryService" interface="com.itk.item.service.ShopCategoryService"
                      check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+
+    <dubbo:reference id="itemCommentService" interface="com.itk.item.service.ItemCommentService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
 </beans>

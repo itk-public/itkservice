@@ -263,4 +263,10 @@
       modify_time = #{modifyTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByItemId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from t_item_comment
+    where item_id = #{item_id,jdbcType=VARCHAR}
+  </select>
 </mapper>
