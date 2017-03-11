@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by enchen on 2/23/17.
  */
 @RestController
-@RequestMapping("/cms/nearByBusiness/info")
+@RequestMapping("/item/displayCategory")
 public class DisplayCategoryController {
 
     @Autowired
@@ -34,7 +34,7 @@ public class DisplayCategoryController {
     }
 
     @RequestMapping(value = "/delete/{displayCategoryId}", method = RequestMethod.DELETE)
-    public WebResult delNearbyBusinessInfo(@PathVariable(value = "displayCategoryId") Integer displayCategoryId) throws Exception {
+    public WebResult delDisplayCategory(@PathVariable(value = "displayCategoryId") Integer displayCategoryId) throws Exception {
         if(displayCategoryFrontService.delDisplayCategory(displayCategoryId) > 0){
             return WebResult.ok("删除成功！");
         }
@@ -47,7 +47,12 @@ public class DisplayCategoryController {
     }
 
     @RequestMapping(value = "/selectByParentId/{parentId}", method = RequestMethod.DELETE)
-    public WebResult delNearbyBusinessInfo(@PathVariable(value = "parentId") Long parentId) throws Exception {
+    public WebResult selectDisplayCategoriesByParentId(@PathVariable(value = "parentId") Long parentId) throws Exception {
         return WebResult.ok(displayCategoryFrontService.selectDisplayCategoriesByParentId(parentId));
+    }
+
+    @RequestMapping(value = "/selectDisplayCategoryDetail/{displayCategoryId}", method = RequestMethod.DELETE)
+    public WebResult selectDisplayCategoriesByParentId(@PathVariable(value = "displayCategoryId") Integer displayCategoryId) throws Exception {
+        return WebResult.ok(displayCategoryFrontService.selectByPrimaryKey(displayCategoryId));
     }
 }

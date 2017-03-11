@@ -263,4 +263,10 @@
       modify_time = #{modifyTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectShopCategories" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from t_shop_category
+    where isShow = 1
+  </select>
 </mapper>

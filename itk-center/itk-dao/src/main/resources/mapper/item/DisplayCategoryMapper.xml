@@ -300,7 +300,7 @@
     select
     <include refid="Base_Column_List" />
     from t_display_category
-    where is_del = 0
+    where isShow = 1
   </select>
   <select id="selectByParentId" resultMap="BaseResultMap" parameterType="java.lang.Long">
     select

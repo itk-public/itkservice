@@ -28,4 +28,6 @@ public interface ShopCategoryMapper {
     int updateByPrimaryKeySelective(ShopCategory record);
 
     int updateByPrimaryKey(ShopCategory record);
+
+    List<ShopCategory> selectShopCategories();
 }
