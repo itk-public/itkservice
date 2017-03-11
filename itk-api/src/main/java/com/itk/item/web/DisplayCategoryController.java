@@ -45,4 +45,9 @@ public class DisplayCategoryController {
     public WebResult selectDisplayCategories() throws Exception {
         return WebResult.ok(displayCategoryFrontService.selectDisplayCategories());
     }
+
+    @RequestMapping(value = "/selectByParentId/{parentId}", method = RequestMethod.DELETE)
+    public WebResult delNearbyBusinessInfo(@PathVariable(value = "parentId") Long parentId) throws Exception {
+        return WebResult.ok(displayCategoryFrontService.selectDisplayCategoriesByParentId(parentId));
+    }
 }

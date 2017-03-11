@@ -36,4 +36,8 @@ public class DisplayCategoryFrontServiceImpl {
     public List<DisplayCategory> selectDisplayCategories(){
         return displayCategoryService.selectDisplayCategories();
     }
+
+    public List<DisplayCategory> selectDisplayCategoriesByParentId(Long parentId){
+        return displayCategoryService.selectByParentId(parentId);
+    }
 }

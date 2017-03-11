@@ -42,4 +42,9 @@ public class DisplayCategoryServiceImpl implements DisplayCategoryService {
     public List<DisplayCategory> selectDisplayCategories() {
         return displayCategoryMapper.selectDisplayCategories();
     }
+
+    @Override
+    public List<DisplayCategory> selectByParentId(Long parentId) {
+        return displayCategoryMapper.selectByParentId(parentId);
+    }
 }

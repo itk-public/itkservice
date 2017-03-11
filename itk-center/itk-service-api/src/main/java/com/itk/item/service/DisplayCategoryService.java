@@ -19,4 +19,6 @@ public interface DisplayCategoryService {
     DisplayCategory selectByPrimaryKey(Integer id);
 
     List<DisplayCategory> selectDisplayCategories();
+
+    List<DisplayCategory> selectByParentId(Long parentId);
 }

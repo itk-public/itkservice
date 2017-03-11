@@ -31,4 +31,6 @@ public interface DisplayCategoryMapper {
     int updateByPrimaryKey(DisplayCategory record);
 
     List<DisplayCategory> selectDisplayCategories();
+
+    List<DisplayCategory> selectByParentId(Long parentId);
 }
