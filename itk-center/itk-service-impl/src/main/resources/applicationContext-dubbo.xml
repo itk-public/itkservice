@@ -118,4 +118,8 @@
     <dubbo:service interface="com.itk.item.service.ItemCommentService" ref="itemCommentService"
                    version="1.0" registry="zookeeper" owner="enchen"/>
     <bean id="itemCommentService" class="com.itk.item.service.impl.ShopCategoryServiceImpl"/>
+
+    <dubbo:service interface="com.itk.promotion.service.SaleInfoService" ref="saleInfoService"
+                   version="1.0" registry="zookeeper" owner="enchen"/>
+    <bean id="saleInfoService" class="com.itk.promotion.service.impl.SaleInfoServiceImpl"/>
 </beans>
