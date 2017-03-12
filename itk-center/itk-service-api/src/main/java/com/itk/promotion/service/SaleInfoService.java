@@ -19,4 +19,5 @@ public interface SaleInfoService {
 
     SaleInfo selectByPrimaryKey(Integer id);
 
+    List<SaleInfo> selectByShopId(String shopId);
 }

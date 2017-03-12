@@ -41,4 +41,9 @@ public class SaleInfoServiceImpl implements SaleInfoService {
     public SaleInfo selectByPrimaryKey(Integer id) {
         return saleInfoMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public List<SaleInfo> selectByShopId(String shopId) {
+        return saleInfoMapper.selectByShopId(shopId);
+    }
 }

@@ -27,4 +27,6 @@ public interface SaleInfoMapper {
     int updateByPrimaryKeySelective(SaleInfo record);
 
     int updateByPrimaryKey(SaleInfo record);
+
+    List<SaleInfo> selectByShopId(String shopId);
 }

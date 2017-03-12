@@ -31,4 +31,8 @@ public class SaleInfoFrontServiceImpl {
     public SaleInfo selectByPrimaryKey(Integer saleInfoId){
         return saleInfoService.selectByPrimaryKey(saleInfoId);
     }
+
+    public List<SaleInfo> selectByShopId(String shopId){
+        return saleInfoService.selectByShopId(shopId);
+    }
 }

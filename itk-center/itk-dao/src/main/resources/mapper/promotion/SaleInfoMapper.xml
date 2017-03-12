@@ -500,4 +500,11 @@
       modify_time = #{modifyTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByShopId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from t_sale_info
+    where shop_id = #{shopId,jdbcType=VARCHAR}
+  </select>
 </mapper>

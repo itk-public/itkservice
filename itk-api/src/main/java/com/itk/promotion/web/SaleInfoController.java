@@ -47,4 +47,8 @@ public class SaleInfoController {
         return WebResult.ok(saleInfoFrontService.selectByPrimaryKey(saleInfoId));
     }
 
+    @RequestMapping(value = "/selectByShopId/{shopId}", method = RequestMethod.DELETE)
+    public WebResult selectByShopId(@PathVariable(value = "shopId") String shopId) throws Exception {
+        return WebResult.ok(saleInfoFrontService.selectByShopId(shopId));
+    }
 }
