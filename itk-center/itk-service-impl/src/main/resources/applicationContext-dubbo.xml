@@ -123,4 +123,8 @@
     <dubbo:service interface="com.itk.promotion.service.SaleInfoService" ref="saleInfoService"
                    version="1.0" registry="zookeeper" owner="enchen"/>
     <bean id="saleInfoService" class="com.itk.promotion.service.impl.SaleInfoServiceImpl"/>
+
+    <dubbo:service interface="com.itk.item.service.ItemInfoService" ref="itemInfoService"
+                   version="1.0" registry="zookeeper" owner="enchen"/>
+    <bean id="itemInfoService" class="com.itk.item.service.impl.ItemInfoServiceImpl"/>
 </beans>

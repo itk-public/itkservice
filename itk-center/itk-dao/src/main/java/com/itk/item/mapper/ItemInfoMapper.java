@@ -28,4 +28,10 @@ public interface ItemInfoMapper {
     int updateByPrimaryKeySelective(ItemInfo record);
 
     int updateByPrimaryKey(ItemInfo record);
+
+    List<ItemInfo> selectByCategoryIdAndStatus(Long categoryId, Integer status);
+
+    List<ItemInfo> selectByShopIdAndStatus(Long shopId, Integer status);
+
+    List<ItemInfo> selectByShopCategoryIdAndStatus(Integer shopCategoryId, Integer status);
 }
