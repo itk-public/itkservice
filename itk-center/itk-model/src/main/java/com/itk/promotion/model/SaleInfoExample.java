@@ -586,65 +586,6 @@ public class SaleInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsParticipantIsNull() {
-            addCriterion("is_participant is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsParticipantIsNotNull() {
-            addCriterion("is_participant is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsParticipantEqualTo(Integer value) {
-            addCriterion("is_participant =", value, "isParticipant");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsParticipantNotEqualTo(Integer value) {
-            addCriterion("is_participant <>", value, "isParticipant");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsParticipantGreaterThan(Integer value) {
-            addCriterion("is_participant >", value, "isParticipant");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsParticipantGreaterThanOrEqualTo(Integer value) {
-            addCriterion("is_participant >=", value, "isParticipant");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsParticipantLessThan(Integer value) {
-            addCriterion("is_participant <", value, "isParticipant");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsParticipantLessThanOrEqualTo(Integer value) {
-            addCriterion("is_participant <=", value, "isParticipant");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsParticipantIn(List<Integer> values) {
-            addCriterion("is_participant in", values, "isParticipant");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsParticipantNotIn(List<Integer> values) {
-            addCriterion("is_participant not in", values, "isParticipant");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsParticipantBetween(Integer value1, Integer value2) {
-            addCriterion("is_participant between", value1, value2, "isParticipant");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsParticipantNotBetween(Integer value1, Integer value2) {
-            addCriterion("is_participant not between", value1, value2, "isParticipant");
-            return (Criteria) this;
-        }
 
         public Criteria andIsDelIsNull() {
             addCriterion("is_del is null");
