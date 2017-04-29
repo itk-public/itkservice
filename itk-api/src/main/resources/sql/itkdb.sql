@@ -355,5 +355,100 @@ CREATE TABLE `t_sale_info` (
 
 
 
+CREATE TABLE 't_member' (
+  'id' INT(11) NOT NULL AUTO_INCREMENT,
+  'member_id' VARCHAR(100) NOT NULL COMMENT '会员 id',
+  'user_id' INT(11) NOT NULL COMMENT '用户 id',
+  'level' INT(4) NOT NULL DEFAULT 0 COMMENT '会员等级(0 普通会员)',
+  'balance' DECIMAL(20,4) NOT NULL COMMENT '余额',
+  'is_del' INT(4) NOT NULL DEFAULT 0 COMMENT '是否可用(0 不可用, 1 可用)',
+  'create_date' datetime DEFAULT NULL COMMENT '创建时间',
+  'modify_time' datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
+  PRIMARY KEY ('id')
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='会员信息表';
+
+CREATE TABLE 't_user_member_recharge_record' (
+  'id' INT(20) NOT NULL AUTO_INCREMENT,
+  'member_id' VARCHAR(100) NOT NULL COMMENT '会员id',
+  'recharge_amount' DECIMAL(20,4) NOT NULL COMMENT '冲值金额',
+  'create_date' datetime DEFAULT NULL COMMENT '创建时间',
+  'modify_time' datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
+  PRIMARY KEY ('id')
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='会员充值记录表';
 
 
+CREATE TABLE 't_order_header' (
+  'id' BIGINT(20) UNSIGNED NOT  NULL  AUTO_INCREMENT,
+  'order_id' VARCHAR(100) NOT NULL COMMENT '订单 id',
+  'status' INT(4) NOT NULL COMMENT '订单状态(1 = 待支付, 2 = 商品打包中, 3 = 配送中, 4 = 待自提, 5 = 已签收, 6 = 订单完成, 7 = 订单取消, 8 = 退款审核中, 9 = 退货审核中)',
+  'is_del' INT(1) DEFAULT NULL COMMENT '删除状态 0:正常 1:删除',
+  'is_expired' INT(1) DEFAULT NULL COMMENT '过期状态 0:正常 1:过期',
+  'address_id' VARCHAR(16) DEFAULT NOT NULL COMMENT '地址信息 id',
+  'actual_amount' DECIMAL(20,4) NOT NULL COMMENT '实际支付金额',
+  'total_amount' DECIMAL(20,4) NOT NULL COMMENT '总金额',
+  'shop_id' VARCHAR(100) NOT NULL COMMENT ' 店铺信息 id',
+  'allocation_from_time' DATETIME DEFAULT NOT NULL COMMENT '配送起始时间',
+  'allocation_to_time' DATETIME DEFAULT NOT NULL COMMENT '配送到达时间',
+  'allocation_type' INT(4) DEFAULT '0' NOT NULL COMMENT '配送方式(0: 平台配送, 1: 用户自提)',
+  'comment' VARCHAR(200) COMMENT '备注',
+  'arrival_time' DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '送达时间',
+  'complete_time' DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '完成时间',
+  'create_time' DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '下单时间',
+  'modify_time' datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
+  'user_id' VARCHAR(100)  DEFAULT NULL COMMENT '创建人',
+  PRIMARY KEY ('id')
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='订单头部信息';
+
+CREATE TABLE 't_order_detail' (
+  'id' BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  'order_id' VARCHAR(100) NOT NULL COMMENT '订单 id',
+  'item_info_id' VARCHAR(100) NOT NULL COMMENT '商品信息 id',
+  'item_count' INT(10) NOT NULL COMMENT '商品购买数量',
+  'freight_id' INT(4) DEFAULT NULL COMMENT '运费 id',
+  'platform_promotion_code' INT(20) COMMENT '平台券id',
+  'platform_promotion_cost' DECIMAL(20,4) COMMENT '平台券使用金额',
+  'shop_promotion_code' INT(20) COMMENT '商家券 id',
+  'shop_promotion_cost' DECIMAL(20,4) COMMENT '商家券使用金额',
+  PRIMARY KEY ('id')
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='订单详情';
+
+
+CREATE TABLE 't_purchase' (
+  'id' int NOT NULL AUTO_INCREMENT,
+  'purchase_id' VARCHAR(100) NOT NULL COMMENT '支付 id',
+  'type' INT(3) NOT NULL COMMENT '支付类型(待定)',
+  'order_id' VARCHAR(100) NOT NULL COMMENT '订单 id',
+  'is_del' INT(1) DEFAULT NULL COMMENT '删除状态 0:正常 1:删除',
+  'amount' DECIMAL(20,4) NOT NULL COMMENT '支付金额',
+  'status' INT(1) NOT NULL COMMENT '支付状态(0: 未支付, 1: 支付)',
+  'create_time' DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  'complete_time' DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '完成时间',
+  PRIMARY KEY ('id')
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='支付记录详情';
+
+
+CREATE TABLE 't_refund_flow' (
+  'id' INT NOT NULL AUTO_INCREMENT,
+  'flow_id' VARCHAR(100) NOT NULL COMMENT '流水 id',
+  'purchase_id' VARCHAR(100) NOT NULL COMMENT '支付 id',
+  'order_id' VARCHAR(100) NOT NULL COMMENT '订单 id',
+  'shop_id' VARCHAR(100) NOT NULL COMMENT ' 店铺信息 id',
+  'refund_detail_id' VARCHAR(100) NOT NULL COMMENT '退款明细 id',
+  'type' INT(1) NOT NULL COMMENT '退款类型(0: 部分退款, 1: 整单退款)',
+  'promotion_status' INT(1) NOT NULL COMMENT '退券状态(0: 未退, 1: 已退)',
+  'status' INT(1) NOT NULL COMMENT '退款状态(0: 未退款, 1: 已退款)',
+  'create_time' DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  'complete_time' DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '完成时间',
+  PRIMARY KEY ('id')
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='退款流水';
+
+CREATE TABLE 't_refund_detail' (
+  'id' BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  'refund_detail_id' VARCHAR(100) NOT NULL COMMENT '退款详情 id',
+  'flow_id' VARCHAR(100) NOT NULL COMMENT '流水 id',
+  'item_info_id' VARCHAR(100) NOT NULL COMMENT '商品信息 id',
+  'refund_count' INT(10) NOT NULL COMMENT '退货数量',
+  'platform_promotion_code' INT(20) COMMENT '平台券id',
+  'shop_promotion_code' INT(20) COMMENT '商家券 id',
+  PRIMARY KEY ('id')
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='退款明细';
