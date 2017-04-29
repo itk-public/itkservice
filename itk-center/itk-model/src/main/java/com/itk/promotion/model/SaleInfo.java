@@ -38,11 +38,6 @@ public class SaleInfo implements Serializable{
     private String tag;
 
     /**
-    * 是否会员活动：(1：全场券（平台） 2：商家券  3：会员全场券 4：会员商家券)
-    */
-    private Integer isParticipant;
-
-    /**
     * 删除状态 0:正常 1:删除
     */
     private Integer isDel;
@@ -86,6 +81,12 @@ public class SaleInfo implements Serializable{
     * 券金额
     */
     private BigDecimal amount;
+
+    /**
+     * 当如果是满减券需要判断当前订单是否满足当前金额
+     */
+    private BigDecimal saleAmount;
+
 
     /**
     * 市id
@@ -173,14 +174,6 @@ public class SaleInfo implements Serializable{
         this.tag = tag;
     }
 
-    public Integer getIsParticipant() {
-        return isParticipant;
-    }
-
-    public void setIsParticipant(Integer isParticipant) {
-        this.isParticipant = isParticipant;
-    }
-
     public Integer getIsDel() {
         return isDel;
     }
@@ -251,6 +244,14 @@ public class SaleInfo implements Serializable{
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    public BigDecimal getSaleAmount() {
+        return saleAmount;
+    }
+
+    public void setSaleAmount(BigDecimal saleAmount) {
+        this.saleAmount = saleAmount;
     }
 
     public Long getCityId() {
