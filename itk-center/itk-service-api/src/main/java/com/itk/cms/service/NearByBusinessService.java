@@ -6,7 +6,7 @@ import com.itk.cms.model.NearbyBusiness;
 /**
  * Created by enchen on 2/21/17.
  */
-public interface NearByBusinessService {
+public interface NearByBusinessService  {
 
     int addNearByBusiness(NearbyBusiness nearbyBusiness);
 
