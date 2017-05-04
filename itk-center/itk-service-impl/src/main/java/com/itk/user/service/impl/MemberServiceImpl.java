@@ -5,6 +5,8 @@ import com.itk.user.model.Member;
 import com.itk.user.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Date;
+
 /**
  * Created by enchen on 5/4/17.
  */
@@ -15,6 +17,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public int addMember(Member member) {
+        member.setCreateDate(new Date());
         return memberMapper.insertSelective(member);
     }
 
