@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Created by enchen on 2/21/17.
  */
-public class NearByBusinessInfoServiceImpl implements NearByBusinessInfoService {
+public class NearByBusinessInfoServiceImpl implements  NearByBusinessInfoService  {
 
     @Autowired
     private NearbyBusinessInfoMapper nearbyBusinessInfoMapper;
