@@ -1,8 +1,5 @@
 package com.itk.promotion.service.impl;
 
-import com.itk.item.mapper.ItemCommentMapper;
-import com.itk.item.model.ItemComment;
-import com.itk.item.service.ItemCommentService;
 import com.itk.promotion.mapper.SaleInfoMapper;
 import com.itk.promotion.model.SaleInfo;
 import com.itk.promotion.service.SaleInfoService;

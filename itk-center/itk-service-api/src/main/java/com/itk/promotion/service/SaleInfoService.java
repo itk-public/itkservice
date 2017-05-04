@@ -1,7 +1,5 @@
 package com.itk.promotion.service;
 
-
-import com.itk.item.model.ItemComment;
 import com.itk.promotion.model.SaleInfo;
 
 import java.util.List;

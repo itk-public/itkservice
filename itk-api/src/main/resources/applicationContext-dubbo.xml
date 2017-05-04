@@ -28,6 +28,9 @@
     <dubbo:reference id="userInfoService" interface="com.itk.user.service.UserInfoService"
     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
 
+    <!--会员-->
+    <dubbo:reference id="memberService" interface="com.itk.user.service.MemberService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
 
     <!--首页cms-->
     <dubbo:reference id="homePageService" interface="com.itk.cms.service.HomePageService"

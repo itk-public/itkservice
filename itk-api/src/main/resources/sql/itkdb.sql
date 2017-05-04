@@ -250,19 +250,6 @@ CREATE TABLE `t_back_user` (
   UNIQUE KEY `t_back_user_username_uindex` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='用户信息';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 CREATE TABLE `t_display_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` bigint(20)  NOT NULL COMMENT '父类id',

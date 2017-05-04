@@ -29,6 +29,10 @@
                    version="1.0" registry="zookeeper" owner="zhouhui"/>
     <bean id="userInfoService" class="com.itk.user.service.impl.UserInfoServiceImpl"/>
 
+    <!--会员 member-->
+    <dubbo:service interface="com.itk.user.service.MemberService" ref="memberService"
+                   version="1.0" registry="zookeeper" owner="zhouhui"/>
+    <bean id="memberService" class="com.itk.user.service.impl.MemberServiceImpl"/>
 
     <!--首页cms-->
     <dubbo:service interface="com.itk.cms.service.PageSortService" ref="pageSortService"
