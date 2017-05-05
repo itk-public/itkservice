@@ -131,4 +131,9 @@
     <dubbo:service interface="com.itk.item.service.ItemInfoService" ref="itemInfoService"
                    version="1.0" registry="zookeeper" owner="enchen"/>
     <bean id="itemInfoService" class="com.itk.item.service.impl.ItemInfoServiceImpl"/>
+
+    <!--充值、付款、退款-->
+    <dubbo:service interface="com.itk.payment.service.UserMemberRechargeRecordService" ref="userMemberRechargeRecordService"
+                   version="1.0" registry="zookeeper" owner="enchen"/>
+    <bean id="userMemberRechargeRecordService" class="com.itk.payment.service.impl.UserMemberRechargeRecordServiceImpl"/>
 </beans>

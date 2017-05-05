@@ -340,12 +340,6 @@ CREATE TABLE `t_sale_info` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='促销信息';
 
-
-
-
-
-
-
 CREATE TABLE `t_member` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `member_id` VARCHAR(100) NOT NULL COMMENT '会员 id',
@@ -443,3 +437,8 @@ CREATE TABLE `t_refund_detail` (
   `shop_promotion_code` INT(20) COMMENT '商家券 id',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='退款明细';
+
+# 缺 地址表
+# 缺 时间规则表
+# 缺 运费表
+# 所有 varchar 类型的 id 规则

@@ -104,4 +104,8 @@
 
     <dubbo:reference id="itemInfoService" interface="com.itk.item.service.ItemInfoService"
                      check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+
+    <!--充值、付款、退款-->
+    <dubbo:reference id="userMemberRechargeRecordService" interface="com.itk.payment.service.UserMemberRechargeRecordService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
 </beans>
