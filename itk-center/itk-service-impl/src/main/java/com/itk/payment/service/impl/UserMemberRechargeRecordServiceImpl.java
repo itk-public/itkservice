@@ -18,7 +18,6 @@ public class UserMemberRechargeRecordServiceImpl implements UserMemberRechargeRe
 
     @Override
     public int addUserMemberRechargeRecord(UserMemberRechargeRecord userMemberRechargeRecord) {
-        userMemberRechargeRecord.setCreateDate(new Date());
         return userMemberRechargeRecordMapper.insertSelective(userMemberRechargeRecord);
     }
 

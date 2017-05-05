@@ -29,7 +29,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public int delMember(Integer id) {
         Member member = memberMapper.selectByPrimaryKey(id);
-        member.setIsDel(0);//0 不可用, 1 可用
+        member.setIsDel(1);//0 可用, 1 不可用
         return memberMapper.updateByPrimaryKeySelective(member);
     }
 

@@ -48,7 +48,7 @@ public class ShopCategoryController {
         return WebResult.ok(shopCategoryFrontService.selectShopCategories());
     }
 
-    @RequestMapping(value = "/selectShopCategoryDetail/{shopCategoryId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/selectShopCategoryDetail/{shopCategoryId}", method = RequestMethod.GET)
     public WebResult selectDisplayCategoriesByParentId(@PathVariable(value = "shopCategoryId") Integer shopCategoryId) throws Exception {
         return WebResult.ok(shopCategoryFrontService.selectByPrimaryKey(shopCategoryId));
     }

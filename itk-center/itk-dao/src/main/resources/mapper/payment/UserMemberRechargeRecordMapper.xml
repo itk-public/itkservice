@@ -221,6 +221,6 @@
     select
     <include refid="Base_Column_List" />
     from t_user_member_recharge_record
-    where member_id = #{member_id,jdbcType=VARCHAR}
+    where member_id = #{memberId,jdbcType=VARCHAR}
   </select>
 </mapper>

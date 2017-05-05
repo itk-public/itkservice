@@ -46,12 +46,12 @@ public class DisplayCategoryController {
         return WebResult.ok(displayCategoryFrontService.selectDisplayCategories());
     }
 
-    @RequestMapping(value = "/selectByParentId/{parentId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/selectByParentId/{parentId}", method = RequestMethod.GET)
     public WebResult selectDisplayCategoriesByParentId(@PathVariable(value = "parentId") Long parentId) throws Exception {
         return WebResult.ok(displayCategoryFrontService.selectDisplayCategoriesByParentId(parentId));
     }
 
-    @RequestMapping(value = "/selectDisplayCategoryDetail/{displayCategoryId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/selectDisplayCategoryDetail/{displayCategoryId}", method = RequestMethod.GET)
     public WebResult selectDisplayCategoriesByParentId(@PathVariable(value = "displayCategoryId") Integer displayCategoryId) throws Exception {
         return WebResult.ok(displayCategoryFrontService.selectByPrimaryKey(displayCategoryId));
     }

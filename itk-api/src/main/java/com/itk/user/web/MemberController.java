@@ -1,11 +1,13 @@
 package com.itk.user.web;
 
-import com.itk.promotion.model.SaleInfo;
 import com.itk.user.model.Member;
 import com.itk.user.service.MemberFrontServiceImpl;
 import com.itk.utils.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by enchen on 5/4/17.
@@ -19,6 +21,8 @@ public class MemberController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public WebResult addMember(@RequestBody Member member) throws Exception{
+        member.setMemberId(UUID.randomUUID().toString());
+        member.setCreateDate(new Date());
         if(memberFrontService.addMember(member) > 0){
             return WebResult.ok("添加成功！");
         }
@@ -42,12 +46,12 @@ public class MemberController {
     }
 
 
-    @RequestMapping(value = "/selectMemberByUserId/{userId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/selectMemberByUserId/{userId}", method = RequestMethod.GET)
     public WebResult selectMemberByUserId(@PathVariable(value = "userId") Long userId) throws Exception {
         return WebResult.ok(memberFrontService.selectByUserId(userId));
     }
 
-    @RequestMapping(value = "/selectById/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/selectById/{id}", method = RequestMethod.GET)
     public WebResult selectById(@PathVariable(value = "id") Integer id) throws Exception {
         return WebResult.ok(memberFrontService.selectByPrimaryKey(id));
     }

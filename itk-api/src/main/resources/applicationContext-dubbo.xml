@@ -108,4 +108,7 @@
     <!--充值、付款、退款-->
     <dubbo:reference id="userMemberRechargeRecordService" interface="com.itk.payment.service.UserMemberRechargeRecordService"
                      check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+
+    <dubbo:reference id="purchaseService" interface="com.itk.payment.service.PurchaseService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
 </beans>

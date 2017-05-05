@@ -44,12 +44,12 @@ public class ItemCommentController {
     }
 
 
-    @RequestMapping(value = "/selectByItemId/{itemId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/selectByItemId/{itemId}", method = RequestMethod.GET)
     public WebResult selectItemCommentByItemId(@PathVariable(value = "itemId") String itemId) throws Exception {
         return WebResult.ok(itemCommentFrontService.selectItemCommentByItemId(itemId));
     }
 
-    @RequestMapping(value = "/selectItemCommentDetail/{itemCommentId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/selectItemCommentDetail/{itemCommentId}", method = RequestMethod.GET)
     public WebResult selectItemCommentDetail(@PathVariable(value = "itemCommentId") Integer itemCommentId) throws Exception {
         return WebResult.ok(itemCommentFrontService.selectByPrimaryKey(itemCommentId));
     }

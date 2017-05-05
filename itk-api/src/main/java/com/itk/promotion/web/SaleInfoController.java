@@ -42,12 +42,12 @@ public class SaleInfoController {
     }
 
 
-    @RequestMapping(value = "/selectSaleInfoDetail/{saleInfoId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/selectSaleInfoDetail/{saleInfoId}", method = RequestMethod.GET)
     public WebResult selectItemCommentByItemId(@PathVariable(value = "saleInfoId") Integer saleInfoId) throws Exception {
         return WebResult.ok(saleInfoFrontService.selectByPrimaryKey(saleInfoId));
     }
 
-    @RequestMapping(value = "/selectByShopId/{shopId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/selectByShopId/{shopId}", method = RequestMethod.GET)
     public WebResult selectByShopId(@PathVariable(value = "shopId") String shopId) throws Exception {
         return WebResult.ok(saleInfoFrontService.selectByShopId(shopId));
     }

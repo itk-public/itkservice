@@ -346,7 +346,7 @@ CREATE TABLE `t_member` (
   `user_id` INT(11) NOT NULL COMMENT '用户 id',
   `level` INT(4) NOT NULL DEFAULT 0 COMMENT '会员等级(0 普通会员)',
   `balance` DECIMAL(20,4) NOT NULL COMMENT '余额',
-  `is_del` INT(4) NOT NULL DEFAULT 0 COMMENT '是否可用(0 不可用, 1 可用)',
+  `is_del` INT(4) NOT NULL DEFAULT 0 COMMENT '是否可用(0 可用, 1 不可用)',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `modify_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
   PRIMARY KEY (`id`)

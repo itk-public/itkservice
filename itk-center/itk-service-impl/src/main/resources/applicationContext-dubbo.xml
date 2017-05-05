@@ -136,4 +136,8 @@
     <dubbo:service interface="com.itk.payment.service.UserMemberRechargeRecordService" ref="userMemberRechargeRecordService"
                    version="1.0" registry="zookeeper" owner="enchen"/>
     <bean id="userMemberRechargeRecordService" class="com.itk.payment.service.impl.UserMemberRechargeRecordServiceImpl"/>
+
+    <dubbo:service interface="com.itk.payment.service.PurchaseService" ref="purchaseService"
+                   version="1.0" registry="zookeeper" owner="enchen"/>
+    <bean id="purchaseService" class="com.itk.payment.service.impl.PurchaseServiceImpl"/>
 </beans>
