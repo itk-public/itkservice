@@ -23,6 +23,7 @@ public class BackUserController {
                                  @RequestParam("phone")String phone, @RequestParam("password")String password,
                                  @RequestParam("email")String email) throws Exception {
         BackUser backUser = new BackUser();
+
         backUser.setName(name);
         backUser.setUsername(username);
         backUser.setIsDel(0);
