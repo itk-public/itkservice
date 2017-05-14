@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.itk.user.mapper.PurchaseMapper" >
-  <resultMap id="BaseResultMap" type="com.itk.user.model.Purchase" >
+<mapper namespace="com.itk.payment.mapper.PurchaseMapper" >
+  <resultMap id="BaseResultMap" type="com.itk.payment.model.Purchase" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="purchase_id" property="purchaseId" jdbcType="VARCHAR" />
     <result column="type" property="type" jdbcType="INTEGER" />
@@ -73,7 +73,7 @@
   <sql id="Base_Column_List" >
     id, purchase_id, type, order_id, is_del, amount, status, create_time, complete_time
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.itk.user.model.PurchaseExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.itk.payment.model.PurchaseExample" >
     select
     <if test="distinct" >
       distinct
@@ -105,13 +105,13 @@
     delete from t_purchase
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.itk.user.model.PurchaseExample" >
+  <delete id="deleteByExample" parameterType="com.itk.payment.model.PurchaseExample" >
     delete from t_purchase
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.itk.user.model.Purchase" >
+  <insert id="insert" parameterType="com.itk.payment.model.Purchase" >
     insert into t_purchase (id, purchase_id, type, 
       order_id, is_del, amount, 
       status, create_time, complete_time
@@ -121,7 +121,7 @@
       #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{completeTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.itk.user.model.Purchase" >
+  <insert id="insertSelective" parameterType="com.itk.payment.model.Purchase" >
     insert into t_purchase
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -182,7 +182,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.itk.user.model.PurchaseExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.itk.payment.model.PurchaseExample" resultType="java.lang.Integer" >
     select count(*) from t_purchase
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -238,7 +238,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.itk.user.model.Purchase" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.itk.payment.model.Purchase" >
     update t_purchase
     <set >
       <if test="purchaseId != null" >
@@ -268,7 +268,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.itk.user.model.Purchase" >
+  <update id="updateByPrimaryKey" parameterType="com.itk.payment.model.Purchase" >
     update t_purchase
     set purchase_id = #{purchaseId,jdbcType=VARCHAR},
       type = #{type,jdbcType=INTEGER},

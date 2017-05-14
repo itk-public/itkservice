@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.itk.user.mapper.UserMemberRechargeRecordMapper" >
-  <resultMap id="BaseResultMap" type="com.itk.user.model.UserMemberRechargeRecord" >
+<mapper namespace="com.itk.payment.mapper.UserMemberRechargeRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.itk.payment.model.UserMemberRechargeRecord" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="member_id" property="memberId" jdbcType="VARCHAR" />
     <result column="recharge_amount" property="rechargeAmount" jdbcType="DECIMAL" />
@@ -69,7 +69,7 @@
   <sql id="Base_Column_List" >
     id, member_id, recharge_amount, create_date, modify_time
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.itk.user.model.UserMemberRechargeRecordExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.itk.payment.model.UserMemberRechargeRecordExample" >
     select
     <if test="distinct" >
       distinct
@@ -101,19 +101,19 @@
     delete from t_user_member_recharge_record
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.itk.user.model.UserMemberRechargeRecordExample" >
+  <delete id="deleteByExample" parameterType="com.itk.payment.model.UserMemberRechargeRecordExample" >
     delete from t_user_member_recharge_record
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.itk.user.model.UserMemberRechargeRecord" >
+  <insert id="insert" parameterType="com.itk.payment.model.UserMemberRechargeRecord" >
     insert into t_user_member_recharge_record (id, member_id, recharge_amount, 
       create_date, modify_time)
     values (#{id,jdbcType=INTEGER}, #{memberId,jdbcType=VARCHAR}, #{rechargeAmount,jdbcType=DECIMAL}, 
       #{createDate,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.itk.user.model.UserMemberRechargeRecord" >
+  <insert id="insertSelective" parameterType="com.itk.payment.model.UserMemberRechargeRecord" >
     insert into t_user_member_recharge_record
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -150,7 +150,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.itk.user.model.UserMemberRechargeRecordExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.itk.payment.model.UserMemberRechargeRecordExample" resultType="java.lang.Integer" >
     select count(*) from t_user_member_recharge_record
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -190,7 +190,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.itk.user.model.UserMemberRechargeRecord" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.itk.payment.model.UserMemberRechargeRecord" >
     update t_user_member_recharge_record
     <set >
       <if test="memberId != null" >
@@ -208,7 +208,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.itk.user.model.UserMemberRechargeRecord" >
+  <update id="updateByPrimaryKey" parameterType="com.itk.payment.model.UserMemberRechargeRecord" >
     update t_user_member_recharge_record
     set member_id = #{memberId,jdbcType=VARCHAR},
       recharge_amount = #{rechargeAmount,jdbcType=DECIMAL},
