@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itk.user.mapper.OrderDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.itk.user.model.OrderDetail" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="item_info_id" property="itemInfoId" jdbcType="VARCHAR" />
+    <result column="item_count" property="itemCount" jdbcType="INTEGER" />
+    <result column="freight_id" property="freightId" jdbcType="INTEGER" />
+    <result column="platform_promotion_code" property="platformPromotionCode" jdbcType="INTEGER" />
+    <result column="platform_promotion_cost" property="platformPromotionCost" jdbcType="DECIMAL" />
+    <result column="shop_promotion_code" property="shopPromotionCode" jdbcType="INTEGER" />
+    <result column="shop_promotion_cost" property="shopPromotionCost" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_id, item_info_id, item_count, freight_id, platform_promotion_code, platform_promotion_cost, 
+    shop_promotion_code, shop_promotion_cost
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.itk.user.model.OrderDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_order_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null" >
+      <if test="offset != null" >
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null" >
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_order_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_order_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.itk.user.model.OrderDetailExample" >
+    delete from t_order_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.itk.user.model.OrderDetail" >
+    insert into t_order_detail (id, order_id, item_info_id, 
+      item_count, freight_id, platform_promotion_code, 
+      platform_promotion_cost, shop_promotion_code, 
+      shop_promotion_cost)
+    values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=VARCHAR}, #{itemInfoId,jdbcType=VARCHAR}, 
+      #{itemCount,jdbcType=INTEGER}, #{freightId,jdbcType=INTEGER}, #{platformPromotionCode,jdbcType=INTEGER}, 
+      #{platformPromotionCost,jdbcType=DECIMAL}, #{shopPromotionCode,jdbcType=INTEGER}, 
+      #{shopPromotionCost,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.itk.user.model.OrderDetail" >
+    insert into t_order_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="itemInfoId != null" >
+        item_info_id,
+      </if>
+      <if test="itemCount != null" >
+        item_count,
+      </if>
+      <if test="freightId != null" >
+        freight_id,
+      </if>
+      <if test="platformPromotionCode != null" >
+        platform_promotion_code,
+      </if>
+      <if test="platformPromotionCost != null" >
+        platform_promotion_cost,
+      </if>
+      <if test="shopPromotionCode != null" >
+        shop_promotion_code,
+      </if>
+      <if test="shopPromotionCost != null" >
+        shop_promotion_cost,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemInfoId != null" >
+        #{itemInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCount != null" >
+        #{itemCount,jdbcType=INTEGER},
+      </if>
+      <if test="freightId != null" >
+        #{freightId,jdbcType=INTEGER},
+      </if>
+      <if test="platformPromotionCode != null" >
+        #{platformPromotionCode,jdbcType=INTEGER},
+      </if>
+      <if test="platformPromotionCost != null" >
+        #{platformPromotionCost,jdbcType=DECIMAL},
+      </if>
+      <if test="shopPromotionCode != null" >
+        #{shopPromotionCode,jdbcType=INTEGER},
+      </if>
+      <if test="shopPromotionCost != null" >
+        #{shopPromotionCost,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.itk.user.model.OrderDetailExample" resultType="java.lang.Integer" >
+    select count(*) from t_order_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_order_detail
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemInfoId != null" >
+        item_info_id = #{record.itemInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemCount != null" >
+        item_count = #{record.itemCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.freightId != null" >
+        freight_id = #{record.freightId,jdbcType=INTEGER},
+      </if>
+      <if test="record.platformPromotionCode != null" >
+        platform_promotion_code = #{record.platformPromotionCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.platformPromotionCost != null" >
+        platform_promotion_cost = #{record.platformPromotionCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.shopPromotionCode != null" >
+        shop_promotion_code = #{record.shopPromotionCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopPromotionCost != null" >
+        shop_promotion_cost = #{record.shopPromotionCost,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_order_detail
+    set id = #{record.id,jdbcType=BIGINT},
+      order_id = #{record.orderId,jdbcType=VARCHAR},
+      item_info_id = #{record.itemInfoId,jdbcType=VARCHAR},
+      item_count = #{record.itemCount,jdbcType=INTEGER},
+      freight_id = #{record.freightId,jdbcType=INTEGER},
+      platform_promotion_code = #{record.platformPromotionCode,jdbcType=INTEGER},
+      platform_promotion_cost = #{record.platformPromotionCost,jdbcType=DECIMAL},
+      shop_promotion_code = #{record.shopPromotionCode,jdbcType=INTEGER},
+      shop_promotion_cost = #{record.shopPromotionCost,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itk.user.model.OrderDetail" >
+    update t_order_detail
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemInfoId != null" >
+        item_info_id = #{itemInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCount != null" >
+        item_count = #{itemCount,jdbcType=INTEGER},
+      </if>
+      <if test="freightId != null" >
+        freight_id = #{freightId,jdbcType=INTEGER},
+      </if>
+      <if test="platformPromotionCode != null" >
+        platform_promotion_code = #{platformPromotionCode,jdbcType=INTEGER},
+      </if>
+      <if test="platformPromotionCost != null" >
+        platform_promotion_cost = #{platformPromotionCost,jdbcType=DECIMAL},
+      </if>
+      <if test="shopPromotionCode != null" >
+        shop_promotion_code = #{shopPromotionCode,jdbcType=INTEGER},
+      </if>
+      <if test="shopPromotionCost != null" >
+        shop_promotion_cost = #{shopPromotionCost,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itk.user.model.OrderDetail" >
+    update t_order_detail
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      item_info_id = #{itemInfoId,jdbcType=VARCHAR},
+      item_count = #{itemCount,jdbcType=INTEGER},
+      freight_id = #{freightId,jdbcType=INTEGER},
+      platform_promotion_code = #{platformPromotionCode,jdbcType=INTEGER},
+      platform_promotion_cost = #{platformPromotionCost,jdbcType=DECIMAL},
+      shop_promotion_code = #{shopPromotionCode,jdbcType=INTEGER},
+      shop_promotion_cost = #{shopPromotionCost,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByOrderId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from t_order_detail
+    where is_del = 0 and  order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+</mapper>
