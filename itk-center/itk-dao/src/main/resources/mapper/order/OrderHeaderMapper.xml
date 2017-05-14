@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.itk.user.mapper.OrderHeaderMapper" >
-  <resultMap id="BaseResultMap" type="com.itk.user.model.OrderHeader" >
+<mapper namespace="com.itk.order.mapper.OrderHeaderMapper" >
+  <resultMap id="BaseResultMap" type="com.itk.order.model.OrderHeader" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="order_id" property="orderId" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
@@ -84,7 +84,7 @@
     shop_id, allocation_from_time, allocation_to_time, allocation_type, comment, arrival_time, 
     complete_time, create_time, modify_time, user_id
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.itk.user.model.OrderHeaderExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.itk.order.model.OrderHeaderExample" >
     select
     <if test="distinct" >
       distinct
@@ -116,13 +116,13 @@
     delete from t_order_header
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.itk.user.model.OrderHeaderExample" >
+  <delete id="deleteByExample" parameterType="com.itk.order.model.OrderHeaderExample" >
     delete from t_order_header
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.itk.user.model.OrderHeader" >
+  <insert id="insert" parameterType="com.itk.order.model.OrderHeader" >
     insert into t_order_header (id, order_id, status, 
       is_del, is_expired, address_id, 
       actual_amount, total_amount, shop_id, 
@@ -138,7 +138,7 @@
       #{completeTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
       #{userId,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.itk.user.model.OrderHeader" >
+  <insert id="insertSelective" parameterType="com.itk.order.model.OrderHeader" >
     insert into t_order_header
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -253,7 +253,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.itk.user.model.OrderHeaderExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.itk.order.model.OrderHeaderExample" resultType="java.lang.Integer" >
     select count(*) from t_order_header
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -345,7 +345,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.itk.user.model.OrderHeader" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.itk.order.model.OrderHeader" >
     update t_order_header
     <set >
       <if test="orderId != null" >
@@ -402,7 +402,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.itk.user.model.OrderHeader" >
+  <update id="updateByPrimaryKey" parameterType="com.itk.order.model.OrderHeader" >
     update t_order_header
     set order_id = #{orderId,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},

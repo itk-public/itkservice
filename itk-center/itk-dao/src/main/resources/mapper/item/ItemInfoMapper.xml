@@ -471,21 +471,21 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectByCategoryIdAndStatus" resultType="BaseResultMap" >
+  <select id="selectByCategoryIdAndStatus" resultMap="BaseResultMap" >
     select
     <include refid="Base_Column_List" />
     from t_item_info
     where is_del = 0 and category_id = #{categoryId,jdbcType=BIGINT} and status = #{status,jdbcType=INTEGER}
   </select>
 
-  <select id="selectByShopIdAndStatus" resultType="BaseResultMap" >
+  <select id="selectByShopIdAndStatus" resultMap="BaseResultMap" >
     select
     <include refid="Base_Column_List" />
     from t_item_info
     where is_del = 0 and shop_id = #{shopId,jdbcType=BIGINT} and status = #{status,jdbcType=INTEGER}
   </select>
 
-  <select id="selectByShopCategoryIdAndStatus" resultType="BaseResultMap" >
+  <select id="selectByShopCategoryIdAndStatus" resultMap="BaseResultMap" >
     select
     <include refid="Base_Column_List" />
     from t_item_info

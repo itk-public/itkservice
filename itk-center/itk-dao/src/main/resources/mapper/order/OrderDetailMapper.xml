@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.itk.user.mapper.OrderDetailMapper" >
-  <resultMap id="BaseResultMap" type="com.itk.user.model.OrderDetail" >
+<mapper namespace="com.itk.order.mapper.OrderDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.itk.order.model.OrderDetail" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="order_id" property="orderId" jdbcType="VARCHAR" />
     <result column="item_info_id" property="itemInfoId" jdbcType="VARCHAR" />
@@ -74,7 +74,7 @@
     id, order_id, item_info_id, item_count, freight_id, platform_promotion_code, platform_promotion_cost, 
     shop_promotion_code, shop_promotion_cost
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.itk.user.model.OrderDetailExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.itk.order.model.OrderDetailExample" >
     select
     <if test="distinct" >
       distinct
@@ -106,13 +106,13 @@
     delete from t_order_detail
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.itk.user.model.OrderDetailExample" >
+  <delete id="deleteByExample" parameterType="com.itk.order.model.OrderDetailExample" >
     delete from t_order_detail
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.itk.user.model.OrderDetail" >
+  <insert id="insert" parameterType="com.itk.order.model.OrderDetail" >
     insert into t_order_detail (id, order_id, item_info_id, 
       item_count, freight_id, platform_promotion_code, 
       platform_promotion_cost, shop_promotion_code, 
@@ -122,7 +122,7 @@
       #{platformPromotionCost,jdbcType=DECIMAL}, #{shopPromotionCode,jdbcType=INTEGER}, 
       #{shopPromotionCost,jdbcType=DECIMAL})
   </insert>
-  <insert id="insertSelective" parameterType="com.itk.user.model.OrderDetail" >
+  <insert id="insertSelective" parameterType="com.itk.order.model.OrderDetail" >
     insert into t_order_detail
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -183,7 +183,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.itk.user.model.OrderDetailExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.itk.order.model.OrderDetailExample" resultType="java.lang.Integer" >
     select count(*) from t_order_detail
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -239,7 +239,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.itk.user.model.OrderDetail" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.itk.order.model.OrderDetail" >
     update t_order_detail
     <set >
       <if test="orderId != null" >
@@ -269,7 +269,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.itk.user.model.OrderDetail" >
+  <update id="updateByPrimaryKey" parameterType="com.itk.order.model.OrderDetail" >
     update t_order_detail
     set order_id = #{orderId,jdbcType=VARCHAR},
       item_info_id = #{itemInfoId,jdbcType=VARCHAR},
