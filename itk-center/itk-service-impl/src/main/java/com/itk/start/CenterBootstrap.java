@@ -20,42 +20,42 @@ import java.util.concurrent.CountDownLatch;
 @ComponentScan
 @MapperScan("com.itk.*.mapper")
 public class CenterBootstrap {
-    @Bean
-    public CountDownLatch closeLatch() {
-        return new CountDownLatch(1);
-    }
-
-
-    @Bean
-    @ConfigurationProperties(prefix="spring.datasource")
-    public DataSource dataSource() {
-        return new com.alibaba.druid.pool.DruidDataSource();
-    }
-
-    @Bean
-    public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
-
-        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(dataSource());
-
-        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-
-        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/mapper/*/*.xml"));
-
-        return sqlSessionFactoryBean.getObject();
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-
-        ApplicationContext ctx = new SpringApplicationBuilder()
-                .sources(CenterBootstrap.class)
-                .web(false)
-                .run(args);
-
-
-        CountDownLatch closeLatch = ctx.getBean(CountDownLatch.class);
-        closeLatch.await();
-    }
+//    @Bean
+//    public CountDownLatch closeLatch() {
+//        return new CountDownLatch(1);
+//    }
+//
+//
+//    @Bean
+//    @ConfigurationProperties(prefix="spring.datasource")
+//    public DataSource dataSource() {
+//        return new com.alibaba.druid.pool.DruidDataSource();
+//    }
+//
+//    @Bean
+//    public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
+//
+//        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+//        sqlSessionFactoryBean.setDataSource(dataSource());
+//
+//        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+//
+//        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/mapper/*/*.xml"));
+//
+//        return sqlSessionFactoryBean.getObject();
+//    }
+//
+//    public static void main(String[] args) throws InterruptedException {
+//
+//        ApplicationContext ctx = new SpringApplicationBuilder()
+//                .sources(CenterBootstrap.class)
+//                .web(false)
+//                .run(args);
+//
+//
+//        CountDownLatch closeLatch = ctx.getBean(CountDownLatch.class);
+//        closeLatch.await();
+//    }
 
 
 }
