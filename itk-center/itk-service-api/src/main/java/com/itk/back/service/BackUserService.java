@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface BackUserService {
 
-    int addBackUser(BackUser backUser) throws Exception;
+    int addBackUser(BackUser backUser);
 
     BackUser selectByPrimaryKey(Integer id);
 
@@ -18,4 +18,10 @@ public interface BackUserService {
     List<BackUser> selectAllUsers();
 
     BackUser loginBackUser(BackUser backUser);
+
+    List<BackUser> selectByUsername(String username);
+
+    List<BackUser> selectByPhone(String phone);
+
+    List<BackUser> selectByEmail(String email);
 }

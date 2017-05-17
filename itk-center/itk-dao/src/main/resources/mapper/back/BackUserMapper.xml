@@ -318,4 +318,24 @@
     </if>
   </select>
 
+  <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from t_back_user
+    where is_del = 0 and username = #{username,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByPhone" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from t_back_user
+    where is_del = 0 and phone = #{phone,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByEmail" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from t_back_user
+    where is_del = 0 and email = #{email,jdbcType=VARCHAR}
+  </select>
 </mapper>

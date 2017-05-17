@@ -7,7 +7,6 @@ import com.itk.utils.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 
 /**
  * Created by zhouhui on 2017/3/5.
@@ -18,52 +17,31 @@ public class BackUserController {
     @Autowired
     private BackUserFrontServiceImpl backUserFrontService;
 
-    @RequestMapping(value = "/addBackUser", method = RequestMethod.GET)
-    public WebResult addBackUser(@RequestParam("username")String username, @RequestParam("name")String name,
-                                 @RequestParam("phone")String phone, @RequestParam("password")String password,
-                                 @RequestParam("email")String email) throws Exception {
-        BackUser backUser = new BackUser();
-        backUser.setName(name);
-        backUser.setUsername(username);
-        backUser.setIsDel(0);
-        backUser.setCreateDate(new Date());
-        backUser.setPassword(MD5Util.stringToMD5(password));
-        backUser.setPhone(phone);
-        backUser.setEmail(email);
-        backUser.setLastloginDate(new Date());
+    @RequestMapping(value = "/addBackUser", method = RequestMethod.POST)
+    public WebResult addBackUser(@RequestBody BackUser backUser) {
         if(backUserFrontService.addBackUser(backUser) > 0){
             return WebResult.ok("添加成功！");
         }
         return WebResult.ok("添加失败！");
     }
 
-    @RequestMapping(value = "/updateBackUser/{id}", method = RequestMethod.GET)
-    public WebResult updateBackUser(@PathVariable(value = "id") int id,
-                                    @RequestParam("username")String username, @RequestParam("name")String name,
-                                    @RequestParam("phone")String phone, @RequestParam("password")String password,
-                                    @RequestParam("email")String email) throws Exception {
-        BackUser backUser = new BackUser();
-        backUser.setId(id);
-        backUser.setName(name);
-        backUser.setUsername(username);
-        backUser.setPassword(MD5Util.stringToMD5(password));
-        backUser.setPhone(phone);
-        backUser.setEmail(email);
+    @RequestMapping(value = "/updateBackUser", method = RequestMethod.POST)
+    public WebResult updateBackUser(@RequestBody BackUser backUser) throws Exception {
         if(backUserFrontService.updateByPrimaryKeySelective(backUser) > 0){
-            return WebResult.ok("添加成功！");
+            return WebResult.ok("修改成功！");
         }
-        return WebResult.ok("添加失败！");
+        return WebResult.ok("修改失败！");
     }
 
-    @RequestMapping(value = "/delBackUser/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/delBackUser/{id}", method = RequestMethod.DELETE)
     public WebResult delBackUser(@PathVariable(value = "id") int id) throws Exception {
         BackUser backUser = new BackUser();
         backUser.setId(id);
         backUser.setIsDel(1);
         if(backUserFrontService.updateByPrimaryKeySelective(backUser) > 0){
-            return WebResult.ok("添加成功！");
+            return WebResult.ok("删除成功！");
         }
-        return WebResult.ok("添加失败！");
+        return WebResult.ok("删除失败！");
     }
 
     @RequestMapping(value = "/queryBackUser/{id}", method = RequestMethod.GET)
@@ -86,5 +64,18 @@ public class BackUserController {
         return WebResult.ok(backUserFrontService.selectAllUsers());
     }
 
+    @RequestMapping(value = "/usernameIsExist", method = RequestMethod.GET)
+    public WebResult usernameIsExist(@RequestParam String username) throws Exception {
+        return WebResult.ok(backUserFrontService.usernameIsExist(username));
+    }
 
+    @RequestMapping(value = "/emailIsExist", method = RequestMethod.GET)
+    public WebResult emailIsExist(@RequestParam String email) throws Exception {
+        return WebResult.ok(backUserFrontService.emailIsExist(email));
+    }
+
+    @RequestMapping(value = "/phoneIsExist", method = RequestMethod.GET)
+    public WebResult phoneIsExist(@RequestParam String phone) throws Exception {
+        return WebResult.ok(backUserFrontService.phoneIsExist(phone));
+    }
 }

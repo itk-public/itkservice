@@ -12,6 +12,8 @@ public class WebResult implements Serializable {
 
     private String message;
 
+    private int exceptionEnumCode;
+
     private Object data;
 
     private Date now;
@@ -20,16 +22,21 @@ public class WebResult implements Serializable {
         super();
     }
 
-    public WebResult(int code, String message, Object data) {
+    public WebResult(int code, String message, Object data, int exceptionEnumCode) {
         super();
         this.code = code;
         this.data = data;
         this.message = message;
+        this.exceptionEnumCode = exceptionEnumCode;
         this.now = new Date();
     }
 
     public static WebResult ok(Object data) {
-        return new WebResult(Constant.ERRORCODE_OK, "", data);
+        return new WebResult(Constant.ERRORCODE_OK, "", data, 0);
+    }
+
+    public static WebResult ok(String message, Object data, Integer exceptionEnumCode){
+        return new WebResult(Constant.ERRORCODE_OK, message, data, exceptionEnumCode);
     }
 
     public int getCode() {
@@ -67,5 +74,13 @@ public class WebResult implements Serializable {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public int getExceptionEnumCode() {
+        return exceptionEnumCode;
+    }
+
+    public void setExceptionEnumCode(int exceptionEnumCode) {
+        this.exceptionEnumCode = exceptionEnumCode;
     }
 }

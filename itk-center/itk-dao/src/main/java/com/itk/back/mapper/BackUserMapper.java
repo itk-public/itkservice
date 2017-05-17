@@ -5,6 +5,7 @@ import com.itk.back.model.BackUserExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface BackUserMapper {
     int countByExample(BackUserExample example);
@@ -32,4 +33,10 @@ public interface BackUserMapper {
     List<BackUser> selectAllUsers();
 
     BackUser loginBackUser(BackUser backUser);
+
+    List<BackUser> selectByUsername(String username);
+
+    List<BackUser> selectByPhone(String phone);
+
+    List<BackUser> selectByEmail(String email);
 }
