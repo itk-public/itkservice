@@ -12,6 +12,7 @@
 		<module>itk-dao</module>
 		<module>itk-service-api</module>
 		<module>itk-service-impl</module>
+		<module>itk-config</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>

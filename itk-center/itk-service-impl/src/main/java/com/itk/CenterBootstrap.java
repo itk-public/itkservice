@@ -18,7 +18,7 @@ import java.util.concurrent.CountDownLatch;
 @SpringBootApplication
 @ImportResource({"classpath:applicationContext-dubbo.xml"})
 @ComponentScan
-@MapperScan("com.itk.*.mapper")
+@MapperScan({"com.itk.*.mapper"})
 public class CenterBootstrap {
     @Bean
     public CountDownLatch closeLatch() {
