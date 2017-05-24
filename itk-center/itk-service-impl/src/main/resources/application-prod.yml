@@ -24,4 +24,4 @@ spring:
         name: itk-center
 
 logging:
-  config: classpath:logback/logback-spring-uat.xml
+  config: classpath:logback/logback-spring-prod.xml

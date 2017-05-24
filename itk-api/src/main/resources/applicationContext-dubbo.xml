@@ -17,98 +17,101 @@
     <dubbo:registry protocol="zookeeper" address="localhost:2181" id="zookeeper"/>
 
 
-
-	<!-- 用dubbo协议在20800端口暴露服务 -->
-	<dubbo:protocol name="dubbo" port="30400" dispather="all"
-		threadpool="cached" threads="5000" />
-
+    <!-- 用dubbo协议在20800端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="30400" dispather="all"
+                    threadpool="cached" threads="5000"/>
 
 
     <!--app 登陆-->
     <dubbo:reference id="userInfoService" interface="com.itk.user.service.UserInfoService"
-    check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <!--会员-->
     <dubbo:reference id="memberService" interface="com.itk.user.service.MemberService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <!--首页cms-->
     <dubbo:reference id="homePageService" interface="com.itk.cms.service.HomePageService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <dubbo:reference id="pageSortService" interface="com.itk.cms.service.PageSortService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <dubbo:reference id="galleryService" interface="com.itk.cms.service.GalleryService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <dubbo:reference id="jewelService" interface="com.itk.cms.service.JewelService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <dubbo:reference id="skuposService" interface="com.itk.cms.service.SkuposService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <dubbo:reference id="seckillService" interface="com.itk.cms.service.SeckillService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <dubbo:reference id="seckillSeasonService" interface="com.itk.cms.service.SeckillSeasonService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <dubbo:reference id="partinglineService" interface="com.itk.cms.service.PartinglineService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <dubbo:reference id="hbannerService" interface="com.itk.cms.service.HbannerService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <dubbo:reference id="nearByBusinessInfoService" interface="com.itk.cms.service.NearByBusinessInfoService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <dubbo:reference id="nearByBusinessService" interface="com.itk.cms.service.NearByBusinessService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <!--back position-->
     <dubbo:reference id="backUserService" interface="com.itk.back.service.BackUserService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <!--base position-->
     <dubbo:reference id="provinceService" interface="com.itk.base.service.PositionProvinceService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <dubbo:reference id="cityService" interface="com.itk.base.service.PositionCityService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <dubbo:reference id="countyService" interface="com.itk.base.service.PositionCountyService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <dubbo:reference id="townService" interface="com.itk.base.service.PositionTownService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <dubbo:reference id="villageService" interface="com.itk.base.service.PositionVillageService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <dubbo:reference id="shopInfoService" interface="com.itk.base.service.ShopInfoService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <!--item-->
     <dubbo:reference id="displayCategoryService" interface="com.itk.item.service.DisplayCategoryService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <dubbo:reference id="shopCategoryService" interface="com.itk.item.service.ShopCategoryService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <dubbo:reference id="itemCommentService" interface="com.itk.item.service.ItemCommentService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <dubbo:reference id="saleInfoService" interface="com.itk.promotion.service.SaleInfoService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <dubbo:reference id="itemInfoService" interface="com.itk.item.service.ItemInfoService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <!--充值、付款、退款-->
-    <dubbo:reference id="userMemberRechargeRecordService" interface="com.itk.payment.service.UserMemberRechargeRecordService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+    <dubbo:reference id="userMemberRechargeRecordService"
+                     interface="com.itk.payment.service.UserMemberRechargeRecordService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
     <dubbo:reference id="purchaseService" interface="com.itk.payment.service.PurchaseService"
-                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000" />
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
+
+    <!--收货地址-->
+    <dubbo:reference id="userShippingAddressService" interface="com.itk.user.service.UserShippingAddressService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 </beans>

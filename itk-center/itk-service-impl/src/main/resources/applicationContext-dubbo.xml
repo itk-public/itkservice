@@ -17,11 +17,9 @@
     <dubbo:registry protocol="zookeeper" address="localhost:2181" id="zookeeper"/>
 
 
-
-	<!-- 用dubbo协议在20800端口暴露服务 -->
-	<dubbo:protocol name="dubbo" port="30400" dispather="all"
-		threadpool="cached" threads="5000" />
-
+    <!-- 用dubbo协议在20800端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="30400" dispather="all"
+                    threadpool="cached" threads="5000"/>
 
 
     <!--app 登陆-->
@@ -133,11 +131,19 @@
     <bean id="itemInfoService" class="com.itk.item.service.impl.ItemInfoServiceImpl"/>
 
     <!--充值、付款、退款-->
-    <dubbo:service interface="com.itk.payment.service.UserMemberRechargeRecordService" ref="userMemberRechargeRecordService"
+    <dubbo:service interface="com.itk.payment.service.UserMemberRechargeRecordService"
+                   ref="userMemberRechargeRecordService"
                    version="1.0" registry="zookeeper" owner="enchen"/>
-    <bean id="userMemberRechargeRecordService" class="com.itk.payment.service.impl.UserMemberRechargeRecordServiceImpl"/>
+    <bean id="userMemberRechargeRecordService"
+          class="com.itk.payment.service.impl.UserMemberRechargeRecordServiceImpl"/>
 
     <dubbo:service interface="com.itk.payment.service.PurchaseService" ref="purchaseService"
                    version="1.0" registry="zookeeper" owner="enchen"/>
     <bean id="purchaseService" class="com.itk.payment.service.impl.PurchaseServiceImpl"/>
+
+    <!--用户收货地址-->
+    <dubbo:service interface="com.itk.user.service.UserShippingAddressService" ref="userShippingAddressService"
+                   version="1.0" registry="zookeeper" owner="qi.yang"/>
+    <bean id="userShippingAddressService" class="com.itk.user.service.impl.UserShippingAddressServiceImpl"/>
+
 </beans>

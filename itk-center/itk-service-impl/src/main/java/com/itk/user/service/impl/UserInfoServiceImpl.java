@@ -24,13 +24,13 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public UserInfo register(UserInfo userInfo) throws Exception {
         UserInfo rspUserinfo = null;
-        try{
+        try {
             int result = userInfoMapper.insertSelective(userInfo);
-            if(result>0){
+            if (result > 0) {
                 rspUserinfo = userInfoMapper.selectCurrentUser(userInfo);
                 securityCodeMapper.deleteByPhone(rspUserinfo.getPhone());
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new Exception("用户已存在！");
         }
 
@@ -64,7 +64,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         code.setPhone(phone);
         code.setCreateDate(new Date());
         code.setSecurityCode(SecurityCodeUtil.getRandomString(6));
-        if(securityCodeMapper.insertSelective(code)>0){
+        if (securityCodeMapper.insertSelective(code) > 0) {
             return code.getSecurityCode();
         }
         return null;
@@ -82,5 +82,17 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public int updateUserInfo(UserInfo userInfo) {
         return userInfoMapper.updateByPhoneSelective(userInfo);
+    }
+
+    /**
+     * 根据电话查询用户
+     * @param phone
+     * @return
+     */
+    @Override
+    public UserInfo findUserByPhone(String phone) {
+        UserInfo userInfo = new UserInfo();
+        userInfo.setPhone(phone);
+        return userInfoMapper.selectCurrentUser(userInfo);
     }
 }

@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itk.user.mapper.UserShippingAddressMapper" >
+  <resultMap id="BaseResultMap" type="com.itk.user.model.UserShippingAddress" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="receiver_name" property="receiverName" jdbcType="VARCHAR" />
+    <result column="receiver_phone" property="receiverPhone" jdbcType="VARCHAR" />
+    <result column="provice_id" property="proviceId" jdbcType="INTEGER" />
+    <result column="city_id" property="cityId" jdbcType="BIGINT" />
+    <result column="county_id" property="countyId" jdbcType="BIGINT" />
+    <result column="town_id" property="townId" jdbcType="BIGINT" />
+    <result column="village_id" property="villageId" jdbcType="BIGINT" />
+    <result column="address_detail" property="addressDetail" jdbcType="VARCHAR" />
+    <result column="post_code" property="postCode" jdbcType="VARCHAR" />
+    <result column="deefault" property="deefault" jdbcType="BIT" />
+    <result column="enable" property="enable" jdbcType="BIT" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="last_modify_by" property="lastModifyBy" jdbcType="VARCHAR" />
+    <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_id, receiver_name, receiver_phone, provice_id, city_id, county_id, town_id, 
+    village_id, address_detail, post_code, deefault, enable, create_by, create_date, 
+    last_modify_by, last_modify_date
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.itk.user.model.UserShippingAddressExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_user_shipping_address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null" >
+      <if test="offset != null" >
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null" >
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_shipping_address
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_user_shipping_address
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.itk.user.model.UserShippingAddressExample" >
+    delete from t_user_shipping_address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.itk.user.model.UserShippingAddress" >
+    insert into t_user_shipping_address (id, user_id, receiver_name, 
+      receiver_phone, provice_id, city_id, 
+      county_id, town_id, village_id, 
+      address_detail, post_code, deefault, 
+      enable, create_by, create_date, 
+      last_modify_by, last_modify_date)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{receiverName,jdbcType=VARCHAR}, 
+      #{receiverPhone,jdbcType=VARCHAR}, #{proviceId,jdbcType=INTEGER}, #{cityId,jdbcType=BIGINT}, 
+      #{countyId,jdbcType=BIGINT}, #{townId,jdbcType=BIGINT}, #{villageId,jdbcType=BIGINT}, 
+      #{addressDetail,jdbcType=VARCHAR}, #{postCode,jdbcType=VARCHAR}, #{deefault,jdbcType=BIT}, 
+      #{enable,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{lastModifyBy,jdbcType=VARCHAR}, #{lastModifyDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.itk.user.model.UserShippingAddress" >
+    insert into t_user_shipping_address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="receiverName != null" >
+        receiver_name,
+      </if>
+      <if test="receiverPhone != null" >
+        receiver_phone,
+      </if>
+      <if test="proviceId != null" >
+        provice_id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="countyId != null" >
+        county_id,
+      </if>
+      <if test="townId != null" >
+        town_id,
+      </if>
+      <if test="villageId != null" >
+        village_id,
+      </if>
+      <if test="addressDetail != null" >
+        address_detail,
+      </if>
+      <if test="postCode != null" >
+        post_code,
+      </if>
+      <if test="deefault != null" >
+        deefault,
+      </if>
+      <if test="enable != null" >
+        enable,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="lastModifyBy != null" >
+        last_modify_by,
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverName != null" >
+        #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPhone != null" >
+        #{receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="proviceId != null" >
+        #{proviceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="countyId != null" >
+        #{countyId,jdbcType=BIGINT},
+      </if>
+      <if test="townId != null" >
+        #{townId,jdbcType=BIGINT},
+      </if>
+      <if test="villageId != null" >
+        #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="addressDetail != null" >
+        #{addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deefault != null" >
+        #{deefault,jdbcType=BIT},
+      </if>
+      <if test="enable != null" >
+        #{enable,jdbcType=BIT},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyBy != null" >
+        #{lastModifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyDate != null" >
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.itk.user.model.UserShippingAddressExample" resultType="java.lang.Integer" >
+    select count(*) from t_user_shipping_address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_user_shipping_address
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiverName != null" >
+        receiver_name = #{record.receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiverPhone != null" >
+        receiver_phone = #{record.receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proviceId != null" >
+        provice_id = #{record.proviceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cityId != null" >
+        city_id = #{record.cityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.countyId != null" >
+        county_id = #{record.countyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.townId != null" >
+        town_id = #{record.townId,jdbcType=BIGINT},
+      </if>
+      <if test="record.villageId != null" >
+        village_id = #{record.villageId,jdbcType=BIGINT},
+      </if>
+      <if test="record.addressDetail != null" >
+        address_detail = #{record.addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postCode != null" >
+        post_code = #{record.postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deefault != null" >
+        deefault = #{record.deefault,jdbcType=BIT},
+      </if>
+      <if test="record.enable != null" >
+        enable = #{record.enable,jdbcType=BIT},
+      </if>
+      <if test="record.createBy != null" >
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null" >
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastModifyBy != null" >
+        last_modify_by = #{record.lastModifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastModifyDate != null" >
+        last_modify_date = #{record.lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_user_shipping_address
+    set id = #{record.id,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      receiver_name = #{record.receiverName,jdbcType=VARCHAR},
+      receiver_phone = #{record.receiverPhone,jdbcType=VARCHAR},
+      provice_id = #{record.proviceId,jdbcType=INTEGER},
+      city_id = #{record.cityId,jdbcType=BIGINT},
+      county_id = #{record.countyId,jdbcType=BIGINT},
+      town_id = #{record.townId,jdbcType=BIGINT},
+      village_id = #{record.villageId,jdbcType=BIGINT},
+      address_detail = #{record.addressDetail,jdbcType=VARCHAR},
+      post_code = #{record.postCode,jdbcType=VARCHAR},
+      deefault = #{record.deefault,jdbcType=BIT},
+      enable = #{record.enable,jdbcType=BIT},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      last_modify_by = #{record.lastModifyBy,jdbcType=VARCHAR},
+      last_modify_date = #{record.lastModifyDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itk.user.model.UserShippingAddress" >
+    update t_user_shipping_address
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverName != null" >
+        receiver_name = #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPhone != null" >
+        receiver_phone = #{receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="proviceId != null" >
+        provice_id = #{proviceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="countyId != null" >
+        county_id = #{countyId,jdbcType=BIGINT},
+      </if>
+      <if test="townId != null" >
+        town_id = #{townId,jdbcType=BIGINT},
+      </if>
+      <if test="villageId != null" >
+        village_id = #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="addressDetail != null" >
+        address_detail = #{addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        post_code = #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deefault != null" >
+        deefault = #{deefault,jdbcType=BIT},
+      </if>
+      <if test="enable != null" >
+        enable = #{enable,jdbcType=BIT},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyBy != null" >
+        last_modify_by = #{lastModifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itk.user.model.UserShippingAddress" >
+    update t_user_shipping_address
+    set user_id = #{userId,jdbcType=VARCHAR},
+      receiver_name = #{receiverName,jdbcType=VARCHAR},
+      receiver_phone = #{receiverPhone,jdbcType=VARCHAR},
+      provice_id = #{proviceId,jdbcType=INTEGER},
+      city_id = #{cityId,jdbcType=BIGINT},
+      county_id = #{countyId,jdbcType=BIGINT},
+      town_id = #{townId,jdbcType=BIGINT},
+      village_id = #{villageId,jdbcType=BIGINT},
+      address_detail = #{addressDetail,jdbcType=VARCHAR},
+      post_code = #{postCode,jdbcType=VARCHAR},
+      deefault = #{deefault,jdbcType=BIT},
+      enable = #{enable,jdbcType=BIT},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      last_modify_by = #{lastModifyBy,jdbcType=VARCHAR},
+      last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

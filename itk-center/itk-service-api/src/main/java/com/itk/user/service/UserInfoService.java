@@ -18,4 +18,6 @@ public interface UserInfoService {
     UserInfo phoneLogin(String phone) throws Exception;
 
     int updateUserInfo(UserInfo userInfo);
+
+    UserInfo findUserByPhone(String userName);
 }

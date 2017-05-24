@@ -160,24 +160,24 @@ CREATE TABLE `t_nearby_business` (
 
 CREATE TABLE `t_position_city` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `province_id` int(10) unsigned NOT NULL COMMENT '地级市id',
-  `city_id` bigint(20) unsigned NOT NULL COMMENT '县级市id',
+  `province_id` int(10) unsigned NOT NULL COMMENT '省id',
+  `city_id` bigint(20) unsigned NOT NULL COMMENT '地级市id',
   `city_name` char(64) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `city_id` (`city_id`),
   KEY `province_id` (`province_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=346 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='县级市数据库';
+) ENGINE=InnoDB AUTO_INCREMENT=346 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='地级市数据库';
 
 
 CREATE TABLE `t_position_county` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '地级市主键ID',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '县级市主键ID',
   `city_id` bigint(20) unsigned NOT NULL COMMENT '地级市id',
   `county_id` bigint(20) unsigned NOT NULL COMMENT '县级id',
   `county_name` char(64) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `county_id` (`county_id`),
   KEY `city_id` (`city_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2857 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='地区市数据库';
+) ENGINE=InnoDB AUTO_INCREMENT=2857 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='县级市数据库';
 
 CREATE TABLE `t_position_town` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -438,7 +438,28 @@ CREATE TABLE `t_refund_detail` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='退款明细';
 
-# 缺 地址表
+DROP TABLE IF EXISTS `t_user_shipping_address`;
+CREATE TABLE `t_user_shipping_address` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(100)  DEFAULT NULL COMMENT '用户ID',
+  `receiver_name` varchar(255)  DEFAULT NULL COMMENT '收货人姓名',
+  `receiver_phone` varchar(100)  DEFAULT NULL COMMENT '收货人电话',
+  `provice_id` int(11)  DEFAULT NULL COMMENT '省ID',
+  `city_id` bigint(20)  DEFAULT NULL COMMENT '地级市id',
+  `county_id` bigint(20)  DEFAULT NULL COMMENT '县级市id',
+  `town_id` bigint(20)  DEFAULT NULL COMMENT '镇id',
+  `village_id` bigint(20)  DEFAULT NULL COMMENT '村id',
+  `address_detail` varchar(500) DEFAULT NULL COMMENT '详细地址',
+  `post_code` varchar(36)  DEFAULT NULL COMMENT '邮编',
+  `default` bit(1) DEFAULT NULL COMMENT '是否默认,0非,1是',
+  `enable` bit(1) DEFAULT NULL COMMENT '是否可用,1是,0非',
+  `create_by` varchar(100) DEFAULT NULL COMMENT '创建人',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
+  `last_modify_by` varchar(100) DEFAULT NULL COMMENT '最后更改人',
+  `last_modify_date` datetime DEFAULT NULL COMMENT '最后修改时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='用户收货地址';
+
 # 缺 时间规则表
 # 缺 运费表
 # 所有 varchar 类型的 id 规则

@@ -1,5 +1,7 @@
 package com.itk.start;
 
+import com.github.pagehelper.PageHelper;
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -27,7 +29,7 @@ public class CenterBootstrap {
 
 
     @Bean
-    @ConfigurationProperties(prefix="spring.datasource")
+    @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource dataSource() {
         return new com.alibaba.druid.pool.DruidDataSource();
     }
@@ -41,6 +43,8 @@ public class CenterBootstrap {
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 
         sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/mapper/*/*.xml"));
+
+        sqlSessionFactoryBean.setConfigLocation(resolver.getResource("classpath:/mybatis-config.xml"));
 
         return sqlSessionFactoryBean.getObject();
     }
