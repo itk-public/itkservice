@@ -59,12 +59,12 @@ public class UserShippingAddress implements Serializable{
     /**
     * 是否默认,0非,1是
     */
-    private Boolean deefault;
+    private boolean deefault;
 
     /**
     * 是否可用,1是,0非
     */
-    private Boolean enable;
+    private boolean enable;
 
     /**
     * 创建人
@@ -174,19 +174,19 @@ public class UserShippingAddress implements Serializable{
         this.postCode = postCode;
     }
 
-    public Boolean getDeefault() {
+    public boolean isDeefault() {
         return deefault;
     }
 
-    public void setDeefault(Boolean deefault) {
+    public void setDeefault(boolean deefault) {
         this.deefault = deefault;
     }
 
-    public Boolean getEnable() {
+    public boolean isEnable() {
         return enable;
     }
 
-    public void setEnable(Boolean enable) {
+    public void setEnable(boolean enable) {
         this.enable = enable;
     }
 

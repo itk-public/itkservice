@@ -1,12 +1,20 @@
 package com.itk.exception;
 
 
+import com.itk.utils.Constant;
+
+import java.util.Locale;
+
 /**
  * Created by enchen on 5/14/17.
  */
 public class SystemException extends RuntimeException {
 
     private int code;
+
+    private String errorMessage;
+
+    private Locale locale = Constant.DEFAULT_LOCALE;
 
     public SystemException() {
 
@@ -15,6 +23,15 @@ public class SystemException extends RuntimeException {
     public SystemException(int code, String errorMessage) {
         this.code = code;
         this.errorMessage = errorMessage;
+    }
+
+    public SystemException(int code) {
+        this.code = code;
+    }
+
+    public SystemException(int code, Locale locale) {
+        this.code = code;
+        this.locale = locale;
     }
 
     public int getCode() {
@@ -33,8 +50,13 @@ public class SystemException extends RuntimeException {
         this.errorMessage = errorMessage;
     }
 
-    private String errorMessage;
+    public Locale getLocale() {
+        return locale;
+    }
 
+    public void setLocale(Locale locale) {
+        this.locale = locale;
+    }
 
     @Override
     public String toString() {

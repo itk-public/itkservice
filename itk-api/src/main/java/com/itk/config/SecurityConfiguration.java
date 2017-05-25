@@ -99,7 +99,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("user/phoneLogin").permitAll()
                 .antMatchers("user/getSecurityCode").permitAll()
                 .antMatchers("/user/updatePassowrd").permitAll()
-                .antMatchers("/api/**").authenticated()
+                .antMatchers("/**").authenticated()
                 .and()
                 .apply(securityConfigurerAdapter());
 

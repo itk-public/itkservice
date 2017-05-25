@@ -1,6 +1,7 @@
 package com.itk.utils;
 
 import java.math.BigDecimal;
+import java.util.Locale;
 
 /**
  *
@@ -8,6 +9,12 @@ import java.math.BigDecimal;
  * Created by zhouhui on 2017/2/14.
  */
 public class Constant {
+
+    /** languae */
+    public static final String DEFAULT_LANGUAGE = "zh_CN";
+    public static final String EN_LANGUAGE = "en";
+
+    public static final Locale DEFAULT_LOCALE = new Locale(DEFAULT_LANGUAGE);
 
     public static final String EmptyString = "";
     public static final String SYSTEM_USER = "system";
@@ -32,17 +39,6 @@ public class Constant {
     public static final int HTTPCODE_OK = HttpStatus.OK.value();
     public static final int HTTPCODE_INTERNAL_SERVER_ERROR = HttpStatus.INTERNAL_SERVER_ERROR.value();
     public static final int HTTPCODE_USER_ERROR = HttpStatus.BAD_REQUEST.value();
-
-    /**
-     * Predefined Error Code
-     */
-    //System error code 0 ~ 10000
-    public static final int ERRORCODE_OK = 0;
-    public static final int ERRORCODE_INTERNAL_SERVER_ERROR = 500;
-    public static final String ERRORMESSAGE_INTERNAL_ERROR = "服务器内部错误，请稍后重试。";
-    public static final int ERRORCODE_SERVER_BUSY = 501;
-    public static final String ERRORMESSAGE_SERVER_BUSY = "服务器繁忙，请稍后重试。";
-
 
     /**
      * redis

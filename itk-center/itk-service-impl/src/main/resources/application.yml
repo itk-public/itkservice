@@ -22,5 +22,3 @@ spring:
         maxOpenPreparedStatements: 20
     application:
         name: itk-center
-logging:
-  config: classpath:logback-spring.xml

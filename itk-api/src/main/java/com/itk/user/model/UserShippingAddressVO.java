@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Created by young on 2017/5/21.
  */
@@ -19,31 +21,37 @@ public class UserShippingAddressVO {
     /**
      * 用户ID
      */
+    @NotNull
     private String userId;
 
     /**
      * 收货人姓名
      */
+    @NotNull
     private String receiverName;
 
     /**
      * 收货人电话
      */
+    @NotNull
     private String receiverPhone;
 
     /**
      * 省ID
      */
+    @NotNull
     private Integer proviceId;
 
     /**
      * 地级市id
      */
+    @NotNull
     private Long cityId;
 
     /**
      * 县级市id
      */
+    @NotNull
     private Long countyId;
 
     /**
@@ -69,11 +77,11 @@ public class UserShippingAddressVO {
     /**
      * 是否默认,0非,1是
      */
-    private Boolean deefault;
+    private boolean deefault = false;
 
     /**
      * 是否可用,1是,0非
      */
-    private Boolean enable;
+    private boolean enable = true;
 
 }

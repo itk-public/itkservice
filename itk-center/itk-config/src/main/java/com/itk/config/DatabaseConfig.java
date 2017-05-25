@@ -35,14 +35,14 @@ import javax.sql.DataSource;
 public class DatabaseConfig {
 
     @Bean
-    @ConfigurationProperties(prefix="spring.datasource")
+    @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource dataSource() {
         return new com.alibaba.druid.pool.DruidDataSource();
     }
 
     @Configuration
     @MapperScan(sqlSessionFactoryRef = "mybatisSqlSessionFactory",
-        basePackages = {"com.itk.*.mapper"})
+            basePackages = {"com.itk.*.mapper"})
     public class mybatisConfig {
         @Bean(name = "mybatisSqlSessionFactory")
         public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
@@ -54,14 +54,15 @@ public class DatabaseConfig {
 
             sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/mapper/*/*.xml"));
 
+            sqlSessionFactoryBean.setConfigLocation(resolver.getResource("classpath:mybatis-config.xml"));
             return sqlSessionFactoryBean.getObject();
         }
     }
 
     @Configuration
     @MapperScan(sqlSessionFactoryRef = "mybaitsPlusSqlSessionFactory",
-        basePackages = {"com.itk.mybatis.plus.dao"},
-        annotationClass = MybatisPlusDatasource.class)
+            basePackages = {"com.itk.mybatis.plus.dao"},
+            annotationClass = MybatisPlusDatasource.class)
     public class mybatisPlusConfig {
 
         @Autowired
@@ -112,9 +113,7 @@ public class DatabaseConfig {
 
 
     /**
-
-     *	 mybatis-plus分页插件
-
+     * mybatis-plus分页插件
      */
     @Bean
     public PaginationInterceptor paginationInterceptor() {

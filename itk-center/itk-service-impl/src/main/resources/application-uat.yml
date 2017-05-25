@@ -1,6 +1,6 @@
 spring:
     datasource:
-        name: test
+        name: itk
         url: jdbc:mysql://localhost:3306/itk?useUnicode=true&characterEncoding=utf8
         username: root
         password: Q!w2e3r4t5Y^

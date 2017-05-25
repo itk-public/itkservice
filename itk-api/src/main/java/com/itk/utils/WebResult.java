@@ -1,5 +1,7 @@
 package com.itk.utils;
 
+import com.itk.config.ResultCode;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -32,11 +34,11 @@ public class WebResult implements Serializable {
     }
 
     public static WebResult ok(Object data) {
-        return new WebResult(Constant.ERRORCODE_OK, "", data, 0);
+        return new WebResult(ResultCode.SUCCESS, "", data, 0);
     }
 
-    public static WebResult ok(String message, Object data, Integer exceptionEnumCode){
-        return new WebResult(Constant.ERRORCODE_OK, message, data, exceptionEnumCode);
+    public static WebResult ok(String message, Object data, Integer exceptionEnumCode) {
+        return new WebResult(ResultCode.SUCCESS, message, data, exceptionEnumCode);
     }
 
     public int getCode() {

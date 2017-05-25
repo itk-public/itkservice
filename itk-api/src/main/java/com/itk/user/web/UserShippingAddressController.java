@@ -1,19 +1,26 @@
 package com.itk.user.web;
 
+import com.itk.config.ResultCode;
 import com.itk.security.SecurityUtils;
 import com.itk.user.model.UserShippingAddress;
 import com.itk.user.model.UserShippingAddressVO;
 import com.itk.user.service.UserShippingAddressFrontService;
+import com.itk.user.web.mapper.UserShippingAddressMapper;
 import com.itk.util.PageInfo;
+import com.itk.utils.Constant;
 import com.itk.utils.PaginationUtil;
 import com.itk.utils.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URISyntaxException;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 /**
  * Created by young on 2017/5/17.
@@ -25,6 +32,9 @@ public class UserShippingAddressController {
     @Autowired
     UserShippingAddressFrontService shippingAddressFrontService;
 
+    @Autowired
+    MessageSource exceptionSource;
+
     /**
      * 获取用户可用的收货地址列表,分页
      *
@@ -32,22 +42,31 @@ public class UserShippingAddressController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> getUserShippingAddress(@RequestParam(required = false) Integer pageNum,
-                                                    @RequestParam(required = false) Integer pageSize) throws URISyntaxException{
+                                                    @RequestParam(required = false) Integer pageSize) throws URISyntaxException {
 
         PageInfo<UserShippingAddress> page = shippingAddressFrontService.getUserShippingAddress(SecurityUtils.getCurrentUserLogin(), pageNum, pageSize);
-        HttpHeaders httpHeaders = PaginationUtil.generatePaginationHttpHeaders(page,"/api/user/shipping/address");
-        return new ResponseEntity<>(WebResult.ok(page.getResult()),httpHeaders, HttpStatus.OK);
+        HttpHeaders httpHeaders = PaginationUtil.generatePaginationHttpHeaders(page, "/api/user/shipping/address");
+        return new ResponseEntity<>(
+                WebResult.ok(
+                        page.getResult().stream()
+                                .map(UserShippingAddressMapper::modelToVO).collect(Collectors.toList())),
+                httpHeaders,
+                HttpStatus.OK);
     }
 
     /**
-     * 获取用户收货地址id
+     * 获取用户收货地址详情
      *
      * @param id
      * @return
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getUserShippingAddressDetail(@PathVariable Integer id) {
-        return null;
+        return ResponseEntity.ok(
+                WebResult.ok(
+                        UserShippingAddressMapper.modelToVO(shippingAddressFrontService.getShippingAddressDetail(id))
+                )
+        );
     }
 
     /**
@@ -57,8 +76,13 @@ public class UserShippingAddressController {
      * @return
      */
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> createUserShippingAddress(@RequestBody UserShippingAddressVO shippingAddressVO) {
-        return null;
+    public ResponseEntity<?> createUserShippingAddress(@Valid @RequestBody UserShippingAddressVO shippingAddressVO) {
+        shippingAddressFrontService.createUserShippingAddress(shippingAddressVO);
+        return ResponseEntity.ok(
+                WebResult.ok(
+                        exceptionSource.getMessage(ResultCode.ADD_SUCCESS + "", new String[]{}, "SUCCESS", Constant.DEFAULT_LOCALE)
+                )
+        );
     }
 
     /**
@@ -69,7 +93,12 @@ public class UserShippingAddressController {
      */
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<?> updateUserShippingAddress(@RequestBody UserShippingAddressVO shippingAddressVO) {
-        return null;
+        shippingAddressFrontService.updateUserShippingAddress(shippingAddressVO);
+        return ResponseEntity.ok(
+                WebResult.ok(
+                        exceptionSource.getMessage(ResultCode.EDIT_SUCCESS + "", new String[]{}, "SUCCESS", Constant.DEFAULT_LOCALE)
+                )
+        );
     }
 
     /**
@@ -80,6 +109,21 @@ public class UserShippingAddressController {
      */
     @RequestMapping(method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteUserShippingAddress(@RequestParam Integer shippingAddressId) {
-        return ResponseEntity.ok().body(null);
+        shippingAddressFrontService.deleteUserShippingAddress(shippingAddressId);
+        return ResponseEntity.ok(
+                WebResult.ok(
+                        exceptionSource.getMessage(ResultCode.DELETE_SUCCESS + "", new String[]{}, "SUCCESS", Constant.DEFAULT_LOCALE)
+                )
+        );
+    }
+
+    public ResponseEntity<?> setDefaultShippingAddress(@RequestParam Integer shippingAddressId,
+                                                       @RequestParam boolean isDefault) {
+        shippingAddressFrontService.setDefaultUserShippingAddress(shippingAddressId, isDefault);
+        return ResponseEntity.ok(
+                WebResult.ok(
+                        exceptionSource.getMessage(ResultCode.EDIT_SUCCESS + "", null, "SUCCESS", Constant.DEFAULT_LOCALE)
+                )
+        );
     }
 }
