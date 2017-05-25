@@ -33,7 +33,7 @@ public class ResourceAdvice {
         return new WebResult(e.getCode(), message, null, e.getCode());
     }
 
-    @ExceptionHandler(SystemException.class)
+    @ExceptionHandler(ObjectNotFoundException.class)
     @ResponseBody
     public WebResult handleObjectNotFoundException(ObjectNotFoundException e) {
         String message = exceptionSource.getMessage(ResultCode.NOT_FOUND + "", new String[]{}, ResultCode.UNKNOW_SOURCE, e.getLocale());
