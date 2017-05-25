@@ -26,6 +26,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import javax.sql.DataSource;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * Created by enchen on 5/17/17.
@@ -57,6 +58,12 @@ public class DatabaseConfig {
             return sqlSessionFactoryBean.getObject();
         }
     }
+
+    @Bean
+    public CountDownLatch closeLatch() {
+        return new CountDownLatch(1);
+    }
+
 
     @Configuration
     @MapperScan(sqlSessionFactoryRef = "mybaitsPlusSqlSessionFactory",
