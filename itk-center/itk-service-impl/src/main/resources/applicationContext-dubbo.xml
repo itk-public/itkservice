@@ -14,7 +14,7 @@
 
     <!-- 使用zookeeper注册中心暴露服务地址 -->
     <!-- 到这里调用 -->
-    <dubbo:registry protocol="zookeeper" address="localhost:2181" id="zookeeper"/>
+    <dubbo:registry protocol="zookeeper" address="localhost" port="2181" id="zookeeper"/>
 
 
     <!-- 用dubbo协议在20800端口暴露服务 -->
