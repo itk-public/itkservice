@@ -11,7 +11,7 @@ public class ShopInfo {
     private Long townshipId;
 
     /**
-    * 门店编码
+    * 门店编码 B00001商家id，F000001农场id
     */
     private String shopCode;
 
