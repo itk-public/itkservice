@@ -22,6 +22,11 @@ public class HomePage implements Serializable {
     private Integer isDel;
 
     /**
+    * 1：商家 2：农场
+    */
+    private Integer type;
+
+    /**
     * 创建时间
     */
     private Date createTime;
@@ -71,6 +76,14 @@ public class HomePage implements Serializable {
 
     public void setIsDel(Integer isDel) {
         this.isDel = isDel;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public Date getCreateTime() {
