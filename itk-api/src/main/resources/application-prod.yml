@@ -31,5 +31,17 @@ spring:
           max-active: 8
           max-wait: -1
 
+itk:
+  security:
+      authentication:
+          jwt:
+              secret: my-secret-token-to-change-in-production
+              # Token is valid 24 hours
+              tokenValidityInSeconds: 86400
+  solr:
+    url: localhost:8983/solr
+    maxRetries: 3
+    connectionTimeout: 500
+
 server:
     port: 3333
