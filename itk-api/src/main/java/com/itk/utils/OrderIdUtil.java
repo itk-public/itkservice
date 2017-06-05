@@ -18,17 +18,17 @@ public class OrderIdUtil {
     }
 
     /**
-     * 将订单规则的年月日时分秒取出来的摸,不足4位,补0
+     * 数字转换成 参数传入 长度 的 字符串
      *
      * @param source
      *            需要转换的数字
      *
      * @return 转换后的字符串
      */
-    public static String formatHashCode(int source){
+    public static String formatHashCode(int source, int length){
         String s = "";
-        if(source < 1000){
-            int len = 4 - ("" + source).length();
+        if(source < (int)Math.pow(10,length - 1)){
+            int len = length - ("" + source).length();
             for (int i = 0; i < len; i++) {
                 s = s + "0";
             }

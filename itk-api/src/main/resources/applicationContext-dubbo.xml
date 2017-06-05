@@ -114,4 +114,11 @@
     <!--收货地址-->
     <dubbo:reference id="userShippingAddressService" interface="com.itk.user.service.UserShippingAddressService"
                      check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
+
+    <!--order-->
+    <dubbo:reference id="orderHeaderService" interface="com.itk.order.service.OrderHeaderService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
+
+    <dubbo:reference id="orderDetailService" interface="com.itk.order.service.OrderDetailService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 </beans>

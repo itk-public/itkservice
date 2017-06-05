@@ -14,6 +14,7 @@
     <result column="allocation_from_time" property="allocationFromTime" jdbcType="TIMESTAMP" />
     <result column="allocation_to_time" property="allocationToTime" jdbcType="TIMESTAMP" />
     <result column="allocation_type" property="allocationType" jdbcType="INTEGER" />
+    <result column="pick_self_location_id" property="pickSelfLocationId" jdbcType="INTEGER" />
     <result column="comment" property="comment" jdbcType="VARCHAR" />
     <result column="arrival_time" property="arrivalTime" jdbcType="TIMESTAMP" />
     <result column="complete_time" property="completeTime" jdbcType="TIMESTAMP" />
@@ -81,7 +82,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, order_id, status, is_del, is_expired, address_id, actual_amount, total_amount, 
-    shop_id, allocation_from_time, allocation_to_time, allocation_type, comment, arrival_time, 
+    shop_id, allocation_from_time, allocation_to_time, allocation_type, pick_self_location_id, comment, arrival_time,
     complete_time, create_time, modify_time, user_id
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.itk.order.model.OrderHeaderExample" >
@@ -127,14 +128,14 @@
       is_del, is_expired, address_id, 
       actual_amount, total_amount, shop_id, 
       allocation_from_time, allocation_to_time, 
-      allocation_type, comment, arrival_time, 
+      allocation_type, pick_self_location_id,comment, arrival_time,
       complete_time, create_time, modify_time, 
       user_id)
     values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
       #{isDel,jdbcType=INTEGER}, #{isExpired,jdbcType=INTEGER}, #{addressId,jdbcType=VARCHAR}, 
       #{actualAmount,jdbcType=DECIMAL}, #{totalAmount,jdbcType=DECIMAL}, #{shopId,jdbcType=VARCHAR}, 
       #{allocationFromTime,jdbcType=TIMESTAMP}, #{allocationToTime,jdbcType=TIMESTAMP}, 
-      #{allocationType,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}, #{arrivalTime,jdbcType=TIMESTAMP}, 
+      #{allocationType,jdbcType=INTEGER},#{pickSelfLocationId,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}, #{arrivalTime,jdbcType=TIMESTAMP},
       #{completeTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
       #{userId,jdbcType=VARCHAR})
   </insert>
@@ -176,6 +177,9 @@
       </if>
       <if test="allocationType != null" >
         allocation_type,
+      </if>
+      <if test="pickSelfLocationId != null" >
+        pick_self_location_id,
       </if>
       <if test="comment != null" >
         comment,
@@ -232,6 +236,9 @@
       </if>
       <if test="allocationType != null" >
         #{allocationType,jdbcType=INTEGER},
+      </if>
+      <if test="pickSelfLocationId != null" >
+        #{pickSelfLocationId,jdbcType=INTEGER},
       </if>
       <if test="comment != null" >
         #{comment,jdbcType=VARCHAR},
@@ -298,6 +305,9 @@
       <if test="record.allocationType != null" >
         allocation_type = #{record.allocationType,jdbcType=INTEGER},
       </if>
+      <if test="record.pickSelfLocationId != null" >
+        pick_self_location_id = #{record.pickSelfLocationId,jdbcType=INTEGER},
+      </if>
       <if test="record.comment != null" >
         comment = #{record.comment,jdbcType=VARCHAR},
       </if>
@@ -335,6 +345,7 @@
       allocation_from_time = #{record.allocationFromTime,jdbcType=TIMESTAMP},
       allocation_to_time = #{record.allocationToTime,jdbcType=TIMESTAMP},
       allocation_type = #{record.allocationType,jdbcType=INTEGER},
+      pick_self_location_id = #{record.pickSelfLocationId,jdbcType=INTEGER},
       comment = #{record.comment,jdbcType=VARCHAR},
       arrival_time = #{record.arrivalTime,jdbcType=TIMESTAMP},
       complete_time = #{record.completeTime,jdbcType=TIMESTAMP},
@@ -381,6 +392,9 @@
       <if test="allocationType != null" >
         allocation_type = #{allocationType,jdbcType=INTEGER},
       </if>
+      <if test="pickSelfLocationId != null" >
+        pick_self_location_id = #{pickSelfLocationId,jdbcType=INTEGER},
+      </if>
       <if test="comment != null" >
         comment = #{comment,jdbcType=VARCHAR},
       </if>
@@ -415,6 +429,7 @@
       allocation_from_time = #{allocationFromTime,jdbcType=TIMESTAMP},
       allocation_to_time = #{allocationToTime,jdbcType=TIMESTAMP},
       allocation_type = #{allocationType,jdbcType=INTEGER},
+      pick_self_location_id = #{pickSelfLocationId,jdbcType=INTEGER},
       comment = #{comment,jdbcType=VARCHAR},
       arrival_time = #{arrivalTime,jdbcType=TIMESTAMP},
       complete_time = #{completeTime,jdbcType=TIMESTAMP},

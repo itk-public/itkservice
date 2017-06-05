@@ -376,6 +376,7 @@ CREATE TABLE `t_order_header` (
   `allocation_from_time` DATETIME NOT NULL COMMENT '配送起始时间',
   `allocation_to_time` DATETIME NOT NULL COMMENT '配送到达时间',
   `allocation_type` INT(4) DEFAULT '0' NOT NULL COMMENT '配送方式(0: 平台配送, 1: 用户自提)',
+  `pick_self_location_id` INT(4) DEFAULT NULL COMMENT '自提id',
   `comment` VARCHAR(200) COMMENT '备注',
   `arrival_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '送达时间',
   `complete_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '完成时间',
@@ -464,3 +465,5 @@ CREATE TABLE `t_user_shipping_address` (
 # 缺 时间规则表
 # 缺 运费表
 # 所有 varchar 类型的 id 规则
+
+# 券 和 用户 关联表?

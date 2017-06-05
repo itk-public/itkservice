@@ -6,6 +6,8 @@ import com.itk.user.model.UserInfoVO;
 import com.itk.utils.Constant;
 import com.itk.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.core.serializer.support.DeserializingConverter;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.SerializationUtils;
@@ -79,12 +81,14 @@ public class UserInfoFrontServiceImpl {
         return userInfoService.updateUserInfo(record);
     }
 
-    private static  void checkCode(byte[] code, String securityCode) throws Exception {
+    private static void checkCode(byte[] code, String securityCode) throws Exception {
+        Converter<byte[], Object> deserializer = new DeserializingConverter();
         if (code != null) {
-            String tempCode = (String) SerializationUtils.deserialize(code);
-            if (!tempCode.equals(securityCode)) {
-                throw new Exception("验证码输入有误,请重新输入！");
-            }
+            System.out.println(SerializationUtils.deserialize(code));
+//            String tempCode = (String) SerializationUtils.deserialize(code);
+//            if (!tempCode.equals(securityCode)) {
+//                throw new Exception("验证码输入有误,请重新输入！");
+//            }
         }else{
             throw new Exception("验证码有误！");
         }

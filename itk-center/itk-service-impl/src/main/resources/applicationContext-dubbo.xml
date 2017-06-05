@@ -146,4 +146,13 @@
                    version="1.0" registry="zookeeper" owner="qi.yang"/>
     <bean id="userShippingAddressService" class="com.itk.user.service.impl.UserShippingAddressServiceImpl"/>
 
+    <!--order-->
+    <dubbo:service interface="com.itk.order.service.OrderHeaderService" ref="orderHeaderService"
+                   version="1.0" registry="zookeeper" owner="enchen"/>
+    <bean id="orderHeaderService" class="com.itk.order.service.impl.OrderHeaderServiceImpl"/>
+
+    <dubbo:service interface="com.itk.order.service.OrderDetailService" ref="orderDetailService"
+                   version="1.0" registry="zookeeper" owner="enchen"/>
+    <bean id="orderDetailService" class="com.itk.order.service.impl.OrderDetailServiceImpl"/>
+
 </beans>

@@ -43,6 +43,7 @@ public class OrderHeader {
 
     /**
     *  店铺信息 id
+
     */
     private String shopId;
 
@@ -60,6 +61,12 @@ public class OrderHeader {
     * 配送方式(0: 平台配送, 1: 用户自提)
     */
     private Integer allocationType;
+
+
+    /**
+     * 自提id
+     */
+    private Integer pickSelfLocationId;
 
     /**
     * 备注
@@ -185,6 +192,14 @@ public class OrderHeader {
 
     public void setAllocationType(Integer allocationType) {
         this.allocationType = allocationType;
+    }
+
+    public Integer getPickSelfLocationId() {
+        return pickSelfLocationId;
+    }
+
+    public void setPickSelfLocationId(Integer pickSelfLocationId) {
+        this.pickSelfLocationId = pickSelfLocationId;
     }
 
     public String getComment() {
