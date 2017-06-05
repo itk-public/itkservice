@@ -2,12 +2,15 @@ package com.itk.order.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.itk.base.model.ShopInfo;
+import com.itk.item.model.ItemInfo;
+import com.itk.promotion.model.SaleInfo;
+import com.itk.user.model.UserShippingAddress;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.UUID;
+import java.util.List;
 
 /**
  * Created by enchen on 6/2/17.
@@ -45,7 +48,7 @@ public class OrderInfoVO {
     private BigDecimal totalAmount;
 
     /**
-     *  店铺信息 id
+     * 店铺信息 id
      */
     private String shopId;
 
@@ -56,13 +59,69 @@ public class OrderInfoVO {
 
     private ReceiveInfo receiveInfo;
 
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @Setter
+    @Getter
+    public static class ReceiveInfo {
+
+        private UserShippingAddress userShippingAddress;
+
+        private ShopInfo shopInfo;
+    }
+
+    private SaleInfo saleInfo;//券信息
+
+    private List<ShopDetail> shopList;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class ReceiveInfo{
+    @Setter
+    @Getter
+    public static class ShopDetail {
 
-        private
+        private String shopId;
+
+        public String getShopId() {
+            return shopId;
+        }
+
+        public void setShopId(String shopId) {
+            this.shopId = shopId;
+        }
+
+        private ShopInfo shop;
+
+        private BigDecimal priceTotal;
+
+        private BigDecimal totalPayment;
+
+        private SaleInfo coupon;
+
+        private List<ProductDetail> products;
+
+        private boolean withCoupon;
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @Setter
+    @Getter
+    public static class ProductDetail {
+
+        private ItemInfo itemInfo;
+        private Price price;
+        private Integer number;
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @Setter
+    @Getter
+    public static class Price {
+
+        private BigDecimal market;
+        private BigDecimal total;
+        private BigDecimal value;
     }
     //todo
     //appointments
+    //allocationType
 
 }
