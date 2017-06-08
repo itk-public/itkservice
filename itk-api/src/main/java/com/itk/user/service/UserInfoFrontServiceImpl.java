@@ -84,11 +84,10 @@ public class UserInfoFrontServiceImpl {
     private static void checkCode(byte[] code, String securityCode) throws Exception {
         Converter<byte[], Object> deserializer = new DeserializingConverter();
         if (code != null) {
-            System.out.println(SerializationUtils.deserialize(code));
-//            String tempCode = (String) SerializationUtils.deserialize(code);
-//            if (!tempCode.equals(securityCode)) {
-//                throw new Exception("验证码输入有误,请重新输入！");
-//            }
+            String tempCode = (String) SerializationUtils.deserialize(code);
+            if (!tempCode.equals(securityCode)) {
+                throw new Exception("验证码输入有误,请重新输入！");
+            }
         }else{
             throw new Exception("验证码有误！");
         }

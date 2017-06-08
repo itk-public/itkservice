@@ -335,7 +335,7 @@ CREATE TABLE `t_sale_info` (
   `city_id` bigint(20) unsigned NOT NULL COMMENT '市id',
   `county_id` bigint(20) unsigned NOT NULL COMMENT '县id',
   `town_id` bigint(20) unsigned NOT NULL COMMENT '乡镇id',
-  `shop_id` varchar(100) DEFAULT NULL COMMENT '商家id',
+  `shop_id` bigint(100) DEFAULT NULL COMMENT '商家id',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `modify_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
   PRIMARY KEY (`id`)
@@ -372,7 +372,7 @@ CREATE TABLE `t_order_header` (
   `address_id` VARCHAR(16) NOT NULL COMMENT '地址信息 id',
   `actual_amount` DECIMAL(20,4) NOT NULL COMMENT '实际支付金额',
   `total_amount` DECIMAL(20,4) NOT NULL COMMENT '总金额',
-  `shop_id` VARCHAR(100) NOT NULL COMMENT ' 店铺信息 id',
+  `shop_id` bigint(20) NOT NULL COMMENT ' 店铺信息 id',
   `allocation_from_time` DATETIME NOT NULL COMMENT '配送起始时间',
   `allocation_to_time` DATETIME NOT NULL COMMENT '配送到达时间',
   `allocation_type` INT(4) DEFAULT '0' NOT NULL COMMENT '配送方式(0: 平台配送, 1: 用户自提)',
@@ -419,7 +419,7 @@ CREATE TABLE `t_refund_flow` (
   `flow_id` VARCHAR(100) NOT NULL COMMENT '流水 id',
   `purchase_id` VARCHAR(100) NOT NULL COMMENT '支付 id',
   `order_id` VARCHAR(100) NOT NULL COMMENT '订单 id',
-  `shop_id` VARCHAR(100) NOT NULL COMMENT ' 店铺信息 id',
+  `shop_id` bigint(20) NOT NULL COMMENT ' 店铺信息 id',
   `refund_detail_id` VARCHAR(100) NOT NULL COMMENT '退款明细 id',
   `type` INT(1) NOT NULL COMMENT '退款类型(0: 部分退款, 1: 整单退款)',
   `promotion_status` INT(1) NOT NULL COMMENT '退券状态(0: 未退, 1: 已退)',
@@ -467,3 +467,8 @@ CREATE TABLE `t_user_shipping_address` (
 # 所有 varchar 类型的 id 规则
 
 # 券 和 用户 关联表?
+
+#t_refund_flow  shopid -> bigint(20)
+#t_nearby_business   shopid-> bigint(20)
+#t_sale_info  shopid -> bigint(20)
+#t_order_header  shopid -> bigint(20)

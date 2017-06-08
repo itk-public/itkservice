@@ -1,16 +1,23 @@
 package com.itk.order.web;
 
 import com.itk.order.model.OrderHeader;
+import com.itk.order.model.OrderInfoVO;
+import com.itk.order.model.ShoppingCartVO;
 import com.itk.order.service.OrderHeaderFrontServiceImpl;
+import com.itk.user.web.mapper.UserShippingAddressMapper;
 import com.itk.utils.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.stream.Collectors;
 
 /**
  * Created by enchen on 5/5/17.
  */
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/api/order")
 public class OrderHeaderController {
 
     @Autowired
@@ -46,9 +53,12 @@ public class OrderHeaderController {
         return WebResult.ok(orderHeaderFrontService.selectByOrderId(orderId));
     }
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public void test() throws Exception {
-        orderHeaderFrontService.test("orderIDSuffix");
-        //System.out.println("###########origin: " + orderHeaderFrontService.test("orderIDSuffix"));
+
+    //购物车到订单结算页面
+    @RequestMapping(value = "/info", method = RequestMethod.POST)
+    public ResponseEntity<?> getOrderInfo(@RequestBody ShoppingCartVO shoppingCartVO) throws Exception {
+        return new ResponseEntity<>(
+                WebResult.ok(orderHeaderFrontService.getOrderInfoVoDetail(shoppingCartVO)),
+                HttpStatus.OK);
     }
 }
