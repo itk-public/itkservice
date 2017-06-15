@@ -27,14 +27,14 @@ public class DisplayCategoryServiceImpl implements DisplayCategoryService {
     }
 
     @Override
-    public int delDisplayCategory(Integer displayCategoryId) {
+    public int delDisplayCategory(Long displayCategoryId) {
         DisplayCategory displayCategory = displayCategoryMapper.selectByPrimaryKey(displayCategoryId);
         displayCategory.setIsshow(0);
         return displayCategoryMapper.updateByPrimaryKeySelective(displayCategory);
     }
 
     @Override
-    public DisplayCategory selectByPrimaryKey(Integer displayCategoryId) {
+    public DisplayCategory selectByPrimaryKey(Long displayCategoryId) {
         return displayCategoryMapper.selectByPrimaryKey(displayCategoryId);
     }
 

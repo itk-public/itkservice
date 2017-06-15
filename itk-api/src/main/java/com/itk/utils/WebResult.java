@@ -34,7 +34,7 @@ public class WebResult implements Serializable {
     }
 
     public static WebResult ok(Object data) {
-        return new WebResult(ResultCode.SUCCESS, "", data, 0);
+        return new WebResult(ResultCode.SUCCESS, "SUCCESS", data, 0);
     }
 
     public static WebResult ok(String message, Object data, Integer exceptionEnumCode) {

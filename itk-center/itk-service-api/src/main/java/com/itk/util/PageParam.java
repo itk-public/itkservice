@@ -1,8 +1,6 @@
 package com.itk.util;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -13,16 +11,18 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class PageParam implements Serializable{
 	/**
 	 * 页码，从1开始
 	 */
-	private Integer pageNum;
+	private Integer pageNum = 1;
 
 	/**
 	 * 页面大小
 	 */
-	private Integer pageSize;
+	private Integer pageSize = 20;
 
 	/**
 	 * 包含count查询

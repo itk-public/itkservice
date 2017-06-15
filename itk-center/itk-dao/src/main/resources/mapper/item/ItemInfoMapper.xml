@@ -125,7 +125,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.itk.item.model.ItemInfo" >
+  <insert id="insert" parameterType="com.itk.item.model.ItemInfo" useGeneratedKeys="true" keyProperty="id">
     insert into t_item_info (id, name, mainSrc, 
       bar_code, item_id, detailSrc, 
       price, current_price, history_price, 
@@ -143,7 +143,7 @@
       #{creator,jdbcType=VARCHAR}, #{updator,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.itk.item.model.ItemInfo" >
+  <insert id="insertSelective" parameterType="com.itk.item.model.ItemInfo" useGeneratedKeys="true" keyProperty="id">
     insert into t_item_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

@@ -12,7 +12,7 @@ public interface DisplayCategoryMapper {
 
     int deleteByExample(DisplayCategoryExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(DisplayCategory record);
 
@@ -20,7 +20,7 @@ public interface DisplayCategoryMapper {
 
     List<DisplayCategory> selectByExample(DisplayCategoryExample example);
 
-    DisplayCategory selectByPrimaryKey(Integer id);
+    DisplayCategory selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") DisplayCategory record, @Param("example") DisplayCategoryExample example);
 

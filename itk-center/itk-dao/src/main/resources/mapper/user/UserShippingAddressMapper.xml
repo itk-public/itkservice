@@ -121,7 +121,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.itk.user.model.UserShippingAddress" >
+  <insert id="insert" parameterType="com.itk.user.model.UserShippingAddress" useGeneratedKeys="true" keyProperty="id">
     insert into t_user_shipping_address (id, user_id, receiver_name, 
       receiver_phone, provice_id, city_id, 
       county_id, town_id, village_id, 
@@ -135,7 +135,7 @@
       #{enable,jdbcType=BIT}, #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
       #{lastModifyBy,jdbcType=VARCHAR}, #{lastModifyDate,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.itk.user.model.UserShippingAddress" >
+  <insert id="insertSelective" parameterType="com.itk.user.model.UserShippingAddress" useGeneratedKeys="true" keyProperty="id">
     insert into t_user_shipping_address
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

@@ -2,6 +2,9 @@ package com.itk.item.service;
 
 
 import com.itk.item.model.ItemInfo;
+import com.itk.solr.model.SolrItem;
+import com.itk.util.PageInfo;
+import com.itk.util.PageParam;
 
 import java.util.List;
 
@@ -23,4 +26,6 @@ public interface ItemInfoService {
     List<ItemInfo> selectByShopIdAndStatus(Long shopId, Integer status);
 
     List<ItemInfo> selectByShopCategoryIdAndStatus(Integer shopCategoryId, Integer status);
+
+    PageInfo<SolrItem> selectSolrItemByKeyword(String keyword, PageParam pageParam);
 }

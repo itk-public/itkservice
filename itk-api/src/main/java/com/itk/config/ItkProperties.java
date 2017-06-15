@@ -10,14 +10,8 @@ public class ItkProperties {
 
     private final Security security = new Security();
 
-    private final Solr solr = new Solr();
-
     public Security getSecurity() {
         return security;
-    }
-
-    public Solr getSolr() {
-        return solr;
     }
 
     public static class Security {
@@ -67,36 +61,6 @@ public class ItkProperties {
                     this.tokenValidityInSecondsForRememberMe = tokenValidityInSecondsForRememberMe;
                 }
             }
-        }
-    }
-
-    public static class Solr{
-        private String url;
-        private Integer maxRetries;
-        private Integer connectionTimeout;
-
-        public String getUrl() {
-            return url;
-        }
-
-        public void setUrl(String url) {
-            this.url = url;
-        }
-
-        public Integer getMaxRetries() {
-            return maxRetries;
-        }
-
-        public void setMaxRetries(Integer maxRetries) {
-            this.maxRetries = maxRetries;
-        }
-
-        public Integer getConnectionTimeout() {
-            return connectionTimeout;
-        }
-
-        public void setConnectionTimeout(Integer connectionTimeout) {
-            this.connectionTimeout = connectionTimeout;
         }
     }
 

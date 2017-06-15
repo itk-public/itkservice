@@ -22,3 +22,13 @@ spring:
         maxOpenPreparedStatements: 20
     application:
         name: itk-center
+
+itk:
+  solr:
+    url: http://localhost:8983/solr/core1
+    maxRetries: 3
+    connectionTimeout: 500
+  async:
+    asyncCorePoolSize: 2
+    asyncMaxPoolSize: 50
+    queueCapacity: 10000

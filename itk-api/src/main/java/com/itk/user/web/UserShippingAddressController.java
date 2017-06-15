@@ -16,10 +16,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.net.URISyntaxException;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 /**
@@ -65,6 +63,23 @@ public class UserShippingAddressController {
         return ResponseEntity.ok(
                 WebResult.ok(
                         UserShippingAddressMapper.modelToVO(shippingAddressFrontService.getShippingAddressDetail(id))
+                )
+        );
+    }
+
+    /**
+     * 获取用户默认收货地址
+     *
+     * @param userId
+     * @return
+     */
+    @RequestMapping(value = "/default", method = RequestMethod.GET)
+    public ResponseEntity<?> getUserDefaultShippingAddress(@RequestParam String userId) {
+        return ResponseEntity.ok(
+                WebResult.ok(
+                        UserShippingAddressMapper.modelToVO(
+                                shippingAddressFrontService.getUserDefaultShippingAddress(userId)
+                        )
                 )
         );
     }
@@ -117,6 +132,14 @@ public class UserShippingAddressController {
         );
     }
 
+    /**
+     * 设置默认收货地址
+     *
+     * @param shippingAddressId
+     * @param isDefault
+     * @return
+     */
+    @RequestMapping(value = "/setDefault", method = RequestMethod.POST)
     public ResponseEntity<?> setDefaultShippingAddress(@RequestParam Integer shippingAddressId,
                                                        @RequestParam boolean isDefault) {
         shippingAddressFrontService.setDefaultUserShippingAddress(shippingAddressId, isDefault);
