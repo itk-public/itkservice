@@ -1,4 +1,4 @@
-package com.itk.config;
+package com.itk.exception;
 
 /**
  * Created by young on 2017/5/24.
@@ -29,6 +29,9 @@ public final class ResultCode {
     public static final int USERNAME_EXIST = 1001;    //用户名已存在
     public static final int EMAIL_EXIST = 1002;    //邮箱已存在
     public static final int PHONE_EXIST = 1003;    //手机号已存在
+
+    //biz attribute not null error
+    public static final int PICK_SELF_LOCATION_ID = 2001;
 
     //系统错误
     public static final int SYSTEM_ERROR = 5001;       //系统内部错误

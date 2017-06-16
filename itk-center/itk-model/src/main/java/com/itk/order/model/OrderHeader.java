@@ -29,7 +29,7 @@ public class OrderHeader {
     /**
     * 地址信息 id
     */
-    private String addressId;
+    private Integer addressId;
 
     /**
     * 实际支付金额
@@ -43,9 +43,8 @@ public class OrderHeader {
 
     /**
     *  店铺信息 id
-
     */
-    private String shopId;
+    private Long shopId;
 
     /**
     * 配送起始时间
@@ -62,10 +61,9 @@ public class OrderHeader {
     */
     private Integer allocationType;
 
-
     /**
-     * 自提id
-     */
+    * 自提id
+    */
     private Integer pickSelfLocationId;
 
     /**
@@ -138,11 +136,11 @@ public class OrderHeader {
         this.isExpired = isExpired;
     }
 
-    public String getAddressId() {
+    public Integer getAddressId() {
         return addressId;
     }
 
-    public void setAddressId(String addressId) {
+    public void setAddressId(Integer addressId) {
         this.addressId = addressId;
     }
 
@@ -162,11 +160,11 @@ public class OrderHeader {
         this.totalAmount = totalAmount;
     }
 
-    public String getShopId() {
+    public Long getShopId() {
         return shopId;
     }
 
-    public void setShopId(String shopId) {
+    public void setShopId(Long shopId) {
         this.shopId = shopId;
     }
 

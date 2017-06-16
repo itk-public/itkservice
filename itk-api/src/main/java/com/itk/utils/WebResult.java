@@ -1,6 +1,6 @@
 package com.itk.utils;
 
-import com.itk.config.ResultCode;
+import com.itk.exception.ResultCode;
 
 import java.io.Serializable;
 import java.util.Date;

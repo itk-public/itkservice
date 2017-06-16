@@ -7,10 +7,10 @@
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="is_del" property="isDel" jdbcType="INTEGER" />
     <result column="is_expired" property="isExpired" jdbcType="INTEGER" />
-    <result column="address_id" property="addressId" jdbcType="VARCHAR" />
+    <result column="address_id" property="addressId" jdbcType="INTEGER" />
     <result column="actual_amount" property="actualAmount" jdbcType="DECIMAL" />
     <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
-    <result column="shop_id" property="shopId" jdbcType="VARCHAR" />
+    <result column="shop_id" property="shopId" jdbcType="BIGINT" />
     <result column="allocation_from_time" property="allocationFromTime" jdbcType="TIMESTAMP" />
     <result column="allocation_to_time" property="allocationToTime" jdbcType="TIMESTAMP" />
     <result column="allocation_type" property="allocationType" jdbcType="INTEGER" />
@@ -82,8 +82,8 @@
   </sql>
   <sql id="Base_Column_List" >
     id, order_id, status, is_del, is_expired, address_id, actual_amount, total_amount, 
-    shop_id, allocation_from_time, allocation_to_time, allocation_type, pick_self_location_id, comment, arrival_time,
-    complete_time, create_time, modify_time, user_id
+    shop_id, allocation_from_time, allocation_to_time, allocation_type, pick_self_location_id, 
+    comment, arrival_time, complete_time, create_time, modify_time, user_id
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.itk.order.model.OrderHeaderExample" >
     select
@@ -128,16 +128,16 @@
       is_del, is_expired, address_id, 
       actual_amount, total_amount, shop_id, 
       allocation_from_time, allocation_to_time, 
-      allocation_type, pick_self_location_id,comment, arrival_time,
-      complete_time, create_time, modify_time, 
-      user_id)
+      allocation_type, pick_self_location_id, comment, 
+      arrival_time, complete_time, create_time, 
+      modify_time, user_id)
     values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{isDel,jdbcType=INTEGER}, #{isExpired,jdbcType=INTEGER}, #{addressId,jdbcType=VARCHAR}, 
-      #{actualAmount,jdbcType=DECIMAL}, #{totalAmount,jdbcType=DECIMAL}, #{shopId,jdbcType=VARCHAR}, 
+      #{isDel,jdbcType=INTEGER}, #{isExpired,jdbcType=INTEGER}, #{addressId,jdbcType=INTEGER}, 
+      #{actualAmount,jdbcType=DECIMAL}, #{totalAmount,jdbcType=DECIMAL}, #{shopId,jdbcType=BIGINT}, 
       #{allocationFromTime,jdbcType=TIMESTAMP}, #{allocationToTime,jdbcType=TIMESTAMP}, 
-      #{allocationType,jdbcType=INTEGER},#{pickSelfLocationId,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}, #{arrivalTime,jdbcType=TIMESTAMP},
-      #{completeTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
-      #{userId,jdbcType=VARCHAR})
+      #{allocationType,jdbcType=INTEGER}, #{pickSelfLocationId,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}, 
+      #{arrivalTime,jdbcType=TIMESTAMP}, #{completeTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.itk.order.model.OrderHeader" >
     insert into t_order_header
@@ -217,7 +217,7 @@
         #{isExpired,jdbcType=INTEGER},
       </if>
       <if test="addressId != null" >
-        #{addressId,jdbcType=VARCHAR},
+        #{addressId,jdbcType=INTEGER},
       </if>
       <if test="actualAmount != null" >
         #{actualAmount,jdbcType=DECIMAL},
@@ -226,7 +226,7 @@
         #{totalAmount,jdbcType=DECIMAL},
       </if>
       <if test="shopId != null" >
-        #{shopId,jdbcType=VARCHAR},
+        #{shopId,jdbcType=BIGINT},
       </if>
       <if test="allocationFromTime != null" >
         #{allocationFromTime,jdbcType=TIMESTAMP},
@@ -285,7 +285,7 @@
         is_expired = #{record.isExpired,jdbcType=INTEGER},
       </if>
       <if test="record.addressId != null" >
-        address_id = #{record.addressId,jdbcType=VARCHAR},
+        address_id = #{record.addressId,jdbcType=INTEGER},
       </if>
       <if test="record.actualAmount != null" >
         actual_amount = #{record.actualAmount,jdbcType=DECIMAL},
@@ -294,7 +294,7 @@
         total_amount = #{record.totalAmount,jdbcType=DECIMAL},
       </if>
       <if test="record.shopId != null" >
-        shop_id = #{record.shopId,jdbcType=VARCHAR},
+        shop_id = #{record.shopId,jdbcType=BIGINT},
       </if>
       <if test="record.allocationFromTime != null" >
         allocation_from_time = #{record.allocationFromTime,jdbcType=TIMESTAMP},
@@ -338,10 +338,10 @@
       status = #{record.status,jdbcType=INTEGER},
       is_del = #{record.isDel,jdbcType=INTEGER},
       is_expired = #{record.isExpired,jdbcType=INTEGER},
-      address_id = #{record.addressId,jdbcType=VARCHAR},
+      address_id = #{record.addressId,jdbcType=INTEGER},
       actual_amount = #{record.actualAmount,jdbcType=DECIMAL},
       total_amount = #{record.totalAmount,jdbcType=DECIMAL},
-      shop_id = #{record.shopId,jdbcType=VARCHAR},
+      shop_id = #{record.shopId,jdbcType=BIGINT},
       allocation_from_time = #{record.allocationFromTime,jdbcType=TIMESTAMP},
       allocation_to_time = #{record.allocationToTime,jdbcType=TIMESTAMP},
       allocation_type = #{record.allocationType,jdbcType=INTEGER},
@@ -372,7 +372,7 @@
         is_expired = #{isExpired,jdbcType=INTEGER},
       </if>
       <if test="addressId != null" >
-        address_id = #{addressId,jdbcType=VARCHAR},
+        address_id = #{addressId,jdbcType=INTEGER},
       </if>
       <if test="actualAmount != null" >
         actual_amount = #{actualAmount,jdbcType=DECIMAL},
@@ -381,7 +381,7 @@
         total_amount = #{totalAmount,jdbcType=DECIMAL},
       </if>
       <if test="shopId != null" >
-        shop_id = #{shopId,jdbcType=VARCHAR},
+        shop_id = #{shopId,jdbcType=BIGINT},
       </if>
       <if test="allocationFromTime != null" >
         allocation_from_time = #{allocationFromTime,jdbcType=TIMESTAMP},
@@ -422,10 +422,10 @@
       status = #{status,jdbcType=INTEGER},
       is_del = #{isDel,jdbcType=INTEGER},
       is_expired = #{isExpired,jdbcType=INTEGER},
-      address_id = #{addressId,jdbcType=VARCHAR},
+      address_id = #{addressId,jdbcType=INTEGER},
       actual_amount = #{actualAmount,jdbcType=DECIMAL},
       total_amount = #{totalAmount,jdbcType=DECIMAL},
-      shop_id = #{shopId,jdbcType=VARCHAR},
+      shop_id = #{shopId,jdbcType=BIGINT},
       allocation_from_time = #{allocationFromTime,jdbcType=TIMESTAMP},
       allocation_to_time = #{allocationToTime,jdbcType=TIMESTAMP},
       allocation_type = #{allocationType,jdbcType=INTEGER},
@@ -438,11 +438,4 @@
       user_id = #{userId,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-
-  <select id="selectByOrderId" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select
-    <include refid="Base_Column_List" />
-    from t_order_header
-    where is_del = 0 and  order_id = #{orderId,jdbcType=VARCHAR}
-  </select>
 </mapper>

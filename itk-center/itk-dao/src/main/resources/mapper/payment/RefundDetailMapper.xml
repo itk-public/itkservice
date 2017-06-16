@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itk.payment.mapper.RefundDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.itk.payment.model.RefundDetail" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="refund_detail_id" property="refundDetailId" jdbcType="VARCHAR" />
+    <result column="flow_id" property="flowId" jdbcType="VARCHAR" />
+    <result column="item_info_id" property="itemInfoId" jdbcType="VARCHAR" />
+    <result column="refund_count" property="refundCount" jdbcType="INTEGER" />
+    <result column="platform_promotion_code" property="platformPromotionCode" jdbcType="INTEGER" />
+    <result column="shop_promotion_code" property="shopPromotionCode" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, refund_detail_id, flow_id, item_info_id, refund_count, platform_promotion_code, 
+    shop_promotion_code
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.itk.payment.model.RefundDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_refund_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null" >
+      <if test="offset != null" >
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null" >
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_refund_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_refund_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.itk.payment.model.RefundDetailExample" >
+    delete from t_refund_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.itk.payment.model.RefundDetail" >
+    insert into t_refund_detail (id, refund_detail_id, flow_id, 
+      item_info_id, refund_count, platform_promotion_code, 
+      shop_promotion_code)
+    values (#{id,jdbcType=BIGINT}, #{refundDetailId,jdbcType=VARCHAR}, #{flowId,jdbcType=VARCHAR}, 
+      #{itemInfoId,jdbcType=VARCHAR}, #{refundCount,jdbcType=INTEGER}, #{platformPromotionCode,jdbcType=INTEGER}, 
+      #{shopPromotionCode,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.itk.payment.model.RefundDetail" >
+    insert into t_refund_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="refundDetailId != null" >
+        refund_detail_id,
+      </if>
+      <if test="flowId != null" >
+        flow_id,
+      </if>
+      <if test="itemInfoId != null" >
+        item_info_id,
+      </if>
+      <if test="refundCount != null" >
+        refund_count,
+      </if>
+      <if test="platformPromotionCode != null" >
+        platform_promotion_code,
+      </if>
+      <if test="shopPromotionCode != null" >
+        shop_promotion_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="refundDetailId != null" >
+        #{refundDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="flowId != null" >
+        #{flowId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemInfoId != null" >
+        #{itemInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="refundCount != null" >
+        #{refundCount,jdbcType=INTEGER},
+      </if>
+      <if test="platformPromotionCode != null" >
+        #{platformPromotionCode,jdbcType=INTEGER},
+      </if>
+      <if test="shopPromotionCode != null" >
+        #{shopPromotionCode,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.itk.payment.model.RefundDetailExample" resultType="java.lang.Integer" >
+    select count(*) from t_refund_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_refund_detail
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.refundDetailId != null" >
+        refund_detail_id = #{record.refundDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowId != null" >
+        flow_id = #{record.flowId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemInfoId != null" >
+        item_info_id = #{record.itemInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refundCount != null" >
+        refund_count = #{record.refundCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.platformPromotionCode != null" >
+        platform_promotion_code = #{record.platformPromotionCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopPromotionCode != null" >
+        shop_promotion_code = #{record.shopPromotionCode,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_refund_detail
+    set id = #{record.id,jdbcType=BIGINT},
+      refund_detail_id = #{record.refundDetailId,jdbcType=VARCHAR},
+      flow_id = #{record.flowId,jdbcType=VARCHAR},
+      item_info_id = #{record.itemInfoId,jdbcType=VARCHAR},
+      refund_count = #{record.refundCount,jdbcType=INTEGER},
+      platform_promotion_code = #{record.platformPromotionCode,jdbcType=INTEGER},
+      shop_promotion_code = #{record.shopPromotionCode,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itk.payment.model.RefundDetail" >
+    update t_refund_detail
+    <set >
+      <if test="refundDetailId != null" >
+        refund_detail_id = #{refundDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="flowId != null" >
+        flow_id = #{flowId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemInfoId != null" >
+        item_info_id = #{itemInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="refundCount != null" >
+        refund_count = #{refundCount,jdbcType=INTEGER},
+      </if>
+      <if test="platformPromotionCode != null" >
+        platform_promotion_code = #{platformPromotionCode,jdbcType=INTEGER},
+      </if>
+      <if test="shopPromotionCode != null" >
+        shop_promotion_code = #{shopPromotionCode,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itk.payment.model.RefundDetail" >
+    update t_refund_detail
+    set refund_detail_id = #{refundDetailId,jdbcType=VARCHAR},
+      flow_id = #{flowId,jdbcType=VARCHAR},
+      item_info_id = #{itemInfoId,jdbcType=VARCHAR},
+      refund_count = #{refundCount,jdbcType=INTEGER},
+      platform_promotion_code = #{platformPromotionCode,jdbcType=INTEGER},
+      shop_promotion_code = #{shopPromotionCode,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

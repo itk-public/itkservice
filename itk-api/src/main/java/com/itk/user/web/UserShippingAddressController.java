@@ -1,6 +1,6 @@
 package com.itk.user.web;
 
-import com.itk.config.ResultCode;
+import com.itk.exception.ResultCode;
 import com.itk.security.SecurityUtils;
 import com.itk.user.model.UserShippingAddress;
 import com.itk.user.model.UserShippingAddressVO;
@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.net.URISyntaxException;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 /**

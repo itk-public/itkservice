@@ -111,6 +111,12 @@
     <dubbo:reference id="purchaseService" interface="com.itk.payment.service.PurchaseService"
                      check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
 
+    <dubbo:reference id="refundFlowService" interface="com.itk.payment.service.RefundFlowService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
+
+    <dubbo:reference id="refundDetailService" interface="com.itk.payment.service.RefundDetailService"
+                     check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>
+
     <!--收货地址-->
     <dubbo:reference id="userShippingAddressService" interface="com.itk.user.service.UserShippingAddressService"
                      check="false" version="1.0" url="" registry="zookeeper" protocol="dubbo" timeout="15000"/>

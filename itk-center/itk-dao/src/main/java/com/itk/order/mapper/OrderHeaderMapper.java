@@ -1,9 +1,8 @@
 package com.itk.order.mapper;
 
-import java.util.List;
-
 import com.itk.order.model.OrderHeader;
 import com.itk.order.model.OrderHeaderExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface OrderHeaderMapper {
@@ -28,6 +27,4 @@ public interface OrderHeaderMapper {
     int updateByPrimaryKeySelective(OrderHeader record);
 
     int updateByPrimaryKey(OrderHeader record);
-
-    OrderHeader selectByOrderId(String orderId);
 }

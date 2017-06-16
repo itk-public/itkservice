@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.itk.base.model.ShopInfo;
 import com.itk.item.model.ItemInfo;
+import com.itk.item.model.ItemInfoVO;
 import com.itk.promotion.model.SaleInfo;
 import com.itk.user.model.UserShippingAddress;
 import lombok.Getter;
@@ -50,11 +51,6 @@ public class ShoppingCartVO {
     private BigDecimal totalAmount;
 
     /**
-     * 店铺信息 id
-     */
-    private Long shopId;
-
-    /**
      * 配送方式(0: 平台配送, 1: 用户自提)
      */
     private Integer allocationType;
@@ -87,21 +83,13 @@ public class ShoppingCartVO {
     @Getter
     public static class ShopDetail {
 
-        private String shopId;
-
-        public String getShopId() {
-            return shopId;
-        }
-
-        public void setShopId(String shopId) {
-            this.shopId = shopId;
-        }
+        private Long shopId;
 
         private ShopInfo shop;
 
-        private BigDecimal priceTotal;
+        private BigDecimal marketTotal;
 
-        private BigDecimal totalPayment;
+        private BigDecimal actualTotal;
 
         private SaleInfo coupon;
 
@@ -110,6 +98,7 @@ public class ShoppingCartVO {
         private boolean withCoupon;
     }
 
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Setter
@@ -117,7 +106,7 @@ public class ShoppingCartVO {
     public static class ProductDetail {
 
         private Integer itemId;
-        private ItemInfo itemInfo;
+        private ItemInfoVO itemInfo;
         private Price price;
         private Integer number;
     }
@@ -128,8 +117,7 @@ public class ShoppingCartVO {
     @Getter
     public static class Price {
         private BigDecimal market;
-        private BigDecimal total;
-        private BigDecimal value;
+        private BigDecimal actual;
     }
     //todo
     //appointments

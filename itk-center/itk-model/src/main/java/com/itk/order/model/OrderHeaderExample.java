@@ -446,62 +446,52 @@ public class OrderHeaderExample {
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdEqualTo(String value) {
+        public Criteria andAddressIdEqualTo(Integer value) {
             addCriterion("address_id =", value, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdNotEqualTo(String value) {
+        public Criteria andAddressIdNotEqualTo(Integer value) {
             addCriterion("address_id <>", value, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdGreaterThan(String value) {
+        public Criteria andAddressIdGreaterThan(Integer value) {
             addCriterion("address_id >", value, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdGreaterThanOrEqualTo(String value) {
+        public Criteria andAddressIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("address_id >=", value, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdLessThan(String value) {
+        public Criteria andAddressIdLessThan(Integer value) {
             addCriterion("address_id <", value, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdLessThanOrEqualTo(String value) {
+        public Criteria andAddressIdLessThanOrEqualTo(Integer value) {
             addCriterion("address_id <=", value, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdLike(String value) {
-            addCriterion("address_id like", value, "addressId");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressIdNotLike(String value) {
-            addCriterion("address_id not like", value, "addressId");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressIdIn(List<String> values) {
+        public Criteria andAddressIdIn(List<Integer> values) {
             addCriterion("address_id in", values, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdNotIn(List<String> values) {
+        public Criteria andAddressIdNotIn(List<Integer> values) {
             addCriterion("address_id not in", values, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdBetween(String value1, String value2) {
+        public Criteria andAddressIdBetween(Integer value1, Integer value2) {
             addCriterion("address_id between", value1, value2, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdNotBetween(String value1, String value2) {
+        public Criteria andAddressIdNotBetween(Integer value1, Integer value2) {
             addCriterion("address_id not between", value1, value2, "addressId");
             return (Criteria) this;
         }
@@ -636,62 +626,52 @@ public class OrderHeaderExample {
             return (Criteria) this;
         }
 
-        public Criteria andShopIdEqualTo(String value) {
+        public Criteria andShopIdEqualTo(Long value) {
             addCriterion("shop_id =", value, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdNotEqualTo(String value) {
+        public Criteria andShopIdNotEqualTo(Long value) {
             addCriterion("shop_id <>", value, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdGreaterThan(String value) {
+        public Criteria andShopIdGreaterThan(Long value) {
             addCriterion("shop_id >", value, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdGreaterThanOrEqualTo(String value) {
+        public Criteria andShopIdGreaterThanOrEqualTo(Long value) {
             addCriterion("shop_id >=", value, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdLessThan(String value) {
+        public Criteria andShopIdLessThan(Long value) {
             addCriterion("shop_id <", value, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdLessThanOrEqualTo(String value) {
+        public Criteria andShopIdLessThanOrEqualTo(Long value) {
             addCriterion("shop_id <=", value, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdLike(String value) {
-            addCriterion("shop_id like", value, "shopId");
-            return (Criteria) this;
-        }
-
-        public Criteria andShopIdNotLike(String value) {
-            addCriterion("shop_id not like", value, "shopId");
-            return (Criteria) this;
-        }
-
-        public Criteria andShopIdIn(List<String> values) {
+        public Criteria andShopIdIn(List<Long> values) {
             addCriterion("shop_id in", values, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdNotIn(List<String> values) {
+        public Criteria andShopIdNotIn(List<Long> values) {
             addCriterion("shop_id not in", values, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdBetween(String value1, String value2) {
+        public Criteria andShopIdBetween(Long value1, Long value2) {
             addCriterion("shop_id between", value1, value2, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdNotBetween(String value1, String value2) {
+        public Criteria andShopIdNotBetween(Long value1, Long value2) {
             addCriterion("shop_id not between", value1, value2, "shopId");
             return (Criteria) this;
         }
@@ -873,6 +853,66 @@ public class OrderHeaderExample {
 
         public Criteria andAllocationTypeNotBetween(Integer value1, Integer value2) {
             addCriterion("allocation_type not between", value1, value2, "allocationType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickSelfLocationIdIsNull() {
+            addCriterion("pick_self_location_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickSelfLocationIdIsNotNull() {
+            addCriterion("pick_self_location_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickSelfLocationIdEqualTo(Integer value) {
+            addCriterion("pick_self_location_id =", value, "pickSelfLocationId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickSelfLocationIdNotEqualTo(Integer value) {
+            addCriterion("pick_self_location_id <>", value, "pickSelfLocationId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickSelfLocationIdGreaterThan(Integer value) {
+            addCriterion("pick_self_location_id >", value, "pickSelfLocationId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickSelfLocationIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("pick_self_location_id >=", value, "pickSelfLocationId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickSelfLocationIdLessThan(Integer value) {
+            addCriterion("pick_self_location_id <", value, "pickSelfLocationId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickSelfLocationIdLessThanOrEqualTo(Integer value) {
+            addCriterion("pick_self_location_id <=", value, "pickSelfLocationId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickSelfLocationIdIn(List<Integer> values) {
+            addCriterion("pick_self_location_id in", values, "pickSelfLocationId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickSelfLocationIdNotIn(List<Integer> values) {
+            addCriterion("pick_self_location_id not in", values, "pickSelfLocationId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickSelfLocationIdBetween(Integer value1, Integer value2) {
+            addCriterion("pick_self_location_id between", value1, value2, "pickSelfLocationId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickSelfLocationIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("pick_self_location_id not between", value1, value2, "pickSelfLocationId");
             return (Criteria) this;
         }
 

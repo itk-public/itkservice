@@ -1,8 +1,7 @@
 package com.itk.back.service;
 
 import com.itk.back.model.BackUser;
-import com.itk.config.Constants;
-import com.itk.config.ResultCode;
+import com.itk.exception.ResultCode;
 import com.itk.exception.SystemException;
 import com.itk.utils.Constant;
 import com.itk.utils.MD5Util;

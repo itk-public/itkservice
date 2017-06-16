@@ -1,6 +1,6 @@
 package com.itk.exception.handler;
 
-import com.itk.config.ResultCode;
+import com.itk.exception.ResultCode;
 import com.itk.exception.ObjectNotFoundException;
 import com.itk.exception.SystemException;
 import com.itk.utils.Constant;
@@ -11,8 +11,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.Locale;
 
 /**
  * Created by enchen on 5/17/17.
