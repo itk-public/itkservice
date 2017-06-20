@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class DisplayCategory implements Serializable {
-    private Integer id;
+    private Long id;
 
     /**
     * 父类id
@@ -51,11 +51,11 @@ public class DisplayCategory implements Serializable {
     */
     private Date modifyTime;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

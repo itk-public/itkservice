@@ -12,15 +12,62 @@ import java.util.List;
  */
 public interface UserShippingAddressService {
 
+    /**
+     * 获取用户收货地址(分页)
+     *
+     * @param userId
+     * @param pageParam
+     * @return
+     */
     PageInfo<UserShippingAddress> getUserShippingAddress(String userId, PageParam pageParam);
 
+    /**
+     * 获取用户默认收货地址
+     *
+     * @param userId
+     * @return
+     */
+    UserShippingAddress getUserDefaultShippingAddress(String userId);
+
+    /**
+     * 根据id获取收货地址详情
+     *
+     * @param id
+     * @return
+     */
     UserShippingAddress selectByPrimaryKey(Integer id);
 
-    int insertSelective(UserShippingAddress shippingAddress);
+    /**
+     * 新建收货地址
+     *
+     * @param userShippingAddress
+     * @return
+     */
+    UserShippingAddress createUserShippingAddress(UserShippingAddress userShippingAddress);
 
-    int updateByPrimaryKeySelective(UserShippingAddress record);
+    /**
+     * 修改收货地址
+     *
+     * @param userShippingAddress
+     * @return
+     */
+    UserShippingAddress updateUserShippingAddress(UserShippingAddress userShippingAddress);
 
-    int updateByPrimaryKey(UserShippingAddress record);
 
-    List<UserShippingAddress> selectByExample(UserShippingAddressExample shippingAddress);
+    /**
+     * 删除收货地址(逻辑删除)
+     *
+     * @param userShippingAddress
+     * @return
+     */
+    UserShippingAddress deleteUserShippingAddress(UserShippingAddress userShippingAddress);
+
+    /**
+     * 设置/取消默认收货地址
+     *
+     * @param userShippingAddress
+     * @param isDefault
+     * @return
+     */
+    UserShippingAddress setDefaultUserShippingAddress(UserShippingAddress userShippingAddress, boolean isDefault);
 }

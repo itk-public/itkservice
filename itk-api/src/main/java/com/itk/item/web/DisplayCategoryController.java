@@ -18,8 +18,8 @@ public class DisplayCategoryController {
 
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public WebResult addDisplayCategory(@RequestBody DisplayCategory displayCategory) throws Exception{
-        if(displayCategoryFrontService.addDisplayCategory(displayCategory) > 0){
+    public WebResult addDisplayCategory(@RequestBody DisplayCategory displayCategory) throws Exception {
+        if (displayCategoryFrontService.addDisplayCategory(displayCategory) > 0) {
             return WebResult.ok("添加成功！");
         }
         return WebResult.ok("添加失败！");
@@ -27,15 +27,15 @@ public class DisplayCategoryController {
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public WebResult updateDisplayCategory(@RequestBody DisplayCategory displayCategory) throws Exception {
-        if(displayCategoryFrontService.updateDisplayCategory(displayCategory) > 0){
+        if (displayCategoryFrontService.updateDisplayCategory(displayCategory) > 0) {
             return WebResult.ok("修改成功！");
         }
         return WebResult.ok("修改失败！");
     }
 
     @RequestMapping(value = "/delete/{displayCategoryId}", method = RequestMethod.DELETE)
-    public WebResult delDisplayCategory(@PathVariable(value = "displayCategoryId") Integer displayCategoryId) throws Exception {
-        if(displayCategoryFrontService.delDisplayCategory(displayCategoryId) > 0){
+    public WebResult delDisplayCategory(@PathVariable(value = "displayCategoryId") Long displayCategoryId) throws Exception {
+        if (displayCategoryFrontService.delDisplayCategory(displayCategoryId) > 0) {
             return WebResult.ok("删除成功！");
         }
         return WebResult.ok("删除失败！");
@@ -52,7 +52,7 @@ public class DisplayCategoryController {
     }
 
     @RequestMapping(value = "/selectDisplayCategoryDetail/{displayCategoryId}", method = RequestMethod.GET)
-    public WebResult selectDisplayCategoriesByParentId(@PathVariable(value = "displayCategoryId") Integer displayCategoryId) throws Exception {
+    public WebResult selectDisplayCategoriesById(@PathVariable(value = "displayCategoryId") Long displayCategoryId) throws Exception {
         return WebResult.ok(displayCategoryFrontService.selectByPrimaryKey(displayCategoryId));
     }
 }

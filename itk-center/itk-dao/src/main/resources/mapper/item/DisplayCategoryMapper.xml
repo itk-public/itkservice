@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.itk.item.mapper.DisplayCategoryMapper" >
   <resultMap id="BaseResultMap" type="com.itk.item.model.DisplayCategory" >
-    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="id" property="id" jdbcType="BIGINT" />
     <result column="parent_id" property="parentId" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="src" property="src" jdbcType="VARCHAR" />
@@ -97,15 +97,15 @@
       </if>
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from t_display_category
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from t_display_category
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.itk.item.model.DisplayCategoryExample" >
     delete from t_display_category
@@ -118,7 +118,7 @@
       src, isShow, is_leaf_category, 
       create_date, creator, updator, 
       modify_time)
-    values (#{id,jdbcType=INTEGER}, #{parentId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR},
       #{src,jdbcType=VARCHAR}, #{isshow,jdbcType=INTEGER}, #{isLeafCategory,jdbcType=INTEGER}, 
       #{createDate,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}, #{updator,jdbcType=VARCHAR}, 
       #{modifyTime,jdbcType=TIMESTAMP})
@@ -159,7 +159,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+        #{id,jdbcType=BIGINT},
       </if>
       <if test="parentId != null" >
         #{parentId,jdbcType=BIGINT},
@@ -200,7 +200,7 @@
     update t_display_category
     <set >
       <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
+        id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.parentId != null" >
         parent_id = #{record.parentId,jdbcType=BIGINT},
@@ -236,7 +236,7 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update t_display_category
-    set id = #{record.id,jdbcType=INTEGER},
+    set id = #{record.id,jdbcType=BIGINT},
       parent_id = #{record.parentId,jdbcType=BIGINT},
       name = #{record.name,jdbcType=VARCHAR},
       src = #{record.src,jdbcType=VARCHAR},
@@ -281,7 +281,7 @@
         modify_time = #{modifyTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.itk.item.model.DisplayCategory" >
     update t_display_category
@@ -294,7 +294,7 @@
       creator = #{creator,jdbcType=VARCHAR},
       updator = #{updator,jdbcType=VARCHAR},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectDisplayCategories" resultMap="BaseResultMap"  >
     select

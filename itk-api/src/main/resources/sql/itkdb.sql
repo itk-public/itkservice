@@ -253,7 +253,7 @@ CREATE TABLE `t_back_user` (
 
 CREATE TABLE `t_display_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `parent_id` bigint(20)  NOT NULL COMMENT '父类id',
+  `parent_id` bigint(20)  DEFAULT NULL COMMENT '父类id',
   `name` varchar(200)  DEFAULT NULL COMMENT '名称',
   `src` varchar(100)  NOT NULL COMMENT '图片',
   `isShow`  int(1) DEFAULT NULL COMMENT '是否显示 0:不显示 1:显示',
@@ -280,7 +280,7 @@ CREATE TABLE `t_shop_category` (
 CREATE TABLE `t_item_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(200)  DEFAULT NULL COMMENT '商品名称',
-  `mainSrc` varchar(100)  NOT NULL COMMENT '商品主图',
+  `mainSrc` varchar(100)  DEFAULT NULL COMMENT '商品主图',
   `bar_code` varchar(100)  NOT NULL COMMENT '条形码',
   `item_id` varchar(100)  NOT NULL COMMENT '商品id',
   `detailSrc`  varchar(400) DEFAULT NULL COMMENT '商品详情图',

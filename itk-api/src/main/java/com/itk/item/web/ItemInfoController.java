@@ -1,62 +1,110 @@
 package com.itk.item.web;
 
+import com.itk.config.ResultCode;
 import com.itk.item.model.ItemInfo;
 import com.itk.item.service.ItemInfoFrontServiceImpl;
+import com.itk.solr.model.SolrItem;
+import com.itk.util.PageInfo;
+import com.itk.util.PageParam;
+import com.itk.utils.Constant;
+import com.itk.utils.PaginationUtil;
 import com.itk.utils.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by enchen on 2/23/17.
  */
 @RestController
-@RequestMapping("/item/itemInfo")
+@RequestMapping("/api/item/itemInfo")
 public class ItemInfoController {
 
     @Autowired
     private ItemInfoFrontServiceImpl itemInfoFrontService;
 
+    @Autowired
+    MessageSource exceptionSource;
+
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public WebResult addItemInfo(@RequestBody ItemInfo itemInfo) throws Exception{
-        if(itemInfoFrontService.addItemInfo(itemInfo) > 0){
-            return WebResult.ok("添加成功！");
-        }
-        return WebResult.ok("添加失败！");
+    public ResponseEntity<WebResult> addItemInfo(@RequestBody ItemInfo itemInfo) throws Exception {
+        itemInfoFrontService.addItemInfo(itemInfo);
+        return ResponseEntity.ok(
+                WebResult.ok(
+                        exceptionSource.getMessage(ResultCode.ADD_SUCCESS + "", new String[]{}, "SUCCESS", Constant.DEFAULT_LOCALE)
+                )
+        );
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public WebResult updateItemComment(@RequestBody ItemInfo itemInfo) throws Exception {
-        if(itemInfoFrontService.updateItemInfo(itemInfo) > 0){
-            return WebResult.ok("修改成功！");
-        }
-        return WebResult.ok("修改失败！");
+    public ResponseEntity<WebResult> updateItemComment(@RequestBody ItemInfo itemInfo) throws Exception {
+        itemInfoFrontService.updateItemInfo(itemInfo);
+        return ResponseEntity.ok(
+                WebResult.ok(
+                        exceptionSource.getMessage(ResultCode.EDIT_SUCCESS + "", new String[]{}, "SUCCESS", Constant.DEFAULT_LOCALE)
+                )
+        );
     }
 
     @RequestMapping(value = "/deleteItemInfo/{itemInfoId}", method = RequestMethod.DELETE)
-    public WebResult delItemInfo(@PathVariable(value = "itemInfoId") Integer itemInfoId) throws Exception {
-        if(itemInfoFrontService.delItemInfo(itemInfoId) > 0){
-            return WebResult.ok("删除成功！");
-        }
-        return WebResult.ok("删除失败！");
+    public ResponseEntity<WebResult> delItemInfo(@PathVariable(value = "itemInfoId") Integer itemInfoId) throws Exception {
+        itemInfoFrontService.delItemInfo(itemInfoId);
+        return ResponseEntity.ok(
+                WebResult.ok(
+                        exceptionSource.getMessage(ResultCode.DELETE_SUCCESS + "", new String[]{}, "SUCCESS", Constant.DEFAULT_LOCALE)
+                )
+        );
     }
 
 
     @RequestMapping(value = "/selectByCategoryIdAndStatus", method = RequestMethod.GET)
-    public WebResult selectByCategoryIdAndStatus(@RequestParam("categoryId")Long categoryId,
-                                                 @RequestParam("status")Integer status) throws Exception {
-        return WebResult.ok(itemInfoFrontService.selectByCategoryIdAndStatus(categoryId, status));
+    public ResponseEntity<WebResult> selectByCategoryIdAndStatus(@RequestParam("categoryId") Long categoryId,
+                                                                 @RequestParam("status") Integer status) throws Exception {
+        return ResponseEntity.ok(
+                WebResult.ok(itemInfoFrontService.selectByCategoryIdAndStatus(categoryId, status)
+                )
+        );
     }
 
     @RequestMapping(value = "/selectByShopIdAndStatus", method = RequestMethod.GET)
-    public WebResult selectByShopIdAndStatus(@RequestParam("shopId")Long shopId,
-                                             @RequestParam("status")Integer status) throws Exception {
-        return WebResult.ok(itemInfoFrontService.selectByShopIdAndStatus(shopId, status));
+    public ResponseEntity<WebResult> selectByShopIdAndStatus(@RequestParam("shopId") Long shopId,
+                                                             @RequestParam("status") Integer status) throws Exception {
+        return ResponseEntity.ok(
+                WebResult.ok(itemInfoFrontService.selectByShopIdAndStatus(shopId, status)
+                )
+        );
     }
 
     @RequestMapping(value = "/selectByShopCategoryIdAndStatus", method = RequestMethod.GET)
-    public WebResult selectByShopCategoryIdAndStatus(@RequestParam("shopCategoryId")Integer shopCategoryId,
-                                                     @RequestParam("status")Integer status) throws Exception {
-        return WebResult.ok(itemInfoFrontService.selectByShopCategoryIdAndStatus(shopCategoryId, status));
+    public ResponseEntity<WebResult> selectByShopCategoryIdAndStatus(@RequestParam("shopCategoryId") Integer shopCategoryId,
+                                                                     @RequestParam("status") Integer status) throws Exception {
+        return ResponseEntity.ok(
+                WebResult.ok(
+                        itemInfoFrontService.selectByShopCategoryIdAndStatus(shopCategoryId, status)
+                )
+        );
+    }
+
+    /**
+     * 根据关键字查询商品信息
+     *
+     * @param keyword
+     * @param pageable
+     * @return
+     */
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public ResponseEntity<WebResult> searchByKeyword(@RequestParam String keyword,
+                                                     PageParam pageable) {
+        PageInfo<SolrItem> page = itemInfoFrontService.searchByKeyword(keyword, pageable);
+        HttpHeaders httpHeaders = PaginationUtil.generatePaginationHttpHeaders(page, "api/item/itemInfo/search?keyword=" + keyword);
+        return new ResponseEntity<>(
+                WebResult.ok(page.getResult()), httpHeaders, HttpStatus.OK
+        );
     }
 }

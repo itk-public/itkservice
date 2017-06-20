@@ -12,7 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -75,14 +74,7 @@ public class UserShippingAddressFrontService {
      * @return
      */
     public UserShippingAddress getUserDefaultShippingAddress(String userId) {
-        UserShippingAddressExample example = new UserShippingAddressExample();
-        example.or().andUserIdEqualTo(userId).andEnableEqualTo(true).andDeefaultEqualTo(true);
-        List<UserShippingAddress> shippingAddresses = shippingAddressService.selectByExample(example);
-        if (shippingAddresses == null || shippingAddresses.size() < 1) {
-            return null;
-        } else {
-            return shippingAddresses.get(0);
-        }
+        return shippingAddressService.getUserDefaultShippingAddress(userId);
     }
 
     /**
@@ -91,43 +83,33 @@ public class UserShippingAddressFrontService {
      * @param shippingAddressVO
      * @return
      */
-    public int createUserShippingAddress(UserShippingAddressVO shippingAddressVO) {
+    public UserShippingAddress createUserShippingAddress(UserShippingAddressVO shippingAddressVO) {
         shippingAddressVO.setId(null);
         UserShippingAddress userShippingAddress = UserShippingAddressMapper.voToModel(shippingAddressVO);
-        //如果新建的为默认收货地址,将数据库中默认改成非默认
-        if (userShippingAddress.isDeefault()) {
-            UserShippingAddress existDefaultShippingAddress = getUserDefaultShippingAddress(userShippingAddress.getUserId());
-            if (existDefaultShippingAddress != null) {
-                existDefaultShippingAddress.setDeefault(false);
-                shippingAddressService.updateByPrimaryKeySelective(existDefaultShippingAddress);
-            }
-        }
         String currentUserLogin = SecurityUtils.getCurrentUserLogin();
         Date now = new Date();
         userShippingAddress.setCreateBy(currentUserLogin);
         userShippingAddress.setCreateDate(now);
         userShippingAddress.setLastModifyBy(currentUserLogin);
         userShippingAddress.setLastModifyDate(now);
-        return shippingAddressService.insertSelective(userShippingAddress);
+        return shippingAddressService.createUserShippingAddress(userShippingAddress);
     }
 
     /**
-     * 修改收货地址信息(不支持修改默认,逻辑删除)
+     * 修改收货地址信息(不支持逻辑删除)
      *
      * @param userShippingAddressVO
      * @return
      */
-    public int updateUserShippingAddress(UserShippingAddressVO userShippingAddressVO) {
+    public UserShippingAddress updateUserShippingAddress(UserShippingAddressVO userShippingAddressVO) {
         if (userShippingAddressVO.getId() == null) {
             throw new ObjectNotFoundException(UserShippingAddress.class, "");
         }
-        UserShippingAddress existAddress = getShippingAddressDetail(userShippingAddressVO.getId());
         UserShippingAddress shippingAddress = UserShippingAddressMapper.voToModel(userShippingAddressVO);
-        shippingAddress.setEnable(existAddress.isEnable());
-        shippingAddress.setDeefault(existAddress.isDeefault());
+        shippingAddress.setEnable(true);
         shippingAddress.setLastModifyBy(SecurityUtils.getCurrentUserLogin());
         shippingAddress.setLastModifyDate(new Date());
-        return shippingAddressService.updateByPrimaryKeySelective(shippingAddress);
+        return shippingAddressService.updateUserShippingAddress(shippingAddress);
     }
 
     /**
@@ -136,27 +118,25 @@ public class UserShippingAddressFrontService {
      * @param shippingAddressId
      * @return
      */
-    public int deleteUserShippingAddress(Integer shippingAddressId) {
+    public UserShippingAddress deleteUserShippingAddress(Integer shippingAddressId) {
         UserShippingAddress userShippingAddress = new UserShippingAddress();
         userShippingAddress.setId(shippingAddressId);
-        userShippingAddress.setEnable(false);
-        userShippingAddress.setDeefault(false);
         userShippingAddress.setLastModifyBy(SecurityUtils.getCurrentUserLogin());
         userShippingAddress.setLastModifyDate(new Date());
-        return shippingAddressService.updateByPrimaryKeySelective(userShippingAddress);
+        return shippingAddressService.deleteUserShippingAddress(userShippingAddress);
     }
 
-    @Transactional
-    public int setDefaultUserShippingAddress(Integer shippingAddressId, boolean isDefault) {
+    /**
+     * 设置获取取消用户默认收货地址
+     *
+     * @param shippingAddressId
+     * @param isDefault
+     * @return
+     */
+    public UserShippingAddress setDefaultUserShippingAddress(Integer shippingAddressId, boolean isDefault) {
         UserShippingAddress existShippingAddress = getEnableShippingAddressDetail(shippingAddressId);
-        if (isDefault) {
-            UserShippingAddress existDefaultShippingAddress = getUserDefaultShippingAddress(existShippingAddress.getUserId());
-            if (existDefaultShippingAddress != null) {
-                existDefaultShippingAddress.setDeefault(false);
-                shippingAddressService.updateByPrimaryKeySelective(existDefaultShippingAddress);
-            }
-        }
-        existShippingAddress.setDeefault(isDefault);
-        return shippingAddressService.updateByPrimaryKeySelective(existShippingAddress);
+        existShippingAddress.setLastModifyDate(new Date());
+        existShippingAddress.setLastModifyBy(SecurityUtils.getCurrentUserLogin());
+        return shippingAddressService.setDefaultUserShippingAddress(existShippingAddress, isDefault);
     }
 }

@@ -25,11 +25,11 @@ public class DisplayCategoryFrontServiceImpl {
         return displayCategoryService.updateDisplayCategory(displayCategory);
     }
 
-    public int delDisplayCategory(Integer displayCategoryId){
+    public int delDisplayCategory(Long displayCategoryId){
         return displayCategoryService.delDisplayCategory(displayCategoryId);
     }
 
-    public DisplayCategory selectByPrimaryKey(Integer displayCategoryId){
+    public DisplayCategory selectByPrimaryKey(Long displayCategoryId){
         return displayCategoryService.selectByPrimaryKey(displayCategoryId);
     }
 

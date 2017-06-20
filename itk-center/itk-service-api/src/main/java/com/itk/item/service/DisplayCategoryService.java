@@ -14,9 +14,9 @@ public interface DisplayCategoryService {
 
     int updateDisplayCategory(DisplayCategory displayCategory);
 
-    int delDisplayCategory(Integer id);
+    int delDisplayCategory(Long id);
 
-    DisplayCategory selectByPrimaryKey(Integer id);
+    DisplayCategory selectByPrimaryKey(Long id);
 
     List<DisplayCategory> selectDisplayCategories();
 

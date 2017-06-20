@@ -1,8 +1,17 @@
 package com.itk.user.model;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.apache.solr.client.solrj.beans.Field;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.solr.core.mapping.Indexed;
+import org.springframework.data.solr.core.mapping.SolrDocument;
+
 import java.io.Serializable;
 import java.util.Date;
 
+@Setter
+@Getter
 public class UserShippingAddress implements Serializable{
     private Integer id;
 
@@ -86,139 +95,4 @@ public class UserShippingAddress implements Serializable{
     */
     private Date lastModifyDate;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getReceiverName() {
-        return receiverName;
-    }
-
-    public void setReceiverName(String receiverName) {
-        this.receiverName = receiverName;
-    }
-
-    public String getReceiverPhone() {
-        return receiverPhone;
-    }
-
-    public void setReceiverPhone(String receiverPhone) {
-        this.receiverPhone = receiverPhone;
-    }
-
-    public Integer getProviceId() {
-        return proviceId;
-    }
-
-    public void setProviceId(Integer proviceId) {
-        this.proviceId = proviceId;
-    }
-
-    public Long getCityId() {
-        return cityId;
-    }
-
-    public void setCityId(Long cityId) {
-        this.cityId = cityId;
-    }
-
-    public Long getCountyId() {
-        return countyId;
-    }
-
-    public void setCountyId(Long countyId) {
-        this.countyId = countyId;
-    }
-
-    public Long getTownId() {
-        return townId;
-    }
-
-    public void setTownId(Long townId) {
-        this.townId = townId;
-    }
-
-    public Long getVillageId() {
-        return villageId;
-    }
-
-    public void setVillageId(Long villageId) {
-        this.villageId = villageId;
-    }
-
-    public String getAddressDetail() {
-        return addressDetail;
-    }
-
-    public void setAddressDetail(String addressDetail) {
-        this.addressDetail = addressDetail;
-    }
-
-    public String getPostCode() {
-        return postCode;
-    }
-
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
-    }
-
-    public boolean isDeefault() {
-        return deefault;
-    }
-
-    public void setDeefault(boolean deefault) {
-        this.deefault = deefault;
-    }
-
-    public boolean isEnable() {
-        return enable;
-    }
-
-    public void setEnable(boolean enable) {
-        this.enable = enable;
-    }
-
-    public String getCreateBy() {
-        return createBy;
-    }
-
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy;
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getLastModifyBy() {
-        return lastModifyBy;
-    }
-
-    public void setLastModifyBy(String lastModifyBy) {
-        this.lastModifyBy = lastModifyBy;
-    }
-
-    public Date getLastModifyDate() {
-        return lastModifyDate;
-    }
-
-    public void setLastModifyDate(Date lastModifyDate) {
-        this.lastModifyDate = lastModifyDate;
-    }
 }
