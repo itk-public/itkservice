@@ -1,5 +1,7 @@
 package com.itk.order.service;
 
+import com.itk.dto.model.OrderInfoDTO;
+import com.itk.dto.model.ShoppingCartDTO;
 import com.itk.order.model.OrderHeader;
 
 /**
@@ -14,4 +16,10 @@ public interface OrderHeaderService {
     int updateOrderHeader(OrderHeader orderHeader);
 
     OrderHeader selectByOrderId(String orderId);
+
+    //购物车到订单
+    OrderInfoDTO getOrderInfoDetail(ShoppingCartDTO shoppingCartDTO);
+
+    // 订单提交
+    OrderInfoDTO getPurchaseOrderDetail(OrderInfoDTO orderInfoDTO);
 }

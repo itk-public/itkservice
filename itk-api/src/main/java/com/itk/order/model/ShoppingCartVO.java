@@ -60,6 +60,8 @@ public class ShoppingCartVO {
      */
     private Boolean platformCoupon;
 
+    private Integer platformCouponId;
+
     private ReceiveInfo receiveInfo;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -70,7 +72,7 @@ public class ShoppingCartVO {
 
         private UserShippingAddress userShippingAddress;
 
-        private ShopInfo shopInfo;
+        //private ShopInfo shopInfo;
     }
 
     private SaleInfo saleInfo;//券信息
@@ -96,6 +98,8 @@ public class ShoppingCartVO {
         private List<ProductDetail> products;
 
         private boolean withCoupon;
+
+        private Integer couponId;
     }
 
 
@@ -108,7 +112,7 @@ public class ShoppingCartVO {
         private Integer itemId;
         private ItemInfoVO itemInfo;
         private Price price;
-        private Integer number;
+        private Integer num;
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)

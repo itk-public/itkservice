@@ -1,7 +1,6 @@
 package com.itk.item.service;
 
 
-import com.itk.item.model.ItemComment;
 import com.itk.item.model.ItemInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

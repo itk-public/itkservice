@@ -1,7 +1,7 @@
 package com.itk.order.service;
 
+import com.itk.base.model.ShopInfo;
 import com.itk.base.service.ShopInfoService;
-import com.itk.exception.ObjectNotFoundException;
 import com.itk.exception.SystemException;
 import com.itk.item.mapper.ItemInfoMapper;
 import com.itk.item.model.ItemInfo;
@@ -21,7 +21,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by enchen on 5/5/17.
@@ -67,76 +66,166 @@ public class OrderFrontServiceImpl {
     public ShoppingCartVO getOrderInfoVoDetail(ShoppingCartVO shoppingCartVO) {
         ShoppingCartVO.ReceiveInfo receiveInfo = new ShoppingCartVO.ReceiveInfo();
         receiveInfo.setUserShippingAddress(userShippingAddressService.selectByPrimaryKey(shoppingCartVO.getAddressId()));
-        List<ShoppingCartVO.ShopDetail> shopDetailList = shoppingCartVO.getShopList();
-        shopDetailList.stream().map(shopDetail -> {
-            shopDetail.setShop(shopInfoService.selectByPrimaryKey(shopDetail.getShopId()));
-            shopDetail.getProducts().stream().map(productDetail -> {
-                productDetail.setItemInfo(ItemInfoMapper.modelToVO(itemInfoService.selectByPrimaryKey(productDetail.getItemId())));
-                return productDetail;
-            });
-            // 店铺优惠券扣减
-            if (shopDetail.getCoupon() != null) {
-                // TODO: 6/12/17 not Null 商品过期 平台优惠券
-                SaleInfo saleInfo = saleInfoService.selectByPrimaryKey(shopDetail.getCoupon().getId());
-                shopDetail.setCoupon(saleInfo);
-                if (saleInfo == null) {
-                    throw new ObjectNotFoundException(SaleInfo.class, shopDetail.getCoupon().getId());
-                }
-                //店铺货物加起来的减免之前的金额
-                BigDecimal totalMarket = shopDetail.getProducts().stream().map(productDetail -> {
-                    return productDetail.getItemInfo().getPrice().multiply(new BigDecimal(productDetail.getNumber()));
-                }).reduce(BigDecimal.ZERO, BigDecimal::add);
+        shoppingCartVO.setReceiveInfo(receiveInfo);
 
-                //优惠券的可用,
-                // 并且有效日期在当前日期之后
-                //saleType（1：满减 2：现金券）
-                // (saleType == 1 即为满减 && 如果店铺中商品价格加起来不小于满减,才可以使用券) || (现金券)
-                if ((saleInfo.getIsDel() == 0) &&
-                        saleInfo.getEffectiveDate().after(new Date()) &&
-                        (((1 == saleInfo.getSaleType()) && (totalMarket.compareTo(saleInfo.getSaleAmount()) > -1)) || (2 == saleInfo.getSaleType()))) {
-                    for (int i = 0; i < shopDetail.getProducts().size(); i++) {
-                        BigDecimal shopDiscountAmount = BigDecimal.ZERO;//商家券每次扣减金额的和
-                        shopDetail.getProducts().get(i).getPrice().setMarket(shopDetail.getProducts().get(i).getItemInfo().getPrice().multiply(new BigDecimal(shopDetail.getProducts().get(i).getNumber())));
-                        //最后一个商品,扣减的券的金额是 券总额 减去前面用掉的券的和
-                        if (i != shopDetail.getProducts().size() - 1) {
-                            //该商品需要减扣的金额(券金额按照商品金额的权重分配减免金额)
-                            BigDecimal temp = shopDetail.getProducts().get(i).getItemInfo().getPrice().divide(totalMarket, 2, BigDecimal.ROUND_DOWN).multiply(saleInfo.getAmount());
-                            shopDetail.getProducts().get(i).getPrice().setActual(shopDetail.getProducts().get(i).getItemInfo().getPrice().multiply(new BigDecimal(shopDetail.getProducts().get(i).getNumber())).subtract(temp));
-                            shopDiscountAmount = shopDiscountAmount.add(temp);
-                        } else {
-                            BigDecimal lastShopDiscountAmount = saleInfo.getAmount().subtract(shopDiscountAmount);
-                            shopDetail.getProducts().get(i).getPrice().setActual(shopDetail.getProducts().get(i).getItemInfo().getPrice().multiply(new BigDecimal(shopDetail.getProducts().get(i).getNumber())).subtract(lastShopDiscountAmount));
-                        }
-                    }
-                } else {
-                    //无可使用的券,actual price 不减扣券金额, 直接使用 单价 * 数量
-                    shopDetail.getProducts().stream().map(productDetail -> {
-                        productDetail.getPrice().setMarket(productDetail.getItemInfo().getPrice().multiply(new BigDecimal(productDetail.getNumber())));
-                        productDetail.getPrice().setActual(productDetail.getItemInfo().getPrice().multiply(new BigDecimal(productDetail.getNumber())));
-                        return productDetail;
-                    });
+        //平台优惠券
+        SaleInfo platformSaleInfo = null;
+        //平台优惠券金额
+        BigDecimal platformSaleInfoAmount = BigDecimal.ZERO;
+        //平台优惠券每次减扣的金额的和
+        BigDecimal platformDiscountAmount = BigDecimal.ZERO;
+        //平台优惠券最后一次券的抵扣金额（平台券总额 - 前面所有抵扣金额的和）
+        BigDecimal lastPlatformDiscountAmount = BigDecimal.ZERO;
+        if (shoppingCartVO.getPlatformCouponId() != null && shoppingCartVO.getPlatformCoupon() == true) {
+            SaleInfo temp = saleInfoService.selectByPrimaryKey(shoppingCartVO.getPlatformCouponId());
+            //判断券的过期时间
+            if (temp != null && temp.getInvalidDate().after(new Date())) {
+                platformSaleInfo = temp;
+                platformSaleInfoAmount = platformSaleInfo.getAmount();
+            }
+        }
+
+        //所有商品的总价 （平台优惠券算权重要用到）,不算运费
+        //装载店铺信息
+        //装载优惠券信息
+        //装载商品信息
+        BigDecimal totalAmount = BigDecimal.ZERO;
+        for (int i = 0; i < shoppingCartVO.getShopList().size(); i++) {
+            ShoppingCartVO.ShopDetail shopDetail = shoppingCartVO.getShopList().get(i);
+
+            //装载店铺信息
+            ShopInfo shop = shopInfoService.selectByPrimaryKey(shopDetail.getShopId());
+            shoppingCartVO.getShopList().get(i).setShop(shop);
+            //装载优惠券信息
+            SaleInfo saleInfo = saleInfoService.selectByPrimaryKey(shopDetail.getCouponId());
+            shoppingCartVO.getShopList().get(i).setCoupon(saleInfo);
+
+            //装载商品信息
+            //计算商品总价
+            for (int j = 0; j < shopDetail.getProducts().size(); j++) {
+                ShoppingCartVO.ProductDetail productDetail = shopDetail.getProducts().get(i);
+                ItemInfo item = itemInfoService.selectByPrimaryKey(productDetail.getItemId());
+                shopDetail.getProducts().get(i).setItemInfo(ItemInfoMapper.modelToVO(item));
+                totalAmount = totalAmount.add(item.getPrice().multiply(new BigDecimal(productDetail.getNum())));
+            }
+        }
+
+        //实际总金额
+        BigDecimal actualAmount = BigDecimal.ZERO;
+
+        for (int i = 0; i < shoppingCartVO.getShopList().size(); i++) {
+            ShoppingCartVO.ShopDetail shopDetail = shoppingCartVO.getShopList().get(i);
+            shoppingCartVO.getShopList().get(i).setShop(shopInfoService.selectByPrimaryKey(shopDetail.getShopId()));
+
+            //店铺优惠券
+            SaleInfo shopSaleInfo = null;
+            //商家券优惠金额
+            BigDecimal shopSaleInfoAmount = BigDecimal.ZERO;
+            //商家券每次减扣的金额的和
+            BigDecimal shopDiscountAmount = BigDecimal.ZERO;
+            //商家券最后一次券的抵扣金额（券总额 - 前面所有抵扣金额的和）
+            BigDecimal lastShopDiscountAmount = BigDecimal.ZERO;
+            if (shopDetail.getCouponId() != null && shopDetail.isWithCoupon() == true) {
+                SaleInfo temp = saleInfoService.selectByPrimaryKey(shopDetail.getCouponId());
+                //判断券的过期时间
+                if (temp != null && temp.getInvalidDate().after(new Date())) {
+                    shopSaleInfo = temp;
+                    shopSaleInfoAmount = shopSaleInfo.getAmount();
                 }
-            } else {
-                //无可使用的店铺券,actual price 不减扣券金额, 直接使用 单价 * 数量
-                shopDetail.getProducts().stream().map(productDetail -> {
-                    productDetail.getPrice().setMarket(productDetail.getItemInfo().getPrice().multiply(new BigDecimal(productDetail.getNumber())));
-                    productDetail.getPrice().setActual(productDetail.getItemInfo().getPrice().multiply(new BigDecimal(productDetail.getNumber())));
-                    return productDetail;
-                });
+            }
+            shoppingCartVO.getShopList().get(i).setCoupon(shopSaleInfo);
+
+            //单个店铺商品的总价(不算运费)
+            BigDecimal marketTotal = BigDecimal.ZERO;
+            //单个店铺的实际支付金额
+            BigDecimal actualTotal = BigDecimal.ZERO;
+
+            //装载 itemInfo ,单个店铺商品的总价
+            for (int j = 0; j < shopDetail.getProducts().size(); j++) {
+                ItemInfo itemInfo = itemInfoService.selectByPrimaryKey(shopDetail.getProducts().get(i).getItemId());
+                shopDetail.getProducts().get(i).setItemInfo(ItemInfoMapper.modelToVO(itemInfo));
+                marketTotal = marketTotal.add(itemInfo.getPrice().multiply(new BigDecimal(shopDetail.getProducts().get(i).getNum())));
             }
 
-            //计算购物车总金额
-            shopDetail.setMarketTotal(shopDetail.getProducts().stream().map(productDetail -> {
-                return productDetail.getPrice().getMarket();
-            }).reduce(BigDecimal.ZERO, BigDecimal::add));
-            //计算购物车实际总金额
-            shopDetail.setActualTotal(shopDetail.getProducts().stream().map(productDetail -> {
-                return productDetail.getPrice().getActual();
-            }).reduce(BigDecimal.ZERO, BigDecimal::add));
-            return shopDetail;
-        }).collect(Collectors.toList());
+            for (int j = 0; j < shopDetail.getProducts().size(); j++) {
+                ShoppingCartVO.ProductDetail product = shopDetail.getProducts().get(i);
+                ShoppingCartVO.Price price = new ShoppingCartVO.Price();
 
-        shoppingCartVO.setShopList(shopDetailList);
+                //单个商品的价格
+                BigDecimal productMarketPrice = BigDecimal.ZERO;
+
+                //单个商品的实际价格（扣减券后的）
+                BigDecimal productActualPrice = BigDecimal.ZERO;
+
+                //单个商品的平台优惠金额
+                BigDecimal productPlatformDiscountPrice = BigDecimal.ZERO;
+
+                //单个商品的店铺优惠金额
+                BigDecimal productShopDiscountPrice = BigDecimal.ZERO;
+
+                //商家券减扣
+                //type 1：全场券（平台） 2：商家券（商家）  3：会员全场券(平台) 4：会员商家券（商家）
+                //saleType（1：满减 2：现金券）
+                //(如果有券) && 商家券 && ((满减券 && 订单总金额满足满减) || 现金券)
+                if (shopDetail.getCouponId() != null && shopSaleInfo != null && shopSaleInfo.getType() == 2 &&
+                        ((shopSaleInfo.getSaleType() == 1 && marketTotal.compareTo(shopSaleInfo.getSaleAmount()) > -1) ||
+                                shopSaleInfo.getSaleType() == 2)) {
+
+                    //最后一件商品,减扣金额为 券总额 - 前面已减扣的金额的和
+                    if (j != shopDetail.getProducts().size() - 1) {
+                        //该商品需要减扣的金额(券金额按照商品金额的权重分配减免金额)
+                        BigDecimal temp = product.getItemInfo().getPrice().divide(totalAmount, 2, BigDecimal.ROUND_DOWN).multiply(shopSaleInfoAmount);
+                        productShopDiscountPrice = temp;
+                        shopDiscountAmount = shopDiscountAmount.add(temp.multiply(new BigDecimal(product.getNum())));
+                    } else {
+                        lastShopDiscountAmount = shopSaleInfoAmount.subtract(shopDiscountAmount);
+                        productShopDiscountPrice = lastShopDiscountAmount.divide(new BigDecimal(product.getNum()), 2, BigDecimal.ROUND_DOWN);
+                        //shopDiscountAmount = shopDiscountAmount.add(lastShopDiscountAmount.divide(new BigDecimal(product.getNum()), 2, BigDecimal.ROUND_DOWN));
+                    }
+                }
+
+                //平台券减扣
+                //type 1：全场券（平台） 2：商家券（商家）  3：会员全场券(平台) 4：会员商家券（商家）
+                //saleType（1：满减 2：现金券）
+                //(如果有券) && 平台券 && ((满减券 && 订单总金额满足满减) || 现金券)
+                if (shoppingCartVO.getPlatformCouponId() != null && platformSaleInfo != null && platformSaleInfo.getType() == 1 &&
+                        ((platformSaleInfo.getSaleType() == 1 && totalAmount.compareTo(platformSaleInfo.getSaleAmount()) > -1) ||
+                                platformSaleInfo.getSaleType() == 2)) {
+                    if (j != shopDetail.getProducts().size() - 1) {
+                        BigDecimal temp = product.getItemInfo().getPrice().divide(totalAmount, 2, BigDecimal.ROUND_DOWN).multiply(platformSaleInfoAmount);
+                        productPlatformDiscountPrice = temp;
+                        platformDiscountAmount = platformDiscountAmount.add(temp.multiply(new BigDecimal(product.getNum())));
+                        productPlatformDiscountPrice = productPlatformDiscountPrice.add(temp.multiply(new BigDecimal(product.getNum())));
+                    } else {
+                        lastPlatformDiscountAmount = platformSaleInfoAmount.subtract(platformDiscountAmount);
+                        productPlatformDiscountPrice = lastPlatformDiscountAmount.divide(new BigDecimal(product.getNum()), 2, BigDecimal.ROUND_DOWN);
+                    }
+                }
+
+                //计算单个商品的扣减总额（平台+商家）
+                BigDecimal tempProductActualPrice = product.getItemInfo().getPrice();
+                if(productShopDiscountPrice.compareTo(BigDecimal.ZERO) > -1){
+                    tempProductActualPrice = tempProductActualPrice.subtract(productShopDiscountPrice);
+                }
+                if(productPlatformDiscountPrice.compareTo(BigDecimal.ZERO) > -1){
+                    tempProductActualPrice = tempProductActualPrice.subtract(productPlatformDiscountPrice);
+                }
+                price.setMarket(product.getItemInfo().getPrice());
+                price.setActual(tempProductActualPrice.compareTo(BigDecimal.ZERO) > -1 ? tempProductActualPrice : BigDecimal.ZERO);
+                shopDetail.getProducts().get(i).setPrice(price);
+                actualTotal = actualTotal.add(price.getActual().multiply(new BigDecimal(product.getNum())));
+            }
+
+            //装载单个商店商品的总价
+            shoppingCartVO.getShopList().get(i).setMarketTotal(marketTotal);
+            //装载单个商店商品的实际总价
+            shoppingCartVO.getShopList().get(i).setActualTotal(actualTotal);
+            //循环加店铺实际总价 得出整个购物车的实际总价
+            actualAmount = actualTotal.add(actualTotal);
+        }
+        // TODO: 6/15/17 总金额,实际支付金额, 需要考虑运费
+        shoppingCartVO.setTotalAmount(totalAmount);
+        shoppingCartVO.setActualAmount(actualAmount);
         return shoppingCartVO;
     }
 
@@ -231,7 +320,7 @@ public class OrderFrontServiceImpl {
                 orderDetail.setOrderId(orderHeader.getOrderId());
                 orderDetail.setItemInfoId(itemInfo.getItemId());
                 orderDetail.setItemCount(product.getNumber());
-                // TODO: 6/14/17  运费 ID      计算价格的时候需要考虑
+                // TODO: 6/14/17  运费 ID   计算价格的时候需要考虑
                 //orderDetail.setFreightId();
 
                 //商家券减扣
@@ -245,12 +334,12 @@ public class OrderFrontServiceImpl {
                     //最后一件商品,减扣金额为 券总额 - 前面已减扣的金额的和
                     if (j != order.getProducts().size() - 1) {
                         //该商品需要减扣的金额(券金额按照商品金额的权重分配减免金额)
-                        BigDecimal temp = itemInfo.getPrice().multiply(new BigDecimal(product.getNumber())).divide(orderTotalAmount, 2, BigDecimal.ROUND_DOWN).multiply(shopSaleInfoAmount);
-                        shopDiscountAmount = shopSaleInfoAmount.add(temp);
+                        BigDecimal temp = itemInfo.getPrice().divide(orderTotalAmount, 2, BigDecimal.ROUND_DOWN).multiply(shopSaleInfoAmount);
+                        shopDiscountAmount = shopSaleInfoAmount.add(temp.multiply(new BigDecimal(product.getNumber())));
                         orderDetail.setShopPromotionCost(temp);
                     } else {
                         lastShopDiscountAmount = shopSaleInfoAmount.subtract(shopDiscountAmount);
-                        orderDetail.setShopPromotionCost(lastShopDiscountAmount);
+                        orderDetail.setShopPromotionCost(lastShopDiscountAmount.divide(new BigDecimal(product.getNumber()), 2, BigDecimal.ROUND_DOWN));
                     }
                 }
 
@@ -263,24 +352,25 @@ public class OrderFrontServiceImpl {
                                 platformSaleInfo.getSaleType() == 2)) {
                     orderDetail.setPlatformPromotionCode(orderInfoVO.getPlatformCouponId());
                     if (j != order.getProducts().size() - 1) {
-                        BigDecimal temp = itemInfo.getPrice().divide(totalProductAmount,2,BigDecimal.ROUND_DOWN).multiply(platformSaleInfoAmount);
-                        platformDiscountAmount = platformDiscountAmount.add(temp);
+                        BigDecimal temp = itemInfo.getPrice().divide(totalProductAmount, 2, BigDecimal.ROUND_DOWN).multiply(platformSaleInfoAmount);
+                        platformDiscountAmount = platformDiscountAmount.add(temp.multiply(new BigDecimal(product.getNumber())));
                         orderDetail.setPlatformPromotionCost(temp);
-                    }else{
+                    } else {
                         lastPlatformDiscountAmount = platformSaleInfoAmount.subtract(platformDiscountAmount);
-                        orderDetail.setPlatformPromotionCost(lastPlatformDiscountAmount);
+                        orderDetail.setPlatformPromotionCost(lastPlatformDiscountAmount.divide(new BigDecimal(product.getNumber()), 2, BigDecimal.ROUND_DOWN));
                     }
                 }
                 orderDetailService.addOrderDetail(orderDetail);
 
+
                 BigDecimal productActual = product.getItemInfo().getPrice().multiply(new BigDecimal(product.getNumber()));
-                if(orderDetail.getPlatformPromotionCost() != null){
-                    productActual = productActual.subtract(orderDetail.getPlatformPromotionCost());
+                if (orderDetail.getPlatformPromotionCost() != null) {
+                    productActual = productActual.subtract(orderDetail.getPlatformPromotionCost().multiply(new BigDecimal(orderDetail.getItemCount())));
                 }
-                if(orderDetail.getShopPromotionCost() != null){
-                    productActual = productActual.subtract(orderDetail.getShopPromotionCost());
+                if (orderDetail.getShopPromotionCost() != null) {
+                    productActual = productActual.subtract(orderDetail.getShopPromotionCost().multiply(new BigDecimal(orderDetail.getItemCount())));
                 }
-                orderActualAmount = orderActualAmount.add(productActual.compareTo(BigDecimal.ZERO) > -1 ? productActual:BigDecimal.ZERO);
+                orderActualAmount = orderActualAmount.add(productActual.compareTo(BigDecimal.ZERO) > -1 ? productActual : BigDecimal.ZERO);
             }
 
             // TODO: 6/15/17 总金额,实际支付金额, 需要考虑运费
