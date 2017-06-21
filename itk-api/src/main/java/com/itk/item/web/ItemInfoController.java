@@ -4,15 +4,9 @@ import com.itk.config.ResultCode;
 import com.itk.item.model.ItemInfo;
 import com.itk.item.service.ItemInfoFrontServiceImpl;
 import com.itk.solr.model.SolrItem;
-import com.itk.util.PageInfo;
-import com.itk.util.PageParam;
-import com.itk.utils.Constant;
-import com.itk.utils.PaginationUtil;
-import com.itk.utils.WebResult;
+import com.itk.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +27,7 @@ public class ItemInfoController {
 
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResponseEntity<WebResult> addItemInfo(@RequestBody ItemInfo itemInfo) throws Exception {
+    public ResponseEntity<WebResult> addItemInfo(@RequestBody ItemInfo itemInfo)  {
         itemInfoFrontService.addItemInfo(itemInfo);
         return ResponseEntity.ok(
                 WebResult.ok(
@@ -43,7 +37,7 @@ public class ItemInfoController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public ResponseEntity<WebResult> updateItemComment(@RequestBody ItemInfo itemInfo) throws Exception {
+    public ResponseEntity<WebResult> updateItemComment(@RequestBody ItemInfo itemInfo)  {
         itemInfoFrontService.updateItemInfo(itemInfo);
         return ResponseEntity.ok(
                 WebResult.ok(
@@ -53,7 +47,7 @@ public class ItemInfoController {
     }
 
     @RequestMapping(value = "/deleteItemInfo/{itemInfoId}", method = RequestMethod.DELETE)
-    public ResponseEntity<WebResult> delItemInfo(@PathVariable(value = "itemInfoId") Integer itemInfoId) throws Exception {
+    public ResponseEntity<WebResult> delItemInfo(@PathVariable(value = "itemInfoId") Integer itemInfoId)  {
         itemInfoFrontService.delItemInfo(itemInfoId);
         return ResponseEntity.ok(
                 WebResult.ok(
@@ -65,7 +59,7 @@ public class ItemInfoController {
 
     @RequestMapping(value = "/selectByCategoryIdAndStatus", method = RequestMethod.GET)
     public ResponseEntity<WebResult> selectByCategoryIdAndStatus(@RequestParam("categoryId") Long categoryId,
-                                                                 @RequestParam("status") Integer status) throws Exception {
+                                                                 @RequestParam("status") Integer status)  {
         return ResponseEntity.ok(
                 WebResult.ok(itemInfoFrontService.selectByCategoryIdAndStatus(categoryId, status)
                 )
@@ -74,7 +68,7 @@ public class ItemInfoController {
 
     @RequestMapping(value = "/selectByShopIdAndStatus", method = RequestMethod.GET)
     public ResponseEntity<WebResult> selectByShopIdAndStatus(@RequestParam("shopId") Long shopId,
-                                                             @RequestParam("status") Integer status) throws Exception {
+                                                             @RequestParam("status") Integer status)  {
         return ResponseEntity.ok(
                 WebResult.ok(itemInfoFrontService.selectByShopIdAndStatus(shopId, status)
                 )
@@ -83,10 +77,19 @@ public class ItemInfoController {
 
     @RequestMapping(value = "/selectByShopCategoryIdAndStatus", method = RequestMethod.GET)
     public ResponseEntity<WebResult> selectByShopCategoryIdAndStatus(@RequestParam("shopCategoryId") Integer shopCategoryId,
-                                                                     @RequestParam("status") Integer status) throws Exception {
+                                                                     @RequestParam("status") Integer status)  {
         return ResponseEntity.ok(
                 WebResult.ok(
                         itemInfoFrontService.selectByShopCategoryIdAndStatus(shopCategoryId, status)
+                )
+        );
+    }
+
+    @RequestMapping(value = "/selectByItemId", method = RequestMethod.GET)
+    public ResponseEntity<WebResult> selectByItemId(@RequestParam("itemId") String itemId)  {
+        return ResponseEntity.ok(
+                WebResult.ok(
+                        itemInfoFrontService.selectByItemId(itemId)
                 )
         );
     }

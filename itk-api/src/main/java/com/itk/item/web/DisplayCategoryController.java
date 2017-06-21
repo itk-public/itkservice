@@ -2,7 +2,7 @@ package com.itk.item.web;
 
 import com.itk.item.model.DisplayCategory;
 import com.itk.item.service.DisplayCategoryFrontServiceImpl;
-import com.itk.utils.WebResult;
+import com.itk.util.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

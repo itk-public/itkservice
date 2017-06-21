@@ -2,9 +2,9 @@ package com.itk.user.web;
 
 import com.itk.user.model.UserInfo;
 import com.itk.user.service.UserInfoFrontServiceImpl;
-import com.itk.utils.DateUtils;
-import com.itk.utils.MD5Util;
-import com.itk.utils.WebResult;
+import com.itk.util.DateUtils;
+import com.itk.util.MD5Util;
+import com.itk.util.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +23,7 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public WebResult registerUser(@RequestParam("phone")String phone, @RequestParam("password")String password,
-                                       @RequestParam("securitycode")String securityCode) throws Exception {
+                                  @RequestParam("securitycode")String securityCode) throws Exception {
         UserInfo record = new UserInfo();
         record.setUserId(UUID.randomUUID().toString());
         record.setPassword(MD5Util.stringToMD5(password));

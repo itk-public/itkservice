@@ -2,7 +2,7 @@ package com.itk.payment.web;
 
 import com.itk.payment.model.UserMemberRechargeRecord;
 import com.itk.payment.service.UserMemberRechargeRecordFrontServiceImpl;
-import com.itk.utils.WebResult;
+import com.itk.util.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;

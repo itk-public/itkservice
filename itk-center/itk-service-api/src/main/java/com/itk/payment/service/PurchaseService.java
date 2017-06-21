@@ -18,4 +18,6 @@ public interface PurchaseService {
     Purchase selectByPurchaseId(String purchaseId);
 
     List<Purchase> selectByStatus(Integer status);
+
+    Purchase createOrderPurchase(Integer type, String[] orderList);
 }

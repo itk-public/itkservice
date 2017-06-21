@@ -1,7 +1,7 @@
 package com.itk.base.service;
 
 import com.itk.base.model.PositionVillage;
-import com.itk.utils.Constant;
+import com.itk.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;

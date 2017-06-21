@@ -5,7 +5,7 @@ import com.itk.order.model.OrderInfoVO;
 import com.itk.order.model.ShoppingCartVO;
 import com.itk.order.service.OrderFrontServiceImpl;
 
-import com.itk.utils.WebResult;
+import com.itk.util.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

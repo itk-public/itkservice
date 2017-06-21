@@ -2,7 +2,7 @@ package com.itk.cms.web;
 
 import com.itk.cms.model.Partingline;
 import com.itk.cms.service.PartinglineFrontServiceImpl;
-import com.itk.utils.WebResult;
+import com.itk.util.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +20,7 @@ public class PartinglineController {
 
     @RequestMapping(value = "/addPartingline", method = RequestMethod.GET)
     public WebResult addPartingline(@RequestParam("homePageId")Integer pageSortId, @RequestParam("name")String name,
-                                @RequestParam("src")String src) throws Exception {
+                                    @RequestParam("src")String src) throws Exception {
         Partingline partingline = new Partingline();
         partingline.setPageSortId(pageSortId);
         partingline.setName(name);

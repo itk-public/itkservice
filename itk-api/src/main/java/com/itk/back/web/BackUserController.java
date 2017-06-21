@@ -2,8 +2,8 @@ package com.itk.back.web;
 
 import com.itk.back.model.BackUser;
 import com.itk.back.service.BackUserFrontServiceImpl;
-import com.itk.utils.MD5Util;
-import com.itk.utils.WebResult;
+import com.itk.util.MD5Util;
+import com.itk.util.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

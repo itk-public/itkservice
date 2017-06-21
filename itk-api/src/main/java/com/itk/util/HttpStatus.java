@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.itk.utils;
+package com.itk.util;
 
 /**
  * Created by zhouhui on 2017/2/14.

@@ -2,7 +2,7 @@ package com.itk.cms.web;
 
 import com.itk.cms.model.NearbyBusiness;
 import com.itk.cms.service.NearByBusinessFrontServiceImpl;
-import com.itk.utils.WebResult;
+import com.itk.util.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

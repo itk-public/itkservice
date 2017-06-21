@@ -2,7 +2,7 @@ package com.itk.promotion.web;
 
 import com.itk.promotion.model.SaleInfo;
 import com.itk.promotion.service.SaleInfoFrontServiceImpl;
-import com.itk.utils.WebResult;
+import com.itk.util.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

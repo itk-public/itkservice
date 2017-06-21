@@ -21,6 +21,8 @@ public interface ItemInfoService {
 
     ItemInfo selectByPrimaryKey(Integer id);
 
+    ItemInfo selectByItemId(String itemId);
+
     List<ItemInfo> selectByCategoryIdAndStatus(Long categoryId, Integer status);
 
     List<ItemInfo> selectByShopIdAndStatus(Long shopId, Integer status);

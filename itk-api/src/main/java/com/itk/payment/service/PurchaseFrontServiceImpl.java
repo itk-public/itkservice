@@ -34,4 +34,8 @@ public class PurchaseFrontServiceImpl {
     public List<Purchase> selectByStatus(Integer status){
         return purchaseService.selectByStatus(status);
     }
+
+    public Purchase createOrderPurchase(Integer type, String[] orderList){
+        return purchaseService.createOrderPurchase(type, orderList);
+    }
 }

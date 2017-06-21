@@ -6,8 +6,6 @@ import com.itk.solr.model.SolrItem;
 import com.itk.util.PageInfo;
 import com.itk.util.PageParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,6 +46,10 @@ public class ItemInfoFrontServiceImpl {
 
     public List<ItemInfo> selectByShopCategoryIdAndStatus(Integer shopCategoryId, Integer status) {
         return itemInfoService.selectByShopCategoryIdAndStatus(shopCategoryId, status);
+    }
+
+    public ItemInfo selectByItemId(String itemId){
+        return itemInfoService.selectByItemId(itemId);
     }
 
     /**

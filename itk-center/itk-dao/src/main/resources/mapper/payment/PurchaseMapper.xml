@@ -111,7 +111,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.itk.payment.model.Purchase" >
+  <insert id="insert" parameterType="com.itk.payment.model.Purchase" useGeneratedKeys="true" keyProperty="id">
     insert into t_purchase (id, purchase_id, type, 
       order_id, is_del, amount, 
       status, create_time, complete_time
@@ -121,7 +121,7 @@
       #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{completeTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.itk.payment.model.Purchase" >
+  <insert id="insertSelective" parameterType="com.itk.payment.model.Purchase" useGeneratedKeys="true" keyProperty="id">
     insert into t_purchase
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

@@ -2,6 +2,7 @@ package com.itk.item.service.impl;
 
 import com.itk.item.mapper.ItemInfoMapper;
 import com.itk.item.model.ItemInfo;
+import com.itk.item.model.ItemInfoExample;
 import com.itk.item.service.ItemInfoService;
 import com.itk.solr.model.SolrItem;
 import com.itk.solr.service.SolrItemService;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -31,6 +33,7 @@ public class ItemInfoServiceImpl implements ItemInfoService {
     @Transactional
     @Override
     public int addItemInfo(ItemInfo itemInfo) {
+        itemInfo.setItemId(UUID.randomUUID().toString());
         int i = itemInfoMapper.insertSelective(itemInfo);
         //添加搜索引擎数据
         solrItemService.saveItemInfo(itemInfo);
@@ -80,6 +83,16 @@ public class ItemInfoServiceImpl implements ItemInfoService {
     @Override
     public ItemInfo selectByPrimaryKey(Integer id) {
         return itemInfoMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public ItemInfo selectByItemId(String itemId) {
+        ItemInfoExample example = new ItemInfoExample();
+        example
+                .or()
+                .andItemIdEqualTo(itemId);
+        List<ItemInfo> itemInfoList = itemInfoMapper.selectByExample(example);
+        return itemInfoList.size() > 0 ? itemInfoList.get(0) : null;
     }
 
     @Override

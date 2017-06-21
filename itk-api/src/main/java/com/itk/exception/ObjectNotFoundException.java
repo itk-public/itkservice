@@ -1,6 +1,6 @@
 package com.itk.exception;
 
-import com.itk.utils.Constant;
+import com.itk.util.Constant;
 
 import java.util.Locale;
 import java.util.UUID;

@@ -2,7 +2,7 @@ package com.itk.base.web;
 
 import com.itk.base.model.ShopInfo;
 import com.itk.base.service.ShopInfoFrontServiceImpl;
-import com.itk.utils.WebResult;
+import com.itk.util.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

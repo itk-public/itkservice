@@ -2,6 +2,8 @@ package com.itk.order.service;
 
 import com.itk.order.model.OrderDetail;
 
+import java.util.List;
+
 /**
  * Created by enchen on 5/6/17.
  */
@@ -11,5 +13,5 @@ public interface OrderDetailService {
 
     int updateOrderDetail(OrderDetail orderDetail);
 
-    OrderDetail selectByOrderId(String orderId);
+    List<OrderDetail> selectByOrderId(String orderId);
 }

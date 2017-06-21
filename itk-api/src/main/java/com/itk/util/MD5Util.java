@@ -1,4 +1,4 @@
-package com.itk.utils;
+package com.itk.util;
 
 import java.security.MessageDigest;
 

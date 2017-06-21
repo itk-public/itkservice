@@ -4,7 +4,8 @@ package com.itk.config;
 import com.itk.security.Http401UnauthorizedEntryPoint;
 import com.itk.security.jwt.JWTConfigurer;
 import com.itk.security.jwt.TokenProvider;
-import com.itk.utils.MD5Util;
+
+import com.itk.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
