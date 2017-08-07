@@ -20,4 +20,6 @@ public interface PurchaseService {
     List<Purchase> selectByStatus(Integer status);
 
     Purchase createOrderPurchase(Integer type, String[] orderList);
+
+    int cancelOrderPurchase(String purchaseId);
 }

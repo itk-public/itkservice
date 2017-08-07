@@ -1,6 +1,6 @@
 package com.itk.order.service.impl;
 
-import com.itk.order.mapper.OrderDetailMapper;
+import com.itk.order.convert.OrderDetailMapper;
 import com.itk.order.model.OrderDetail;
 import com.itk.order.model.OrderDetailExample;
 import com.itk.order.service.OrderDetailService;

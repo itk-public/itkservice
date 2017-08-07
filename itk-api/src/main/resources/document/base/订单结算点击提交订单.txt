@@ -1,0 +1,47 @@
+//请求参数
+
+{
+    "addressId": "xxxx",
+   // "shopId": "xxxx",
+    "expectTime": {
+        "date": 1495987200000,
+        "timeSlots": [
+            {
+                "to": "20:00",
+                "from": "09:00"
+            }
+        ]
+    },
+    "actualTotalAmount": 123,
+    "orderList": [
+        {
+            "shopId": "1",
+            "actualAmount": 123,
+            "products": [
+                {
+                    "id": "M-919787",
+                    "num": 100,
+                    "actualPrice": 123
+                }
+            ],
+            "couponId": "xxxxx"
+        },
+        {
+            "shopId": "2",
+            "actualAmount": 123,
+            "products": [
+                {
+                    "id": "839394",
+                    "number": 100,
+                    "actualPrice": 123,
+                    "FreightId": 1 //??? 运费 ID
+                }
+            ],
+            "couponId": "xxxxx"
+        }
+    ],
+    "platformCouponId": "xxxx",
+    "allocationType": 1, //配送方式(0: 平台配送, 1: 用户自提)
+    "pickSelfLocationId": 1,//自提点 id
+}
+deliveryType  //配送方式

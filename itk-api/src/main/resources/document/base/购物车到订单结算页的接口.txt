@@ -1,0 +1,146 @@
+
+//请求参数
+{
+    "pickSelf": 0,
+    "addressId":"33",
+    "shopId": "xxx",
+    "withPlatformCoupon": "xxxxxx",  //是不是有平台优惠券可以用 bool
+    "platformCouponId": "xxx", //平台优惠券 Id
+    "allocationType":"xxxx",       //配送方式
+    "shopList": [{
+               "shopId": "1",
+               "products": [{
+                            "id": "M-919787",
+                            "num": 100
+                            }, {
+                            "id": "M-839346",
+                            "num": 100000
+                            }],
+               "withCoupon":"xxxxxx", //是不是有优惠券可以用 bool
+               "couponId": "xxx"//店铺购物券 ID
+               },
+               {
+               "shopId": "2",
+               "products": [{
+                            "id": "839394",
+                            "num": 100
+                            }, {
+                            "id": "724065",
+                            "num": 400
+                            }, {
+                            "id": "3919",
+                            "num": 400
+                            }, {
+                            "id": "844746",
+                            "num": 400
+                            }],
+               "withCoupon":"xxxxxx", //是不是有优惠券可以用 bool
+               "couponId": "xxx"//店铺购物券 ID
+               }]
+}
+
+
+//返回数据
+
+{
+                            "code": 0,
+                            "data": {
+                                // "appointments": [
+                                //     {
+                                //         "dates": [
+                                //             1495987200000
+                                //         ],
+                                //         "times": [
+                                //             {
+                                //                 "fromHour": 9,
+                                //                 "fromMinute": 0,
+                                //                 "immediateDescription": "",
+                                //                 "interval": 660,
+                                //                 "isimmediateSupport": 0,
+                                //                 "toHour": 20,
+                                //                 "toMinute": 0
+                                //             }
+                                //         ]
+                                //     }
+                                // ],
+                                "addressId": 1,//地址信息 id
+                                "actualAmount": 123.00,  //实际金额 
+                                "totalAmount": 123.00,  //总金额
+                                //"shopId": 12,//店铺 id
+                                "allocationType": 1,//配送方式(0: 平台配送, 1: 用户自提)
+                                "receiveInfo": {
+                                    "address": {
+                                        "proviceId": 1,
+                                        "cityId": 1,
+                                        "countyId": 1,
+                                        "townId": 1,
+                                        //"town": "四十八镇",
+                                        // "area": "开放科技发展有限公司",
+                                        //"city": "上海",
+                                        "detail": "田林路192号华鑫技园J座8层801田林路192号华鑫技园J座8层801田林路192号华鑫技园J座8层801",
+                                        "receiverName": "eeee",
+                                        "receiverPhone": "15051447570"
+                                    },
+                                    // "shopInfo": {
+                                    //     "shopCode": "B00001",
+                                    //     "src": "xxx",//门店 logo
+                                    //     "shopName": "永辉会员店",
+                                    //     "address": "xxx",
+                                    //     "phone": "13323454321",
+                                    //     "townshipId": "12"//乡镇 id
+                                    // }
+                                },
+                                //"platformCoupon": "xxxxxx",
+                                // "allocationType": [
+                                //     {
+                                //         "id": "xxx",
+                                //         "title": "itk快递"
+                                //     }
+                                // ],
+                                "shopList": [
+                                    {
+                                        "shopId": 1,//店铺 id
+                                        "shop": {
+                                            "shopCode": "B00001",
+                                            "src": "xxx",//门店 logo
+                                            "shopName": "永辉会员店",
+                                            "address": "xxx",
+                                            "phone": "13323454321",
+                                            "townshipId": "12"//乡镇 id
+                                        },
+                                        "marketTotal": 123, 
+                                        "actualTotal": 123, 
+                                        "coupon": {
+                                            "saleNumber": "xxx",//促销券号
+                                            "code": "xxx",//券代码
+                                            "name": "券名称",//券名称
+                                            "saleType": 1,//1：满减 2：现金券
+                                            "type": 1,//1：全场券（平台） 2：商家券（商家）  3：会员全场券(平台)  4：会员商家券（商家）
+                                            "tag": "xxx",//(本店满xx元使用）
+                                            "amount": 12,//券金额
+                                            "saleAmount": 1212,//当如果是满减券需要判断当前订单是否满足当前金额
+                                            "shopId": 12
+                                        },
+                                        "products": [
+                                            {
+                                                "itemId": 1,//商品 id
+                                                "itemInfo": {
+                                                    "name": "xxx",//商品名称
+                                                    "mainsrc": "xxx",//商品主图
+                                                    "barCode": "xx",//条码
+                                                    "detailsrc": "xxx",//详情图
+                                                    "price": 123//价格
+                                                },
+                                                "number": 12,//数量
+                                                "price": {
+                                                    "market": 21,//零售
+                                                    "actual": 12,//实际
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "message": "xxxxx",
+                            "now": 1495945996581
+                        }

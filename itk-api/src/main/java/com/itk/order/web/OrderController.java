@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
 /**
  * Created by enchen on 5/5/17.
  */
@@ -66,5 +68,47 @@ public class OrderController {
         return new ResponseEntity<>(
                 WebResult.ok(orderFrontService.getPurchaseOrderDetail(orderInfoVO)),
                 HttpStatus.OK);
+    }
+
+    //订单完成
+    @RequestMapping(value = "/complete/{orderId}", method = RequestMethod.POST)
+    public ResponseEntity<?> orderComplete(@PathVariable(value = "orderId") String orderId) {
+        return new ResponseEntity<>(
+                WebResult.ok(orderFrontService.orderComplete(orderId)),
+                HttpStatus.OK);
+    }
+
+    /**
+     * 订单配送过程流转
+     *
+     * @param orderId
+     * @param status             订单流程流转（2 = 商品打包中, 3 = 配送中, 4 = 待自提, 5 = 已签收）
+     * @param allocationType     配送方式(0: 平台配送, 1: 用户自提)
+     * @param allocationFromTime 配送起始时间
+     * @param allocationToTime   配送到达时间
+     * @param pickSelfLocationId 自提点id
+     * @param arrivalTime        送达时间
+     * @return
+     */
+    @RequestMapping(value = "/allocationFlow", method = RequestMethod.POST)
+    public ResponseEntity<?> orderAllocationFlow(@RequestParam(value = "orderId") String orderId,
+                                                 @RequestParam(value = "status") Integer status,
+                                                 @RequestParam(value = "allocationType") Integer allocationType,
+                                                 @RequestParam(value = "allocationFromTime", required = false) Date allocationFromTime,
+                                                 @RequestParam(value = "allocationToTime", required = false) Date allocationToTime,
+                                                 @RequestParam(value = "pickSelfLocationId", required = false) Integer pickSelfLocationId,
+                                                 @RequestParam(value = "arrivalTime", required = false) Date arrivalTime) {
+        return new ResponseEntity<>(
+                WebResult.ok(orderFrontService.orderAllocationFlow(orderId, status, allocationType, allocationFromTime, allocationToTime, pickSelfLocationId, arrivalTime)),
+                HttpStatus.OK
+        );
+    }
+
+    @RequestMapping(value = "/cancel/{orderId}", method = RequestMethod.POST)
+    public ResponseEntity<?> orderCancel(@PathVariable(value = "orderId") String orderId){
+        return new ResponseEntity<>(
+                WebResult.ok(orderFrontService.orderCancel(orderId)),
+                HttpStatus.OK
+        );
     }
 }

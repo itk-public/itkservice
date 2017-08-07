@@ -57,10 +57,16 @@ public class PurchaseController {
         return WebResult.ok(purchaseFrontService.selectByStatus(status));
     }
 
-    @RequestMapping(value = "/purchase/order", method = RequestMethod.POST)
-    public WebResult purchaseOrder(
-            @RequestParam(name = "type", required = true) Integer type,
-            @RequestParam(name = "orderList", required = true) String[] orderList) {
+    @RequestMapping(value = "/order", method = RequestMethod.POST)
+    public WebResult purchaseOrderCreate(
+            @RequestParam(name = "type") Integer type,
+            @RequestParam(name = "orderList") String[] orderList) {
         return WebResult.ok(purchaseFrontService.createOrderPurchase(type, orderList));
+    }
+
+    @RequestMapping(value = "/order", method = RequestMethod.DELETE)
+    public WebResult purchaseOrderCancel(
+            @RequestParam(name = "purchaseId") String purchaseId) {
+        return WebResult.ok(purchaseFrontService.cancelPurchaseOrder(purchaseId));
     }
 }

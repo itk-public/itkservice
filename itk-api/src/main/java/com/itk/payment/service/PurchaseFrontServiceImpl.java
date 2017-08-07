@@ -38,4 +38,9 @@ public class PurchaseFrontServiceImpl {
     public Purchase createOrderPurchase(Integer type, String[] orderList){
         return purchaseService.createOrderPurchase(type, orderList);
     }
+
+    public Purchase cancelPurchaseOrder(String purcahseId){
+        return purchaseService.cancelOrderPurchase(purcahseId);
+    }
+
 }

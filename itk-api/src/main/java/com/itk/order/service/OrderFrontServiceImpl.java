@@ -3,12 +3,10 @@ package com.itk.order.service;
 import com.itk.base.model.ShopInfo;
 import com.itk.base.service.ShopInfoService;
 import com.itk.dto.OrderInfoDTO;
-import com.itk.exception.SystemException;
-import com.itk.item.mapper.ItemInfoMapper;
+import com.itk.item.convert.ItemInfoConvert;
 import com.itk.item.model.ItemInfo;
 import com.itk.item.service.ItemInfoService;
-import com.itk.order.mapper.OrderInfoMapper;
-import com.itk.order.model.OrderDetail;
+import com.itk.order.convert.OrderInfoConvert;
 import com.itk.order.model.OrderHeader;
 import com.itk.order.model.OrderInfoVO;
 import com.itk.order.model.ShoppingCartVO;
@@ -18,11 +16,9 @@ import com.itk.user.service.UserShippingAddressService;
 import com.itk.util.OrderIdUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by enchen on 5/5/17.
@@ -107,7 +103,7 @@ public class OrderFrontServiceImpl {
             for (int j = 0; j < shopDetail.getProducts().size(); j++) {
                 ShoppingCartVO.ProductDetail productDetail = shopDetail.getProducts().get(i);
                 ItemInfo item = itemInfoService.selectByPrimaryKey(productDetail.getItemId());
-                shopDetail.getProducts().get(i).setItemInfo(ItemInfoMapper.modelToVO(item));
+                shopDetail.getProducts().get(i).setItemInfo(ItemInfoConvert.modelToVO(item));
                 totalAmount = totalAmount.add(item.getPrice().multiply(new BigDecimal(productDetail.getNum())));
             }
         }
@@ -145,7 +141,7 @@ public class OrderFrontServiceImpl {
             //装载 itemInfo ,单个店铺商品的总价
             for (int j = 0; j < shopDetail.getProducts().size(); j++) {
                 ItemInfo itemInfo = itemInfoService.selectByPrimaryKey(shopDetail.getProducts().get(i).getItemId());
-                shopDetail.getProducts().get(i).setItemInfo(ItemInfoMapper.modelToVO(itemInfo));
+                shopDetail.getProducts().get(i).setItemInfo(ItemInfoConvert.modelToVO(itemInfo));
                 marketTotal = marketTotal.add(itemInfo.getPrice().multiply(new BigDecimal(shopDetail.getProducts().get(i).getNum())));
             }
 
@@ -206,10 +202,10 @@ public class OrderFrontServiceImpl {
 
                 //计算单个商品的扣减总额（平台+商家）
                 BigDecimal tempProductActualPrice = product.getItemInfo().getPrice();
-                if(productShopDiscountPrice.compareTo(BigDecimal.ZERO) > -1){
+                if (productShopDiscountPrice.compareTo(BigDecimal.ZERO) > -1) {
                     tempProductActualPrice = tempProductActualPrice.subtract(productShopDiscountPrice);
                 }
-                if(productPlatformDiscountPrice.compareTo(BigDecimal.ZERO) > -1){
+                if (productPlatformDiscountPrice.compareTo(BigDecimal.ZERO) > -1) {
                     tempProductActualPrice = tempProductActualPrice.subtract(productPlatformDiscountPrice);
                 }
                 price.setMarket(product.getItemInfo().getPrice());
@@ -231,11 +227,20 @@ public class OrderFrontServiceImpl {
         return shoppingCartVO;
     }
 
-    @Transactional
     public OrderInfoVO getPurchaseOrderDetail(OrderInfoVO orderInfoVO) {
-        OrderInfoDTO orderInfoDTO = orderHeaderService.getPurchaseOrderDetail(OrderInfoMapper.OrderInfoVOToDTO(orderInfoVO), OrderIdUtil.orderIDGenerator());
-        return OrderInfoMapper.OrderInfoDTOToVO(orderInfoDTO);
+        OrderInfoDTO orderInfoDTO = orderHeaderService.getPurchaseOrderDetail(OrderInfoConvert.OrderInfoVOToDTO(orderInfoVO), OrderIdUtil.orderIDGenerator());
+        return OrderInfoConvert.OrderInfoDTOToVO(orderInfoDTO);
     }
 
+    public OrderHeader orderComplete(String orderId) {
+        return orderHeaderService.orderComplete(orderId);
+    }
 
+    public OrderHeader orderCancel(String orderId) {
+        return orderHeaderService.orderCancel(orderId);
+    }
+
+    public OrderHeader orderAllocationFlow(String orderId, Integer status, Integer allocationType, Date allocationFromTime, Date allocationToTime, Integer pickSelfLocationId, Date arrivalTime) {
+        return orderHeaderService.orderAllocationFlow(orderId, status, allocationType, allocationFromTime, allocationToTime, pickSelfLocationId, arrivalTime);
+    }
 }

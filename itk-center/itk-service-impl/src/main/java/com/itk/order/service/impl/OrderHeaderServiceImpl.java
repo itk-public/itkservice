@@ -4,7 +4,7 @@ import com.itk.base.service.ShopInfoService;
 import com.itk.dto.OrderInfoDTO;
 import com.itk.item.model.ItemInfo;
 import com.itk.item.service.ItemInfoService;
-import com.itk.order.mapper.OrderHeaderMapper;
+import com.itk.order.convert.OrderHeaderMapper;
 import com.itk.order.model.OrderDetail;
 import com.itk.order.model.OrderHeader;
 import com.itk.order.model.OrderHeaderExample;
@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Created by enchen on 5/6/17.
  */
-public class OrderHeaderServiceImpl implements OrderHeaderService{
+public class OrderHeaderServiceImpl implements OrderHeaderService {
 
     @Autowired
     OrderHeaderMapper orderHeaderMapper;
@@ -78,7 +78,7 @@ public class OrderHeaderServiceImpl implements OrderHeaderService{
 
     @Override
     @Transactional
-    public OrderInfoDTO getPurchaseOrderDetail(OrderInfoDTO orderInfoDTO,String orderID) {
+    public OrderInfoDTO getPurchaseOrderDetail(OrderInfoDTO orderInfoDTO, String orderID) {
         //平台优惠券
         SaleInfo platformSaleInfo = null;
         //平台优惠券金额
@@ -98,8 +98,8 @@ public class OrderHeaderServiceImpl implements OrderHeaderService{
 
         // TODO: 6/20/17 需要考虑运费
         //实际支付总价
-        BigDecimal  actualTotalAmount = BigDecimal.ZERO;
-        
+        BigDecimal actualTotalAmount = BigDecimal.ZERO;
+
         //所有商品的总价 （平台优惠券算权重要用到）,不算运费
         BigDecimal totalProductAmount = BigDecimal.ZERO;
         //计算所有商品的总价
@@ -242,6 +242,64 @@ public class OrderHeaderServiceImpl implements OrderHeaderService{
         //装载所有订单总共需要支付的价格
         orderInfoDTO.setActualTotalAmount(actualTotalAmount);
         return orderInfoDTO;
+    }
+
+    @Override
+    @Transactional
+    public OrderHeader orderComplete(String orderId) {
+        OrderHeader orderHeader = this.selectByOrderId(orderId);
+        if (null != orderHeader) {
+            orderHeader.setStatus(6);// status 6    已完成
+            orderHeader.setCompleteTime(new Date());
+            this.updateOrderHeader(orderHeader);
+            return orderHeader;
+        }
+        return orderHeader;
+    }
+
+    @Override
+    public OrderHeader orderCancel(String orderId) {
+        OrderHeader orderHeader = this.selectByOrderId(orderId);
+        if (null != orderHeader) {
+            orderHeader.setStatus(7);// status 7    取消
+            this.updateOrderHeader(orderHeader);
+            return orderHeader;
+        }
+        return orderHeader;
+    }
+
+    @Override
+    @Transactional
+    public OrderHeader orderAllocationFlow(String orderId, Integer status, Integer allocationType, Date allocationFromTime, Date allocationToTime, Integer pickSelfLocationId, Date arrivalTime) {
+        OrderHeader orderHeader = this.selectByOrderId(orderId);
+        orderHeader.setStatus(status);
+        orderHeader.setAllocationType(allocationType);
+        switch (status) {
+            case 3:
+                if (allocationType == 0 && allocationFromTime != null && allocationToTime != null) {
+                    orderHeader.setAllocationFromTime(allocationFromTime);
+                    orderHeader.setAllocationToTime(allocationToTime);
+                } else {
+                    // TODO: 6/22/17 throw exception
+                }
+                break;
+            case 4:
+                if (allocationType == 1 && pickSelfLocationId != null) {
+                    orderHeader.setPickSelfLocationId(pickSelfLocationId);
+                } else {
+                    // TODO: 6/22/17 throw exception
+                }
+                break;
+            case 5:
+                if (arrivalTime != null) {
+                    orderHeader.setArrivalTime(arrivalTime);
+                }
+                break;
+            default:
+                break;
+        }
+        this.updateOrderHeader(orderHeader);
+        return orderHeader;
     }
 
 }

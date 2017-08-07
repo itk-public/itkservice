@@ -1,4 +1,4 @@
-package com.itk.order.mapper;
+package com.itk.order.convert;
 
 import com.itk.order.model.OrderHeader;
 import com.itk.order.model.OrderHeaderExample;
