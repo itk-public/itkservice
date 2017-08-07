@@ -93,9 +93,10 @@ public class PurchaseServiceImpl implements PurchaseService {
     }
 
     @Override
-    public int cancelOrderPurchase(String purchaseId) {
+    // TODO: 8/7/17
+    public Purchase cancelOrderPurchase(String purchaseId) {
         Purchase purchase = this.selectByPurchaseId(purchaseId);
-        return 0;
+        return null;
     }
 
 }

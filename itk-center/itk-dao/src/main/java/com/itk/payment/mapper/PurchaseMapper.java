@@ -30,7 +30,7 @@ public interface PurchaseMapper {
 
     int updateByPrimaryKey(Purchase record);
 
-    List<Purchase> selectByPurchaseId(String purchaseId);
+    Purchase selectByPurchaseId(String purchaseId);
 
     List<Purchase> selectByStatus(Integer status);
 }

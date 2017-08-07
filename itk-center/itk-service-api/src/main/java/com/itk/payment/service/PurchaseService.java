@@ -21,5 +21,5 @@ public interface PurchaseService {
 
     Purchase createOrderPurchase(Integer type, String[] orderList);
 
-    int cancelOrderPurchase(String purchaseId);
+    Purchase cancelOrderPurchase(String purchaseId);
 }
