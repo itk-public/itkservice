@@ -1,6 +1,6 @@
 package com.itk.item.service.impl;
 
-import com.itk.item.convert.DisplayCategoryMapper;
+import com.itk.item.mapper.DisplayCategoryMapper;
 import com.itk.item.model.DisplayCategory;
 import com.itk.item.service.DisplayCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.itk.item.service.impl;
 
-import com.itk.item.convert.ItemCommentMapper;
+import com.itk.item.mapper.ItemCommentMapper;
 import com.itk.item.model.ItemComment;
 import com.itk.item.service.ItemCommentService;
 import org.springframework.beans.factory.annotation.Autowired;

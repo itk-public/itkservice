@@ -1,4 +1,4 @@
-package com.itk.item.convert;
+package com.itk.item.mapper;
 
 import com.itk.item.model.ShopCategory;
 import com.itk.item.model.ShopCategoryExample;

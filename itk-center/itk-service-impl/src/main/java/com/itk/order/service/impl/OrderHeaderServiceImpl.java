@@ -4,7 +4,7 @@ import com.itk.base.service.ShopInfoService;
 import com.itk.dto.OrderInfoDTO;
 import com.itk.item.model.ItemInfo;
 import com.itk.item.service.ItemInfoService;
-import com.itk.order.convert.OrderHeaderMapper;
+import com.itk.order.mapper.OrderHeaderMapper;
 import com.itk.order.model.OrderDetail;
 import com.itk.order.model.OrderHeader;
 import com.itk.order.model.OrderHeaderExample;

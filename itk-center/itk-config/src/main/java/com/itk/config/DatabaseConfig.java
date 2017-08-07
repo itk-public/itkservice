@@ -43,7 +43,7 @@ public class DatabaseConfig {
 
     @Configuration
     @MapperScan(sqlSessionFactoryRef = "mybatisSqlSessionFactory",
-            basePackages = {"com.itk.*.mapper","com.itk.*.convert"})
+            basePackages = {"com.itk.*.mapper"})
     public class mybatisConfig {
         @Bean(name = "mybatisSqlSessionFactory")
         public SqlSessionFactory sqlSessionFactoryBean() throws Exception {

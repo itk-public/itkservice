@@ -1,6 +1,6 @@
 package com.itk.item.service.impl;
 
-import com.itk.item.convert.ItemInfoMapper;
+import com.itk.item.mapper.ItemInfoMapper;
 import com.itk.item.model.ItemInfo;
 import com.itk.item.model.ItemInfoExample;
 import com.itk.item.service.ItemInfoService;

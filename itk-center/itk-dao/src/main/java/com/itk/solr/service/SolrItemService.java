@@ -2,8 +2,8 @@ package com.itk.solr.service;
 
 import com.itk.base.mapper.ShopInfoMapper;
 import com.itk.base.model.ShopInfo;
-import com.itk.item.convert.DisplayCategoryMapper;
-import com.itk.item.convert.ShopCategoryMapper;
+import com.itk.item.mapper.DisplayCategoryMapper;
+import com.itk.item.mapper.ShopCategoryMapper;
 import com.itk.item.model.DisplayCategory;
 import com.itk.item.model.ItemInfo;
 import com.itk.item.model.ShopCategory;
