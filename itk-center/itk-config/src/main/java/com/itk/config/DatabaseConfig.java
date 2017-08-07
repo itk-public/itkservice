@@ -43,7 +43,7 @@ public class DatabaseConfig {
 
     @Configuration
     @MapperScan(sqlSessionFactoryRef = "mybatisSqlSessionFactory",
-            basePackages = {"com.itk.*.convert"})
+            basePackages = {"com.itk.*.mapper","com.itk.*.convert"})
     public class mybatisConfig {
         @Bean(name = "mybatisSqlSessionFactory")
         public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
@@ -53,7 +53,7 @@ public class DatabaseConfig {
 
             PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 
-            sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/convert/*/*.xml"));
+            sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/mapper/*/*.xml"));
 
             sqlSessionFactoryBean.setConfigLocation(resolver.getResource("classpath:mybatis-config.xml"));
             return sqlSessionFactoryBean.getObject();
