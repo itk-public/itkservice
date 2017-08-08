@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  * Created by enchen on 5/5/17.
  */
 public class OrderIdUtil {
-
+    private static final long REDIS_TOCKEN_EXPIRE_TIME_BY_SECONDS = 259200L;
     @Autowired
     private static RedisTemplate redisTemplate;
 
@@ -36,13 +36,13 @@ public class OrderIdUtil {
         String key = "orderIDSuffix";
         byte[] orderIdSuffix = redisTemplate.getConnectionFactory().getConnection().get(key.getBytes());
         if (orderIdSuffix == null) {
-            redisTemplate.getConnectionFactory().getConnection().setEx(key.getBytes(), Constant.REDIS_TOCKEN_EXPIRE_TIME_BY_SECONDS, SerializationUtils.serialize(0));
+            redisTemplate.getConnectionFactory().getConnection().setEx(key.getBytes(), REDIS_TOCKEN_EXPIRE_TIME_BY_SECONDS, SerializationUtils.serialize(0));
         } else {
             Integer temp = (Integer) SerializationUtils.deserialize(orderIdSuffix) + 1;
             if (temp > 99999) {
-                redisTemplate.getConnectionFactory().getConnection().setEx(key.getBytes(), Constant.REDIS_TOCKEN_EXPIRE_TIME_BY_SECONDS, SerializationUtils.serialize(0));
+                redisTemplate.getConnectionFactory().getConnection().setEx(key.getBytes(), REDIS_TOCKEN_EXPIRE_TIME_BY_SECONDS, SerializationUtils.serialize(0));
             } else {
-                redisTemplate.getConnectionFactory().getConnection().setEx(key.getBytes(), Constant.REDIS_TOCKEN_EXPIRE_TIME_BY_SECONDS, SerializationUtils.serialize(temp));
+                redisTemplate.getConnectionFactory().getConnection().setEx(key.getBytes(), REDIS_TOCKEN_EXPIRE_TIME_BY_SECONDS, SerializationUtils.serialize(temp));
             }
         }
         byte[] nowOrderIdSuffix = redisTemplate.getConnectionFactory().getConnection().get(key.getBytes());

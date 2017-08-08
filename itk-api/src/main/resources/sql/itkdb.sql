@@ -1,7 +1,7 @@
 CREATE TABLE `t_security_code` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `phone` varchar(30)  DEFAULT NULL COMMENT '手机号码',
-  `security_code` varchar(20)  DEFAULT NULL COMMENT '验证码',
+  `phone` VARCHAR(30)  DEFAULT NULL COMMENT '手机号码',
+  `security_code` VARCHAR(20)  DEFAULT NULL COMMENT '验证码',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `modify_date` datetime DEFAULT NULL COMMENT '修改时间',
   `status` int(11) DEFAULT '1' COMMENT '状态 1：有效 0：失效',
@@ -11,12 +11,12 @@ CREATE TABLE `t_security_code` (
 
 CREATE TABLE `t_user_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` varchar(100)  NOT NULL COMMENT '用户id',
-  `phone` varchar(30)  DEFAULT NULL COMMENT '手机号码',
-  `password` varchar(100)  NOT NULL COMMENT '密码',
-  `email` varchar(80)  DEFAULT NULL COMMENT '邮箱',
+  `user_id` VARCHAR(100)  NOT NULL COMMENT '用户id',
+  `phone` VARCHAR(30)  DEFAULT NULL COMMENT '手机号码',
+  `password` VARCHAR(100)  NOT NULL COMMENT '密码',
+  `email` VARCHAR(80)  DEFAULT NULL COMMENT '邮箱',
   `gender` int(11) NOT NULL DEFAULT '1' COMMENT '性别 0:女 1:男',
-  `nick_name` varchar(40)  DEFAULT NULL COMMENT '昵称',
+  `nick_name` VARCHAR(40)  DEFAULT NULL COMMENT '昵称',
   `passwd_error_time` int(11) DEFAULT '0' COMMENT '错误次数',
   `birthday` datetime DEFAULT NULL COMMENT '生日',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
@@ -28,7 +28,7 @@ CREATE TABLE `t_user_info` (
 
 CREATE TABLE `t_seckill_season` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL COMMENT '名称',
+  `name` VARCHAR(100) DEFAULT NULL COMMENT '名称',
   `is_del` int(1) DEFAULT NULL COMMENT '删除状态 0:正常 1:删除',
   `season_time` datetime DEFAULT NULL COMMENT '场次时间',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
@@ -39,7 +39,7 @@ CREATE TABLE `t_seckill_season` (
 CREATE TABLE `t_home_page` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` bigint(100) DEFAULT NULL COMMENT '名称',
-  `township_id` varchar(100) DEFAULT NULL COMMENT '乡镇id',
+  `township_id` VARCHAR(100) DEFAULT NULL COMMENT '乡镇id',
   `is_del` int(1) DEFAULT NULL COMMENT '删除状态 0:正常 1:删除',
   `type` int(1) DEFAULT NULL COMMENT '1：商家 2：农场',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
@@ -53,7 +53,7 @@ CREATE TABLE `t_page_sort` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `sort_id` int(10) DEFAULT NULL COMMENT '显示位置',
   `home_page_id` bigint(20) DEFAULT NULL COMMENT '主页id',
-  `assembly_name` varchar(20) DEFAULT NULL COMMENT '组件信息定位组件表例如：hbanner --》t_hbanner表',
+  `assembly_name` VARCHAR(20) DEFAULT NULL COMMENT '组件信息定位组件表例如：hbanner --》t_hbanner表',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `modify_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
   PRIMARY KEY (`id`)
@@ -62,9 +62,9 @@ CREATE TABLE `t_page_sort` (
 CREATE TABLE `t_gallery` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `page_sort_id` bigint(10) DEFAULT NULL COMMENT '首页顺序表id',
-  `name` varchar(100) DEFAULT NULL COMMENT '名称',
-  `src` varchar(400) DEFAULT NULL COMMENT '图片上传',
-  `action` varchar(1024) DEFAULT NULL COMMENT  '跳转链接',
+  `name` VARCHAR(100) DEFAULT NULL COMMENT '名称',
+  `src` VARCHAR(400) DEFAULT NULL COMMENT '图片上传',
+  `action` VARCHAR(1024) DEFAULT NULL COMMENT  '跳转链接',
   `priority` bigint(10) DEFAULT '0' COMMENT '优先级',
   `is_del` int(1) DEFAULT NULL COMMENT '删除状态 0:正常 1:删除',
   `online_time` datetime DEFAULT NULL COMMENT '上线时间',
@@ -77,10 +77,10 @@ CREATE TABLE `t_gallery` (
 CREATE TABLE `t_jewel` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `page_sort_id` int(10) DEFAULT NULL COMMENT '首页顺序表id',
-  `name` varchar(100) DEFAULT NULL COMMENT '名字',
-  `src` varchar(400) DEFAULT NULL COMMENT '图片上传',
+  `name` VARCHAR(100) DEFAULT NULL COMMENT '名字',
+  `src` VARCHAR(400) DEFAULT NULL COMMENT '图片上传',
   `position` bigint(10) DEFAULT NULL COMMENT '位置',
-  `action` varchar(1024) DEFAULT NULL COMMENT  '跳转链接',
+  `action` VARCHAR(1024) DEFAULT NULL COMMENT  '跳转链接',
   `is_del` int(1) DEFAULT NULL COMMENT '删除状态 0:正常 1:删除',
   `online_time` datetime DEFAULT NULL COMMENT '上线时间',
   `offline_time` datetime DEFAULT NULL COMMENT '下线时间',
@@ -92,8 +92,8 @@ CREATE TABLE `t_jewel` (
 CREATE TABLE `t_partingline` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `page_sort_id` int(10) DEFAULT NULL COMMENT '首页顺序表id',
-  `name` varchar(100) DEFAULT NULL COMMENT '名称',
-  `src` varchar(400) DEFAULT NULL COMMENT '图片上传',
+  `name` VARCHAR(100) DEFAULT NULL COMMENT '名称',
+  `src` VARCHAR(400) DEFAULT NULL COMMENT '图片上传',
   `is_del` int(1) DEFAULT NULL COMMENT '删除状态 0:正常 1:删除',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `modify_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
@@ -117,11 +117,11 @@ CREATE TABLE `t_seckill` (
 CREATE TABLE `t_skupos` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `page_sort_id` int(10) DEFAULT NULL COMMENT '首页顺序表id',
-  `name` varchar(100) DEFAULT NULL COMMENT '名称',
-  `src` varchar(400) DEFAULT NULL COMMENT '图片上传',
+  `name` VARCHAR(100) DEFAULT NULL COMMENT '名称',
+  `src` VARCHAR(400) DEFAULT NULL COMMENT '图片上传',
   `position` bigint(10) DEFAULT NULL COMMENT '位置',
   `product_id` bigint(20) NOT NULL COMMENT '商品id',
-  `action` varchar(1024) DEFAULT NULL COMMENT  '跳转链接',
+  `action` VARCHAR(1024) DEFAULT NULL COMMENT  '跳转链接',
   `priority` bigint(10) DEFAULT '0' COMMENT '优先级',
   `is_del` int(1) DEFAULT NULL COMMENT '删除状态 0:正常 1:删除',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
@@ -132,9 +132,9 @@ CREATE TABLE `t_skupos` (
 CREATE TABLE `t_hbanner` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `page_sort_id` int(10) DEFAULT NULL COMMENT '首页顺序表id',
-  `name` varchar(100) DEFAULT NULL COMMENT '名称',
-  `src` varchar(400) DEFAULT NULL COMMENT '图片上传',
-  `action` varchar(1024) DEFAULT NULL COMMENT  '跳转链接',
+  `name` VARCHAR(100) DEFAULT NULL COMMENT '名称',
+  `src` VARCHAR(400) DEFAULT NULL COMMENT '图片上传',
+  `action` VARCHAR(1024) DEFAULT NULL COMMENT  '跳转链接',
   `priority` bigint(10) DEFAULT '0' COMMENT '优先级',
   `is_del` int(1) DEFAULT NULL COMMENT '删除状态 0:正常 1:删除',
   `online_time` datetime DEFAULT NULL COMMENT '上线时间',
@@ -146,9 +146,9 @@ CREATE TABLE `t_hbanner` (
 
 CREATE TABLE `t_nearby_business` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `shop_id` varchar(100) DEFAULT NULL COMMENT '附近商家id',
-  `icon` varchar(400) DEFAULT NULL COMMENT '商家图标',
-  `action` varchar(1024) DEFAULT NULL COMMENT  '跳转链接',
+  `shop_id` VARCHAR(100) DEFAULT NULL COMMENT '附近商家id',
+  `icon` VARCHAR(400) DEFAULT NULL COMMENT '商家图标',
+  `action` VARCHAR(1024) DEFAULT NULL COMMENT  '跳转链接',
   `priority` bigint(10) DEFAULT '0' COMMENT '优先级',
   `is_del` int(1) DEFAULT NULL COMMENT '删除状态 0:正常 1:删除',
   `online_time` datetime DEFAULT NULL COMMENT '上线时间',
@@ -212,7 +212,7 @@ CREATE TABLE `t_nearby_business_info` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `nearby_business_id` bigint(20) DEFAULT NULL COMMENT '附近商家表的id',
   `whether_promotion` int(1) DEFAULT NULL COMMENT '是否有促销:1有促销 0无促销 如果有读取促销信息',
-  `whether_month_order_number` varchar(400) DEFAULT NULL COMMENT '是否显示月订单数量:1显示真实数量 0后台输入',
+  `whether_month_order_number` VARCHAR(400) DEFAULT NULL COMMENT '是否显示月订单数量:1显示真实数量 0后台输入',
   `month_order_number` bigint(20) DEFAULT NULL COMMENT '月订单数量',
   `is_del` int(1) DEFAULT NULL COMMENT '删除状态 0:正常 1:删除',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
@@ -223,11 +223,11 @@ CREATE TABLE `t_nearby_business_info` (
 CREATE TABLE `t_shop_info` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `township_id` bigint(20) DEFAULT NULL COMMENT '乡镇id',
-  `shop_code` varchar(20) NOT NULL COMMENT '门店编码 B00001商家id，F000001农场id',
-  `src` varchar(200) NOT NULL COMMENT '门店logo',
-  `shop_name` varchar(200) DEFAULT NULL COMMENT '门店名称',
-  `address` varchar(1024) DEFAULT NULL COMMENT '具体地址',
-  `phone` varchar(30) DEFAULT NULL COMMENT  '联系电话',
+  `shop_code` VARCHAR(20) NOT NULL COMMENT '门店编码 B00001商家id，F000001农场id',
+  `src` VARCHAR(200) NOT NULL COMMENT '门店logo',
+  `shop_name` VARCHAR(200) DEFAULT NULL COMMENT '门店名称',
+  `address` VARCHAR(1024) DEFAULT NULL COMMENT '具体地址',
+  `phone` VARCHAR(30) DEFAULT NULL COMMENT  '联系电话',
   `is_del` int(1) DEFAULT NULL COMMENT '删除状态 0:正常 1:删除',
   `online_time` datetime DEFAULT NULL COMMENT '上线时间',
   `offline_time` datetime DEFAULT NULL COMMENT '下线时间',
@@ -238,11 +238,11 @@ CREATE TABLE `t_shop_info` (
 
 CREATE TABLE `t_back_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(100)  NOT NULL COMMENT '账号',
-  `phone` varchar(30)  DEFAULT NULL COMMENT '手机号码',
-  `name` varchar(100)  NOT NULL COMMENT '姓名',
-  `password` varchar(100)  NOT NULL COMMENT '密码',
-  `email` varchar(80)  DEFAULT NULL COMMENT '邮箱',
+  `username` VARCHAR(100)  NOT NULL COMMENT '账号',
+  `phone` VARCHAR(30)  DEFAULT NULL COMMENT '手机号码',
+  `name` VARCHAR(100)  NOT NULL COMMENT '姓名',
+  `password` VARCHAR(100)  NOT NULL COMMENT '密码',
+  `email` VARCHAR(80)  DEFAULT NULL COMMENT '邮箱',
   `is_del` int(1) DEFAULT NULL COMMENT '删除状态 0:正常 1:删除',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `lastlogin_date` datetime DEFAULT NULL COMMENT '最后登陆时间',
@@ -254,40 +254,40 @@ CREATE TABLE `t_back_user` (
 CREATE TABLE `t_display_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` bigint(20)  DEFAULT NULL COMMENT '父类id',
-  `name` varchar(200)  DEFAULT NULL COMMENT '名称',
-  `src` varchar(100)  NOT NULL COMMENT '图片',
+  `name` VARCHAR(200)  DEFAULT NULL COMMENT '名称',
+  `src` VARCHAR(100)  NOT NULL COMMENT '图片',
   `isShow`  int(1) DEFAULT NULL COMMENT '是否显示 0:不显示 1:显示',
   `is_leaf_category` int(1)  DEFAULT NULL COMMENT '是否叶子类目 0:不是 1:是',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
-  `creator` varchar(200)  DEFAULT NULL COMMENT '创建人',
-  `updator` varchar(200)  DEFAULT NULL COMMENT '更新人',
+  `creator` VARCHAR(200)  DEFAULT NULL COMMENT '创建人',
+  `updator` VARCHAR(200)  DEFAULT NULL COMMENT '更新人',
   `modify_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='分类类目信息';
 
 CREATE TABLE `t_shop_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(200)  DEFAULT NULL COMMENT '分类名称',
+  `name` VARCHAR(200)  DEFAULT NULL COMMENT '分类名称',
   `isShow`  int(1) DEFAULT NULL COMMENT '是否显示 0:不显示 1:显示',
   `is_leaf_category` int(1) DEFAULT NULL COMMENT '是否叶子类目 0:不是 1:是',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
-  `creator` varchar(200)  DEFAULT NULL COMMENT '创建人',
-  `updator` varchar(200)  DEFAULT NULL COMMENT '更新人',
+  `creator` VARCHAR(200)  DEFAULT NULL COMMENT '创建人',
+  `updator` VARCHAR(200)  DEFAULT NULL COMMENT '更新人',
   `modify_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='商家分类';
 
 CREATE TABLE `t_item_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(200)  DEFAULT NULL COMMENT '商品名称',
-  `mainSrc` varchar(100)  DEFAULT NULL COMMENT '商品主图',
-  `bar_code` varchar(100)  NOT NULL COMMENT '条形码',
-  `item_id` varchar(100)  NOT NULL COMMENT '商品id',
-  `detailSrc`  varchar(400) DEFAULT NULL COMMENT '商品详情图',
+  `name` VARCHAR(200)  DEFAULT NULL COMMENT '商品名称',
+  `mainSrc` VARCHAR(100)  DEFAULT NULL COMMENT '商品主图',
+  `bar_code` VARCHAR(100)  NOT NULL COMMENT '条形码',
+  `item_id` VARCHAR(100)  NOT NULL COMMENT '商品id',
+  `detailSrc`  VARCHAR(400) DEFAULT NULL COMMENT '商品详情图',
   `price` decimal(15,4) DEFAULT NULL COMMENT '商品价格',
   `current_price` decimal(15,4) DEFAULT NULL COMMENT '当前商品进价',
   `history_price` decimal(15,4) DEFAULT NULL COMMENT '历史商品进价',
-  `pay_period`  varchar(40) DEFAULT NULL COMMENT '结算周期 每月15号或者月末最后一天结算）',
+  `pay_period`  VARCHAR(40) DEFAULT NULL COMMENT '结算周期 每月15号或者月末最后一天结算）',
   `is_del` int(1) DEFAULT NULL COMMENT '删除状态 0:正常 1:删除',
   `shop_category_id` int(11)  NOT NULL COMMENT '商家类目id',
   `total_stock` int(11)  NOT NULL COMMENT '商品总库存',
@@ -296,18 +296,18 @@ CREATE TABLE `t_item_info` (
   `category_id` bigint(20) DEFAULT NULL COMMENT '分类类目',
   `status` int(11) DEFAULT '1' COMMENT '状态 1：有效 0：失效',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
-  `creator` varchar(200)  DEFAULT NULL COMMENT '创建人',
-  `updator` varchar(200)  DEFAULT NULL COMMENT '更新人',
+  `creator` VARCHAR(200)  DEFAULT NULL COMMENT '创建人',
+  `updator` VARCHAR(200)  DEFAULT NULL COMMENT '更新人',
   `modify_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='商品基本信息';
 
 CREATE TABLE `t_item_comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `item_id` varchar(100)  NOT NULL COMMENT '商品id',
+  `item_id` VARCHAR(100)  NOT NULL COMMENT '商品id',
   `user_id` int(10) DEFAULT NULL COMMENT '用户id',
   `rate` int(11) DEFAULT '1' COMMENT '好评度 1：一星 2：二星 3：三星 4：四星 5：五星',
-  `comment` varchar(1000)  NOT NULL COMMENT '评价信息',
+  `comment` VARCHAR(1000)  NOT NULL COMMENT '评价信息',
   `status` int(11) DEFAULT '1' COMMENT '状态 1：有效 0：失效',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `modify_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
@@ -316,18 +316,18 @@ CREATE TABLE `t_item_comment` (
 
 CREATE TABLE `t_sale_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `sale_number` varchar(200)  DEFAULT NULL COMMENT '促销券号',
-  `code` varchar(200)  DEFAULT NULL COMMENT '券代码',
-  `name` varchar(100)  NOT NULL COMMENT '券名称',
+  `sale_number` VARCHAR(200)  DEFAULT NULL COMMENT '促销券号',
+  `code` VARCHAR(200)  DEFAULT NULL COMMENT '券代码',
+  `name` VARCHAR(100)  NOT NULL COMMENT '券名称',
   `sale_type` int(1) DEFAULT NULL COMMENT '促销类型 （1：满减 2：现金券）',
   `sale_amount` decimal(15,4) DEFAULT NULL COMMENT '当如果是满减券需要判断当前订单是否满足当前金额',
   `type` int(1) DEFAULT NULL COMMENT '1：全场券（平台） 2：商家券（商家）  3：会员全场券(平台) 4：会员商家券（商家）',
-  `tag` varchar(1000)  NOT NULL COMMENT '打折标签 （本店满xx元使用）',
+  `tag` VARCHAR(1000)  NOT NULL COMMENT '打折标签 （本店满xx元使用）',
   `is_del` int(1) DEFAULT NULL COMMENT '删除状态 0:正常 1:删除',
   `effective_date` datetime DEFAULT NULL COMMENT '券生效时间',
   `invalid_date` datetime DEFAULT NULL COMMENT '券过期时间',
-  `creator` varchar(200)  DEFAULT NULL COMMENT '创建人',
-  `updator` varchar(200)  DEFAULT NULL COMMENT '更新人',
+  `creator` VARCHAR(200)  DEFAULT NULL COMMENT '创建人',
+  `updator` VARCHAR(200)  DEFAULT NULL COMMENT '更新人',
   `priority` bigint(10) DEFAULT '0' COMMENT '优先级',
   `total_ticket` int(11)  NOT NULL COMMENT '券总数',
   `used_ticket` int(11)  NOT NULL COMMENT '券领取数量',
@@ -443,28 +443,28 @@ CREATE TABLE `t_refund_detail` (
 DROP TABLE IF EXISTS `t_user_shipping_address`;
 CREATE TABLE `t_user_shipping_address` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` varchar(100)  DEFAULT NULL COMMENT '用户ID',
-  `receiver_name` varchar(255)  DEFAULT NULL COMMENT '收货人姓名',
-  `receiver_phone` varchar(100)  DEFAULT NULL COMMENT '收货人电话',
+  `user_id` VARCHAR(100)  DEFAULT NULL COMMENT '用户ID',
+  `receiver_name` VARCHAR(255)  DEFAULT NULL COMMENT '收货人姓名',
+  `receiver_phone` VARCHAR(100)  DEFAULT NULL COMMENT '收货人电话',
   `provice_id` int(11)  DEFAULT NULL COMMENT '省ID',
   `city_id` bigint(20)  DEFAULT NULL COMMENT '地级市id',
   `county_id` bigint(20)  DEFAULT NULL COMMENT '县级市id',
   `town_id` bigint(20)  DEFAULT NULL COMMENT '镇id',
   `village_id` bigint(20)  DEFAULT NULL COMMENT '村id',
-  `address_detail` varchar(500) DEFAULT NULL COMMENT '详细地址',
-  `post_code` varchar(36)  DEFAULT NULL COMMENT '邮编',
+  `address_detail` VARCHAR(500) DEFAULT NULL COMMENT '详细地址',
+  `post_code` VARCHAR(36)  DEFAULT NULL COMMENT '邮编',
   `default` bit(1) DEFAULT NULL COMMENT '是否默认,0非,1是',
   `enable` bit(1) DEFAULT NULL COMMENT '是否可用,1是,0非',
-  `create_by` varchar(100) DEFAULT NULL COMMENT '创建人',
+  `create_by` VARCHAR(100) DEFAULT NULL COMMENT '创建人',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
-  `last_modify_by` varchar(100) DEFAULT NULL COMMENT '最后更改人',
+  `last_modify_by` VARCHAR(100) DEFAULT NULL COMMENT '最后更改人',
   `last_modify_date` datetime DEFAULT NULL COMMENT '最后修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='用户收货地址';
 
 # 缺 时间规则表
 # 缺 运费表
-# 所有 varchar 类型的 id 规则
+# 所有 VARCHAR 类型的 id 规则
 
 # 券 和 用户 关联表?
 
@@ -472,3 +472,30 @@ CREATE TABLE `t_user_shipping_address` (
 #t_nearby_business   shopid-> bigint(20)
 #t_sale_info  shopid -> bigint(20)
 #t_order_header  shopid -> bigint(20)
+
+# 退款退货
+CREATE TABLE `ord_refund_info` (
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `refund_id` VARCHAR(50) NOT NULL COMMENT '退货单ID',
+  `order_id` VARCHAR(50) DEFAULT NULL COMMENT '订单编号',
+  `mobile` VARCHAR(20) DEFAULT NULL COMMENT '手机号',
+  `amount` int(18) DEFAULT '0' COMMENT '退货总额(分)',
+  `payment_type_id` int(4) DEFAULT '0' COMMENT '退款方式',
+  `payment_status` char(1) DEFAULT NULL COMMENT '状态(Y已退款，N未退款)',
+  `payment_time` datetime DEFAULT NULL COMMENT '退款时间',
+  `reason` VARCHAR(200) DEFAULT NULL COMMENT '退货理由',
+  `address` VARCHAR(200) NOT NULL COMMENT '退货地址',
+  `remark` VARCHAR(200) DEFAULT NULL COMMENT '备注',
+  `reject_reason` VARCHAR(200) DEFAULT NULL COMMENT '驳回理由',
+  `status` VARCHAR(10) DEFAULT NULL COMMENT '退货状态',
+  `express_company` VARCHAR(100) DEFAULT NULL COMMENT '快递公司',
+  `express_no` VARCHAR(50) DEFAULT NULL COMMENT '快递单号',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `create_by` VARCHAR(100) DEFAULT NULL COMMENT '创建人',
+  `update_time` datetime DEFAULT NULL COMMENT '修改时间',
+  `update_by` VARCHAR(100) DEFAULT NULL COMMENT '修改人',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='退货记录表';
+
+
+

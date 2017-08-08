@@ -3,22 +3,31 @@ package com.itk.order.service;
 import com.itk.base.model.ShopInfo;
 import com.itk.base.service.ShopInfoService;
 import com.itk.dto.OrderInfoDTO;
+import com.itk.dto.PurchaseInfoDTO;
+import com.itk.exception.ResultCode;
+import com.itk.exception.SystemException;
 import com.itk.item.convert.ItemInfoConvert;
 import com.itk.item.model.ItemInfo;
 import com.itk.item.service.ItemInfoService;
 import com.itk.order.convert.OrderInfoConvert;
+import com.itk.order.convert.PurchaseInfoConvert;
 import com.itk.order.model.OrderHeader;
 import com.itk.order.model.OrderInfoVO;
+import com.itk.order.model.PurchaseInfoVO;
 import com.itk.order.model.ShoppingCartVO;
 import com.itk.promotion.model.SaleInfo;
 import com.itk.promotion.service.SaleInfoService;
+import com.itk.security.SecurityUtils;
+import com.itk.user.model.UserInfo;
+import com.itk.user.service.UserInfoService;
 import com.itk.user.service.UserShippingAddressService;
-import com.itk.util.OrderIdUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by enchen on 5/5/17.
@@ -43,6 +52,9 @@ public class OrderFrontServiceImpl {
 
     @Autowired
     SaleInfoService saleInfoService;
+
+    @Autowired
+    UserInfoService userInfoService;
 
     public int addOrderHeader(OrderHeader orderHeader) {
         orderHeader.setCreateTime(new Date());
@@ -227,9 +239,16 @@ public class OrderFrontServiceImpl {
         return shoppingCartVO;
     }
 
-    public OrderInfoVO getPurchaseOrderDetail(OrderInfoVO orderInfoVO) {
-        OrderInfoDTO orderInfoDTO = orderHeaderService.getPurchaseOrderDetail(OrderInfoConvert.OrderInfoVOToDTO(orderInfoVO), OrderIdUtil.orderIDGenerator());
+    public OrderInfoVO getSubmitOrderDetail(OrderInfoVO orderInfoVO) {
+        String login = SecurityUtils.getCurrentUserLogin();
+        UserInfo userInfo = userInfoService.findUserByPhone(login);
+        OrderInfoDTO orderInfoDTO = orderHeaderService.getSubmitOrderDetail(OrderInfoConvert.OrderInfoVOToDTO(orderInfoVO),userInfo.getUserId());
         return OrderInfoConvert.OrderInfoDTOToVO(orderInfoDTO);
+    }
+
+    public PurchaseInfoVO purchaseOrders(PurchaseInfoVO purchaseInfoVO) {
+        PurchaseInfoDTO purchaseInfoDTO = PurchaseInfoConvert.PurchaseInfoVOToDTO(purchaseInfoVO);
+        return PurchaseInfoConvert.PurchaseInfoDTOToVO(orderHeaderService.purchaseOrders(purchaseInfoDTO));
     }
 
     public OrderHeader orderComplete(String orderId) {

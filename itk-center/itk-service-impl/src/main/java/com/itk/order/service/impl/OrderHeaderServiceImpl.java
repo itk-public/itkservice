@@ -2,6 +2,7 @@ package com.itk.order.service.impl;
 
 import com.itk.base.service.ShopInfoService;
 import com.itk.dto.OrderInfoDTO;
+import com.itk.dto.PurchaseInfoDTO;
 import com.itk.item.model.ItemInfo;
 import com.itk.item.service.ItemInfoService;
 import com.itk.order.mapper.OrderHeaderMapper;
@@ -10,15 +11,22 @@ import com.itk.order.model.OrderHeader;
 import com.itk.order.model.OrderHeaderExample;
 import com.itk.order.service.OrderDetailService;
 import com.itk.order.service.OrderHeaderService;
+import com.itk.payment.model.Purchase;
+import com.itk.payment.service.PurchaseService;
 import com.itk.promotion.model.SaleInfo;
 import com.itk.promotion.service.SaleInfoService;
 import com.itk.user.service.UserShippingAddressService;
+import com.itk.util.OrderIdUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * Created by enchen on 5/6/17.
@@ -45,6 +53,9 @@ public class OrderHeaderServiceImpl implements OrderHeaderService {
 
     @Autowired
     SaleInfoService saleInfoService;
+
+    @Autowired
+    PurchaseService purchaseService;
 
     @Override
     public int addOrderHeader(OrderHeader orderHeader) {
@@ -78,7 +89,7 @@ public class OrderHeaderServiceImpl implements OrderHeaderService {
 
     @Override
     @Transactional
-    public OrderInfoDTO getPurchaseOrderDetail(OrderInfoDTO orderInfoDTO, String orderID) {
+    public OrderInfoDTO getSubmitOrderDetail(OrderInfoDTO orderInfoDTO, String userId) {
         //平台优惠券
         SaleInfo platformSaleInfo = null;
         //平台优惠券金额
@@ -114,8 +125,10 @@ public class OrderHeaderServiceImpl implements OrderHeaderService {
         List<OrderInfoDTO.OrderShopDetail> orderList = orderInfoDTO.getOrderList();
         for (int i = 0; i < orderList.size(); i++) {
             OrderInfoDTO.OrderShopDetail order = orderList.get(i);
+            String orderId = OrderIdUtil.orderIDGenerator();
+            order.setOrderId(orderId);
             OrderHeader orderHeader = new OrderHeader();
-            orderHeader.setOrderId(orderID);
+            orderHeader.setOrderId(orderId);
             orderHeader.setStatus(1);
             orderHeader.setAddressId(orderInfoDTO.getAddressId());
             orderHeader.setShopId(order.getShopId());
@@ -235,6 +248,7 @@ public class OrderHeaderServiceImpl implements OrderHeaderService {
             // TODO: 6/15/17 总金额,实际支付金额, 需要考虑运费
             orderHeader.setTotalAmount(orderTotalAmount);
             orderHeader.setActualAmount(orderActualAmount);
+            orderHeader.setUserId(userId);
             this.addOrderHeader(orderHeader);
             //循环相加单个订单的实际金额
             actualTotalAmount = actualTotalAmount.add(orderActualAmount);
@@ -242,6 +256,32 @@ public class OrderHeaderServiceImpl implements OrderHeaderService {
         //装载所有订单总共需要支付的价格
         orderInfoDTO.setActualTotalAmount(actualTotalAmount);
         return orderInfoDTO;
+    }
+
+    @Override
+    @Transactional
+    public PurchaseInfoDTO purchaseOrders(PurchaseInfoDTO purchaseInfoDTO) {
+        List<String> orderIds = purchaseInfoDTO.getOrderIds();
+        //多个 orderId 以","为分隔符进行字符串拼拼接
+        String separator = ",";
+        String purchaseOrderIds = purchaseInfoDTO.getOrderIds().stream().collect(Collectors.joining(separator));
+        //总计支付金额
+        BigDecimal purchaseAmount = BigDecimal.ZERO;
+        for (String orderId : orderIds) {
+            OrderHeader orderheader = this.selectByOrderId(orderId);
+            purchaseAmount = purchaseAmount.add(orderheader.getActualAmount());
+        }
+        Purchase purchase = new Purchase();
+        purchase.setPurchaseId(UUID.randomUUID().toString());
+        purchase.setOrderId(purchaseOrderIds);
+        purchase.setType(purchaseInfoDTO.getPurchaseType());
+        purchase.setCreateTime(new Date());
+        purchase.setStatus(0);//支付状态(0: 未支付, 1: 支付)
+        purchase.setIsDel(0);//删除状态 0:正常 1:删除
+        purchase.setAmount(purchaseAmount);
+        purchaseService.addPurchase(purchase);
+        //todo 调用第三方支付 service,回调修改 purchase status 等信息
+        return purchaseInfoDTO;
     }
 
     @Override

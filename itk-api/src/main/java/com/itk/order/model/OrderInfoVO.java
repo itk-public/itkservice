@@ -48,6 +48,7 @@ public class OrderInfoVO {
     @Setter
     @Getter
     public static class OrderShopDetail {
+        private String orderId;
         private List<Product> products;
         private Long shopId;
         private Integer couponId;

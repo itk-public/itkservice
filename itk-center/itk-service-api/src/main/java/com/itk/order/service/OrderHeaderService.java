@@ -1,9 +1,12 @@
 package com.itk.order.service;
 
 import com.itk.dto.OrderInfoDTO;
+import com.itk.dto.PurchaseInfoDTO;
 import com.itk.order.model.OrderHeader;
+import com.itk.payment.model.Purchase;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by enchen on 5/6/17.
@@ -19,7 +22,10 @@ public interface OrderHeaderService {
     OrderHeader selectByOrderId(String orderId);
 
     // 订单提交
-    OrderInfoDTO getPurchaseOrderDetail(OrderInfoDTO orderInfoDTO, String orderID);
+    OrderInfoDTO getSubmitOrderDetail(OrderInfoDTO orderInfoDTO, String userId);
+
+    //支付订单
+    PurchaseInfoDTO purchaseOrders(PurchaseInfoDTO purchaseInfoDTO);
 
     //订单完成
     OrderHeader orderComplete(String orderId);

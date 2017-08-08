@@ -1,17 +1,22 @@
 package com.itk.order.web;
 
+import com.itk.exception.ResultCode;
+import com.itk.exception.SystemException;
 import com.itk.order.model.OrderHeader;
 import com.itk.order.model.OrderInfoVO;
+import com.itk.order.model.PurchaseInfoVO;
 import com.itk.order.model.ShoppingCartVO;
 import com.itk.order.service.OrderFrontServiceImpl;
-
 import com.itk.util.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by enchen on 5/5/17.
@@ -63,10 +68,22 @@ public class OrderController {
     }
 
     //订单结算到提交订单
-    @RequestMapping(value = "/purchase/Order/info", method = RequestMethod.POST)
-    public ResponseEntity<?> getPurchaseOrderDetail(@RequestBody OrderInfoVO orderInfoVO) {
+    @RequestMapping(value = "/submit/Order/info", method = RequestMethod.POST)
+    public ResponseEntity<?> getSubmitOrderDetail(@RequestBody PurchaseInfoVO purchaseInfoVO) {
+        List<String> orderIds = purchaseInfoVO.getOrderIds();
+        if(CollectionUtils.isEmpty(orderIds)){
+            throw new SystemException(ResultCode.ORDER_ID_REQUIRED);
+        }
         return new ResponseEntity<>(
-                WebResult.ok(orderFrontService.getPurchaseOrderDetail(orderInfoVO)),
+                WebResult.ok(orderFrontService.purchaseOrders(purchaseInfoVO)),
+                HttpStatus.OK);
+    }
+
+    //订单支付
+    @RequestMapping(value = "/orders/purchase", method = RequestMethod.POST)
+    public ResponseEntity<?> getSubmitOrderDetail(@RequestBody OrderInfoVO orderInfoVO) {
+        return new ResponseEntity<>(
+                WebResult.ok(orderFrontService.getSubmitOrderDetail(orderInfoVO)),
                 HttpStatus.OK);
     }
 

@@ -20,4 +20,5 @@ public interface UserInfoService {
     int updateUserInfo(UserInfo userInfo);
 
     UserInfo findUserByPhone(String userName);
+
 }
