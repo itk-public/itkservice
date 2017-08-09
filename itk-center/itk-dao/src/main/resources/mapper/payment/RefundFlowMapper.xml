@@ -12,7 +12,15 @@
     <result column="promotion_status" property="promotionStatus" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
     <result column="complete_time" property="completeTime" jdbcType="TIMESTAMP" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="reject_reason" property="rejectReason" jdbcType="VARCHAR" />
+    <result column="reject_reason_received" property="rejectReasonReceived" jdbcType="VARCHAR" />
+    <result column="express_company" property="expressCompany" jdbcType="VARCHAR" />
+    <result column="express_no" property="expressNo" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -73,8 +81,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, flow_id, purchase_id, order_id, shop_id, refund_detail_id, type, promotion_status, 
-    status, create_time, complete_time
+    id, flow_id, purchase_id, order_id, shop_id, refund_detail_id, type, promotion_status,
+    status, create_time, create_by, complete_time, reason, address, remark, reject_reason,
+    reject_reason_received, express_company, express_no
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.itk.payment.model.RefundFlowExample" >
     select
@@ -99,7 +108,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_refund_flow
     where id = #{id,jdbcType=INTEGER}
@@ -115,14 +124,20 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.itk.payment.model.RefundFlow" >
-    insert into t_refund_flow (id, flow_id, purchase_id, 
-      order_id, shop_id, refund_detail_id, 
-      type, promotion_status, status, 
-      create_time, complete_time)
-    values (#{id,jdbcType=INTEGER}, #{flowId,jdbcType=VARCHAR}, #{purchaseId,jdbcType=VARCHAR}, 
-      #{orderId,jdbcType=VARCHAR}, #{shopId,jdbcType=BIGINT}, #{refundDetailId,jdbcType=VARCHAR}, 
-      #{type,jdbcType=INTEGER}, #{promotionStatus,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{completeTime,jdbcType=TIMESTAMP})
+    insert into t_refund_flow (id, flow_id, purchase_id,
+    order_id, shop_id, refund_detail_id,
+    type, promotion_status, status,
+    create_time, create_by, complete_time,
+    reason, address, remark,
+    reject_reason, reject_reason_received, express_company,
+    express_no)
+    values (#{id,jdbcType=INTEGER}, #{flowId,jdbcType=VARCHAR}, #{purchaseId,jdbcType=VARCHAR},
+    #{orderId,jdbcType=VARCHAR}, #{shopId,jdbcType=BIGINT}, #{refundDetailId,jdbcType=VARCHAR},
+    #{type,jdbcType=INTEGER}, #{promotionStatus,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},
+    #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{completeTime,jdbcType=TIMESTAMP},
+    #{reason,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+    #{rejectReason,jdbcType=VARCHAR}, #{rejectReasonReceived,jdbcType=VARCHAR}, #{expressCompany,jdbcType=VARCHAR},
+    #{expressNo,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.itk.payment.model.RefundFlow" >
     insert into t_refund_flow
@@ -157,8 +172,32 @@
       <if test="createTime != null" >
         create_time,
       </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
       <if test="completeTime != null" >
         complete_time,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="rejectReason != null" >
+        reject_reason,
+      </if>
+      <if test="rejectReasonReceived != null" >
+        reject_reason_received,
+      </if>
+      <if test="expressCompany != null" >
+        express_company,
+      </if>
+      <if test="expressNo != null" >
+        express_no,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -192,8 +231,32 @@
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
       <if test="completeTime != null" >
         #{completeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectReason != null" >
+        #{rejectReason,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectReasonReceived != null" >
+        #{rejectReasonReceived,jdbcType=VARCHAR},
+      </if>
+      <if test="expressCompany != null" >
+        #{expressCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNo != null" >
+        #{expressNo,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -236,8 +299,32 @@
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.createBy != null" >
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
       <if test="record.completeTime != null" >
         complete_time = #{record.completeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.reason != null" >
+        reason = #{record.reason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rejectReason != null" >
+        reject_reason = #{record.rejectReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rejectReasonReceived != null" >
+        reject_reason_received = #{record.rejectReasonReceived,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressCompany != null" >
+        express_company = #{record.expressCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressNo != null" >
+        express_no = #{record.expressNo,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -247,16 +334,24 @@
   <update id="updateByExample" parameterType="map" >
     update t_refund_flow
     set id = #{record.id,jdbcType=INTEGER},
-      flow_id = #{record.flowId,jdbcType=VARCHAR},
-      purchase_id = #{record.purchaseId,jdbcType=VARCHAR},
-      order_id = #{record.orderId,jdbcType=VARCHAR},
-      shop_id = #{record.shopId,jdbcType=BIGINT},
-      refund_detail_id = #{record.refundDetailId,jdbcType=VARCHAR},
-      type = #{record.type,jdbcType=INTEGER},
-      promotion_status = #{record.promotionStatus,jdbcType=INTEGER},
-      status = #{record.status,jdbcType=INTEGER},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      complete_time = #{record.completeTime,jdbcType=TIMESTAMP}
+    flow_id = #{record.flowId,jdbcType=VARCHAR},
+    purchase_id = #{record.purchaseId,jdbcType=VARCHAR},
+    order_id = #{record.orderId,jdbcType=VARCHAR},
+    shop_id = #{record.shopId,jdbcType=BIGINT},
+    refund_detail_id = #{record.refundDetailId,jdbcType=VARCHAR},
+    type = #{record.type,jdbcType=INTEGER},
+    promotion_status = #{record.promotionStatus,jdbcType=INTEGER},
+    status = #{record.status,jdbcType=INTEGER},
+    create_time = #{record.createTime,jdbcType=TIMESTAMP},
+    create_by = #{record.createBy,jdbcType=VARCHAR},
+    complete_time = #{record.completeTime,jdbcType=TIMESTAMP},
+    reason = #{record.reason,jdbcType=VARCHAR},
+    address = #{record.address,jdbcType=VARCHAR},
+    remark = #{record.remark,jdbcType=VARCHAR},
+    reject_reason = #{record.rejectReason,jdbcType=VARCHAR},
+    reject_reason_received = #{record.rejectReasonReceived,jdbcType=VARCHAR},
+    express_company = #{record.expressCompany,jdbcType=VARCHAR},
+    express_no = #{record.expressNo,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -291,8 +386,32 @@
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
       <if test="completeTime != null" >
         complete_time = #{completeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectReason != null" >
+        reject_reason = #{rejectReason,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectReasonReceived != null" >
+        reject_reason_received = #{rejectReasonReceived,jdbcType=VARCHAR},
+      </if>
+      <if test="expressCompany != null" >
+        express_company = #{expressCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNo != null" >
+        express_no = #{expressNo,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -300,15 +419,23 @@
   <update id="updateByPrimaryKey" parameterType="com.itk.payment.model.RefundFlow" >
     update t_refund_flow
     set flow_id = #{flowId,jdbcType=VARCHAR},
-      purchase_id = #{purchaseId,jdbcType=VARCHAR},
-      order_id = #{orderId,jdbcType=VARCHAR},
-      shop_id = #{shopId,jdbcType=BIGINT},
-      refund_detail_id = #{refundDetailId,jdbcType=VARCHAR},
-      type = #{type,jdbcType=INTEGER},
-      promotion_status = #{promotionStatus,jdbcType=INTEGER},
-      status = #{status,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      complete_time = #{completeTime,jdbcType=TIMESTAMP}
+    purchase_id = #{purchaseId,jdbcType=VARCHAR},
+    order_id = #{orderId,jdbcType=VARCHAR},
+    shop_id = #{shopId,jdbcType=BIGINT},
+    refund_detail_id = #{refundDetailId,jdbcType=VARCHAR},
+    type = #{type,jdbcType=INTEGER},
+    promotion_status = #{promotionStatus,jdbcType=INTEGER},
+    status = #{status,jdbcType=INTEGER},
+    create_time = #{createTime,jdbcType=TIMESTAMP},
+    create_by = #{createBy,jdbcType=VARCHAR},
+    complete_time = #{completeTime,jdbcType=TIMESTAMP},
+    reason = #{reason,jdbcType=VARCHAR},
+    address = #{address,jdbcType=VARCHAR},
+    remark = #{remark,jdbcType=VARCHAR},
+    reject_reason = #{rejectReason,jdbcType=VARCHAR},
+    reject_reason_received = #{rejectReasonReceived,jdbcType=VARCHAR},
+    express_company = #{expressCompany,jdbcType=VARCHAR},
+    express_no = #{expressNo,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

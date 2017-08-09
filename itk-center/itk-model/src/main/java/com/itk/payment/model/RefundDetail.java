@@ -4,33 +4,33 @@ public class RefundDetail {
     private Long id;
 
     /**
-    * 退款详情 id
-    */
+     * 退款详情 id
+     */
     private String refundDetailId;
 
     /**
-    * 流水 id
-    */
+     * 流水 id
+     */
     private String flowId;
 
     /**
-    * 商品信息 id
-    */
-    private String itemInfoId;
+     * 订单明细 id
+     */
+    private String orderDetailId;
 
     /**
-    * 退货数量
-    */
+     * 退货数量
+     */
     private Integer refundCount;
 
     /**
-    * 平台券id
-    */
+     * 平台券id
+     */
     private Integer platformPromotionCode;
 
     /**
-    * 商家券 id
-    */
+     * 商家券 id
+     */
     private Integer shopPromotionCode;
 
     public Long getId() {
@@ -57,12 +57,12 @@ public class RefundDetail {
         this.flowId = flowId;
     }
 
-    public String getItemInfoId() {
-        return itemInfoId;
+    public String getOrderDetailId() {
+        return orderDetailId;
     }
 
-    public void setItemInfoId(String itemInfoId) {
-        this.itemInfoId = itemInfoId;
+    public void setOrderDetailId(String orderDetailId) {
+        this.orderDetailId = orderDetailId;
     }
 
     public Integer getRefundCount() {

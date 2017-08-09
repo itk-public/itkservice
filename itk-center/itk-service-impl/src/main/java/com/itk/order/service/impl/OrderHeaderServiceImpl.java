@@ -19,13 +19,11 @@ import com.itk.user.service.UserShippingAddressService;
 import com.itk.util.OrderIdUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**
@@ -185,6 +183,7 @@ public class OrderHeaderServiceImpl implements OrderHeaderService {
                 orderDetail.setOrderId(orderHeader.getOrderId());
                 orderDetail.setItemInfoId(itemInfo.getItemId());
                 orderDetail.setItemCount(product.getNumber());
+                orderDetail.setItemAmount(itemInfo.getPrice());
                 // TODO: 6/14/17  运费 ID   计算价格的时候需要考虑
                 //orderDetail.setFreightId();
 
@@ -226,6 +225,7 @@ public class OrderHeaderServiceImpl implements OrderHeaderService {
                     }
                 }
 
+
                 orderDetailService.addOrderDetail(orderDetail);
 
                 //单个商品减免折扣后实际的价格
@@ -242,6 +242,8 @@ public class OrderHeaderServiceImpl implements OrderHeaderService {
                 }
                 //装载单个商品减免折扣后的价格
                 orderList.get(i).getProducts().get(j).setActualPrice(productActualPrice);
+                //装载单个商品实际支付的总价
+                orderDetail.setActualAmount(productActual.compareTo(BigDecimal.ZERO) > -1 ? productActual : BigDecimal.ZERO);
                 orderActualAmount = orderActualAmount.add(productActual.compareTo(BigDecimal.ZERO) > -1 ? productActual : BigDecimal.ZERO);
             }
             orderList.get(i).setActualAmount(orderActualAmount);

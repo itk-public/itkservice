@@ -385,6 +385,126 @@ public class OrderDetailExample {
             return (Criteria) this;
         }
 
+        public Criteria andItemAmountIsNull() {
+            addCriterion("item_amount is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemAmountIsNotNull() {
+            addCriterion("item_amount is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemAmountEqualTo(BigDecimal value) {
+            addCriterion("item_amount =", value, "itemAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemAmountNotEqualTo(BigDecimal value) {
+            addCriterion("item_amount <>", value, "itemAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemAmountGreaterThan(BigDecimal value) {
+            addCriterion("item_amount >", value, "itemAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemAmountGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("item_amount >=", value, "itemAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemAmountLessThan(BigDecimal value) {
+            addCriterion("item_amount <", value, "itemAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemAmountLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("item_amount <=", value, "itemAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemAmountIn(List<BigDecimal> values) {
+            addCriterion("item_amount in", values, "itemAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemAmountNotIn(List<BigDecimal> values) {
+            addCriterion("item_amount not in", values, "itemAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemAmountBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("item_amount between", value1, value2, "itemAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemAmountNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("item_amount not between", value1, value2, "itemAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andActualAmountIsNull() {
+            addCriterion("actual_amount is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andActualAmountIsNotNull() {
+            addCriterion("actual_amount is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andActualAmountEqualTo(BigDecimal value) {
+            addCriterion("actual_amount =", value, "actualAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andActualAmountNotEqualTo(BigDecimal value) {
+            addCriterion("actual_amount <>", value, "actualAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andActualAmountGreaterThan(BigDecimal value) {
+            addCriterion("actual_amount >", value, "actualAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andActualAmountGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("actual_amount >=", value, "actualAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andActualAmountLessThan(BigDecimal value) {
+            addCriterion("actual_amount <", value, "actualAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andActualAmountLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("actual_amount <=", value, "actualAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andActualAmountIn(List<BigDecimal> values) {
+            addCriterion("actual_amount in", values, "actualAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andActualAmountNotIn(List<BigDecimal> values) {
+            addCriterion("actual_amount not in", values, "actualAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andActualAmountBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("actual_amount between", value1, value2, "actualAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andActualAmountNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("actual_amount not between", value1, value2, "actualAmount");
+            return (Criteria) this;
+        }
+
         public Criteria andFreightIdIsNull() {
             addCriterion("freight_id is null");
             return (Criteria) this;

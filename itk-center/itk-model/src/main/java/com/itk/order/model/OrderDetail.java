@@ -6,43 +6,53 @@ public class OrderDetail {
     private Long id;
 
     /**
-    * 订单 id
-    */
+     * 订单 id
+     */
     private String orderId;
 
     /**
-    * 商品信息 id
-    */
+     * 商品信息 id
+     */
     private String itemInfoId;
 
     /**
-    * 商品购买数量
-    */
+     * 商品购买数量
+     */
     private Integer itemCount;
 
     /**
-    * 运费 id
-    */
+     * 单个商品金额
+     */
+    private BigDecimal itemAmount;
+
+    /**
+     * 实际支付金额
+     */
+    private BigDecimal actualAmount;
+
+    /**
+     * 运费 id
+     */
     private Integer freightId;
 
     /**
-    * 平台券id
-    */
+     * 平台券id
+     */
     private Integer platformPromotionCode;
 
     /**
-    * 平台券使用金额
-    */
+     * 平台券使用金额
+     */
     private BigDecimal platformPromotionCost;
 
     /**
-    * 商家券 id
-    */
+     * 商家券 id
+     */
     private Integer shopPromotionCode;
 
     /**
-    * 商家券使用金额
-    */
+     * 商家券使用金额
+     */
     private BigDecimal shopPromotionCost;
 
     public Long getId() {
@@ -75,6 +85,22 @@ public class OrderDetail {
 
     public void setItemCount(Integer itemCount) {
         this.itemCount = itemCount;
+    }
+
+    public BigDecimal getItemAmount() {
+        return itemAmount;
+    }
+
+    public void setItemAmount(BigDecimal itemAmount) {
+        this.itemAmount = itemAmount;
+    }
+
+    public BigDecimal getActualAmount() {
+        return actualAmount;
+    }
+
+    public void setActualAmount(BigDecimal actualAmount) {
+        this.actualAmount = actualAmount;
     }
 
     public Integer getFreightId() {
