@@ -1,6 +1,5 @@
 package com.itk.item.web;
 
-import com.itk.config.ResultCode;
 import com.itk.item.model.ItemInfo;
 import com.itk.item.service.ItemInfoFrontServiceImpl;
 import com.itk.solr.model.SolrItem;
@@ -31,7 +30,7 @@ public class ItemInfoController {
         itemInfoFrontService.addItemInfo(itemInfo);
         return ResponseEntity.ok(
                 WebResult.ok(
-                        exceptionSource.getMessage(ResultCode.ADD_SUCCESS + "", new String[]{}, "SUCCESS", Constant.DEFAULT_LOCALE)
+                        exceptionSource.getMessage(ResultCode.ADD_SUCCESS + "", new String[]{}, "SUCCESS", LocaleLanguageUtil.DEFAULT_LOCALE)
                 )
         );
     }
@@ -41,7 +40,7 @@ public class ItemInfoController {
         itemInfoFrontService.updateItemInfo(itemInfo);
         return ResponseEntity.ok(
                 WebResult.ok(
-                        exceptionSource.getMessage(ResultCode.EDIT_SUCCESS + "", new String[]{}, "SUCCESS", Constant.DEFAULT_LOCALE)
+                        exceptionSource.getMessage(ResultCode.EDIT_SUCCESS + "", new String[]{}, "SUCCESS", LocaleLanguageUtil.DEFAULT_LOCALE)
                 )
         );
     }
@@ -51,7 +50,7 @@ public class ItemInfoController {
         itemInfoFrontService.delItemInfo(itemInfoId);
         return ResponseEntity.ok(
                 WebResult.ok(
-                        exceptionSource.getMessage(ResultCode.DELETE_SUCCESS + "", new String[]{}, "SUCCESS", Constant.DEFAULT_LOCALE)
+                        exceptionSource.getMessage(ResultCode.DELETE_SUCCESS + "", new String[]{}, "SUCCESS", LocaleLanguageUtil.DEFAULT_LOCALE)
                 )
         );
     }

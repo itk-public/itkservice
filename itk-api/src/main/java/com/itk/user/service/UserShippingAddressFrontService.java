@@ -3,7 +3,6 @@ package com.itk.user.service;
 import com.itk.exception.ObjectNotFoundException;
 import com.itk.security.SecurityUtils;
 import com.itk.user.model.UserShippingAddress;
-import com.itk.user.model.UserShippingAddressExample;
 import com.itk.user.model.UserShippingAddressVO;
 import com.itk.user.web.mapper.UserShippingAddressMapper;
 import com.itk.util.PageInfo;
@@ -14,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by young on 2017/5/17.

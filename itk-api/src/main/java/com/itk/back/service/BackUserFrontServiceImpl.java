@@ -1,10 +1,10 @@
 package com.itk.back.service;
 
 import com.itk.back.model.BackUser;
-import com.itk.exception.ResultCode;
 import com.itk.exception.SystemException;
 import com.itk.util.Constant;
 import com.itk.util.MD5Util;
+import com.itk.util.ResultCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package com.itk.exception;
 
-import com.itk.util.Constant;
+import com.itk.util.LocaleLanguageUtil;
 
 import java.util.Locale;
 import java.util.UUID;
@@ -12,7 +12,7 @@ public class ObjectNotFoundException extends RuntimeException {
 
     private Object object;
 
-    private Locale locale = Constant.DEFAULT_LOCALE;
+    private Locale locale = LocaleLanguageUtil.DEFAULT_LOCALE;
 
     public Object getObject() {
         return object;

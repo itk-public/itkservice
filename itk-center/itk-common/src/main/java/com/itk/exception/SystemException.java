@@ -1,7 +1,7 @@
 package com.itk.exception;
 
 
-import com.itk.util.Constant;
+import com.itk.util.LocaleLanguageUtil;
 
 import java.util.Locale;
 
@@ -14,7 +14,7 @@ public class SystemException extends RuntimeException {
 
     private String errorMessage;
 
-    private Locale locale = Constant.DEFAULT_LOCALE;
+    private Locale locale = LocaleLanguageUtil.DEFAULT_LOCALE;
 
     public SystemException() {
 

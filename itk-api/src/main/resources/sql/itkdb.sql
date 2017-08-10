@@ -445,8 +445,8 @@ CREATE TABLE `t_refund_detail` (
   `flow_id` VARCHAR(100) NOT NULL COMMENT '流水 id',
   `order_detail_id` VARCHAR(100) NOT NULL COMMENT '订单明细 id',
   `refund_count` INT(10) NOT NULL COMMENT '退货数量',
-  `platform_promotion_code` INT(20) COMMENT '平台券id',
-  `shop_promotion_code` INT(20) COMMENT '商家券 id',
+  `platform_promotion_code` INT(11) COMMENT '平台券id',
+  `shop_promotion_code` INT(11) COMMENT '商家券 id',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='退款明细';
 

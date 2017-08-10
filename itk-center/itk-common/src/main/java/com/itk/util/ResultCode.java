@@ -1,4 +1,4 @@
-package com.itk.exception;
+package com.itk.util;
 
 /**
  * Created by young on 2017/5/24.
@@ -6,7 +6,7 @@ package com.itk.exception;
 public final class ResultCode {
 
     /**
-     * exception message id , 与 i18n 文件中 key 对应
+     * com.itk.exception message id , 与 i18n 文件中 key 对应
      */
 
     public static final String UNKNOW_ERROR = "UNKNOW ERROR";

@@ -1,6 +1,6 @@
 package com.itk.order.convert;
 
-import com.itk.dto.OrderInfoDTO;
+import com.itk.order.dto.OrderInfoDTO;
 import com.itk.order.model.OrderInfoVO;
 import org.springframework.beans.BeanUtils;
 

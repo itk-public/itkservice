@@ -28,5 +28,10 @@
 			<artifactId>itk-config</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.itk</groupId>
+			<artifactId>itk-common</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
     </dependencies>
 </project>

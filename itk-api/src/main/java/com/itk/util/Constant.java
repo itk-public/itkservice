@@ -10,12 +10,6 @@ import java.util.Locale;
  */
 public class Constant {
 
-    /** languae */
-    public static final String DEFAULT_LANGUAGE = "zh_CN";
-    public static final String EN_LANGUAGE = "en";
-
-    public static final Locale DEFAULT_LOCALE = new Locale(DEFAULT_LANGUAGE);
-
     public static final String EmptyString = "";
     public static final String SYSTEM_USER = "system";
     /**

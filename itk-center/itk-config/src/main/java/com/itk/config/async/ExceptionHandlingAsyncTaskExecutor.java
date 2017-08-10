@@ -52,7 +52,7 @@ public class ExceptionHandlingAsyncTaskExecutor implements AsyncTaskExecutor,
     }
 
     protected void handle(Exception e) {
-        log.error("Caught async exception", e);
+        log.error("Caught async com.itk.exception", e);
     }
 
     @Override

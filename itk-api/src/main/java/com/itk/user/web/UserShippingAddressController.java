@@ -1,21 +1,18 @@
 package com.itk.user.web;
 
-import com.itk.exception.ResultCode;
+import com.itk.util.*;
 import com.itk.security.SecurityUtils;
 import com.itk.user.model.UserShippingAddress;
 import com.itk.user.model.UserShippingAddressVO;
 import com.itk.user.service.UserShippingAddressFrontService;
 import com.itk.user.web.mapper.UserShippingAddressMapper;
-import com.itk.util.Constant;
-import com.itk.util.PageInfo;
-import com.itk.util.PaginationUtil;
-import com.itk.util.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.net.URISyntaxException;
 import java.util.stream.Collectors;
@@ -95,7 +92,7 @@ public class UserShippingAddressController {
         shippingAddressFrontService.createUserShippingAddress(shippingAddressVO);
         return ResponseEntity.ok(
                 WebResult.ok(
-                        exceptionSource.getMessage(ResultCode.ADD_SUCCESS + "", new String[]{}, "SUCCESS", Constant.DEFAULT_LOCALE)
+                        exceptionSource.getMessage(ResultCode.ADD_SUCCESS + "", new String[]{}, "SUCCESS", LocaleLanguageUtil.DEFAULT_LOCALE)
                 )
         );
     }
@@ -111,7 +108,7 @@ public class UserShippingAddressController {
         shippingAddressFrontService.updateUserShippingAddress(shippingAddressVO);
         return ResponseEntity.ok(
                 WebResult.ok(
-                        exceptionSource.getMessage(ResultCode.EDIT_SUCCESS + "", new String[]{}, "SUCCESS", Constant.DEFAULT_LOCALE)
+                        exceptionSource.getMessage(ResultCode.EDIT_SUCCESS + "", new String[]{}, "SUCCESS", LocaleLanguageUtil.DEFAULT_LOCALE)
                 )
         );
     }
@@ -127,7 +124,7 @@ public class UserShippingAddressController {
         shippingAddressFrontService.deleteUserShippingAddress(shippingAddressId);
         return ResponseEntity.ok(
                 WebResult.ok(
-                        exceptionSource.getMessage(ResultCode.DELETE_SUCCESS + "", new String[]{}, "SUCCESS", Constant.DEFAULT_LOCALE)
+                        exceptionSource.getMessage(ResultCode.DELETE_SUCCESS + "", new String[]{}, "SUCCESS", LocaleLanguageUtil.DEFAULT_LOCALE)
                 )
         );
     }
@@ -145,7 +142,7 @@ public class UserShippingAddressController {
         shippingAddressFrontService.setDefaultUserShippingAddress(shippingAddressId, isDefault);
         return ResponseEntity.ok(
                 WebResult.ok(
-                        exceptionSource.getMessage(ResultCode.EDIT_SUCCESS + "", null, "SUCCESS", Constant.DEFAULT_LOCALE)
+                        exceptionSource.getMessage(ResultCode.EDIT_SUCCESS + "", null, "SUCCESS", LocaleLanguageUtil.DEFAULT_LOCALE)
                 )
         );
     }

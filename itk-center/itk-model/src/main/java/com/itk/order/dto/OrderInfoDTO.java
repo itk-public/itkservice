@@ -1,4 +1,4 @@
-package com.itk.dto;
+package com.itk.order.dto;
 
 import com.itk.item.model.ItemInfo;
 import com.itk.promotion.model.SaleInfo;

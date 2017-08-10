@@ -1,12 +1,10 @@
 package com.itk.order.service;
 
-import com.itk.dto.OrderInfoDTO;
-import com.itk.dto.PurchaseInfoDTO;
+import com.itk.order.dto.OrderInfoDTO;
+import com.itk.payment.dto.PurchaseInfoDTO;
 import com.itk.order.model.OrderHeader;
-import com.itk.payment.model.Purchase;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by enchen on 5/6/17.

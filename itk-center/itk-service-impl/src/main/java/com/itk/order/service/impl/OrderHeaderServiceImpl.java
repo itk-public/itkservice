@@ -1,8 +1,8 @@
 package com.itk.order.service.impl;
 
 import com.itk.base.service.ShopInfoService;
-import com.itk.dto.OrderInfoDTO;
-import com.itk.dto.PurchaseInfoDTO;
+import com.itk.order.dto.OrderInfoDTO;
+import com.itk.payment.dto.PurchaseInfoDTO;
 import com.itk.item.model.ItemInfo;
 import com.itk.item.service.ItemInfoService;
 import com.itk.order.mapper.OrderHeaderMapper;
@@ -140,7 +140,7 @@ public class OrderHeaderServiceImpl implements OrderHeaderService {
                 //orderHeader.setCompleteTime();
             } else {
                 if (orderInfoDTO.getPickSelfLocationId() == null) {
-                    //todo throw exception
+                    //todo throw com.itk.exception
                     //throw new SystemException(2001);
                 }
                 orderHeader.setPickSelfLocationId(orderInfoDTO.getPickSelfLocationId());
@@ -322,14 +322,14 @@ public class OrderHeaderServiceImpl implements OrderHeaderService {
                     orderHeader.setAllocationFromTime(allocationFromTime);
                     orderHeader.setAllocationToTime(allocationToTime);
                 } else {
-                    // TODO: 6/22/17 throw exception
+                    // TODO: 6/22/17 throw com.itk.exception
                 }
                 break;
             case 4:
                 if (allocationType == 1 && pickSelfLocationId != null) {
                     orderHeader.setPickSelfLocationId(pickSelfLocationId);
                 } else {
-                    // TODO: 6/22/17 throw exception
+                    // TODO: 6/22/17 throw com.itk.exception
                 }
                 break;
             case 5:

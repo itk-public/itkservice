@@ -2,10 +2,8 @@ package com.itk.order.service;
 
 import com.itk.base.model.ShopInfo;
 import com.itk.base.service.ShopInfoService;
-import com.itk.dto.OrderInfoDTO;
-import com.itk.dto.PurchaseInfoDTO;
-import com.itk.exception.ResultCode;
-import com.itk.exception.SystemException;
+import com.itk.order.dto.OrderInfoDTO;
+import com.itk.payment.dto.PurchaseInfoDTO;
 import com.itk.item.convert.ItemInfoConvert;
 import com.itk.item.model.ItemInfo;
 import com.itk.item.service.ItemInfoService;
@@ -26,8 +24,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by enchen on 5/5/17.

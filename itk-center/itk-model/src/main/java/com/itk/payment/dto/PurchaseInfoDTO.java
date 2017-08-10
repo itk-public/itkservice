@@ -1,4 +1,4 @@
-package com.itk.dto;
+package com.itk.payment.dto;
 
 import lombok.Getter;
 import lombok.Setter;

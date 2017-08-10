@@ -1,12 +1,12 @@
 package com.itk.order.web;
 
-import com.itk.exception.ResultCode;
 import com.itk.exception.SystemException;
 import com.itk.order.model.OrderHeader;
 import com.itk.order.model.OrderInfoVO;
 import com.itk.order.model.PurchaseInfoVO;
 import com.itk.order.model.ShoppingCartVO;
 import com.itk.order.service.OrderFrontServiceImpl;
+import com.itk.util.ResultCode;
 import com.itk.util.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by enchen on 5/5/17.

@@ -1,9 +1,10 @@
 package com.itk.exception.handler;
 
-import com.itk.exception.ResultCode;
 import com.itk.exception.ObjectNotFoundException;
 import com.itk.exception.SystemException;
 import com.itk.util.Constant;
+import com.itk.util.LocaleLanguageUtil;
+import com.itk.util.ResultCode;
 import com.itk.util.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -41,7 +42,7 @@ public class ResourceAdvice {
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public WebResult handleException(Exception e) {
-        String errorMessage = exceptionSource.getMessage(ResultCode.SYSTEM_ERROR + "", new String[]{}, ResultCode.UNKNOW_SOURCE, Constant.DEFAULT_LOCALE);
+        String errorMessage = exceptionSource.getMessage(ResultCode.SYSTEM_ERROR + "", new String[]{}, ResultCode.UNKNOW_SOURCE, LocaleLanguageUtil.DEFAULT_LOCALE);
         return new WebResult(ResultCode.SYSTEM_ERROR, errorMessage, e.getMessage(), ResultCode.SYSTEM_ERROR);
     }
 

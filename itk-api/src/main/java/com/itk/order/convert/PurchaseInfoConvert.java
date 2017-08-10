@@ -1,8 +1,6 @@
 package com.itk.order.convert;
 
-import com.itk.dto.OrderInfoDTO;
-import com.itk.dto.PurchaseInfoDTO;
-import com.itk.order.model.OrderInfoVO;
+import com.itk.payment.dto.PurchaseInfoDTO;
 import com.itk.order.model.PurchaseInfoVO;
 import org.springframework.beans.BeanUtils;
 

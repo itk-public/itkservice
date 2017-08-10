@@ -3,7 +3,7 @@ package com.itk.security;
         import org.springframework.security.core.AuthenticationException;
 
 /**
- * This exception is throw in case of a not activated user trying to authenticate.
+ * This com.itk.exception is throw in case of a not activated user trying to authenticate.
  */
 public class UserNotActivatedException extends AuthenticationException {
 

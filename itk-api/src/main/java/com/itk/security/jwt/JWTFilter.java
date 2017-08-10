@@ -51,7 +51,7 @@ public class JWTFilter extends GenericFilterBean {
             }
             filterChain.doFilter(servletRequest, servletResponse);
         } catch (ExpiredJwtException eje) {
-            log.info("Security exception for user {} - {}", eje.getClaims().getSubject(), eje.getMessage());
+            log.info("Security com.itk.exception for user {} - {}", eje.getClaims().getSubject(), eje.getMessage());
             HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
             httpServletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             httpServletResponse.setCharacterEncoding("utf-8");
@@ -68,13 +68,13 @@ public class JWTFilter extends GenericFilterBean {
             out.write(objectMapper.writeValueAsString(new ErrorDTO("token invalid", e.getMessage())));
             out.flush();
         } catch (Exception e) {
-            log.info("Security exception token {}", e.getMessage());
+            log.info("Security com.itk.exception token {}", e.getMessage());
             HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             httpServletResponse.setCharacterEncoding("utf-8");
             httpServletResponse.setContentType("application/json; charset=utf-8");
             PrintWriter out = httpServletResponse.getWriter();
-            out.write(objectMapper.writeValueAsString(new ErrorDTO("system exception", e.getMessage())));
+            out.write(objectMapper.writeValueAsString(new ErrorDTO("system com.itk.exception", e.getMessage())));
             out.flush();
         }
     }
