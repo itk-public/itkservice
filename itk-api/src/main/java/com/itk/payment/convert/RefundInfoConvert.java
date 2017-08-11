@@ -1,18 +1,23 @@
 package com.itk.payment.convert;
 
+import com.itk.payment.dto.RefundDetailDTO;
 import com.itk.payment.dto.RefundInfoDTO;
+import com.itk.payment.model.RefundDetailVO;
 import com.itk.payment.model.RefundInfoVO;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
  * Created by enchen on 6/20/17.
  */
 public class RefundInfoConvert {
-    public static RefundInfoDTO RefundInfoVOToDTO(RefundInfoVO refundInfoVO){
-        if(null == refundInfoVO){
+    public static RefundInfoDTO RefundInfoVOToDTO(RefundInfoVO refundInfoVO) {
+        if (null == refundInfoVO) {
             return null;
         }
+        List<RefundDetailDTO> refundDetailDTOList = new ArrayList<>();
         RefundInfoDTO refundInfoDTO = new RefundInfoDTO();
         refundInfoDTO.setId(refundInfoVO.getId());
         refundInfoDTO.setOrderId(refundInfoVO.getOrderId());
@@ -33,17 +38,15 @@ public class RefundInfoConvert {
         refundInfoDTO.setCreateBy(refundInfoVO.getCreateBy());
         refundInfoDTO.setRefundDetails(
                 refundInfoVO.getRefundDetails()
-                .stream()
-                .map(refundDetailVO -> {
-                    return RefundDetailConvert.RefundDetailVOToDTO(refundDetailVO);
-                })
-                .collect(Collectors.toList())
+                        .stream()
+                        .map(RefundDetailConvert::RefundDetailVOToDTO)
+                        .collect(Collectors.toList())
         );
         return refundInfoDTO;
     }
 
-    public static RefundInfoVO RefundInfoDTOToVO(RefundInfoDTO refundInfoDTO){
-        if(null == refundInfoDTO){
+    public static RefundInfoVO RefundInfoDTOToVO(RefundInfoDTO refundInfoDTO) {
+        if (null == refundInfoDTO) {
             return null;
         }
         RefundInfoVO refundInfoVO = new RefundInfoVO();
@@ -67,9 +70,7 @@ public class RefundInfoConvert {
         refundInfoVO.setRefundDetails(
                 refundInfoDTO.getRefundDetails()
                         .stream()
-                        .map(refundDetailDTO -> {
-                            return RefundDetailConvert.RefundDetailDTOToVO(refundDetailDTO);
-                        })
+                        .map(RefundDetailConvert::RefundDetailDTOToVO)
                         .collect(Collectors.toList())
         );
         return refundInfoVO;

@@ -13,7 +13,7 @@ import java.util.UUID;
 /**
  * Created by enchen on 5/5/17.
  */
-@Controller
+@RestController
 @RequestMapping("/purchase")
 public class PurchaseController {
 

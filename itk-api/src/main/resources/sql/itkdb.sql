@@ -499,6 +499,7 @@ CREATE TABLE `t_user_shipping_address` (
 #t_order_header  shopid -> bigint(20)
 
 #t_backuser add user_id varchar(100)
+#order_detail 加状态标识是不是退款
 
 
 

@@ -44,10 +44,9 @@ public class RefundDetailServiceImpl implements RefundDetailService {
     }
 
     @Override
-    public RefundDetail selectByRefundFlowId(String refundFlowId) {
+    public List<RefundDetail> selectByRefundFlowId(String refundFlowId) {
         RefundDetailExample example = new RefundDetailExample();
         example.or().andFlowIdEqualTo(refundFlowId);
-        List<RefundDetail> refundDetailList = refundDetailMapper.selectByExample(example);
-        return refundDetailList.size() > 0 ? refundDetailList.get(0) : null;
+        return refundDetailMapper.selectByExample(example);
     }
 }

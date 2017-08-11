@@ -39,6 +39,13 @@ public final class ResultCode {
     public static final int REFUND_ORDER_UNKNOWN = 3002;         //订单编号未知,退款流程异常
     public static final int REFUND_ORDER_DETAIL_UNKNOWN = 3003;         //订单详情未知,退款流程异常
     public static final int REFUND_REASON_REQUIRED = 3004;         //退款理由必填
+    public static final int OPERATOR_INVALID = 3005;         //操作人不符
+    public static final int REFUND_ADDRESS_REQUIRED = 3006;         //收货地址必填
+    public static final int REFUND_REJECT_REASON = 3007;         //驳回理由必填
+    public static final int REFUND_FLOW_ID_REQUIRED = 3008;         //退款单号必填
+    public static final int REFUND_EXPRESS_COMPANY_REQUIRED = 3009;         //快递公司
+    public static final int REFUND_EXPRESS_NO_REQUIRED = 3010;         //物流单号
+    public static final int REFUND_REJECT_RECEIVED_REASON = 3011;         //收货后驳回理由必填
 
     //系统错误
     public static final int SYSTEM_ERROR = 5001;       //系统内部错误
