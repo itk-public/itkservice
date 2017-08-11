@@ -14,4 +14,6 @@ public interface OrderDetailService {
     int updateOrderDetail(OrderDetail orderDetail);
 
     List<OrderDetail> selectByOrderId(String orderId);
+
+    OrderDetail selectByPrimaryKey(Long id);
 }

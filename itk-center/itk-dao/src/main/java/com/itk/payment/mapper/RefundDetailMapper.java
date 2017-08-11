@@ -14,7 +14,7 @@ public interface RefundDetailMapper {
 
     int insert(RefundDetail record);
 
-    int insertSelective(RefundDetail record);
+    Long insertSelective(RefundDetail record);
 
     List<RefundDetail> selectByExample(RefundDetailExample example);
 

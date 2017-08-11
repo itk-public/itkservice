@@ -3,7 +3,7 @@ package com.itk.payment.model;
 import java.util.Date;
 
 public class RefundFlow {
-    private Integer id;
+    private Long id;
 
     /**
      * 流水 id
@@ -24,11 +24,6 @@ public class RefundFlow {
      *  店铺信息 id
      */
     private Long shopId;
-
-    /**
-     * 退款明细 id
-     */
-    private String refundDetailId;
 
     /**
      * 退款类型(0: 部分退款, 1: 整单退款)
@@ -95,11 +90,11 @@ public class RefundFlow {
      */
     private String expressNo;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -133,14 +128,6 @@ public class RefundFlow {
 
     public void setShopId(Long shopId) {
         this.shopId = shopId;
-    }
-
-    public String getRefundDetailId() {
-        return refundDetailId;
-    }
-
-    public void setRefundDetailId(String refundDetailId) {
-        this.refundDetailId = refundDetailId;
     }
 
     public Integer getType() {

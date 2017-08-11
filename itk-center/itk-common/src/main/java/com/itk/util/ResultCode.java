@@ -34,6 +34,12 @@ public final class ResultCode {
     public static final int PICK_SELF_LOCATION_ID = 2001;
     public static final int ORDER_ID_REQUIRED = 2002;
 
+    //退货相关业务错误
+    public static final int REFUND_STATUS_ERROR = 3001;         //退款订单状态不符
+    public static final int REFUND_ORDER_UNKNOWN = 3002;         //订单编号未知,退款流程异常
+    public static final int REFUND_ORDER_DETAIL_UNKNOWN = 3003;         //订单详情未知,退款流程异常
+    public static final int REFUND_REASON_REQUIRED = 3004;         //退款理由必填
+
     //系统错误
     public static final int SYSTEM_ERROR = 5001;       //系统内部错误
 }

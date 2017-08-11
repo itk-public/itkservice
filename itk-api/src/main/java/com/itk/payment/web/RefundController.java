@@ -1,5 +1,6 @@
 package com.itk.payment.web;
 
+import com.itk.payment.convert.RefundInfoConvert;
 import com.itk.payment.model.RefundInfoVO;
 import com.itk.payment.service.RefundFrontServiceImpl;
 import com.itk.util.WebResult;
@@ -20,8 +21,12 @@ public class RefundController {
     RefundFrontServiceImpl refundFrontService;
 
     @RequestMapping(value = "/submit", method = RequestMethod.POST)
-    public WebResult addPurchase(@RequestBody RefundInfoVO refundInfoVO) {
-        return WebResult.ok(refundFrontService.submitRefund(refundInfoVO));
+    public WebResult submitRefund(@RequestBody RefundInfoVO refundInfoVO) {
+        return WebResult.ok(
+                RefundInfoConvert.RefundInfoDTOToVO(
+                        refundFrontService.submitRefund(refundInfoVO)
+                )
+        );
     }
 
 }

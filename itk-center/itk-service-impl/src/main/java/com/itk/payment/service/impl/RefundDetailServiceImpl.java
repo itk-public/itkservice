@@ -9,6 +9,7 @@ import com.itk.payment.model.RefundFlowExample;
 import com.itk.payment.service.RefundDetailService;
 import com.itk.payment.service.RefundFlowService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,14 +21,18 @@ public class RefundDetailServiceImpl implements RefundDetailService {
     @Autowired
     RefundDetailMapper refundDetailMapper;
 
+    @Transactional
     @Override
-    public int insertSelective(RefundDetail refundDetail) {
-        return refundDetailMapper.insertSelective(refundDetail);
+    public RefundDetail insertSelective(RefundDetail refundDetail) {
+        Long id = refundDetailMapper.insertSelective(refundDetail);
+        return refundDetailMapper.selectByPrimaryKey(id);
     }
 
+    @Transactional
     @Override
-    public int updateByPrimaryKeySelective(RefundDetail refundDetail) {
-        return refundDetailMapper.updateByPrimaryKeySelective(refundDetail);
+    public RefundDetail updateByPrimaryKeySelective(RefundDetail refundDetail) {
+        refundDetailMapper.updateByPrimaryKeySelective(refundDetail);
+        return refundDetailMapper.selectByPrimaryKey(refundDetail.getId());
     }
 
     @Override

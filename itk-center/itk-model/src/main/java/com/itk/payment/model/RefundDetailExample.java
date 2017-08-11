@@ -334,62 +334,52 @@ public class RefundDetailExample {
             return (Criteria) this;
         }
 
-        public Criteria andOrderDetailIdEqualTo(String value) {
+        public Criteria andOrderDetailIdEqualTo(Long value) {
             addCriterion("order_detail_id =", value, "orderDetailId");
             return (Criteria) this;
         }
 
-        public Criteria andOrderDetailIdNotEqualTo(String value) {
+        public Criteria andOrderDetailIdNotEqualTo(Long value) {
             addCriterion("order_detail_id <>", value, "orderDetailId");
             return (Criteria) this;
         }
 
-        public Criteria andOrderDetailIdGreaterThan(String value) {
+        public Criteria andOrderDetailIdGreaterThan(Long value) {
             addCriterion("order_detail_id >", value, "orderDetailId");
             return (Criteria) this;
         }
 
-        public Criteria andOrderDetailIdGreaterThanOrEqualTo(String value) {
+        public Criteria andOrderDetailIdGreaterThanOrEqualTo(Long value) {
             addCriterion("order_detail_id >=", value, "orderDetailId");
             return (Criteria) this;
         }
 
-        public Criteria andOrderDetailIdLessThan(String value) {
+        public Criteria andOrderDetailIdLessThan(Long value) {
             addCriterion("order_detail_id <", value, "orderDetailId");
             return (Criteria) this;
         }
 
-        public Criteria andOrderDetailIdLessThanOrEqualTo(String value) {
+        public Criteria andOrderDetailIdLessThanOrEqualTo(Long value) {
             addCriterion("order_detail_id <=", value, "orderDetailId");
             return (Criteria) this;
         }
 
-        public Criteria andOrderDetailIdLike(String value) {
-            addCriterion("order_detail_id like", value, "orderDetailId");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrderDetailIdNotLike(String value) {
-            addCriterion("order_detail_id not like", value, "orderDetailId");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrderDetailIdIn(List<String> values) {
+        public Criteria andOrderDetailIdIn(List<Long> values) {
             addCriterion("order_detail_id in", values, "orderDetailId");
             return (Criteria) this;
         }
 
-        public Criteria andOrderDetailIdNotIn(List<String> values) {
+        public Criteria andOrderDetailIdNotIn(List<Long> values) {
             addCriterion("order_detail_id not in", values, "orderDetailId");
             return (Criteria) this;
         }
 
-        public Criteria andOrderDetailIdBetween(String value1, String value2) {
+        public Criteria andOrderDetailIdBetween(Long value1, Long value2) {
             addCriterion("order_detail_id between", value1, value2, "orderDetailId");
             return (Criteria) this;
         }
 
-        public Criteria andOrderDetailIdNotBetween(String value1, String value2) {
+        public Criteria andOrderDetailIdNotBetween(Long value1, Long value2) {
             addCriterion("order_detail_id not between", value1, value2, "orderDetailId");
             return (Criteria) this;
         }

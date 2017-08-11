@@ -417,12 +417,11 @@ CREATE TABLE `t_purchase` (
 
 
 CREATE TABLE `t_refund_flow` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
   `flow_id` VARCHAR(100) NOT NULL COMMENT '流水 id',
   `purchase_id` VARCHAR(100) NOT NULL COMMENT '支付 id',
   `order_id` VARCHAR(100) NOT NULL COMMENT '订单 id',
   `shop_id` bigint(20) NOT NULL COMMENT ' 店铺信息 id',
-  `refund_detail_id` VARCHAR(100) NOT NULL COMMENT '退款明细 id',
   `type` INT(1) NOT NULL COMMENT '退款类型(0: 部分退款, 1: 整单退款)',
   `promotion_status` INT(1) NOT NULL COMMENT '退券状态(0: 未退, 1: 已退)',
   `status` INT(10) NOT NULL COMMENT '退款状态',
@@ -443,7 +442,7 @@ CREATE TABLE `t_refund_detail` (
   `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `refund_detail_id` VARCHAR(100) NOT NULL COMMENT '退款详情 id',
   `flow_id` VARCHAR(100) NOT NULL COMMENT '流水 id',
-  `order_detail_id` VARCHAR(100) NOT NULL COMMENT '订单明细 id',
+  `order_detail_id` BIGINT(20) NOT NULL COMMENT '订单明细 id',
   `refund_count` INT(10) NOT NULL COMMENT '退货数量',
   `platform_promotion_code` INT(11) COMMENT '平台券id',
   `shop_promotion_code` INT(11) COMMENT '商家券 id',
@@ -458,9 +457,9 @@ CREATE TABLE `t_refund_history` (
   `operator_type_id` int(11) NOT NULL COMMENT '操作方类型',
   `operate_detail` varchar(1000) DEFAULT NULL COMMENT '操作内容',
   `comment` varchar(1000) DEFAULT NULL COMMENT '备注',
-  `create_by` bigint(18) DEFAULT NULL COMMENT '创建人',
+  `create_by` VARCHAR(100) DEFAULT NULL COMMENT '创建人',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` bigint(18) DEFAULT NULL COMMENT '修改人',
+  `update_by` VARCHAR(100) DEFAULT NULL COMMENT '修改人',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
   KEY `index_refund_history_refund_flow_id` (`refund_flow_id`)
@@ -499,62 +498,7 @@ CREATE TABLE `t_user_shipping_address` (
 #t_sale_info  shopid -> bigint(20)
 #t_order_header  shopid -> bigint(20)
 
-# 退款退货
-CREATE TABLE `ord_refund_info` (
-  `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
-  `refund_id` VARCHAR(50) NOT NULL COMMENT '退货单ID',
-  `order_id` VARCHAR(50) DEFAULT NULL COMMENT '订单编号',
-  `mobile` VARCHAR(20) DEFAULT NULL COMMENT '手机号',
-  `amount` int(18) DEFAULT '0' COMMENT '退货总额(分)',
-  `payment_type_id` int(4) DEFAULT '0' COMMENT '退款方式',
-  `payment_status` char(1) DEFAULT NULL COMMENT '状态(Y已退款，N未退款)',
-  `payment_time` datetime DEFAULT NULL COMMENT '退款时间',
-  `reason` VARCHAR(200) DEFAULT NULL COMMENT '退货理由',
-  `address` VARCHAR(200) NOT NULL COMMENT '退货地址',
-  `remark` VARCHAR(200) DEFAULT NULL COMMENT '备注',
-  `reject_reason` VARCHAR(200) DEFAULT NULL COMMENT '驳回理由',
-  `status` VARCHAR(10) DEFAULT NULL COMMENT '退货状态',
-  `express_company` VARCHAR(100) DEFAULT NULL COMMENT '快递公司',
-  `express_no` VARCHAR(50) DEFAULT NULL COMMENT '快递单号',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `create_by` VARCHAR(100) DEFAULT NULL COMMENT '创建人',
-  `update_time` datetime DEFAULT NULL COMMENT '修改时间',
-  `update_by` VARCHAR(100) DEFAULT NULL COMMENT '修改人',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='退货记录表';
+#t_backuser add user_id varchar(100)
 
-DROP TABLE IF EXISTS `refund_step_chain`;
-CREATE TABLE `refund_step_chain` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `rod_id` varchar(50) NOT NULL COMMENT '退货单id',
-  `step_name_id` int(11) NOT NULL COMMENT '步骤名称id',
-  `step_sequence` int(11) NOT NULL COMMENT '步骤顺序',
-  `comment` varchar(1000) DEFAULT NULL COMMENT '备注',
-  `status` int(11) NOT NULL COMMENT '步骤状态',
-  `operator_company_id` bigint(20) DEFAULT NULL COMMENT '操作人公司id',
-  `create_by` bigint(18) DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` bigint(18) DEFAULT NULL COMMENT '修改人',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`),
-  KEY `index_approval_step_chain_rod_id` (`rod_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT = '退款流程控制表';
-
-DROP TABLE IF EXISTS `refund_history`;
-CREATE TABLE `approval_history` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `biz_flow_id` varchar(50) NOT NULL COMMENT '业务单据id',
-  `biz_type_id` int(11) NOT NULL COMMENT '单据类型id',
-  `operate_id` int(11) NOT NULL COMMENT '操作类型id',
-  `operator_type_id` int(11) NOT NULL COMMENT '操作方类型',
-  `operate_detail` varchar(1000) DEFAULT NULL COMMENT '操作内容',
-  `comment` varchar(1000) DEFAULT NULL COMMENT '备注',
-  `create_by` bigint(18) DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` bigint(18) DEFAULT NULL COMMENT '修改人',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`),
-  KEY `index_approval_history_biz_flow_id` (`biz_flow_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT = '退款流程记录表';
 
 

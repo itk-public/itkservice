@@ -8,9 +8,9 @@ import com.itk.payment.model.RefundDetail;
  */
 public interface RefundDetailService {
 
-    int insertSelective(RefundDetail refundDetail);
+    RefundDetail insertSelective(RefundDetail refundDetail);
 
-    int updateByPrimaryKeySelective(RefundDetail refundDetail);
+    RefundDetail updateByPrimaryKeySelective(RefundDetail refundDetail);
 
     RefundDetail selectByRefundDetailId(String refundDetailId);
 

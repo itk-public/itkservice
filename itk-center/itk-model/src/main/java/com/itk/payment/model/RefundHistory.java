@@ -4,53 +4,53 @@ import java.util.Date;
 
 public class RefundHistory {
     /**
-    * 主键
-    */
+     * 主键
+     */
     private Long id;
 
     /**
-    * 业务单据id
-    */
+     * 业务单据id
+     */
     private String refundFlowId;
 
     /**
-    * 操作类型id
-    */
+     * 操作类型id
+     */
     private Integer operateId;
 
     /**
-    * 操作方类型
-    */
+     * 操作方类型
+     */
     private Integer operatorTypeId;
 
     /**
-    * 操作内容
-    */
+     * 操作内容
+     */
     private String operateDetail;
 
     /**
-    * 备注
-    */
+     * 备注
+     */
     private String comment;
 
     /**
-    * 创建人
-    */
-    private Long createBy;
+     * 创建人
+     */
+    private String createBy;
 
     /**
-    * 创建时间
-    */
+     * 创建时间
+     */
     private Date createTime;
 
     /**
-    * 修改人
-    */
-    private Long updateBy;
+     * 修改人
+     */
+    private String updateBy;
 
     /**
-    * 更新时间
-    */
+     * 更新时间
+     */
     private Date updateTime;
 
     public Long getId() {
@@ -101,11 +101,11 @@ public class RefundHistory {
         this.comment = comment;
     }
 
-    public Long getCreateBy() {
+    public String getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(Long createBy) {
+    public void setCreateBy(String createBy) {
         this.createBy = createBy;
     }
 
@@ -117,11 +117,11 @@ public class RefundHistory {
         this.createTime = createTime;
     }
 
-    public Long getUpdateBy() {
+    public String getUpdateBy() {
         return updateBy;
     }
 
-    public void setUpdateBy(Long updateBy) {
+    public void setUpdateBy(String updateBy) {
         this.updateBy = updateBy;
     }
 

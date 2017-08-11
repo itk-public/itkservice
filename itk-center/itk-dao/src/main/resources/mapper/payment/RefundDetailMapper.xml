@@ -5,7 +5,7 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="refund_detail_id" property="refundDetailId" jdbcType="VARCHAR" />
     <result column="flow_id" property="flowId" jdbcType="VARCHAR" />
-    <result column="order_detail_id" property="orderDetailId" jdbcType="VARCHAR" />
+    <result column="order_detail_id" property="orderDetailId" jdbcType="BIGINT" />
     <result column="refund_count" property="refundCount" jdbcType="INTEGER" />
     <result column="platform_promotion_code" property="platformPromotionCode" jdbcType="INTEGER" />
     <result column="shop_promotion_code" property="shopPromotionCode" jdbcType="INTEGER" />
@@ -115,10 +115,10 @@
     order_detail_id, refund_count, platform_promotion_code,
     shop_promotion_code)
     values (#{id,jdbcType=BIGINT}, #{refundDetailId,jdbcType=VARCHAR}, #{flowId,jdbcType=VARCHAR},
-    #{orderDetailId,jdbcType=VARCHAR}, #{refundCount,jdbcType=INTEGER}, #{platformPromotionCode,jdbcType=INTEGER},
+    #{orderDetailId,jdbcType=BIGINT}, #{refundCount,jdbcType=INTEGER}, #{platformPromotionCode,jdbcType=INTEGER},
     #{shopPromotionCode,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.itk.payment.model.RefundDetail" >
+  <insert id="insertSelective" parameterType="com.itk.payment.model.RefundDetail" useGeneratedKeys="true" keyProperty="id">
     insert into t_refund_detail
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -154,7 +154,7 @@
         #{flowId,jdbcType=VARCHAR},
       </if>
       <if test="orderDetailId != null" >
-        #{orderDetailId,jdbcType=VARCHAR},
+        #{orderDetailId,jdbcType=BIGINT},
       </if>
       <if test="refundCount != null" >
         #{refundCount,jdbcType=INTEGER},
@@ -186,7 +186,7 @@
         flow_id = #{record.flowId,jdbcType=VARCHAR},
       </if>
       <if test="record.orderDetailId != null" >
-        order_detail_id = #{record.orderDetailId,jdbcType=VARCHAR},
+        order_detail_id = #{record.orderDetailId,jdbcType=BIGINT},
       </if>
       <if test="record.refundCount != null" >
         refund_count = #{record.refundCount,jdbcType=INTEGER},
@@ -207,7 +207,7 @@
     set id = #{record.id,jdbcType=BIGINT},
     refund_detail_id = #{record.refundDetailId,jdbcType=VARCHAR},
     flow_id = #{record.flowId,jdbcType=VARCHAR},
-    order_detail_id = #{record.orderDetailId,jdbcType=VARCHAR},
+    order_detail_id = #{record.orderDetailId,jdbcType=BIGINT},
     refund_count = #{record.refundCount,jdbcType=INTEGER},
     platform_promotion_code = #{record.platformPromotionCode,jdbcType=INTEGER},
     shop_promotion_code = #{record.shopPromotionCode,jdbcType=INTEGER}
@@ -225,7 +225,7 @@
         flow_id = #{flowId,jdbcType=VARCHAR},
       </if>
       <if test="orderDetailId != null" >
-        order_detail_id = #{orderDetailId,jdbcType=VARCHAR},
+        order_detail_id = #{orderDetailId,jdbcType=BIGINT},
       </if>
       <if test="refundCount != null" >
         refund_count = #{refundCount,jdbcType=INTEGER},
@@ -243,7 +243,7 @@
     update t_refund_detail
     set refund_detail_id = #{refundDetailId,jdbcType=VARCHAR},
       flow_id = #{flowId,jdbcType=VARCHAR},
-      order_detail_id = #{orderDetailId,jdbcType=VARCHAR},
+      order_detail_id = #{orderDetailId,jdbcType=BIGINT},
       refund_count = #{refundCount,jdbcType=INTEGER},
       platform_promotion_code = #{platformPromotionCode,jdbcType=INTEGER},
       shop_promotion_code = #{shopPromotionCode,jdbcType=INTEGER}

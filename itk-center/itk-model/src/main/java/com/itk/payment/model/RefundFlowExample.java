@@ -135,52 +135,52 @@ public class RefundFlowExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualTo(Integer value) {
+        public Criteria andIdEqualTo(Long value) {
             addCriterion("id =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualTo(Integer value) {
+        public Criteria andIdNotEqualTo(Long value) {
             addCriterion("id <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThan(Integer value) {
+        public Criteria andIdGreaterThan(Long value) {
             addCriterion("id >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andIdGreaterThanOrEqualTo(Long value) {
             addCriterion("id >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(Integer value) {
+        public Criteria andIdLessThan(Long value) {
             addCriterion("id <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualTo(Integer value) {
+        public Criteria andIdLessThanOrEqualTo(Long value) {
             addCriterion("id <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdIn(List<Integer> values) {
+        public Criteria andIdIn(List<Long> values) {
             addCriterion("id in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotIn(List<Integer> values) {
+        public Criteria andIdNotIn(List<Long> values) {
             addCriterion("id not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdBetween(Integer value1, Integer value2) {
+        public Criteria andIdBetween(Long value1, Long value2) {
             addCriterion("id between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andIdNotBetween(Long value1, Long value2) {
             addCriterion("id not between", value1, value2, "id");
             return (Criteria) this;
         }
@@ -452,76 +452,6 @@ public class RefundFlowExample {
 
         public Criteria andShopIdNotBetween(Long value1, Long value2) {
             addCriterion("shop_id not between", value1, value2, "shopId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRefundDetailIdIsNull() {
-            addCriterion("refund_detail_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRefundDetailIdIsNotNull() {
-            addCriterion("refund_detail_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRefundDetailIdEqualTo(String value) {
-            addCriterion("refund_detail_id =", value, "refundDetailId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRefundDetailIdNotEqualTo(String value) {
-            addCriterion("refund_detail_id <>", value, "refundDetailId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRefundDetailIdGreaterThan(String value) {
-            addCriterion("refund_detail_id >", value, "refundDetailId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRefundDetailIdGreaterThanOrEqualTo(String value) {
-            addCriterion("refund_detail_id >=", value, "refundDetailId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRefundDetailIdLessThan(String value) {
-            addCriterion("refund_detail_id <", value, "refundDetailId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRefundDetailIdLessThanOrEqualTo(String value) {
-            addCriterion("refund_detail_id <=", value, "refundDetailId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRefundDetailIdLike(String value) {
-            addCriterion("refund_detail_id like", value, "refundDetailId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRefundDetailIdNotLike(String value) {
-            addCriterion("refund_detail_id not like", value, "refundDetailId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRefundDetailIdIn(List<String> values) {
-            addCriterion("refund_detail_id in", values, "refundDetailId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRefundDetailIdNotIn(List<String> values) {
-            addCriterion("refund_detail_id not in", values, "refundDetailId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRefundDetailIdBetween(String value1, String value2) {
-            addCriterion("refund_detail_id between", value1, value2, "refundDetailId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRefundDetailIdNotBetween(String value1, String value2) {
-            addCriterion("refund_detail_id not between", value1, value2, "refundDetailId");
             return (Criteria) this;
         }
 

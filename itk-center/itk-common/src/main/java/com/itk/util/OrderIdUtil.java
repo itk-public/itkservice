@@ -63,4 +63,8 @@ public class OrderIdUtil {
         orderID.append(OrderIdUtil.orderSuffixGenerator());
         return orderID.toString();
     }
+
+    public static String refundFlowIDGenerator(){
+        return "R" + orderIDGenerator();
+    }
 }

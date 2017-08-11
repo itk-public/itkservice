@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 /**
  * Created by enchen on 8/10/17.
@@ -14,7 +15,7 @@ import javax.validation.constraints.NotNull;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Setter
 @Getter
-public class RefundHistory {
+public class RefundHistoryVO {
 
     @NotNull
     private String refundFlowId;
@@ -32,4 +33,12 @@ public class RefundHistory {
     private Long operatorId;
 
     private String operatorName;
+
+    private String createBy;
+
+    private Date createTime;
+
+    private String updateBy;
+
+    private Date updateTime;
 }

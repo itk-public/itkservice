@@ -16,7 +16,7 @@ public class RefundDetail {
     /**
      * 订单明细 id
      */
-    private String orderDetailId;
+    private Long orderDetailId;
 
     /**
      * 退货数量
@@ -57,11 +57,11 @@ public class RefundDetail {
         this.flowId = flowId;
     }
 
-    public String getOrderDetailId() {
+    public Long getOrderDetailId() {
         return orderDetailId;
     }
 
-    public void setOrderDetailId(String orderDetailId) {
+    public void setOrderDetailId(Long orderDetailId) {
         this.orderDetailId = orderDetailId;
     }
 

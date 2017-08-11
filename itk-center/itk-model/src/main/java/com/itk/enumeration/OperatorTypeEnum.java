@@ -14,7 +14,7 @@ public enum OperatorTypeEnum implements SysEnum {
 
     private Integer id;
 
-    OperatorTypeEnum(Integer id){
+    OperatorTypeEnum(Integer id) {
         this.id = id;
     }
 
@@ -29,6 +29,6 @@ public enum OperatorTypeEnum implements SysEnum {
 
     @Override
     public Integer getID() {
-        return null;
+        return this.id;
     }
 }

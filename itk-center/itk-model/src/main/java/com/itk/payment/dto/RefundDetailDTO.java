@@ -1,18 +1,14 @@
-package com.itk.payment.model;
+package com.itk.payment.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
  * Created by enchen on 8/10/17.
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonIgnoreProperties(ignoreUnknown = true)
 @Setter
 @Getter
-public class RefundDetailVO {
+public class RefundDetailDTO {
 
     private Long id;
 

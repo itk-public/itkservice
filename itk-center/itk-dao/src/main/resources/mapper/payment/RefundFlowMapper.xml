@@ -2,12 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.itk.payment.mapper.RefundFlowMapper" >
   <resultMap id="BaseResultMap" type="com.itk.payment.model.RefundFlow" >
-    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="id" property="id" jdbcType="BIGINT" />
     <result column="flow_id" property="flowId" jdbcType="VARCHAR" />
     <result column="purchase_id" property="purchaseId" jdbcType="VARCHAR" />
     <result column="order_id" property="orderId" jdbcType="VARCHAR" />
     <result column="shop_id" property="shopId" jdbcType="BIGINT" />
-    <result column="refund_detail_id" property="refundDetailId" jdbcType="VARCHAR" />
     <result column="type" property="type" jdbcType="INTEGER" />
     <result column="promotion_status" property="promotionStatus" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
@@ -81,9 +80,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, flow_id, purchase_id, order_id, shop_id, refund_detail_id, type, promotion_status,
-    status, create_time, create_by, complete_time, reason, address, remark, reject_reason,
-    reject_reason_received, express_company, express_no
+    id, flow_id, purchase_id, order_id, shop_id, type, promotion_status, status, create_time,
+    create_by, complete_time, reason, address, remark, reject_reason, reject_reason_received,
+    express_company, express_no
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.itk.payment.model.RefundFlowExample" >
     select
@@ -107,15 +106,15 @@
       </if>
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select
     <include refid="Base_Column_List" />
     from t_refund_flow
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from t_refund_flow
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.itk.payment.model.RefundFlowExample" >
     delete from t_refund_flow
@@ -125,21 +124,21 @@
   </delete>
   <insert id="insert" parameterType="com.itk.payment.model.RefundFlow" >
     insert into t_refund_flow (id, flow_id, purchase_id,
-    order_id, shop_id, refund_detail_id,
-    type, promotion_status, status,
-    create_time, create_by, complete_time,
-    reason, address, remark,
-    reject_reason, reject_reason_received, express_company,
-    express_no)
-    values (#{id,jdbcType=INTEGER}, #{flowId,jdbcType=VARCHAR}, #{purchaseId,jdbcType=VARCHAR},
-    #{orderId,jdbcType=VARCHAR}, #{shopId,jdbcType=BIGINT}, #{refundDetailId,jdbcType=VARCHAR},
-    #{type,jdbcType=INTEGER}, #{promotionStatus,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},
-    #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{completeTime,jdbcType=TIMESTAMP},
-    #{reason,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
-    #{rejectReason,jdbcType=VARCHAR}, #{rejectReasonReceived,jdbcType=VARCHAR}, #{expressCompany,jdbcType=VARCHAR},
-    #{expressNo,jdbcType=VARCHAR})
+    order_id, shop_id, type,
+    promotion_status, status, create_time,
+    create_by, complete_time, reason,
+    address, remark, reject_reason,
+    reject_reason_received, express_company, express_no
+    )
+    values (#{id,jdbcType=BIGINT}, #{flowId,jdbcType=VARCHAR}, #{purchaseId,jdbcType=VARCHAR},
+    #{orderId,jdbcType=VARCHAR}, #{shopId,jdbcType=BIGINT}, #{type,jdbcType=INTEGER},
+    #{promotionStatus,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+    #{createBy,jdbcType=VARCHAR}, #{completeTime,jdbcType=TIMESTAMP}, #{reason,jdbcType=VARCHAR},
+    #{address,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{rejectReason,jdbcType=VARCHAR},
+    #{rejectReasonReceived,jdbcType=VARCHAR}, #{expressCompany,jdbcType=VARCHAR}, #{expressNo,jdbcType=VARCHAR}
+    )
   </insert>
-  <insert id="insertSelective" parameterType="com.itk.payment.model.RefundFlow" >
+  <insert id="insertSelective" parameterType="com.itk.payment.model.RefundFlow" useGeneratedKeys="true" keyProperty="id">
     insert into t_refund_flow
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -156,9 +155,6 @@
       </if>
       <if test="shopId != null" >
         shop_id,
-      </if>
-      <if test="refundDetailId != null" >
-        refund_detail_id,
       </if>
       <if test="type != null" >
         type,
@@ -202,7 +198,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+        #{id,jdbcType=BIGINT},
       </if>
       <if test="flowId != null" >
         #{flowId,jdbcType=VARCHAR},
@@ -215,9 +211,6 @@
       </if>
       <if test="shopId != null" >
         #{shopId,jdbcType=BIGINT},
-      </if>
-      <if test="refundDetailId != null" >
-        #{refundDetailId,jdbcType=VARCHAR},
       </if>
       <if test="type != null" >
         #{type,jdbcType=INTEGER},
@@ -270,7 +263,7 @@
     update t_refund_flow
     <set >
       <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
+        id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.flowId != null" >
         flow_id = #{record.flowId,jdbcType=VARCHAR},
@@ -283,9 +276,6 @@
       </if>
       <if test="record.shopId != null" >
         shop_id = #{record.shopId,jdbcType=BIGINT},
-      </if>
-      <if test="record.refundDetailId != null" >
-        refund_detail_id = #{record.refundDetailId,jdbcType=VARCHAR},
       </if>
       <if test="record.type != null" >
         type = #{record.type,jdbcType=INTEGER},
@@ -333,12 +323,11 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update t_refund_flow
-    set id = #{record.id,jdbcType=INTEGER},
+    set id = #{record.id,jdbcType=BIGINT},
     flow_id = #{record.flowId,jdbcType=VARCHAR},
     purchase_id = #{record.purchaseId,jdbcType=VARCHAR},
     order_id = #{record.orderId,jdbcType=VARCHAR},
     shop_id = #{record.shopId,jdbcType=BIGINT},
-    refund_detail_id = #{record.refundDetailId,jdbcType=VARCHAR},
     type = #{record.type,jdbcType=INTEGER},
     promotion_status = #{record.promotionStatus,jdbcType=INTEGER},
     status = #{record.status,jdbcType=INTEGER},
@@ -370,9 +359,6 @@
       </if>
       <if test="shopId != null" >
         shop_id = #{shopId,jdbcType=BIGINT},
-      </if>
-      <if test="refundDetailId != null" >
-        refund_detail_id = #{refundDetailId,jdbcType=VARCHAR},
       </if>
       <if test="type != null" >
         type = #{type,jdbcType=INTEGER},
@@ -414,7 +400,7 @@
         express_no = #{expressNo,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.itk.payment.model.RefundFlow" >
     update t_refund_flow
@@ -422,7 +408,6 @@
     purchase_id = #{purchaseId,jdbcType=VARCHAR},
     order_id = #{orderId,jdbcType=VARCHAR},
     shop_id = #{shopId,jdbcType=BIGINT},
-    refund_detail_id = #{refundDetailId,jdbcType=VARCHAR},
     type = #{type,jdbcType=INTEGER},
     promotion_status = #{promotionStatus,jdbcType=INTEGER},
     status = #{status,jdbcType=INTEGER},
@@ -436,6 +421,6 @@
     reject_reason_received = #{rejectReasonReceived,jdbcType=VARCHAR},
     express_company = #{expressCompany,jdbcType=VARCHAR},
     express_no = #{expressNo,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

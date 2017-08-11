@@ -8,9 +8,9 @@ import com.itk.payment.model.RefundFlow;
  */
 public interface RefundFlowService {
 
-    int insertSelective(RefundFlow refundFlow);
+    RefundFlow insertSelective(RefundFlow refundFlow);
 
-    int updateByPrimaryKeySelective(RefundFlow refundFlow);
+    RefundFlow updateByPrimaryKeySelective(RefundFlow refundFlow);
 
     RefundFlow selectByRefundFlowId(String refundFlowId);
 

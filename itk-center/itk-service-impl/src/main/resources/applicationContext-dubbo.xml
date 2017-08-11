@@ -149,6 +149,14 @@
                    version="1.0" registry="zookeeper" owner="enchen"/>
     <bean id="refundDetailService" class="com.itk.payment.service.impl.RefundDetailServiceImpl"/>
 
+    <dubbo:service interface="com.itk.payment.service.RefundHistoryService" ref="refundHistoryService"
+                   version="1.0" registry="zookeeper" owner="enchen"/>
+    <bean id="refundHistoryService" class="com.itk.payment.service.impl.RefundHistoryServiceImpl"/>
+
+    <dubbo:service interface="com.itk.payment.service.RefundProcessService" ref="refundProcessService"
+                   version="1.0" registry="zookeeper" owner="enchen"/>
+    <bean id="refundProcessService" class="com.itk.payment.service.impl.RefundProcessServiceImpl"/>
+
     <!--用户收货地址-->
     <dubbo:service interface="com.itk.user.service.UserShippingAddressService" ref="userShippingAddressService"
                    version="1.0" registry="zookeeper" owner="qi.yang"/>

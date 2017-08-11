@@ -8,9 +8,9 @@
     <result column="operator_type_id" property="operatorTypeId" jdbcType="INTEGER" />
     <result column="operate_detail" property="operateDetail" jdbcType="VARCHAR" />
     <result column="comment" property="comment" jdbcType="VARCHAR" />
-    <result column="create_by" property="createBy" jdbcType="BIGINT" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="update_by" property="updateBy" jdbcType="BIGINT" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -72,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, refund_flow_id, operate_id, operator_type_id, operate_detail, comment, create_by, 
+    id, refund_flow_id, operate_id, operator_type_id, operate_detail, comment, create_by,
     create_time, update_by, update_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.itk.payment.model.RefundHistoryExample" >
@@ -98,7 +98,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_refund_history
     where id = #{id,jdbcType=BIGINT}
@@ -114,14 +114,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.itk.payment.model.RefundHistory" >
-    insert into t_refund_history (id, refund_flow_id, operate_id, 
-      operator_type_id, operate_detail, comment, 
-      create_by, create_time, update_by, 
-      update_time)
-    values (#{id,jdbcType=BIGINT}, #{refundFlowId,jdbcType=VARCHAR}, #{operateId,jdbcType=INTEGER}, 
-      #{operatorTypeId,jdbcType=INTEGER}, #{operateDetail,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, 
-      #{createBy,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+    insert into t_refund_history (id, refund_flow_id, operate_id,
+    operator_type_id, operate_detail, comment,
+    create_by, create_time, update_by,
+    update_time)
+    values (#{id,jdbcType=BIGINT}, #{refundFlowId,jdbcType=VARCHAR}, #{operateId,jdbcType=INTEGER},
+    #{operatorTypeId,jdbcType=INTEGER}, #{operateDetail,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR},
+    #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR},
+    #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.itk.payment.model.RefundHistory" >
     insert into t_refund_history
@@ -177,13 +177,13 @@
         #{comment,jdbcType=VARCHAR},
       </if>
       <if test="createBy != null" >
-        #{createBy,jdbcType=BIGINT},
+        #{createBy,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateBy != null" >
-        #{updateBy,jdbcType=BIGINT},
+        #{updateBy,jdbcType=VARCHAR},
       </if>
       <if test="updateTime != null" >
         #{updateTime,jdbcType=TIMESTAMP},
@@ -218,13 +218,13 @@
         comment = #{record.comment,jdbcType=VARCHAR},
       </if>
       <if test="record.createBy != null" >
-        create_by = #{record.createBy,jdbcType=BIGINT},
+        create_by = #{record.createBy,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.updateBy != null" >
-        update_by = #{record.updateBy,jdbcType=BIGINT},
+        update_by = #{record.updateBy,jdbcType=VARCHAR},
       </if>
       <if test="record.updateTime != null" >
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
@@ -237,15 +237,15 @@
   <update id="updateByExample" parameterType="map" >
     update t_refund_history
     set id = #{record.id,jdbcType=BIGINT},
-      refund_flow_id = #{record.refundFlowId,jdbcType=VARCHAR},
-      operate_id = #{record.operateId,jdbcType=INTEGER},
-      operator_type_id = #{record.operatorTypeId,jdbcType=INTEGER},
-      operate_detail = #{record.operateDetail,jdbcType=VARCHAR},
-      comment = #{record.comment,jdbcType=VARCHAR},
-      create_by = #{record.createBy,jdbcType=BIGINT},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_by = #{record.updateBy,jdbcType=BIGINT},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    refund_flow_id = #{record.refundFlowId,jdbcType=VARCHAR},
+    operate_id = #{record.operateId,jdbcType=INTEGER},
+    operator_type_id = #{record.operatorTypeId,jdbcType=INTEGER},
+    operate_detail = #{record.operateDetail,jdbcType=VARCHAR},
+    comment = #{record.comment,jdbcType=VARCHAR},
+    create_by = #{record.createBy,jdbcType=VARCHAR},
+    create_time = #{record.createTime,jdbcType=TIMESTAMP},
+    update_by = #{record.updateBy,jdbcType=VARCHAR},
+    update_time = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -269,13 +269,13 @@
         comment = #{comment,jdbcType=VARCHAR},
       </if>
       <if test="createBy != null" >
-        create_by = #{createBy,jdbcType=BIGINT},
+        create_by = #{createBy,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateBy != null" >
-        update_by = #{updateBy,jdbcType=BIGINT},
+        update_by = #{updateBy,jdbcType=VARCHAR},
       </if>
       <if test="updateTime != null" >
         update_time = #{updateTime,jdbcType=TIMESTAMP},
@@ -290,9 +290,9 @@
       operator_type_id = #{operatorTypeId,jdbcType=INTEGER},
       operate_detail = #{operateDetail,jdbcType=VARCHAR},
       comment = #{comment,jdbcType=VARCHAR},
-      create_by = #{createBy,jdbcType=BIGINT},
+      create_by = #{createBy,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_by = #{updateBy,jdbcType=BIGINT},
+      update_by = #{updateBy,jdbcType=VARCHAR},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>

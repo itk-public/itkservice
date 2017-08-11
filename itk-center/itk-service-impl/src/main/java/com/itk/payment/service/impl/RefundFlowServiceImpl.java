@@ -5,6 +5,7 @@ import com.itk.payment.model.RefundFlow;
 import com.itk.payment.model.RefundFlowExample;
 import com.itk.payment.service.RefundFlowService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,14 +17,18 @@ public class RefundFlowServiceImpl implements RefundFlowService {
     @Autowired
     RefundFlowMapper refundFlowMapper;
 
+    @Transactional
     @Override
-    public int insertSelective(RefundFlow refundFlow) {
-        return refundFlowMapper.insertSelective(refundFlow);
+    public RefundFlow insertSelective(RefundFlow refundFlow) {
+        Long id = refundFlowMapper.insertSelective(refundFlow);
+        return refundFlowMapper.selectByPrimaryKey(id);
     }
 
+    @Transactional
     @Override
-    public int updateByPrimaryKeySelective(RefundFlow refundFlow) {
-        return refundFlowMapper.updateByPrimaryKeySelective(refundFlow);
+    public RefundFlow updateByPrimaryKeySelective(RefundFlow refundFlow) {
+        refundFlowMapper.updateByPrimaryKeySelective(refundFlow);
+        return refundFlowMapper.selectByPrimaryKey(refundFlow.getId());
     }
 
     @Override

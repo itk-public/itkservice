@@ -34,4 +34,9 @@ public class OrderDetailServiceImpl implements OrderDetailService {
                 .andOrderIdEqualTo(orderId);
         return orderDetailMapper.selectByExample(example);
     }
+
+    @Override
+    public OrderDetail selectByPrimaryKey(Long id) {
+        return orderDetailMapper.selectByPrimaryKey(id);
+    }
 }
